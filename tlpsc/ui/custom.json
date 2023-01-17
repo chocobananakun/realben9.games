@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "parent": "root",
+    "vox": "menuguideline"
+  },
+  "data": [
+    {
+      "string": "customLabel",
+      "langOverride": "menu_root",
+      "type": "header"
+    },
+    {
+      "string": "ic4wLabel",
+      "stringDesc": "ic4wDescription",
+      "default": true,
+      "action": "submenu",
+      "submenu": "mode/ic4w"
+    }
+  ]
+}

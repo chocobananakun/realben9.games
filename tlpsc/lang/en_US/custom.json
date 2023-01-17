@@ -1,0 +1,13 @@
+{
+  "customLabel": {
+    "message": "Custom",
+    "description": "Custom"
+  },
+  "ic4wLabel": {
+    "message": "IC4W",
+    "description": "Infinite Center 4-Wide"
+  },
+  "ic4wDescription": {
+    "message": "Infinite Center 4-Wide"
+  }
+}

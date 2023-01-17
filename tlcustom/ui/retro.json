@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "parent": "root",
+    "vox": "menuretro"
+  },
+  "data": [
+    {
+      "string": "retroLabel",
+      "langOverride": "menu_root",
+      "type": "header"
+    },
+    {
+      "string": "consoleLabel",
+      "stringDesc": "consoleDescription",
+      "default": true,
+      "action": "submenu",
+      "submenu": "mode/retro"
+    },
+    {
+      "string": "deluxeLabel",
+      "stringDesc": "deluxeDescription",
+      "action": "submenu",
+      "submenu": "mode/deluxe"
+    }
+  ]
+}

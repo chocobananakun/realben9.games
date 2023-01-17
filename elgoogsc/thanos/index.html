@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="This is a fully functional replica of the Thanos Infinity Gauntlet Snap Google Trick. It was an interactive Easter egg originally created by Google but got removed since 2020. Play the Thanos hand magic effect online for free and have fun!">
+<title>Play Google Thanos Snap Effect - elgooG</title>
+<script src="../cdn-cgi/apps/head/JGK-iSZzO6-4eDwTbSn9A5L1zjQ.js"></script><link rel="canonical" href="https://elgoog.im/thanos/">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="fb:app_id" content="2140740992815249" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://elgoog.im/thanos/" />
+<meta property="og:title" content="Play Google Thanos Easter Egg Online" />
+<meta property="og:image" content="thanos-infinity-gauntlet-snap-google-trick.jpg" />
+<meta property="og:description" content="This is a fully functional replica of the Thanos Infinity Gauntlet Snap Google Trick. It was an interactive Easter egg originally created by Google but got removed since 2020. Play the Thanos hand magic effect online for free and have fun!" />
+<link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="../assets/css/main.min.css" rel="stylesheet">
+<link href="../assets/css/gserp.min.css" rel="stylesheet">
+<style>
+	/*html {*/
+	/*	overflow-x: hidden;*/
+	/*}*/
+	body{
+		font-family: arial,sans-serif;
+	}
+	/*=============transform only=================*/
+	.stage, .viewport{
+		height: 100%;
+	}
+	/*=============transform only=================*/
+	.s-content .title-w .logo{
+		height: 120px;
+		padding-left: 10px;
+	}
+	.s-content .title-w .logo img{
+		height: 120px;
+		width: auto;
+		padding: 0;
+		cursor: auto;
+	}
+	@media screen and (max-width: 800px){
+		.s-content .title-w .logo{
+			height: 100px;
+			padding-left: 25px;
+		}
+		.s-content .title-w .logo img{
+			height: 100px;
+			width: auto;
+			padding: 0;
+			cursor: auto;
+		}
+	}
+</style>
+<style>
+	/** {*/
+	/*	margin: 0;*/
+	/*	padding: 0;*/
+	/*}*/
+
+	html {
+		scroll-behavior: smooth;
+	}
+	.gauntlet{
+		position: relative;
+		min-width: 80px;
+		max-width: 80px;
+		max-height: 80px;
+		min-height: 80px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+	.content-canvas>canvas {
+		position: absolute;
+		left: 0;
+		top: 0;
+		transition: transform 1s ease-out, opacity 1s ease-out;
+		opacity: 1;
+		transform: rotate(0deg) translate(0px, 0px) rotate(0deg);
+	}
+
+	.animation-transition {
+		border: 0px !important;
+	}
+
+	.none {
+		/*display: none;*/
+		opacity: 0;
+	}
+
+	.animation-in {
+		/*display: block;*/
+		opacity: 1;
+	}
+
+	.animation-in a,
+	.animation-in p,
+	.animation-in h2,
+	.animation-in h3,
+	.animation-in h4,
+	.animation-in span,
+	.animation-in b {
+		animation: animationColor .5s;
+	}
+
+
+	.reset{
+		min-width: 100%!important;
+		max-width: 100%!important;
+		min-height: auto!important;
+		max-height: auto!important;
+	}
+
+	@keyframes animationColor {
+		0% {
+			color: #006621;
+		}
+
+		100% {
+			color: #006621;
+		}
+	}
+
+
+	@keyframes debug-pulse {
+		0% {
+			filter: none;
+		}
+
+		95% {
+			filter: none;
+		}
+
+		95% {
+			filter: drop-shadow(0 1px 0 rgba(255, 0, 0, 1));
+		}
+
+		100% {
+			filter: drop-shadow(0 1px 0 rgba(255, 0, 0, 1));
+		}
+	}
+
+</style>
+<script type="b437a9487a79918319746c60-text/javascript">
+	window._taboola = window._taboola || [];
+	_taboola.push({article:'auto'});
+	!function (e, f, u, i) {
+		if (!document.getElementById(i)){
+			e.async = 1;
+			e.src = u;
+			e.id = i;
+			f.parentNode.insertBefore(e, f);
+		}
+	}(document.createElement('script'),
+			document.getElementsByTagName('script')[0],
+			'//cdn.taboola.com/libtrc/iploc-network/loader.js',
+			'tb_loader_script');
+	if(window.performance && typeof window.performance.mark == 'function')
+	{window.performance.mark('tbl_ic');}
+
+	let currPage = window.location.pathname.split("/")[1];
+	//let currPage = window.location.pathname.split("/")[2];
+</script>
+</head>
+<body>
+<div class="menu-button">
+<input type="checkbox" id="button-check" role="button">
+<label class="menu-label" for="button-check" aria-hidden="true">
+<span class="burger">
+<span class="bar">
+<span class="visuallyhidden">Menu</span>
+</span>
+</span>
+<span class="menu-tooltip"><span>M</span><span>E</span><span>N</span><span>U</span></span>
+</label>
+<div id="menu-w" role="banner" class="is-active">
+<div class="menu-header">
+<a class="logo" href="../" title="Back to Homepage">
+<img src="../assets/img/logo.png" width="50" height="50" alt="elgoog" loading="lazy"><span>Google Mirror - I'm elgooG</span>
+</a>
+</div>
+<div class="menu-main">
+<nav id="menu-nav" role="navigation" class="is-active">
+<div class="col">
+<h4>Official Google Easter Eggs<br>- Restored</h4>
+<ul>
+<li><a href="../thanos/">Thanos Snap</a></li>
+<li><a href="../mario/">Super Mario Bros.</a></li>
+<li><a href="../t-rex/v2/">Dinosaur Game V2</a></li>
+<li><a href="../zergrush/">Zerg Rush</a></li>
+<li><a href="../underwater/">Underwater Search</a></li>
+<li><a href="../breakout/">Atari Breakout</a></li>
+<li><a href="../zipper/">Google Zipper</a></li>
+<li><a href="../google-mirror/">Google Mirror</a></li>
+<li><a href="../let-it-snow/">Let It Snow</a></li>
+<li><a href="../wizard-of-oz/">Wizard of Oz</a></li>
+</ul>
+</div>
+<div class="col">
+<h4>Official Google Easter Eggs<br>- Enhanced</h4>
+<ul>
+<li><a href="../t-rex/">Dinosaur Game</a></li>
+<li><a href="../doabarrelroll/">Do A Barrel Roll</a></li>
+<li><a href="../snake/">Snake Game</a></li>
+<li><a href="../pacman/">Pac-Man Game</a></li>
+<li><a href="../google1998/">Google In 1998</a></li>
+<li><a href="../tilt/">Google Tilt</a></li>
+</ul>
+</div>
+<div class="col">
+<h4>Unofficial Google Easter Eggs<br>- Enjoy!</h4>
+<ul>
+<li><a href="../black/">Google Dark Mode</a></li>
+<li><a href="../2048/">2048 Game</a></li>
+<li><a href="../gravity/">Google Gravity</a></li>
+<li><a href="../space-invaders/">Space Invaders</a></li>
+<li><a href="../goooooooooooooooooogle/" class="gspring">Goooooooooooooooooogle</a></li>
+<li><a href="../əๅɓoo⅁/">əๅɓoo⅁</a></li>
+<li><a href="../search/">Google Search Mirror</a></li>
+<li><a href="../terminal/">Google Terminal</a></li>
+<li><a href="../t-rex/3d/">Dinosaur Game 3D</a></li>
+<li><a href="../google-fan/">Google Fan</a></li>
+</ul>
+</div>
+<div class="col">
+<h4>Official Google Easter Eggs<br>- Imperfect</h4>
+<ul>
+<li><a href="../guitar/">Google Guitar</a></li>
+<li class="social-li">
+<a href="#" target="_blank" class="social-icon">
+<img src="../assets/svg/fb.svg" loading="lazy" width="32" height="32" alt="Facebook Share">
+</a>
+<a href="#" target="_blank" class="social-icon">
+<img src="../assets/svg/tw.svg" loading="lazy" width="32" height="32" alt="Twitter Share">
+</a>
+</li>
+</ul>
+</div>
+<input type="button" title="Close Menu" class="close-menu" value="×">
+</nav>
+</div>
+<div class="menu-footer">
+<p class="copyright">©2011-<span class="current-year">2022</span> · <a target="_blank" rel="noopener" href="https://forms.gle/LnDk2zSyuGFU72146">Feedback</a> · <a target="_blank" href="../sitemap.xml">Sitemap</a> · <a target="_blank" href="../disclaimer.html">Disclaimer</a> · <a target="_blank" href="../privacy.html">Privacy</a> · Mail:contact@<span id="this_host"></span> · We are <b>NOT</b> affiliated with Google.</p>
+</div>
+</div>
+</div>
+<div class="stage">
+<div class="viewport">
+<header class="s-header clear">
+<div class="top-l">
+<a href="javascript:;" class="s-logo"><img class="logo-img" src="../assets/img/elgoog-logo.png" alt="elgoog logo" height="184" width="544"></a>
+<div class="s-search">
+<form class="search-wrapper" action="../search/" method="GET">
+<div class="search-bar">
+<div class="hidden-magnifier"><div><span><img src="../assets/svg/search.svg" loading="lazy" alt="Search"></span></div></div>
+<div class="input"><input dir="right" name="q" type="text" autocomplete="off" value="Thanos Snap - Google Easter Eggs"></div>
+<div class="voice-wrapper"><span><img src="../assets/svg/voice.svg" width="24" height="24" alt="Voice"></span></div>
+</div>
+<button class="magnifier" type="submit">
+<span><img src="../assets/svg/search-blue.svg" width="24" height="24" loading="lazy" alt="Search"></span>
+</button>
+</form>
+<nav class="s-nav">
+<div class="uls clear">
+<div class="ul-wrapper">
+<ul>
+<li class="menu-active"><span><img src="../assets/svg/all.svg" width="16" height="16" loading="lazy" alt="All"></span>All</li>
+<li><span><img src="../assets/svg/news.svg" width="16" height="16" loading="lazy" alt="News"></span>News</li>
+<li><span><img src="../assets/svg/books.svg" width="16" height="16" loading="lazy" alt="Books"></span>Books</li>
+<li><span><img src="../assets/svg/images.svg" width="16" height="16" loading="lazy" alt="Images"></span>Images</li>
+<li><span><img src="../assets/svg/videos.svg" width="16" height="16" loading="lazy" alt="Videos"></span>Videos</li>
+<li class="mb-item">Maps</li>
+<li class="mb-item">Shopping</li>
+<li class="mb-item">Flights</li>
+<li class="pc-item"><span><img src="../assets/svg/more.svg" width="16" height="16" loading="lazy" alt="More"></span>More</li>
+</ul>
+<ul>
+<li><span></span>Settings</li>
+<li><span></span>Tools</li>
+</ul>
+</div>
+<div class="ul-cover"></div>
+</div>
+</nav>
+</div>
+</div>
+<div class="top-r">
+<div class="nav-right-w">
+<ul class="nav-right">
+<li class="nav-item">
+<a class="nav-link menu-link"><img src="../assets/svg/apps.svg" height="24" width="24" alt="Apps"></a>
+</li>
+<li class="nav-item">
+<a class="user-link" href="../thanos/"><img src="../assets/img/thanos.jpg" width="32" height="32" alt="Thanos"></a>
+</li>
+</ul>
+</div>
+</div>
+</header>
+<main class="s-content clear">
+<div class="content-w clear">
+<div class="right-c">
+<header class="title-w">
+<div class="name">
+<h1>Thanos Snap</h1>
+<p>Google Easter Egg</p>
+</div>
+<div class="gauntlet" id="gauntlet">
+<img src="img/thanos_idle.png" alt="Thanos Infinity Gauntlet">
+</div>
+<div class="logo"><img src="../assets/img/thanos.jpg" width="120" height="120" alt="Google Thanos Snap Easter Egg"></div>
+</header>
+<div class="link">
+<a href="./"><img src="../assets/svg/favicon.svg" width="20" height="20" alt="favicon" loading="lazy">elgoog.im/thanos/</a>
+</div>
+<div id="tr_slot1x1" class="plain"></div>
+<script type="b437a9487a79918319746c60-text/javascript">
+						window._taboola = window._taboola || [];
+						_taboola.push({
+							mode: 'thumbnails-1X1',
+							container: 'tr_slot1x1',
+							placement: currPage+"-300",
+							target_type: 'mix'
+						});
+					</script>
+<div class="des">
+<h3>Description:</h3>
+With the Infinity Gauntlet, Thanos will snap away half of your Google search results. This Google Easter was first seen in April 2019, but Google had it removed no later than Mid 2020. Now you can still play Google Thanos Snap Trick here.
+</div>
+ <div class="links">
+<h3>More Google Easter Eggs on elgooG</h3>
+<ul>
+<li><a href="#"><img src="../favicon.ico" alt="" loading="lazy"><span>13</span></a></li>
+<li><a href="#"><img src="../favicon.ico" alt="" loading="lazy"><span>13</span></a></li>
+<li><a href="#"><img src="../favicon.ico" alt="" loading="lazy"><span>13</span></a></li>
+<li><a href="#"><img src="../favicon.ico" alt="" loading="lazy"><span>13</span></a></li>
+<li><a href="#"><img src="../favicon.ico" alt="" loading="lazy"><span>13</span></a></li>
+<li><a href="#"><img src="../favicon.ico" alt="" loading="lazy"><span>13</span></a></li>
+<li><a href="#"><img src="../favicon.ico" alt="" loading="lazy"><span>13</span></a></li>
+</ul>
+</div>
+</div>
+<div class="left-c">
+<div class="vol" id="vol">About <span id="cantSearch"></span> results (<span id="seconds"></span> seconds)</div>
+<div class="main-content">
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../underwater">
+<br>
+<h3>Google Underwater Search - elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">underwater</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">Want to use Google to search and explore the underwater space? Google Underwater Search is one of the best April Fool's Day jokes, and now you can search ...</div>
+</div>
+</div>
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../thanos">
+<br>
+<h3>Play Google Thanos Snap Trick - elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">thanos</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">Thanos - Wikipedia ... Thanos is a fictional supervillain appearing in American comic books published by Marvel Comics. The character was created by writer-artist ...</div>
+</div>
+</div>
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../goooooooooooooooooogle">
+<br>
+<h3>Google Spring Style - Goooooooooooooooooogle - elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">goooooooooooooooooogle</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">Have you ever imagined Google becomes a spring? Meet the elastic Google with more 'O's - Goooooooooooooooooogle!</div>
+</div>
+</div>
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../space-invaders">
+<br>
+<h3>Play Space Invaders Online - elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">space-invaders</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">Defend Google by playing this classic arcade game - Google Space Invaders online for free, unblocked!</div>
+</div>
+</div>
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../t-rex">
+<br>
+<h3>Play T-Rex Dinosaur Game Online - elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">t-rex</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">Play Google's hidden T-Rex dinosaur game, enhanced Bot Mode included. Without going offline with Chrome, enjoy the “No Internet game T Rex” now. Want to ...</div>
+</div>
+</div>
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../2048">
+<br>
+<h3>Play 2048 Game online - elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">2048</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">2048 game with a Google theme. Play online now for free, unblocked! AI/Bot mode is also included.</div>
+</div>
+</div>
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../pacman">
+<br>
+<h3>Play Google Pacman Game - elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">pacman</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">Based on the classic 1980s arcade game, Google Pac-Man is one of the best Google Doodle games. While playing this game, you must control the Pac-Man ...</div>
+</div>
+</div>
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../breakout">
+<br>
+<h3>Play Google Atari Breakout - elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">breakout</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">Atari Breakout is a hidden Google game which turns Google Images into a playable classic arcade video game with a Google twist. Start destroying rows of ...</div>
+</div>
+</div>
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../gravity">
+<br>
+<h3>Google Gravity - elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">gravity</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">Experience amazing Google Gravity effects.</div>
+</div>
+</div>
+<div class="g">
+<div class="g-item">
+<div class="link-title">
+<a href="../let-it-snow">
+<br>
+<h3>Google "Let It Snow" -elgooG</h3>
+<div class="g-title">
+<div class="g-fav"><img width="16" height="16" src="" loading="lazy" alt=""></div><cite>https://elgoog.im<span class="url-suffix">let-it-snow</span></cite>
+</div>
+</a>
+<div class="g-cache"><span><img src="../assets/svg/cache.svg" width="18" height="18" loading="lazy" alt="Cached"></span></div>
+</div>
+<div class="g-content">Soon your screen is beginning to look a lot like Christmas, as a flurry of flakes drifts downward. Then it continues as the screen frosts over. Use your cursor as an ice scraper to draw...</div>
+</div>
+</div>
+<div class="g">
+<div class="more-item">
+<div class="related">Related searches<span><img src="../assets/svg/more.svg" width="18" height="18" alt=""></span></div>
+<ul>
+<li><a href="./"><span><img src="../assets/svg/search.svg" alt=""></span>Google <b>Thanos</b> Snap Trick</a></li>
+<li><a href="./"><span><img src="../assets/svg/search.svg" alt=""></span><b>Thanos</b> Gauntlet</a></li>
+<li><a href="./"><span><img src="../assets/svg/search.svg" alt=""></span><b>Thanos</b> Google Trick</a></li>
+<li><a href="./"><span><img src="../assets/svg/search.svg" alt=""></span><b>Thanos</b> Easter Eggs</a></li>
+<li><a href="./"><span><img src="../assets/svg/search.svg" alt=""></span><b>Thanos</b> Hand</a></li>
+<li><a href="./"><span><img src="../assets/svg/search.svg" alt=""></span><b>Thanos</b> Infinity Gauntlet</a></li>
+<li><a href="./"><span><img src="../assets/svg/search.svg" alt=""></span><b>Thanos</b> Secret</a></li>
+<li><a href="./"><span><img src="../assets/svg/search.svg" alt=""></span>Play <b>Thanos</b> Online</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="pagination">
+<div class="p-num">
+<a href="javascript:;" class="page-pre"><span>Previous</span></a>
+<a href="javascript:;" class="page-num curpage">1</a>
+<a href="javascript:;" class="page-num">2</a>
+<a href="javascript:;" class="page-num">3</a>
+<a href="javascript:;" class="page-num">4</a>
+<a href="javascript:;" class="page-num">5</a>
+<a href="javascript:;" class="page-next">Next</a>
+</div>
+</div>
+</div>
+</div>
+<div class="push"></div>
+</main>
+<footer class="s-footer">
+<div class="footer-w">
+<a href="javascript:;">Help</a>
+<a href="javascript:;">Send feedback</a>
+<a href="javascript:;">Privacy</a>
+<a href="javascript:;">Terms</a>
+</div>
+</footer>
+</div>
+</div>
+<nav class="nav-arrow">
+<div class="arrow-prev arrow">
+<span class="arrow-icon-wrap"></span>
+<div class="main-w">
+<span>Previous :
+<h3 id="title-prev"><a class="prev-link" href="/">Homepage of elgooG</a></h3>
+</span>
+<h4 id="des-prev"><a class="prev-link" href="/">Go to the homepage, all the best Google Easter Eggs out there</a></h4>
+<a class="prev-link hidden-link" href="/">Homepage of elgooG</a>
+</div>
+</div>
+<div class="arrow-next arrow">
+<span class="arrow-icon-wrap"></span>
+<div class="main-w">
+<span>Next :
+<h3 id="title-next"><a class="next-link" href="/t-rex/">Google Dinosaur Game</a></h3>
+</span>
+<h4 id="des-next"><a class="next-link" href="/t-rex/">Play Chrome's hidden T-Rex dinosaur game,with AI/Bot mode!</a></h4>
+<a class="next-link hidden-link" href="/t-rex/">Google Dinosaur Game</a>
+</div>
+</div>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.11.3/dist/jquery.min.js" type="b437a9487a79918319746c60-text/javascript"></script>
+<script type="b437a9487a79918319746c60-text/javascript">window.jQuery || document.write('<script src="../assets/js/lib/jquery.min.js"><\/script>')</script>
+<script async src='https://www.google-analytics.com/analytics.js' type="b437a9487a79918319746c60-text/javascript"></script>
+<script async src="https://cdn.jsdelivr.net/npm/autotrack@2.4.1/autotrack.js" type="b437a9487a79918319746c60-text/javascript"></script>
+<script src="../assets/js/main.min.js" type="b437a9487a79918319746c60-text/javascript"></script>
+<script type="b437a9487a79918319746c60-text/javascript">
+	$(".g .g-item, .g .more-item").addClass("animation-transition");
+	let gAdDIV =  window.screen.width<769?$(".g:nth-child(2) .g-item"):$(".g:nth-child(3) .g-item");
+	gAdDIV.empty()
+	gAdDIV[0].classList.remove("animation-transition");
+	gAdDIV.append("<div id=\"tr_slot468\" class=\"plain\"></div>")
+
+	window._taboola = window._taboola || [];
+	_taboola.push({
+		mode: 'thumbnails-1X1stream',
+		container: 'tr_slot468',
+		placement: currPage+"-468",
+		target_type: 'mix'
+	});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.3.3/dist/html2canvas.min.js" type="b437a9487a79918319746c60-text/javascript"></script>
+<script type="b437a9487a79918319746c60-text/javascript">window.html2canvas || document.write('<script src="./html2canvas.min.js"><\/script>')</script>
+<script src="./app.js" type="b437a9487a79918319746c60-text/javascript"></script>
+<script type="b437a9487a79918319746c60-text/javascript">
+	window._taboola = window._taboola || [];
+	_taboola.push({flush: true});
+</script>
+<script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="b437a9487a79918319746c60-|49" defer=""></script></body>
+</html>

@@ -1,0 +1,51 @@
+{
+  "properties": {
+    "parent": "guideline",
+    "parentSecret": true,
+    "langOverride": "mode-options",
+    "game": "beat",
+    "pgmusic": "pg-master"
+  },
+  "data": [
+    {
+      "string": "nightOfNightsLabel",
+      "langOverride": "menu_guideline",
+      "type": "header"
+    },
+    {
+      "string": "startingLevelLabel",
+      "stringDesc": "startingLevelDescription",
+      "type": "slider",
+      "action": "slider",
+      "max": 52,
+      "min": 1,
+      "discrete": 1,
+      "setting": "startingLevel",
+      "gameName": "beat",
+      "settingType": "game"
+    },
+    {
+      "string": "lockdownModeLabel",
+      "stringDesc": "lockdownModeDescription",
+      "type": "select",
+      "action": "select",
+      "selectOptions": [
+        {
+          "string": "infinityLdOption",
+          "value": "infinity"
+        },
+        {
+          "string": "extendedLdOption",
+          "value": "extended"
+        },
+        {
+          "string": "classicLdOption",
+          "value": "classic"
+        }
+      ],
+      "setting": "lockdownMode",
+      "gameName": "beat",
+      "settingType": "game"
+    }
+  ]
+}
