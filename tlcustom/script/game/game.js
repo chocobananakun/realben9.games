@@ -349,9 +349,9 @@ export default class Game {
       sound.add('gameover');
       sound.add('voxgameover');
       $('#end-message').textContent = locale.getString('ui', 'gameover');
-      if (this.type === 'deluxe') {
+      /*if (this.type === 'handheld' || this.type === 'deluxe') {
         $('#end-message').innerHTML = `${locale.getString('ui', 'gameover')}<br><span class="small">${locale.getString('ui', 'pleasetryagain')}♥</span>`;
-      }
+      }*/
       $('#end-message-container').classList.remove('hidden');
       $('#return-to-menu').textContent = locale.getString('ui', 'returnToMenu');
     }, 1700);

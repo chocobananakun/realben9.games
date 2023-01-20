@@ -1,43 +1,41 @@
 {
   "settings": {
     "width": 10,
-    "height": 18,
-    "hiddenHeight": 4,
-    "pieces": "deluxe",
+    "height": 20,
+    "hiddenHeight": 20,
+    "pieces": "standard",
     "unfavored": null,
-    "randomizer": "deluxe",
-    "rotationSystem": "deluxe",
-    "skin": "retro",
-    "soundbank": "deluxe",
-    "music": "korobeiniki",
-    "scoreTable": "retro",
-    "disableDefaultSkinLoad": true,
-    "background": "handheld.png"
+    "randomizer": "history6rolls",
+    "rotationSystem": "srs",
+    "skin": "srsx",
+    "soundbank": "standard",
+    "music": "../marathon/marathon",
+    "hasDangerBgm": true,
+    "scoreTable": "guideline",
+    "background": "marathon.jpg"
   },
   "piece": {
-    "areLimit": 66,
-    "areLineLimit": 33,
-    "areLimitLineModifier": 583,
-    "ghostIsVisible": false,
-    "useSpecialI": true,
-    "resetGravityOnKick": true,
-    "resetDelayOnKick": true
-  },
-  "stack": {
-    "flashLineClear": true,
-    "flashClearRate": 200,
-    "fadeLineClear": false,
-    "flashOnTetris": true
+    "areLimit": 432,
+    "areLineLimit": 640,
+    "spinDetectionType": "3corner",
+    "dasLimit": 272,
+    "arrLimit": 17
   },
   "next": {
-    "nextLimit": 1
+    "nextLimit": 3
   },
   "hold": {
     "isDisabled": true
   },
   "stats": [
+    "grade",
     "score",
     "level",
-    "line"
+    "fallspeed",
+    "line",
+    "maxcombo",
+    "piece",
+    "b2b",
+    "pcCount"
   ]
 }

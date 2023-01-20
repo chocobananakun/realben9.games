@@ -15,12 +15,6 @@
       "default": true,
       "action": "submenu",
       "submenu": "mode/retro"
-    },
-    {
-      "string": "deluxeLabel",
-      "stringDesc": "deluxeDescription",
-      "action": "submenu",
-      "submenu": "mode/deluxe"
     }
   ]
 }

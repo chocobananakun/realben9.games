@@ -13,7 +13,6 @@
       "label": "Normal-C",
       "description": "A slow game for beginners. Uses ARS.",
       "fixedText": true,
-      "default": true,
       "action": "submenu",
       "submenu": "mode/novice"
     },

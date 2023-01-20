@@ -188,8 +188,6 @@ export const loops = {
       if (game.stat.initPieces > 0) {
         game.stat.initPieces = game.stat.initPieces - 1;
       }
-      
-
       updateFallSpeed(game);
     }
   },
@@ -234,7 +232,7 @@ export const loops = {
         shifting(arg);
       }
       gravity(arg);
-      sonicDrop(arg);
+      softDrop(arg);
       firmDrop(arg);
       classicLockdown(arg);
       if (!arg.piece.inAre) {
@@ -1900,54 +1898,118 @@ export const loops = {
   },
   deluxe: {
     update: (arg) => {
+      const game = gameHandler.game;
+      game.b2b = 0;
+      game.rta += arg.ms;
+      linesToLevel(arg, 999, 100);
+      game.endSectionLevel = game.stat.level >= 900 ? 999 : Math.floor((game.stat.level / 100) + 1) * 100;
+      game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
+      if (game.stat.level >= 999) game.stat.grade = "🜏GM";
+      else if (game.stat.level >= 900) game.stat.grade = "🜏M9";
+      else if (game.stat.level >= 800) game.stat.grade = "🜏M8";
+      else if (game.stat.level >= 700) game.stat.grade = "🜏M7";
+      else if (game.stat.level >= 600) game.stat.grade = "🜏M6";
+      else if (game.stat.level >= 500) game.stat.grade = "🜏M5";
+      else if (game.stat.level >= 400) game.stat.grade = "🜏M4";
+      else if (game.stat.level >= 300) game.stat.grade = "🜏M3";
+      else if (game.stat.level >= 200) game.stat.grade = "🜏M2";
+      else if (game.stat.level >= 100) game.stat.grade = "🜏M1";
       collapse(arg);
       if (arg.piece.inAre) {
-        handheldDasAre(arg, framesToMs(9), framesToMs(3));
+        initialDas(arg);
+        initialRotation(arg);
+        initialHold(arg);
         arg.piece.are += arg.ms;
       } else {
         respawnPiece(arg);
         rotate(arg);
-        shiftingRetro(arg, framesToMs(9), framesToMs(3));
+        rotate180(arg);
+        shifting(arg);
       }
-      deluxeGravity(arg);
-      softDropRetro(arg, framesToMs(2));
-      classicLockdown(arg);
+      gravity(arg);
+      softDrop(arg);
+      hardDrop(arg);
+      extendedLockdown(arg);
+      if (!arg.piece.inAre) {
+        hold(arg);
+      }
       lockFlash(arg);
       updateLasts(arg);
     },
     onPieceSpawn: (game) => {
-      // game.stat.level = Math.floor(game.stat.line / 10);
-      game.stat.level = Math.max(settings.game.deluxe.startingLevel, Math.floor(game.stat.line / 10));
-      const SPEED_TABLE = [53, 49, 45, 41, 37, 33, 28, 22, 17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3];
-      let levelAdd = 0;
-      if (game.appends.level === '♥') {
-        levelAdd = 10;
+      game.drop = 0;
+      if (game.stat.level === 999) {
+        $('#kill-message').textContent = locale.getString('ui', 'excellent');
+        sound.killVox();
+        sound.add('voxexcellent');
+        game.end(true);
       }
-      game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(20, game.stat.level + levelAdd)]);
-      levelUpdate(game);
+      if (game.stat.initPieces === 0 &&
+        (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {
+        game.stat.level = game.stat.level + 1;
+        window.panlvl = game.stat.level;
+      }
+      if (game.stat.initPieces > 0) {
+        game.stat.initPieces = game.stat.initPieces - 1;
+      }
+      if (game.stat.level >= 280) {
+        sound.killBgm();
+      }
+      let lockDelayDenominator = 1;
+      const lockDelayTable = [
+        [0,200],[100,183.3],[200,166.6],[300,150],[400,133.3],[500,116.6],[600,100],[700,83.3],[800,66.6],[900,50],[999,33.3]
+      ]
+      for (const pair of lockDelayTable) {
+        const level = pair[0];
+        const denom = pair[1];
+        if (game.stat.level < level) {
+          lockDelayDenominator = denom;
+          break;
+        }
+      }
+      let spawnDenominator = 1;
+      const spawnTable = [
+        [0,100],[200,100],[300,83.3],[500,66.6],[700,66.6],[900,33.3]
+      ]
+      for (const pair of spawnTable) {
+        const level = pair[0];
+        const denom = pair[1];
+        if (game.stat.level < level) {
+          spawnDenominator = denom;
+          break;
+        }
+      }
+      let clearDenominator = 1;
+      const clearTable = [
+        [0,150],[200,133.3],[300,100],[500,83.3],[700,66.6],[900,50]
+      ]
+      for (const pair of clearTable) {
+        const level = pair[0];
+        const denom = pair[1];
+        if (game.stat.level < level) {
+          clearDenominator = denom;
+          break;
+        }
+      }
+      game.piece.gravity = framesToMs(1 / 20);
+      game.piece.lockDelayLimit = lockDelayDenominator;
+      game.piece.areLimit = spawnDenominator;
+      game.piece.areLineLimit = clearDenominator;
+      game.stat.entrydelay = `${game.piece.areLimit}ms, ${game.piece.areLineLimit} Line`;
+      game.piece.ghostIsVisible = game.stat.level < 100;
+      updateFallSpeed(game);
     },
     onInit: (game) => {
-      // game.stat.level = 0;
-      // game.appends.level = '♥';
-      // lastLevel = 0;
-      game.stat.level = settings.game.deluxe.startingLevel;
-      lastLevel = parseInt(settings.game.deluxe.startingLevel);
-      if (settings.settings.skin !== 'auto') {
-        game.makeSprite();
-        game.piece.useSpecialI = false;
-      } else {
-        game.makeSprite(
-            [
-              'i1', 'i2', 'i3', 'i4', 'i5', 'i6',
-              'l', 'o',
-              'z', 't', 'j',
-              's', 'white', 'black',
-            ],
-            ['mino', 'stack'],
-            'deluxe-special',
-        );
-        game.colors = PIECE_COLORS.handheldSpecial;
-      }
+      game.stat.level = 0;
+      window.panlvl = 0;
+      game.rta = 0;
+      game.isRaceMode = true;
+      game.stat.grade = "";
+      game.arcadeCombo = 1;
+      game.drop = 0;
+      game.stat.initPieces = 2;
+      updateFallSpeed(game);
+      game.updateStats();
     },
   },
   handheld: {
@@ -1991,7 +2053,7 @@ export const loops = {
         shifting(arg);
       }
       gravity(arg);
-      sonicDrop(arg);
+      softDrop(arg);
       firmDrop(arg);
       classicLockdown(arg);
       if (!arg.piece.inAre) {
