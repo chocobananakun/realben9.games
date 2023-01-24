@@ -102,6 +102,27 @@
   "lockdownModeDescription": {
     "message": "Selects a mode that controls how the piece will lockdown"
   },
+  "holdOptionLabel": {
+    "message": "Hold",
+    "description": "This option allows the user to toggle the ability to hold a piece"
+  },
+  "holdOptionDescription": {
+    "message": "Determines whether or not you can hold a piece"
+  },
+  "gravityLabel": {
+    "message": "Gravity",
+    "description": "This option allows the user to set the gravity"
+  },
+  "gravityDescription": {
+    "message": "Sets the gravity"
+  },
+  "lockDelayLabel": {
+    "message": "Lock Delay",
+    "description": "This option allows the user to set the delay before the piece locks after touching the floor"
+  },
+  "lockDelayDescription": {
+    "message": "Sets the delay before the piece locks after touching the floor"
+  },
   "infinityLdOption": {
     "message": "Forgiving",
     "description": "Name for the 'infinity' lockdown type; any move/shift or rotation will reset the timer for an unlimited number of times"
@@ -113,6 +134,21 @@
   "classicLdOption": {
     "message": "Strict",
     "description": "Name for the 'classic' lockdown type; only having the piece fall will reset the timer"
+  },
+  "holdEnabledOption": {
+    "message": "Enabled",
+    "description": "Name for enabling piece holding"
+  },
+  "holdDisabledOption": {
+    "message": "Disabled",
+    "description": "Name for disabling piece holding"
+  },
+  "garbageCapLabel": {
+    "message": "Garbage Cap",
+    "description": "Limit how many broken lines (lines of garbage) may enter the Matrix at a time"
+  },
+  "garbageCapDescription": {
+    "message": "Limit how many broken lines (lines of garbage) may enter the Matrix at a time"
   },
   "matrixWidthLabel": {
     "message": "Matrix Width",

@@ -24,14 +24,12 @@ export default class Hold extends GameModule {
     return (this.pieceName) ? this.pieceName : (this.parent.piece.inAre) ? this.parent.next.queue[1] : this.parent.next.queue[0];
   }
   hold() {
-    if (this.parent.type !== 'zen'){
-      if ((this.isLocked && !this.useSkip) || this.isDisabled ||
-        (this.holdAmount <= 0 && this.holdAmountLimit > 0)) {
-        return;
-      }
-      if (this.holdAmountLimit > 0) {
-        this.holdAmount--;
-      }
+    if (((this.isLocked && this.parent.type !== 'zen') && !this.useSkip) || this.isDisabled ||
+      (this.holdAmount <= 0 && this.holdAmountLimit > 0)) {
+      return;
+    }
+    if (this.holdAmountLimit > 0) {
+      this.holdAmount--;
     }
     this.hasHeld = true;
     if (this.ihs) {

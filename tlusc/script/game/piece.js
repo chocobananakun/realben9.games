@@ -566,6 +566,7 @@ export default class Piece extends GameModule {
         $('#warning-message-hold').textContent = locale.getString('ui', 'blockOutHoldWarning');
         $('#warning-message-container-hold').classList.remove('hidden');
         $('#hold-container-container').classList.add('gameover-early-warning-bgflash');
+        this.parent.hold.isLocked = true;
         return true;
       }
     }

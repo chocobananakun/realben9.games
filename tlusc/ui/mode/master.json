@@ -45,6 +45,25 @@
       "setting": "lockdownMode",
       "gameName": "master",
       "settingType": "game"
+    },
+    {
+      "string": "holdOptionLabel",
+      "stringDesc": "holdOptionDescription",
+      "type": "select",
+      "action": "select",
+      "selectOptions": [
+        {
+          "string": "holdEnabledOption",
+          "value": "enabled"
+        },
+        {
+          "string": "holdDisabledOption",
+          "value": "disabled"
+        }
+      ],
+      "setting": "hold",
+      "gameName": "master",
+      "settingType": "game"
     }
   ]
 }

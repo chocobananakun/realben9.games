@@ -472,6 +472,7 @@ export const loops = {
         rotate180(arg)
         shifting(arg)
       }
+      gravity(arg)
       softDrop(arg, 20, true)
       hardDrop(arg)
       switch (settings.game.zen.lockdownMode) {
@@ -506,11 +507,70 @@ export const loops = {
         // game.hold.gainHoldOnPlacement = true;
         // game.resize();
       }
+      if (settings.game.zen.holdType == "disabled") {
+        game.hold.isDisabled = true;
+      } else {
+        game.hold.isDisabled = false;
+      }
       game.stat.level = 1
       // game.piece.gravity = 1000;
       // updateFallSpeed(game);
       // game.stat.b2b = 0;
       // game.updateStats();
+      switch(settings.game.zen.gravity){
+        case '0G':
+          game.piece.gravity = 1000;
+          break;
+        case '0.1G':
+          game.piece.gravity = framesToMs(1 / 0.1);
+          break;
+        case '0.2G':
+          game.piece.gravity = framesToMs(1 / 0.2);
+          break;
+        case '0.3G':
+          game.piece.gravity = framesToMs(1 / 0.3);
+          break;
+        case '0.4G':
+          game.piece.gravity = framesToMs(1 / 0.4);
+          break;
+        case '0.5G':
+          game.piece.gravity = framesToMs(1 / 0.5);
+          break;
+        case '0.6G':
+          game.piece.gravity = framesToMs(1 / 0.6);
+          break;
+        case '0.7G':
+          game.piece.gravity = framesToMs(1 / 0.7);
+          break;
+        case '0.8G':
+          game.piece.gravity = framesToMs(1 / 0.8);
+          break;
+        case '0.9G':
+          game.piece.gravity = framesToMs(1 / 0.9);
+          break;
+        case '1G':
+          game.piece.gravity = framesToMs(1 / 1);
+          break;
+        case '2G':
+          game.piece.gravity = framesToMs(1 / 2);
+          break;
+        case '3G':
+          game.piece.gravity = framesToMs(1 / 3);
+          break;
+        case '4G':
+          game.piece.gravity = framesToMs(1 / 4);
+          break;
+        case '5G':
+          game.piece.gravity = framesToMs(1 / 5);
+          break;
+        case '10G':
+          game.piece.gravity = framesToMs(1 / 10);
+          break;
+        case '20G':
+          game.piece.gravity = framesToMs(1 / 20);
+          break;
+      }
+      game.piece.lockDelayLimit = settings.game.zen.lockDelay;
     },
   },
   beat: {
@@ -1830,6 +1890,11 @@ export const loops = {
         sound.playMenuSe('hardstart3');
       } else {
         sound.playMenuSe('hardstart4');
+      }
+      if (settings.game.master.hold == "enabled") {
+        game.hold.isDisabled = false;
+      } else {
+        game.hold.isDisabled = true;
       }
       game.lineGoal = 300;
       game.stat.level = settings.game.master.startingLevel;

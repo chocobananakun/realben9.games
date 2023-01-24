@@ -8,7 +8,7 @@ class Settings {
       language: "en_US",
       // Tuning
       DAS: 150,
-      ARR: 1000 / 60,
+      ARR: 17,
       IRS: "tap",
       IHS: "tap",
       IAS: true,
@@ -111,14 +111,14 @@ class Settings {
         break
     }
     this.defaultControls = {
-      moveLeft: ["ArrowLeft"],
-      moveRight: ["ArrowRight"],
-      hardDrop: ["Space"],
-      softDrop: ["ArrowDown"],
-      rotateLeft: ["KeyZ", "KeyY"],
-      rotateRight: ["ArrowUp", "KeyC"],
-      rotate180: ["KeyX"],
-      hold: ["ShiftRight"],
+      moveLeft: ["ArrowLeft", "KeyA"],
+      moveRight: ["ArrowRight", "KeyD"],
+      hardDrop: ["ArrowUp", "Space", "KeyW"],
+      softDrop: ["ArrowDown", "KeyS"],
+      rotateLeft: ["KeyZ"],
+      rotateRight: ["KeyX"],
+      rotate180: ["KeyC"],
+      hold: ["ShiftLeft", "ShiftRight"],
       retry: ["KeyR"],
       pause: ["Escape", "KeyP"],
     }
@@ -138,15 +138,16 @@ class Settings {
       },
       master: {
         startingLevel: 1,
-        lockdownMode: "extended",
+        lockdownMode: "infinity",
+        hold: "enabled",
       },
       survival: {
         startingLevel: 1,
-        difficulty: 3,
-        matrixWidth: 6,
+        difficulty: 0,
+        matrixWidth: 'narrow',
       },
       combo: {
-        holdType: "skip",
+        holdType: "hold",
       },
       retro: {
         startingLevel: 0,
@@ -164,11 +165,13 @@ class Settings {
       beat: {
         song: "non",
         startingLevel: 1,
-        lockdownMode: "extended",
+        lockdownMode: "infinity",
       },
       zen: {
         lockdownMode: "zen",
         holdType: "hold",
+        gravity: "0G",
+        lockDelay: 500,
       },
     }
     this.settings = {}

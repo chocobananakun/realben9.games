@@ -451,6 +451,7 @@ export const loops = {
         rotate180(arg)
         shifting(arg)
       }
+      gravity(arg)
       softDrop(arg, 20, true)
       hardDrop(arg)
       switch (settings.game.zen.lockdownMode) {
@@ -485,11 +486,70 @@ export const loops = {
         // game.hold.gainHoldOnPlacement = true;
         // game.resize();
       }
+      if (settings.game.zen.holdType == "disabled") {
+        game.hold.isDisabled = true;
+      } else {
+        game.hold.isDisabled = false;
+      }
       game.stat.level = 1
       // game.piece.gravity = 1000;
       // updateFallSpeed(game);
       // game.stat.b2b = 0;
       // game.updateStats();
+      switch(settings.game.zen.gravity){
+        case '0G':
+          game.piece.gravity = 1000;
+          break;
+        case '0.1G':
+          game.piece.gravity = framesToMs(1 / 0.1);
+          break;
+        case '0.2G':
+          game.piece.gravity = framesToMs(1 / 0.2);
+          break;
+        case '0.3G':
+          game.piece.gravity = framesToMs(1 / 0.3);
+          break;
+        case '0.4G':
+          game.piece.gravity = framesToMs(1 / 0.4);
+          break;
+        case '0.5G':
+          game.piece.gravity = framesToMs(1 / 0.5);
+          break;
+        case '0.6G':
+          game.piece.gravity = framesToMs(1 / 0.6);
+          break;
+        case '0.7G':
+          game.piece.gravity = framesToMs(1 / 0.7);
+          break;
+        case '0.8G':
+          game.piece.gravity = framesToMs(1 / 0.8);
+          break;
+        case '0.9G':
+          game.piece.gravity = framesToMs(1 / 0.9);
+          break;
+        case '1G':
+          game.piece.gravity = framesToMs(1 / 1);
+          break;
+        case '2G':
+          game.piece.gravity = framesToMs(1 / 2);
+          break;
+        case '3G':
+          game.piece.gravity = framesToMs(1 / 3);
+          break;
+        case '4G':
+          game.piece.gravity = framesToMs(1 / 4);
+          break;
+        case '5G':
+          game.piece.gravity = framesToMs(1 / 5);
+          break;
+        case '10G':
+          game.piece.gravity = framesToMs(1 / 10);
+          break;
+        case '20G':
+          game.piece.gravity = framesToMs(1 / 20);
+          break;
+      }
+      game.piece.lockDelayLimit = settings.game.zen.lockDelay;
     },
   },
   beat: {
@@ -1633,63 +1693,12 @@ export const loops = {
     },
     onPieceSpawn: (game) => {},
     onInit: (game) => {
-      // if (settings.game.survival.matrixWidth === "standard") {
-      //   game.settings.width = 10
-      //   game.stack.width = 10
-      //   game.stack.new()
-      //   game.piece.xSpawnOffset = 0
-      //   game.resize()
-      // }
-      switch (settings.game.survival.matrixWidth) {
-        // case 4:
-        //   game.settings.width = 4
-        //   game.stack.width = 4
-        //   game.stack.new()
-        //   game.piece.xSpawnOffset = -3
-        //   game.resize()
-        //   break
-        case 5:
-          game.settings.width = 5
-          game.stack.width = 5
-          game.stack.new()
-          game.piece.xSpawnOffset = -3
-          game.resize()
-          break
-        case 6:
-          game.settings.width = 6
-          game.stack.width = 6
-          game.stack.new()
-          game.piece.xSpawnOffset = -2
-          game.resize()
-          break
-        case 7:
-          game.settings.width = 7
-          game.stack.width = 7
-          game.stack.new()
-          game.piece.xSpawnOffset = -2
-          game.resize()
-          break
-        case 8:
-          game.settings.width = 8
-          game.stack.width = 8
-          game.stack.new()
-          game.piece.xSpawnOffset = -1
-          game.resize()
-          break
-        case 9:
-          game.settings.width = 9
-          game.stack.width = 9
-          game.stack.new()
-          game.piece.xSpawnOffset = -1
-          game.resize()
-          break
-        case 10:
-          game.settings.width = 10
-          game.stack.width = 10
-          game.stack.new()
-          game.piece.xSpawnOffset = 0
-          game.resize()
-          break
+      if (settings.game.survival.matrixWidth === 'standard') {
+        game.settings.width = 10;
+        game.stack.width = 10;
+        game.stack.new();
+        game.piece.xSpawnOffset = 0;
+        game.resize();
       }
       const difficulty = settings.game.survival.difficulty
       game.garbageRateExponent = [1.91, 1.95, 1.97, 2, 2.03, 2.07, 2.1][
@@ -1770,6 +1779,11 @@ export const loops = {
       game.piece.areLimit = ARE_TABLE[calcLevel];
       game.piece.areLineLimit = ARE_TABLE[calcLevel];
       game.stat.entrydelay = `${ARE_TABLE[calcLevel]}ms`;
+      if (settings.game.master.hold == "enabled") {
+        game.hold.isDisabled = false;
+      } else {
+        game.hold.isDisabled = true;
+      }
       levelUpdate(game);
     },
     onInit: (game) => {
