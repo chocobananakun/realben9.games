@@ -1,25 +1,25 @@
 {
   "defaultLabel": {
-    "message": "Default"
+    "message": "Default [170 DAS | 30 ARR]"
   },
   "defaultDescription": {
     "message": "The default settings that come with the game"
   },
   "guidelineLabel": {
-    "message": "Guideline"
+    "message": "Guideline [200 DAS | 33 ARR]"
   },
   "guidelineDescription": {
     "message": "Standard settings found in most versions"
   },
   "pptLabel": {
-    "message": "PPT",
+    "message": "PPT [165 DAS | 33 ARR]",
     "description": "Based on Puyo Puyo Tetris"
   },
   "pptDescription": {
     "message": "A slightly quicker version of the standard settings"
   },
   "tetraOnlineLabel": {
-    "message": "Tetra Online",
+    "message": "Tetra Online [135 DAS | 31 ARR]",
     "description": "Avoid changing the name 'Tetra Online'"
   },
   "tetraOnlineDescription": {
@@ -27,13 +27,13 @@
     "description": "Avoid changing the name 'Tetra Online'"
   },
   "quickLabel": {
-    "message": "Quick"
+    "message": "Quick [150 DAS | 15 ARR]"
   },
   "quickDescription": {
-    "message": "A quicker presets that requires some control"
+    "message": "A quicker preset that requires some control"
   },
   "proLabel": {
-    "message": "Pro"
+    "message": "Pro [100 DAS | 0 ARR]"
   },
   "proDescription": {
     "message": "A hyperspeed preset that requires high-level control"

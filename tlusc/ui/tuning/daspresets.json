@@ -14,7 +14,7 @@
       "rate": 30
     },
     {
-      "label": "Default 2",
+      "label": "Default 2 [150 DAS | 17 ARR]",
       "description": "The default chosen for Tetra Legends Ultimate",
       "fixedText": true,
       "action": "daspreset",
@@ -27,6 +27,15 @@
       "isShort": true,
       "delay": 200,
       "rate": 33
+    },
+    {
+      "label": "Jstris [133 DAS | 10 ARR]",
+      "description": "Matches the autoshift settings of Jstris. Requires good control.",
+      "fixedText": true,
+      "action": "daspreset",
+      "isShort": true,
+      "delay": 133,
+      "rate": 10
     },
     {
       "string": "pptLabel",
@@ -58,6 +67,15 @@
       "action": "daspreset",
       "isShort": true,
       "delay": 100,
+      "rate": 0
+    },
+    {
+      "label": "Teleport [0 DAS | 0 ARR]",
+      "description": "Weeee",
+      "fixedText": true,
+      "action": "daspreset",
+      "isShort": true,
+      "delay": 0,
       "rate": 0
     }
   ]
