@@ -70,9 +70,19 @@
       "action": "select",
       "selectOptions": [
         {
-          "label": "1/60G",
+          "label": "1/120G",
           "fixedText": true,
           "value": "0G"
+        },
+        {
+          "label": "1/60G",
+          "fixedText": true,
+          "value": "1/60G"
+        },
+        {
+          "label": "0.05G",
+          "fixedText": true,
+          "value": "0.05G"
         },
         {
           "label": "0.1G",
@@ -165,9 +175,21 @@
       "type": "slider",
       "action": "slider",
       "max": 1000,
-      "min": 50,
+      "min": 1,
       "discrete": 1,
       "setting": "lockDelay",
+      "gameName": "zen",
+      "settingType": "game"
+    },
+    {
+      "string": "matrixWidthLabel",
+      "stringDesc": "matrixWidthDescription",
+      "type": "slider",
+      "action": "slider",
+      "max": 10,
+      "min": 4,
+      "discrete": 1,
+      "setting": "matrixWidth",
       "gameName": "zen",
       "settingType": "game"
     },

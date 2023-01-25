@@ -500,6 +500,33 @@ export const loops = {
       game.updateStats()
     },
     onInit: (game) => {
+      game.settings.width = settings.game.zen.matrixWidth;
+      game.stack.width = settings.game.zen.matrixWidth;
+      game.stack.new();
+      switch (settings.game.zen.matrixWidth) {
+        case "4":
+          game.piece.xSpawnOffset = -3;
+          break;
+        case "5":
+          game.piece.xSpawnOffset = -3;
+          break;
+        case "6":
+          game.piece.xSpawnOffset = -2;
+          break;
+        case "7":
+          game.piece.xSpawnOffset = -2;
+          break;
+        case "8":
+          game.piece.xSpawnOffset = -1;
+          break;
+        case "9":
+          game.piece.xSpawnOffset = -1;
+          break;
+        case "10":
+          game.piece.xSpawnOffset = 0;
+          break;
+      }
+      game.resize();
       if (settings.game.zen.holdType === "skip") {
         game.hold.useSkip = true
         // game.hold.holdAmount = 2;
@@ -519,7 +546,13 @@ export const loops = {
       // game.updateStats();
       switch(settings.game.zen.gravity){
         case '0G':
+          game.piece.gravity = 2000;
+          break;
+        case '1/60G':
           game.piece.gravity = 1000;
+          break;
+        case '0.05G':
+          game.piece.gravity = framesToMs(1 / 0.05);
           break;
         case '0.1G':
           game.piece.gravity = framesToMs(1 / 0.1);

@@ -172,6 +172,7 @@ class Settings {
         holdType: "hold",
         gravity: "0G",
         lockDelay: 500,
+        matrixWidth: 10,
       },
     }
     this.settings = {}
