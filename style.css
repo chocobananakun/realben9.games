@@ -22,9 +22,17 @@ body { background-color:lightBlue; filter:hue-rotate(0deg); }
             -o-transform: translate3d(0,0,0);
             transform: translate3d(0,0,0);
         }
+        #snow.nocorndogs {background-image: none}
+        #snow.rainbow {animation: rainbow 1000s linear infinite}
         @keyframes snow {
           0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
           100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+        }
+        @keyframes rainbow {
+          0% {filter: hue-rotate(0deg); background-position: 0px 0px, 0px 0px, 0px 0px;}
+          25% {filter: hue-rotate(18000deg);}
+          75% {filter: hue-rotate(54000deg);}
+          100% {filter: hue-rotate(72000deg); background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}       
         }
         @-moz-keyframes snow {
           0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
