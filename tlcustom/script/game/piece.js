@@ -1195,8 +1195,10 @@ export default class Piece extends GameModule {
       this.yFloor === this.rotatedY &&
       this.checkSpin().isSpin
     ) {
+      window.isSpin = true;
       return true;
     } else {
+      window.isSpin = false;
       return false;
     }
   }
@@ -1206,8 +1208,10 @@ export default class Piece extends GameModule {
       this.yFloor === this.rotatedY &&
       this.checkSpin().isMini
     ) {
+      window.isMini = true;
       return true;
     } else {
+      window.isMini = false;
       return false;
     }
   }
