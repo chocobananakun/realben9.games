@@ -12,32 +12,14 @@
       "type": "header"
     },
     {
-      "string": "timeLimitLabel",
-      "stringDesc": "timeLimitDescription",
-      "type": "select",
-      "action": "select",
-      "selectOptions": [
-        {
-          "label": "2:00",
-          "fixedText": true,
-          "value": 120000
-        },
-        {
-          "label": "3:00",
-          "fixedText": true,
-          "value": 180000
-        }
-      ],
-      "setting": "timeLimit",
-      "gameName": "ultra",
-      "settingType": "game"
-    },
-    {
-      "string": "useRtaLabel",
-      "stringDesc": "useRtaDescription",
-      "type": "toggle",
-      "action": "toggle",
-      "setting": "useRta",
+      "string": "startingLevelLabel",
+      "stringDesc": "startingLevelDescription",
+      "type": "slider",
+      "action": "slider",
+      "max": 11000,
+      "min": 1,
+      "discrete": 1,
+      "setting": "startingLevel",
       "gameName": "ultra",
       "settingType": "game"
     }

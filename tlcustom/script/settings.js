@@ -135,6 +135,7 @@ class Settings {
       ultra: {
         timeLimit: 120000,
         useRta: false,
+        startingLevel: 0,
       },
       master: {
         startingLevel: 1,

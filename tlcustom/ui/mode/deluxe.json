@@ -1,6 +1,6 @@
 {
   "properties": {
-    "parent": "tetrax",
+    "parent": "guideline",
     "langOverride": "mode-options",
     "game": "deluxe",
     "pgmusic": "pg-deluxe"

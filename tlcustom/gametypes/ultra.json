@@ -22,8 +22,14 @@
     "spinDetectionType": "3corner"
   },
   "stats": [
+    "grade",
     "score",
+    "level",
+    "fallspeed",
     "line",
-    "piece"
+    "maxcombo",
+    "piece",
+    "b2b",
+    "pcCount"
   ]
 }

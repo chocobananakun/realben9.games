@@ -24,11 +24,11 @@
     "description": "Feel free to take any liberties as long you can accurately describe the mode in a way that's localized to the language."
   },
   "ultraLabel": {
-    "message": "Ultra",
+    "message": "Dynamic",
     "description": "A guideline mode where you have to score as many points as possible before the time runs out"
   },
   "ultraDescription": {
-    "message": "Every line clear counts! Carefully and quickly assemble setups to clear as many points as possible until the time runs out!",
+    "message": "Perform well to increase the speed of the game",
     "description": "Feel free to take any liberties as long you can accurately describe the mode in a way that's localized to the language."
   },
   "comboLabel": {

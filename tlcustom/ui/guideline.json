@@ -51,6 +51,13 @@
       "stringDesc": "nightOfNightsDescription",
       "action": "submenu",
       "submenu": "mode/beat"
+    },
+    {
+      "label": "Pandaemonium",
+      "description": "An incredibly fast-paced mode with shape-shifting",
+      "fixedText": true,
+      "action": "submenu",
+      "submenu": "mode/deluxe"
     }
   ]
 }

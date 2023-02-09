@@ -18,7 +18,7 @@ export default class Stack extends GameModule {
     this.toCollapse = []
     this.ctx = ctx
     this.lineClear = 0
-    game.lineClear = 0
+    window.lineClear = 0
     this.flashLineClear = false
     this.flashClearRate = 50
     this.fadeLineClear = true
@@ -97,6 +97,7 @@ export default class Stack extends GameModule {
     this.parent.stat.piece++
     this.parent.piece.last = this.parent.piece.name
     this.lineClear = 0
+    window.lineClear = 0
     if (this.parent.hold.isLocked) {
       this.parent.hold.isLocked = false
       this.parent.hold.isDirty = true
@@ -183,6 +184,7 @@ export default class Stack extends GameModule {
           }
           this.parent.piece.hasLineDelay = true
           this.lineClear++
+          window.lineClear++
           this.toCollapse.push(y)
           break
         }

@@ -23,13 +23,6 @@
       "submenu": "mode/prox"
     },
     {
-      "label": "Pandaemonium",
-      "description": "An incredibly fast-paced mode with shape-shifting",
-      "fixedText": true,
-      "action": "submenu",
-      "submenu": "mode/deluxe"
-    },
-    {
       "string": "nightOfNightsXLabel",
       "stringDesc": "nightOfNightsXDescription",
       "action": "submenu",

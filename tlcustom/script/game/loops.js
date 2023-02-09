@@ -1563,17 +1563,6 @@ export const loops = {
   },
   ultra: {
     update: (arg) => {
-      const game = gameHandler.game;
-      if (game.timePassed + (game.rtaLimit ? game.timePassedAre : 0) >= game.timeGoal - 30000) {
-        if (!game.playedHurryUp) {
-          sound.add('hurryup');
-          $(`#timer${game.rtaLimit ? '-real' : ''}`).classList.add('hurry-up');
-          game.playedHurryUp = true;
-        }
-        sound.raisePaceBgm();
-      } else {
-        game.playedHurryUp = false;
-      }
       collapse(arg);
       if (arg.piece.inAre) {
         initialDas(arg);
@@ -1587,7 +1576,7 @@ export const loops = {
         shifting(arg);
       }
       gravity(arg);
-      softDrop(arg, 70);
+      softDrop(arg);
       hardDrop(arg);
       extendedLockdown(arg);
       if (!arg.piece.inAre) {
@@ -1597,14 +1586,63 @@ export const loops = {
       updateLasts(arg);
     },
     onPieceSpawn: (game) => {
+      if (window.lineClear == 0) {game.stat.level = game.stat.level - 1}
+      else if (window.lineClear == 1) {game.stat.level = game.stat.level + 9}
+      else if (window.lineClear == 2) {game.stat.level = game.stat.level + 19}
+      else if (window.lineClear == 3) {game.stat.level = game.stat.level + 49}
+      else {game.stat.level = game.stat.level + 99}
+      if (game.stat.level < 0) {game.stat.level = 0}
+      if (game.stat.level > game.stat.grade) {game.stat.grade = game.stat.level}
+      window.lineClear = 0;
+      const calcLevel = Math.min(31, game.stat.level - 1);
+      if (game.stat.level < 4000) {
+        game.piece.lockDelayLimit = 500;
+      } else {
+        game.piece.lockDelayLimit = Math.ceil((Math.sqrt(15 * (game.stat.level - 4000))) * -1) + 500;
+      }
+      const SPN_TABLE = [
+        0, 0, 0, 0, 0,
+        80, 80, 80, 80, 80,
+        80, 80, 80, 80, 80,
+        75.2, 70.7, 66.4, 62.5, 58.7,
+        55.2, 51.9, 48.8, 45.8, 43.1,
+        40.5, 38.1, 35.8, 33.6, 31.6,
+        29.7, 27.9, 26.3, 24.7, 23.2, 21.8, 20.5];
+      const CLR_TABLE = [
+        333, 238, 185, 152, 128,
+        191, 178, 168, 159, 152,
+        147, 142, 137, 134, 131,
+        123, 116, 109, 103, 97.5,
+        92.2, 87.3, 82.8, 78.5, 74.5,
+        70.8, 67.3, 64, 61, 58.1,
+        55.4, 52.8, 50.4, 48.2, 46, 44, 42.2];
+      if (game.stat.level < 16) {
+        game.piece.areLimit = 0;
+        game.piece.areLineLimit = 500;
+        game.stat.entrydelay = `0ms, 500 Line`;
+      } else {
+        game.piece.areLimit = SPN_TABLE[Math.min(36, game.stat.level - 16)];
+        game.piece.areLineLimit = CLR_TABLE[Math.min(36, game.stat.level - 16)];
+        game.stat.entrydelay = `${SPN_TABLE[Math.min(36, game.stat.level - 16)]}ms, ${CLR_TABLE[Math.min(29, game.stat.level - 1)]} Line`;
+      }
+      levelUpdate(game);
+      const GRAVITY_TABLE = [
+        1000, 800, 621, 467, 341,
+        240, 164, 108, 69.1, 42.5,
+        25.2, 14.4, 7.9, 4.2, 2.1,
+        1];
+      if (game.stat.level < 17) {
+        game.piece.gravity = GRAVITY_TABLE[Math.min(16, game.stat.level)];
+      } else {
+        game.piece.gravity = framesToMs(1 / 20);
+      }
+      updateFallSpeed(game);
     },
     onInit: (game) => {
-      game.timeGoal = settings.game.ultra.timeLimit;
-      game.rtaLimit = settings.game.ultra.useRta;
-      game.isRaceMode = true;
-      game.piece.gravity = 1000;
-      updateFallSpeed(game);
-      game.stat.level = 1;
+      game.stat.level = settings.game.ultra.startingLevel;
+      game.stat.grade = settings.game.ultra.startingLevel;
+      window.lineClear = 0;
+      lastLevel = parseInt(settings.game.ultra.startingLevel);
       game.updateStats();
     },
   },
