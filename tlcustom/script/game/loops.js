@@ -1597,7 +1597,7 @@ export const loops = {
           if (window.lineClear == 0) {game.stat.level = game.stat.level + 50}
           else if (window.lineClear == 1) {game.stat.level = game.stat.level + 80}
           else if (window.lineClear == 2) {game.stat.level = game.stat.level + 120}
-          else if (window.lineClear == 3) {game.stat.level = game.stat.level + 120}
+          else if (window.lineClear == 3) {game.stat.level = game.stat.level + 170}
         }
       }
       else {
@@ -1609,9 +1609,9 @@ export const loops = {
       }
       window.isSpin = false;
       window.isMini = false;
-      if (game.stat.level < 0) {game.stat.level = 0}
       if (game.stat.level > game.stat.grade) {game.stat.grade = game.stat.level}
       game.stat.level = game.stat.level - 1
+      if (game.stat.level < 0) {game.stat.level = 0}
       window.lineClear = 0;
       const calcLevel = Math.min(31, game.stat.level - 1);
       if (game.stat.level < 4000) {
