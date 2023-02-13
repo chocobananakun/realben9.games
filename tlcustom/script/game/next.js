@@ -136,7 +136,7 @@ export default class Next extends GameModule {
           game.shapedisp = PIECES[game.piecedisp].shape[INITIAL_ORIENTATION[this.parent.rotationSystem][game.piecedisp]];
           break;
       }
-      if (window.panlvl >= 25) {
+      if (window.panlvl >= 75) {
         const offset = this.parent.nextOffsets[game.piecedisp];
         for (let y = 0; y < game.shapedisp.length; y++) {
           for (let x = 0; x < game.shapedisp[y].length; x++) {
