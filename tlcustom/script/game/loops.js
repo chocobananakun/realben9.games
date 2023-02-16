@@ -1695,12 +1695,42 @@ export const loops = {
       updateFallSpeed(game);
       game.stat.level = 1;
       game.updateStats();
-      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 1] = 'white';
-      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 2] = 'white';
+      window.gridtemp = Math.floor(Math.random() * 9);
+      if (window.gridtemp == 0) window.gridtemp = 'red';
+      else if (window.gridtemp == 1) window.gridtemp = 'orange';
+      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
+      else if (window.gridtemp == 3) window.gridtemp = 'green';
+      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
+      else if (window.gridtemp == 5) window.gridtemp = 'blue';
+      else if (window.gridtemp == 6) window.gridtemp = 'purple';
+      else if (window.gridtemp == 7) window.gridtemp = 'white';
+      else if (window.gridtemp == 8) window.gridtemp = 'black';
+      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp;
+      window.gridtemp = Math.floor(Math.random() * 9);
+      if (window.gridtemp == 0) window.gridtemp = 'red';
+      else if (window.gridtemp == 1) window.gridtemp = 'orange';
+      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
+      else if (window.gridtemp == 3) window.gridtemp = 'green';
+      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
+      else if (window.gridtemp == 5) window.gridtemp = 'blue';
+      else if (window.gridtemp == 6) window.gridtemp = 'purple';
+      else if (window.gridtemp == 7) window.gridtemp = 'white';
+      else if (window.gridtemp == 8) window.gridtemp = 'black';
+      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp;
+      window.gridtemp = Math.floor(Math.random() * 9);
+      if (window.gridtemp == 0) window.gridtemp = 'red';
+      else if (window.gridtemp == 1) window.gridtemp = 'orange';
+      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
+      else if (window.gridtemp == 3) window.gridtemp = 'green';
+      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
+      else if (window.gridtemp == 5) window.gridtemp = 'blue';
+      else if (window.gridtemp == 6) window.gridtemp = 'purple';
+      else if (window.gridtemp == 7) window.gridtemp = 'white';
+      else if (window.gridtemp == 8) window.gridtemp = 'black';
       if (game.next.queue[0] === 'J') {
-        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 1] = 'white';
+        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp;
       } else {
-        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 2] = 'white';
+        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp;
       }
     },
   },
@@ -1752,7 +1782,6 @@ export const loops = {
   survival: {
     update: (arg) => {
       const game = gameHandler.game
-
       collapse(arg)
       if (arg.piece.inAre) {
         initialDas(arg)
@@ -1807,66 +1836,18 @@ export const loops = {
         game.marginTime += arg.ms
       }
     },
-    onPieceSpawn: (game) => {},
-    onInit: (game) => {
-      // if (settings.game.survival.matrixWidth === "standard") {
-      //   game.settings.width = 10
-      //   game.stack.width = 10
-      //   game.stack.new()
-      //   game.piece.xSpawnOffset = 0
-      //   game.resize()
-      // }
-      switch (settings.game.survival.matrixWidth) {
-        // case 4:
-        //   game.settings.width = 4
-        //   game.stack.width = 4
-        //   game.stack.new()
-        //   game.piece.xSpawnOffset = -3
-        //   game.resize()
-        //   break
-        case 5:
-          game.settings.width = 5
-          game.stack.width = 5
-          game.stack.new()
-          game.piece.xSpawnOffset = -3
-          game.resize()
-          break
-        case 6:
-          game.settings.width = 6
-          game.stack.width = 6
-          game.stack.new()
-          game.piece.xSpawnOffset = -2
-          game.resize()
-          break
-        case 7:
-          game.settings.width = 7
-          game.stack.width = 7
-          game.stack.new()
-          game.piece.xSpawnOffset = -2
-          game.resize()
-          break
-        case 8:
-          game.settings.width = 8
-          game.stack.width = 8
-          game.stack.new()
-          game.piece.xSpawnOffset = -1
-          game.resize()
-          break
-        case 9:
-          game.settings.width = 9
-          game.stack.width = 9
-          game.stack.new()
-          game.piece.xSpawnOffset = -1
-          game.resize()
-          break
-        case 10:
-          game.settings.width = 10
-          game.stack.width = 10
-          game.stack.new()
-          game.piece.xSpawnOffset = 0
-          game.resize()
-          break
+    onPieceSpawn: (game) => {
+      window.gridtemp = Math.floor(Math.random() * 10);
+      for (let x = 0; x < 10; x++) {
+        for (let y = 21; y > 0; y = y - 1) {
+          game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - y] = game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - (y - 1)];
+        }
+        if (x != window.gridtemp) {
+          game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1] = 'white';
+        }
       }
+    },
+    onInit: (game) => {
       const difficulty = settings.game.survival.difficulty
       game.garbageRateExponent = [1.91, 1.95, 1.97, 2, 2.03, 2.07, 2.1][
         difficulty
@@ -1885,6 +1866,7 @@ export const loops = {
       game.marginTimeLimit = 5000
       garbageTimer = 0
       game.stat.level = settings.game.survival.startingLevel
+      game.stat.grade = "???"
       lastLevel = parseInt(settings.game.survival.startingLevel)
       game.piece.gravity = 1000
       updateFallSpeed(game)

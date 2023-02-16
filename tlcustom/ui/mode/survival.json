@@ -30,54 +30,17 @@
       "action": "select",
       "selectOptions": [
         {
-          "string": "beginnerDifOption",
+          "label": "Classic",
+          "fixedText": true,
           "value": 0
         },
         {
-          "string": "veryEasyDifOption",
+          "label": "Normal",
+          "fixedText": true,
           "value": 1
-        },
-        {
-          "string": "easyDifOption",
-          "value": 2
-        },
-        {
-          "string": "intermediateDifOption",
-          "value": 3
-        },
-        {
-          "string": "hardDifOption",
-          "value": 4
-        },
-        {
-          "string": "expertDifOption",
-          "value": 5
-        },
-        {
-          "string": "proDifOption",
-          "value": 6
         }
       ],
-      "setting": "difficulty",
-      "gameName": "survival",
-      "settingType": "game"
-    },
-    {
-      "string": "matrixWidthLabel",
-      "stringDesc": "matrixWidthDescription",
-      "type": "select",
-      "action": "select",
-      "selectOptions": [
-        {
-          "string": "narrowWidthOption",
-          "value": "narrow"
-        },
-        {
-          "string": "standardWidthOption",
-          "value": "standard"
-        }
-      ],
-      "setting": "matrixWidth",
+      "setting": "riseSpeed",
       "gameName": "survival",
       "settingType": "game"
     }

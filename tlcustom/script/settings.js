@@ -145,6 +145,7 @@ class Settings {
       survival: {
         startingLevel: 1,
         difficulty: 0,
+        riseSpeed: 1,
         matrixWidth: 'narrow',
       },
       combo: {
