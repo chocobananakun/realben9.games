@@ -279,7 +279,15 @@ export const loops = {
       updateFallSpeed(game);
     },
     onInit: (game) => {
-      game.stat.level = 0;
+      game.stat.level = settings.game.novice.startingLevel;
+      if (game.stat.level != 0) {
+        $('#next-label').style.animationName = "hurry-up-timer";
+        $('#next-label').style.animationDuration = "0.4s";
+        $('#next-label').style.animationIterationCount = "infinite";
+        $('#next-label').style.animationDirection = "alternate";
+        $('#next-label').style.animationTimingFunction = "ease-in-out";
+        $('#next-label').style.fontSize = "1.3em";
+      }
       game.rta = 0;
       game.isRaceMode = true;
       game.stat.grade = "9";
@@ -1588,13 +1596,15 @@ export const loops = {
     onPieceSpawn: (game) => {
       if (window.isSpin == true) {
         if (window.isMini == true) {
-          if (window.lineClear == 0) {game.stat.level = game.stat.level + 10}
+          if (window.lineClear == 0 && window.hasHeld == false) {game.stat.level = game.stat.level + 10}
+          else if (window.lineClear == 0 && window.hasHeld == true) {game.stat.level = game.stat.level}
           else if (window.lineClear == 1) {game.stat.level = game.stat.level + 20}
           else if (window.lineClear == 2) {game.stat.level = game.stat.level + 35}
           else if (window.lineClear == 3) {game.stat.level = game.stat.level + 35}
         }
         else {
-          if (window.lineClear == 0) {game.stat.level = game.stat.level + 50}
+          if (window.lineClear == 0 && window.hasHeld == false) {game.stat.level = game.stat.level + 50}
+          else if (window.lineClear == 0 && window.hasHeld == true) {game.stat.level = game.stat.level}
           else if (window.lineClear == 1) {game.stat.level = game.stat.level + 80}
           else if (window.lineClear == 2) {game.stat.level = game.stat.level + 120}
           else if (window.lineClear == 3) {game.stat.level = game.stat.level + 170}
@@ -1607,6 +1617,7 @@ export const loops = {
         else if (window.lineClear == 3) {game.stat.level = game.stat.level + 50}
         else {game.stat.level = game.stat.level + 100}
       }
+      window.hasHeld = false;
       window.isSpin = false;
       window.isMini = false;
       if (game.stat.level > game.stat.grade) {game.stat.grade = game.stat.level}
@@ -1687,8 +1698,14 @@ export const loops = {
         game.hold.gainHoldOnPlacement = true;
         game.resize();
       }
-      if (!(input.holdingShift)) {
-        game.timeGoal = 30000;
+      if (!(input.holdingShift)) {game.timeGoal = 30000;}
+      else {
+        $('#next-label').style.animationName = "hurry-up-timer";
+        $('#next-label').style.animationDuration = "0.4s";
+        $('#next-label').style.animationIterationCount = "infinite";
+        $('#next-label').style.animationDirection = "alternate";
+        $('#next-label').style.animationTimingFunction = "ease-in-out";
+        $('#next-label').style.fontSize = "1.3em";
       }
       game.isRaceMode = true;
       game.piece.gravity = 1000;
@@ -2058,11 +2075,12 @@ export const loops = {
         sound.add('voxexcellent');
         game.end(true);
       }
-      if (game.stat.initPieces === 0 &&
+      if (window.hasHeld == false && game.stat.initPieces === 0 &&
         (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {
         game.stat.level = game.stat.level + 1;
         window.panlvl = game.stat.level;
       }
+      window.hasHeld = false;
       if (game.stat.initPieces > 0) {
         game.stat.initPieces = game.stat.initPieces - 1;
       }
@@ -2114,8 +2132,16 @@ export const loops = {
       updateFallSpeed(game);
     },
     onInit: (game) => {
-      game.stat.level = 0;
-      window.panlvl = 0;
+      game.stat.level = settings.game.deluxe.startingLevel;
+      if (game.stat.level != 0) {
+        $('#next-label').style.animationName = "hurry-up-timer";
+        $('#next-label').style.animationDuration = "0.4s";
+        $('#next-label').style.animationIterationCount = "infinite";
+        $('#next-label').style.animationDirection = "alternate";
+        $('#next-label').style.animationTimingFunction = "ease-in-out";
+        $('#next-label').style.fontSize = "1.3em";
+      }
+      window.panlvl = settings.game.deluxe.startingLevel;
       game.rta = 0;
       game.isRaceMode = true;
       game.stat.grade = "";
@@ -2214,7 +2240,15 @@ export const loops = {
       updateFallSpeed(game);
     },
     onInit: (game) => {
-      game.stat.level = 0;
+      game.stat.level = settings.game.handheld.startingLevel;
+      if (game.stat.level != 0) {
+        $('#next-label').style.animationName = "hurry-up-timer";
+        $('#next-label').style.animationDuration = "0.4s";
+        $('#next-label').style.animationIterationCount = "infinite";
+        $('#next-label').style.animationDirection = "alternate";
+        $('#next-label').style.animationTimingFunction = "ease-in-out";
+        $('#next-label').style.fontSize = "1.3em";
+      }
       game.rta = 0;
       game.isRaceMode = true;
       game.stat.grade = "9";

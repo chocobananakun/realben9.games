@@ -125,18 +125,18 @@ export default class Next extends GameModule {
           break;
         default:
           shape = PIECES[piece].shape[INITIAL_ORIENTATION[this.parent.rotationSystem][piece]];
-          game.shapedisp0 = Math.floor(Math.random() * 7);
-          if (game.shapedisp0 == 0) game.piecedisp = "T";
-          else if (game.shapedisp0 == 1) game.piecedisp = "J";
-          else if (game.shapedisp0 == 2) game.piecedisp = "Z";
-          else if (game.shapedisp0 == 3) game.piecedisp = "O";
-          else if (game.shapedisp0 == 4) game.piecedisp = "S";
-          else if (game.shapedisp0 == 5) game.piecedisp = "L";
-          else if (game.shapedisp0 == 6) game.piecedisp = "I";
-          game.shapedisp = PIECES[game.piecedisp].shape[INITIAL_ORIENTATION[this.parent.rotationSystem][game.piecedisp]];
           break;
       }
-      if (window.panlvl >= 75) {
+      if (window.panlvl >= 500) {
+        game.shapedisp0 = Math.floor(Math.random() * 7);
+        if (game.shapedisp0 == 0) game.piecedisp = "T";
+        else if (game.shapedisp0 == 1) game.piecedisp = "J";
+        else if (game.shapedisp0 == 2) game.piecedisp = "Z";
+        else if (game.shapedisp0 == 3) game.piecedisp = "O";
+        else if (game.shapedisp0 == 4) game.piecedisp = "S";
+        else if (game.shapedisp0 == 5) game.piecedisp = "L";
+        else if (game.shapedisp0 == 6) game.piecedisp = "I";
+        game.shapedisp = PIECES[game.piecedisp].shape[INITIAL_ORIENTATION[this.parent.rotationSystem][game.piecedisp]];
         const offset = this.parent.nextOffsets[game.piecedisp];
         for (let y = 0; y < game.shapedisp.length; y++) {
           for (let x = 0; x < game.shapedisp[y].length; x++) {

@@ -117,6 +117,7 @@ export default class Game {
           $('#end-message-container').classList.add('hidden');
           $('#kill-message-container').classList.add('hidden');
           $('#next-piece').classList.remove('immediate-death');
+          $('#next-label').style = "";
 
           this.resetBeatStuff()
 
@@ -463,6 +464,7 @@ export default class Game {
     if (game.hold.useSkip) {holdLabelSelection = 'skip';}
     $('#hold-label').textContent = locale.getString('ui', holdLabelSelection);
     $('#next-label').textContent = locale.getString('ui', 'next');
+    if ($('#next-label').style.animationName == "hurry-up-timer") {$('#next-label').innerHTML = "Invalid"};
     $('#load-message').textContent = locale.getString('ui', 'loading');
     game.stack.makeAllDirty();
     game.isDirty = true;

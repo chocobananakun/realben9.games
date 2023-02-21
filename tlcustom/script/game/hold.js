@@ -16,6 +16,7 @@ export default class Hold extends GameModule {
     this.isDisabled = false;
     this.useSkip = false;
     this.hasHeld = false;
+    window.hasHeld = false;
     this.holdAmount = 0;
     this.holdAmountLimit = 0;
     this.gainHoldOnPlacement = false;
@@ -32,6 +33,7 @@ export default class Hold extends GameModule {
       this.holdAmount--;
     }
     this.hasHeld = true;
+    window.hasHeld = true;
     if (this.ihs) {
       if (this.useSkip) {
         sound.add('initialskip');

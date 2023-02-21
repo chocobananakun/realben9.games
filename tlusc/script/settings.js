@@ -164,6 +164,9 @@ class Settings {
       deluxe: {
         startingLevel: 0,
       },
+      novice: {
+        startingLevel: 0,
+      },
       beat: {
         song: "non",
         startingLevel: 1,

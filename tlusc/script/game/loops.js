@@ -1604,20 +1604,56 @@ export const loops = {
         game.hold.gainHoldOnPlacement = true;
         game.resize();
       }
-      if (!(input.holdingShift)) {
-        game.timeGoal = 30000;
+      if (!(input.holdingShift)) {game.timeGoal = 30000;}
+      else {
+        $('#next-label').style.animationName = "hurry-up-timer";
+        $('#next-label').style.animationDuration = "0.4s";
+        $('#next-label').style.animationIterationCount = "infinite";
+        $('#next-label').style.animationDirection = "alternate";
+        $('#next-label').style.animationTimingFunction = "ease-in-out";
+        $('#next-label').style.fontSize = "1.3em";
       }
       game.isRaceMode = true;
       game.piece.gravity = 1000;
       updateFallSpeed(game);
       game.stat.level = 1;
       game.updateStats();
-      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 1] = 'white';
-      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 2] = 'white';
+      window.gridtemp = Math.floor(Math.random() * 9);
+      if (window.gridtemp == 0) window.gridtemp = 'red';
+      else if (window.gridtemp == 1) window.gridtemp = 'orange';
+      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
+      else if (window.gridtemp == 3) window.gridtemp = 'green';
+      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
+      else if (window.gridtemp == 5) window.gridtemp = 'blue';
+      else if (window.gridtemp == 6) window.gridtemp = 'purple';
+      else if (window.gridtemp == 7) window.gridtemp = 'white';
+      else if (window.gridtemp == 8) window.gridtemp = 'black';
+      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp;
+      window.gridtemp = Math.floor(Math.random() * 9);
+      if (window.gridtemp == 0) window.gridtemp = 'red';
+      else if (window.gridtemp == 1) window.gridtemp = 'orange';
+      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
+      else if (window.gridtemp == 3) window.gridtemp = 'green';
+      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
+      else if (window.gridtemp == 5) window.gridtemp = 'blue';
+      else if (window.gridtemp == 6) window.gridtemp = 'purple';
+      else if (window.gridtemp == 7) window.gridtemp = 'white';
+      else if (window.gridtemp == 8) window.gridtemp = 'black';
+      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp;
+      window.gridtemp = Math.floor(Math.random() * 9);
+      if (window.gridtemp == 0) window.gridtemp = 'red';
+      else if (window.gridtemp == 1) window.gridtemp = 'orange';
+      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
+      else if (window.gridtemp == 3) window.gridtemp = 'green';
+      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
+      else if (window.gridtemp == 5) window.gridtemp = 'blue';
+      else if (window.gridtemp == 6) window.gridtemp = 'purple';
+      else if (window.gridtemp == 7) window.gridtemp = 'white';
+      else if (window.gridtemp == 8) window.gridtemp = 'black';
       if (game.next.queue[0] === 'J') {
-        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 1] = 'white';
+        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp;
       } else {
-        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 2] = 'white';
+        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp;
       }
     },
   },
