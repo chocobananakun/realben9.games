@@ -1,0 +1,51 @@
+{
+  "properties": {
+    "parent": "video"
+  },
+  "data": [
+    {
+      "label": "Default",
+      "description": "The default color scheme. Is commonly used in guideline.",
+      "fixedText": true,
+      "default": true,
+      "isShort": true,
+      "action": "colorpreset"
+    },
+    {
+      "label": "Monochrome",
+      "description": "Some people find this easier, some harder. Note that shapeshifting is impossible with no color.",
+      "fixedText": true,
+      "default": true,
+      "isShort": true,
+      "action": "colorpreset"
+    },
+    {
+      "label": "Arika",
+      "description": "Often used in arcade-styled block stackers.",
+      "fixedText": true,
+      "isShort": true,
+      "action": "colorpreset"
+    },
+    {
+      "label": "N-Blox",
+      "description": "Color scheme exclusive to N-Blox",
+      "fixedText": true,
+      "isShort": true,
+      "action": "colorpreset"
+    },
+    {
+      "label": "Cultris II",
+      "description": "Default color scheme exclusive to Cultris II",
+      "fixedText": true,
+      "isShort": true,
+      "action": "colorpreset"
+    },
+    {
+      "label": "Spirit Drop",
+      "description": "Default color scheme exclusive to Spirit Drop",
+      "fixedText": true,
+      "isShort": true,
+      "action": "colorpreset"
+    }
+  ]
+}

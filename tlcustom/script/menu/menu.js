@@ -828,7 +828,6 @@ class Menu {
         this.drawSettings();
         break;
       case 'select':
-
         $('.select-container.selected .value-name').onclick();
         break;
       case 'settingChange':
@@ -851,7 +850,7 @@ class Menu {
         sound.playMenuSe('optionselect');
         if (this.selectedData.label === 'Default 2'){
           settings.changeSetting('DAS', 150);
-        settings.changeSetting('ARR', 1000/60);
+        settings.changeSetting('ARR', 17);
         }
         else{
           settings.changeSetting('DAS', this.selectedData.delay);
@@ -889,6 +888,67 @@ class Menu {
             settings.changeSetting('spinT', false);
             settings.changeSetting('spinJ', false);
             settings.changeSetting('spinS', false);
+            break;
+        }
+        this.back(false);
+        break;
+      case 'colorpreset':
+        $(`#option-${this.selected}`).classList.add('chosen');
+        sound.playMenuSe('optionselect');
+        switch(this.selectedData.label){
+          case 'Default':
+            settings.changeSetting('colorI', "lightBlue");
+            settings.changeSetting('colorL', "orange");
+            settings.changeSetting('colorO', "yellow");
+            settings.changeSetting('colorZ', "red");
+            settings.changeSetting('colorT', "purple");
+            settings.changeSetting('colorJ', "blue");
+            settings.changeSetting('colorS', "green");
+            break;
+          case 'Monochrome':
+            settings.changeSetting('colorI', "black");
+            settings.changeSetting('colorL', "black");
+            settings.changeSetting('colorO', "black");
+            settings.changeSetting('colorZ', "black");
+            settings.changeSetting('colorT', "black");
+            settings.changeSetting('colorJ', "black");
+              settings.changeSetting('colorS', "black");
+            break;
+          case 'Arika':
+            settings.changeSetting('colorI', "red");
+            settings.changeSetting('colorL', "orange");
+            settings.changeSetting('colorO', "yellow");
+            settings.changeSetting('colorZ', "green");
+            settings.changeSetting('colorT', "lightBlue");
+            settings.changeSetting('colorJ', "blue");
+            settings.changeSetting('colorS', "purple");
+            break;
+          case 'N-Blox':
+            settings.changeSetting('colorI', "orange");
+            settings.changeSetting('colorL', "blue");
+            settings.changeSetting('colorO', "red");
+            settings.changeSetting('colorZ', "green");
+            settings.changeSetting('colorT', "yellow");
+            settings.changeSetting('colorJ', "purple");
+            settings.changeSetting('colorS', "lightBlue");
+            break;
+          case 'Cultris II':
+            settings.changeSetting('colorI', "green");
+            settings.changeSetting('colorL', "purple");
+            settings.changeSetting('colorO', "yellow");
+            settings.changeSetting('colorZ', "white");
+            settings.changeSetting('colorT', "red");
+            settings.changeSetting('colorJ', "blue");
+            settings.changeSetting('colorS', "lightBlue");
+            break;
+          case 'Spirit Drop':
+            settings.changeSetting('colorI', "white");
+            settings.changeSetting('colorL', "purple");
+            settings.changeSetting('colorO', "lightBlue");
+            settings.changeSetting('colorZ', "red");
+            settings.changeSetting('colorT', "green");
+            settings.changeSetting('colorJ', "blue");
+            settings.changeSetting('colorS', "yellow");
             break;
         }
         this.back(false);

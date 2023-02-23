@@ -18,8 +18,17 @@
     {
       "string": "colorOverrideLabel",
       "stringDesc": "colorOverrideDescription",
+      "width": "half",
       "action": "submenu",
       "submenu": "video/coloroverride"
+    },
+    {
+      "label": "Color Presets",
+      "description": "Common piece color presets",
+      "fixedText": true,
+      "width": "half",
+      "action": "submenu",
+      "submenu": "video/colorpresets"
     },
     {
       "string": "themeLabel",
@@ -64,8 +73,8 @@
           "value": "standard"
         },
         {
-          "string": "tetraOnlineLabel",
-          "langOverride": "menu_daspresets",
+          "label": "Tetra Online",
+          "fixedText": true,
           "value": "tonline"
         },
         {

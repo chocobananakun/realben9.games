@@ -54,6 +54,15 @@
       "rate": 31
     },
     {
+      "label": "Spirit Drop [160 DAS | 40 ARR]",
+      "description": "Matches the autoshift settings of Spirit Drop.",
+      "fixedText": true,
+      "action": "daspreset",
+      "isShort": true,
+      "delay": 160,
+      "rate": 40
+    },
+    {
       "string": "quickLabel",
       "stringDesc": "quickDescription",
       "action": "daspreset",

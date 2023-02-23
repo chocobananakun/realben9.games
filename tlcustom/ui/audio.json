@@ -75,8 +75,8 @@
           "value": "t99"
         },
         {
-          "string": "pptLabel",
-          "langOverride": "menu_daspresets",
+          "label": "PPT",
+          "fixedText": true,
           "value": "ppt"
         },
         {
