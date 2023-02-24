@@ -912,7 +912,7 @@ class Menu {
             settings.changeSetting('colorZ', "black");
             settings.changeSetting('colorT', "black");
             settings.changeSetting('colorJ', "black");
-              settings.changeSetting('colorS', "black");
+            settings.changeSetting('colorS', "black");
             break;
           case 'Arika':
             settings.changeSetting('colorI', "red");
@@ -922,6 +922,15 @@ class Menu {
             settings.changeSetting('colorT', "lightBlue");
             settings.changeSetting('colorJ', "blue");
             settings.changeSetting('colorS', "purple");
+            break;
+          case 'Tetra-X':
+            settings.changeSetting('colorI', "orange");
+            settings.changeSetting('colorL', "yellow");
+            settings.changeSetting('colorO', "green");
+            settings.changeSetting('colorZ', "red");
+            settings.changeSetting('colorT', "purple");
+            settings.changeSetting('colorJ', "blue");
+            settings.changeSetting('colorS', "lightBlue");
             break;
           case 'N-Blox':
             settings.changeSetting('colorI', "orange");

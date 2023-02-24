@@ -199,23 +199,74 @@ export const loops = {
       game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
       if (game.stat.level >= 500) $('#stat-level').classList.add("middelay");
       if (game.stat.score >= 1260000 && game.stat.level >= 999) game.stat.grade = "GM";
-      else if (game.stat.score >= 1200000) game.stat.grade = "S9";
-      else if (game.stat.score >= 1000000) game.stat.grade = "S8";
-      else if (game.stat.score >= 820000) game.stat.grade = "S7";
-      else if (game.stat.score >= 660000) game.stat.grade = "S6";
-      else if (game.stat.score >= 520000) game.stat.grade = "S5";
-      else if (game.stat.score >= 400000) game.stat.grade = "S4";
-      else if (game.stat.score >= 300000) game.stat.grade = "S3";
-      else if (game.stat.score >= 220000) game.stat.grade = "S2";
-      else if (game.stat.score >= 160000) game.stat.grade = "S1";
-      else if (game.stat.score >= 120000) game.stat.grade = "1";
-      else if (game.stat.score >= 80000) game.stat.grade = "2";
-      else if (game.stat.score >= 55000) game.stat.grade = "3";
-      else if (game.stat.score >= 35000) game.stat.grade = "4";
-      else if (game.stat.score >= 20000) game.stat.grade = "5";
-      else if (game.stat.score >= 14000) game.stat.grade = "6";
-      else if (game.stat.score >= 8000) game.stat.grade = "7";
-      else if (game.stat.score >= 4000) game.stat.grade = "8";
+      else if (game.stat.score >= 1200000 && game.stat.gradeid < 17) {
+        game.stat.grade = "S9 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 17;
+    }
+      else if (game.stat.score >= 1000000 && game.stat.gradeid < 16) {
+        game.stat.grade = "S8 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 16;
+    }
+      else if (game.stat.score >= 820000 && game.stat.gradeid < 15) {
+        game.stat.grade = "S7 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 15;
+    }
+      else if (game.stat.score >= 660000 && game.stat.gradeid < 14) {
+        game.stat.grade = "S6 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 14;
+    }
+      else if (game.stat.score >= 520000 && game.stat.gradeid < 13) {
+        game.stat.grade = "S5 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 13;
+    }
+      else if (game.stat.score >= 400000 && game.stat.gradeid < 12) {
+        game.stat.grade = "S4 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 12;
+    }
+      else if (game.stat.score >= 300000 && game.stat.gradeid < 11) {
+        game.stat.grade = "S3 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 11;
+    }
+      else if (game.stat.score >= 220000 && game.stat.gradeid < 10) {
+        game.stat.grade = "S2 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 10;
+    }
+      else if (game.stat.score >= 160000 && game.stat.gradeid < 9) {
+        game.stat.grade = "S1 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 9;
+    }
+      else if (game.stat.score >= 120000 && game.stat.gradeid < 8) {
+        game.stat.grade = "1 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 8;
+    }
+      else if (game.stat.score >= 80000 && game.stat.gradeid < 7) {
+        game.stat.grade = "2 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 7;
+    }
+      else if (game.stat.score >= 55000 && game.stat.gradeid < 6) {
+        game.stat.grade = "3 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 6;
+    }
+      else if (game.stat.score >= 35000 && game.stat.gradeid < 5) {
+        game.stat.grade = "4 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 5;
+    }
+      else if (game.stat.score >= 20000 && game.stat.gradeid < 4) {
+        game.stat.grade = "5 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 4;
+    }
+      else if (game.stat.score >= 14000 && game.stat.gradeid < 3) {
+        game.stat.grade = "6 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 3;
+    }
+      else if (game.stat.score >= 8000 && game.stat.gradeid < 2) {
+        game.stat.grade = "7 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 2;
+    }
+      else if (game.stat.score >= 4000 && game.stat.gradeid < 1) {
+        game.stat.grade = "8 (" + game.stat.gradetime + ")"
+        game.stat.gradeid = 1
+    };
       collapse(arg);
       if (arg.piece.inAre) {
         initialDas(arg);
@@ -2153,24 +2204,77 @@ export const loops = {
       game.endSectionLevel = game.stat.level >= 900 ? 999 : Math.floor((game.stat.level / 100) + 1) * 100;
       game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
       if (game.stat.level >= 500) $('#stat-level').classList.add("middelay");
+      if ($('#timer-real').innerHTML[8] == "0") {game.stat.gradetime = $('#timer-real').innerHTML.slice(9);}
+      else {game.stat.gradetime = $('#timer-real').innerHTML.slice(8);}
       if (game.stat.score >= 1260000 && game.stat.level >= 999) game.stat.grade = "GM";
-      else if (game.stat.score >= 1200000) game.stat.grade = "S9";
-      else if (game.stat.score >= 1000000) game.stat.grade = "S8";
-      else if (game.stat.score >= 820000) game.stat.grade = "S7";
-      else if (game.stat.score >= 660000) game.stat.grade = "S6";
-      else if (game.stat.score >= 520000) game.stat.grade = "S5";
-      else if (game.stat.score >= 400000) game.stat.grade = "S4";
-      else if (game.stat.score >= 300000) game.stat.grade = "S3";
-      else if (game.stat.score >= 220000) game.stat.grade = "S2";
-      else if (game.stat.score >= 160000) game.stat.grade = "S1";
-      else if (game.stat.score >= 120000) game.stat.grade = "1";
-      else if (game.stat.score >= 80000) game.stat.grade = "2";
-      else if (game.stat.score >= 55000) game.stat.grade = "3";
-      else if (game.stat.score >= 35000) game.stat.grade = "4";
-      else if (game.stat.score >= 20000) game.stat.grade = "5";
-      else if (game.stat.score >= 14000) game.stat.grade = "6";
-      else if (game.stat.score >= 8000) game.stat.grade = "7";
-      else if (game.stat.score >= 4000) game.stat.grade = "8";
+      else if (game.stat.score >= 1200000 && game.stat.gradeid < 17) {
+        game.stat.grade = "S9 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 17;
+    }
+      else if (game.stat.score >= 1000000 && game.stat.gradeid < 16) {
+        game.stat.grade = "S8 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 16;
+    }
+      else if (game.stat.score >= 820000 && game.stat.gradeid < 15) {
+        game.stat.grade = "S7 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 15;
+    }
+      else if (game.stat.score >= 660000 && game.stat.gradeid < 14) {
+        game.stat.grade = "S6 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 14;
+    }
+      else if (game.stat.score >= 520000 && game.stat.gradeid < 13) {
+        game.stat.grade = "S5 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 13;
+    }
+      else if (game.stat.score >= 400000 && game.stat.gradeid < 12) {
+        game.stat.grade = "S4 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 12;
+    }
+      else if (game.stat.score >= 300000 && game.stat.gradeid < 11) {
+        game.stat.grade = "S3 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 11;
+    }
+      else if (game.stat.score >= 220000 && game.stat.gradeid < 10) {
+        game.stat.grade = "S2 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 10;
+    }
+      else if (game.stat.score >= 160000 && game.stat.gradeid < 9) {
+        game.stat.grade = "S1 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 9;
+    }
+      else if (game.stat.score >= 120000 && game.stat.gradeid < 8) {
+        game.stat.grade = "1 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 8;
+    }
+      else if (game.stat.score >= 80000 && game.stat.gradeid < 7) {
+        game.stat.grade = "2 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 7;
+    }
+      else if (game.stat.score >= 55000 && game.stat.gradeid < 6) {
+        game.stat.grade = "3 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 6;
+    }
+      else if (game.stat.score >= 35000 && game.stat.gradeid < 5) {
+        game.stat.grade = "4 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 5;
+    }
+      else if (game.stat.score >= 20000 && game.stat.gradeid < 4) {
+        game.stat.grade = "5 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 4;
+    }
+      else if (game.stat.score >= 14000 && game.stat.gradeid < 3) {
+        game.stat.grade = "6 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 3;
+    }
+      else if (game.stat.score >= 8000 && game.stat.gradeid < 2) {
+        game.stat.grade = "7 (" + game.stat.gradetime + ")";
+        game.stat.gradeid = 2;
+    }
+      else if (game.stat.score >= 4000 && game.stat.gradeid < 1) {
+        game.stat.grade = "8 (" + game.stat.gradetime + ")"
+        game.stat.gradeid = 1
+    };
       collapse(arg);
       if (arg.piece.inAre) {
         initialDas(arg);
@@ -2235,6 +2339,7 @@ export const loops = {
       game.rta = 0;
       game.isRaceMode = true;
       game.stat.grade = "9";
+      game.stat.gradeid = 0;
       game.arcadeCombo = 1;
       game.drop = 0;
       game.stat.initPieces = 2;

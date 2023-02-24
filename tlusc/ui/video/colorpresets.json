@@ -15,13 +15,19 @@
       "label": "Monochrome",
       "description": "Some people find this easier, some harder. Note that shapeshifting is impossible with no color.",
       "fixedText": true,
-      "default": true,
       "isShort": true,
       "action": "colorpreset"
     },
     {
       "label": "Arika",
       "description": "Often used in arcade-styled block stackers.",
+      "fixedText": true,
+      "isShort": true,
+      "action": "colorpreset"
+    },
+    {
+      "label": "Tetra-X",
+      "description": "Occasionally used with the Tetra-X rotation system.",
       "fixedText": true,
       "isShort": true,
       "action": "colorpreset"
