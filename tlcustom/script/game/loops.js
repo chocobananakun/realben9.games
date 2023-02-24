@@ -181,13 +181,8 @@ export const loops = {
         sound.add('voxexcellent');
         game.end(true);
       }
-      if (game.stat.initPieces === 0 &&
-        (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {
-        game.stat.level = game.stat.level + 1;
-      }
-      if (game.stat.initPieces > 0) {
-        game.stat.initPieces = game.stat.initPieces - 1;
-      }
+      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level = game.stat.level + 1;}
+      if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
       updateFallSpeed(game);
     }
   },
@@ -202,6 +197,7 @@ export const loops = {
       linesToLevel(arg, 999, 100);
       game.endSectionLevel = game.stat.level >= 900 ? 999 : Math.floor((game.stat.level / 100) + 1) * 100;
       game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
+      if (game.stat.level >= 500) $('#stat-level').classList.add("middelay");
       if (game.stat.score >= 1260000 && game.stat.level >= 999) game.stat.grade = "GM";
       else if (game.stat.score >= 1200000) game.stat.grade = "S9";
       else if (game.stat.score >= 1000000) game.stat.grade = "S8";
@@ -249,16 +245,9 @@ export const loops = {
         sound.add('voxexcellent');
         game.end(true);
       }
-      if (game.stat.initPieces === 0 &&
-        (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {
-        game.stat.level = game.stat.level + 1;
-      }
-      if (game.stat.initPieces > 0) {
-        game.stat.initPieces = game.stat.initPieces - 1;
-      }
-      if (game.stat.level >= 280) {
-        sound.killBgm();
-      }
+      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level = game.stat.level + 1;}
+      if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
+      if (game.stat.level >= 280) {sound.killBgm();}
       let gravityDenominator = 1;
       const gravityTable = [
         [30,4],[35,6],[40,8],[50,10],[60,12],[70,16],[80,32],[90,48],[100,64],[120,80],
@@ -2163,6 +2152,7 @@ export const loops = {
       linesToLevel(arg, 999, 100);
       game.endSectionLevel = game.stat.level >= 900 ? 999 : Math.floor((game.stat.level / 100) + 1) * 100;
       game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
+      if (game.stat.level >= 500) $('#stat-level').classList.add("middelay");
       if (game.stat.score >= 1260000 && game.stat.level >= 999) game.stat.grade = "GM";
       else if (game.stat.score >= 1200000) game.stat.grade = "S9";
       else if (game.stat.score >= 1000000) game.stat.grade = "S8";
@@ -2210,16 +2200,9 @@ export const loops = {
         sound.add('voxexcellent');
         game.end(true);
       }
-      if (game.stat.initPieces === 0 &&
-        (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {
-        game.stat.level = game.stat.level + 1;
-      }
-      if (game.stat.initPieces > 0) {
-        game.stat.initPieces = game.stat.initPieces - 1;
-      }
-      if (game.stat.level >= 280) {
-        sound.killBgm();
-      }
+      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level = game.stat.level + 1;}
+      if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
+      if (game.stat.level >= 280) {sound.killBgm();}
       let gravityDenominator = 1;
       const gravityTable = [
         [30,4],[35,6],[40,8],[50,10],[60,12],[70,16],[80,32],[90,48],[100,64],[120,80],
