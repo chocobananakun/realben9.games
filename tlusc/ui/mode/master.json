@@ -49,18 +49,8 @@
     {
       "string": "holdOptionLabel",
       "stringDesc": "holdOptionDescription",
-      "type": "select",
-      "action": "select",
-      "selectOptions": [
-        {
-          "string": "holdEnabledOption",
-          "value": "enabled"
-        },
-        {
-          "string": "holdDisabledOption",
-          "value": "disabled"
-        }
-      ],
+      "type": "toggle",
+      "action": "toggle",
       "setting": "hold",
       "gameName": "master",
       "settingType": "game"

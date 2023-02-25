@@ -203,6 +203,13 @@
   "ruleSelectDescription": {
     "message": "Select a rule for the game mechanics"
   },
+  "ruleOptionLabel": {
+    "message": "Classic Mode",
+    "description": "Used to allow the user to select what rule they want to use in some arcade modes: Classic, World"
+  },
+  "ruleOptionDescription": {
+    "message": "If true, uses ARS. Otherwise uses SRS."
+  },
   "classicRuleOption": {
     "message": "CLASSIC Rule",
     "description": "Used in some arcade modes"

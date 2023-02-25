@@ -12,7 +12,7 @@
     "description": "Feel free to take any liberties as long you can accurately describe the mode in a way that's localized to the language."
   },
   "handheldLabel": {
-    "message": "Normal-W",
+    "message": "Normal",
     "description": "A mode based on the GB version of Tet"
   },
   "handheldDescription": {

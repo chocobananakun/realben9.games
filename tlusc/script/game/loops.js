@@ -92,7 +92,15 @@ export const loops = {
       updateLasts(arg);
     },
     onInit: (game) => {
-      game.stat.level = 0;
+      game.stat.level = settings.game.sudden.startingLevel;
+      if (game.stat.level != 0) {
+        $('#next-label').style.animationName = "hurry-up-timer";
+        $('#next-label').style.animationDuration = "0.4s";
+        $('#next-label').style.animationIterationCount = "infinite";
+        $('#next-label').style.animationDirection = "alternate";
+        $('#next-label').style.animationTimingFunction = "ease-in-out";
+        $('#next-label').style.fontSize = "1.3em";
+      }
       game.isRaceMode = true;
       game.stat.grade = "";
       game.rta = 0;
@@ -102,6 +110,13 @@ export const loops = {
       game.endingStats.grade = true;
       game.musicProgression = 0;
       game.drop = 0;
+      if (settings.game.sudden.ruleOption == false) {
+        game.settings.rotationSystem = "srs";
+        game.rotationSystem = "srs";
+      } else {
+        game.settings.rotationSystem = "ars";
+        game.rotationSystem = "ars";
+      }
       game.updateStats();
     },
     onPieceSpawn: (game) => {
@@ -247,13 +262,28 @@ export const loops = {
       updateFallSpeed(game);
     },
     onInit: (game) => {
-      game.stat.level = 0;
+      game.stat.level = settings.game.novice.startingLevel;
+      if (game.stat.level != 0) {
+        $('#next-label').style.animationName = "hurry-up-timer";
+        $('#next-label').style.animationDuration = "0.4s";
+        $('#next-label').style.animationIterationCount = "infinite";
+        $('#next-label').style.animationDirection = "alternate";
+        $('#next-label').style.animationTimingFunction = "ease-in-out";
+        $('#next-label').style.fontSize = "1.3em";
+      }
       game.rta = 0;
       game.isRaceMode = true;
       game.arcadeCombo = 1;
       game.drop = 0;
       game.stat.initPieces = 2;
       game.appends.level = `<span class="small">/300</span>`;
+      if (settings.game.novice.ruleOption == false) {
+        game.settings.rotationSystem = "srs";
+        game.rotationSystem = "srs";
+      } else {
+        game.settings.rotationSystem = "ars";
+        game.rotationSystem = "ars";
+      }
       updateFallSpeed(game);
       game.updateStats();
     },
@@ -1837,11 +1867,7 @@ export const loops = {
       game.piece.areLimit = ARE_TABLE[calcLevel];
       game.piece.areLineLimit = ARE_TABLE[calcLevel];
       game.stat.entrydelay = `${ARE_TABLE[calcLevel]}ms`;
-      if (settings.game.master.hold == "enabled") {
-        game.hold.isDisabled = false;
-      } else {
-        game.hold.isDisabled = true;
-      }
+      game.hold.isDisabled = !settings.game.master.hold;
       levelUpdate(game);
     },
     onInit: (game) => {

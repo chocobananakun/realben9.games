@@ -1997,11 +1997,7 @@ export const loops = {
       } else {
         sound.playMenuSe('hardstart4');
       }
-      if (settings.game.master.hold == "enabled") {
-        game.hold.isDisabled = false;
-      } else {
-        game.hold.isDisabled = true;
-      }
+      game.hold.isDisabled = !settings.game.master.hold;
       game.lineGoal = 300;
       game.stat.level = settings.game.master.startingLevel;
       lastLevel = parseInt(settings.game.master.startingLevel);
@@ -2297,6 +2293,8 @@ export const loops = {
       updateLasts(arg);
     },
     onPieceSpawn: (game) => {
+      console.log(settings.game.handheld.ruleOption)
+      console.log(game.settings.rotationSystem)
       game.drop = 0;
       if (game.stat.level === 999) {
         $('#kill-message').textContent = locale.getString('ui', 'excellent');
@@ -2343,6 +2341,13 @@ export const loops = {
       game.arcadeCombo = 1;
       game.drop = 0;
       game.stat.initPieces = 2;
+      if (settings.game.handheld.ruleOption == false) {
+        game.settings.rotationSystem = "srs";
+        game.rotationSystem = "srs";
+      } else {
+        game.settings.rotationSystem = "ars";
+        game.rotationSystem = "ars";
+      }
       updateFallSpeed(game);
       game.updateStats();
     },

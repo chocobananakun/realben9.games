@@ -140,7 +140,7 @@ class Settings {
       master: {
         startingLevel: 1,
         lockdownMode: "infinity",
-        hold: "enabled",
+        hold: true,
       },
       survival: {
         startingLevel: 1,
@@ -160,12 +160,18 @@ class Settings {
       },
       handheld: {
         startingLevel: 0,
+        ruleOption: false,
       },
       deluxe: {
         startingLevel: 0,
       },
       novice: {
         startingLevel: 0,
+        ruleOption: false,
+      },
+      sudden: {
+        startingLevel: 0,
+        ruleOption: false,
       },
       beat: {
         song: "non",

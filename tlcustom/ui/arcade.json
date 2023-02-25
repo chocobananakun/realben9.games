@@ -10,23 +10,23 @@
       "type": "header"
     },
     {
-      "label": "Normal-C",
-      "description": "A slow game for beginners. Uses ARS.",
-      "fixedText": true,
-      "action": "submenu",
-      "submenu": "mode/novice"
-    },
-    {
-      "label": "Normal-W",
-      "description": "A slow game for beginners. Uses SRS.",
+      "label": "Normal",
+      "description": "A slow game for beginners.",
       "fixedText": true,
       "default": true,
       "action": "submenu",
       "submenu": "mode/handheld"
     },
     {
-      "label": "SUDDEN",
-      "description": "The pieces spawn on the ground and only get faster! Uses ARS.",
+      "label": "Special",
+      "description": "A fast game for intermediates.",
+      "fixedText": true,
+      "action": "submenu",
+      "submenu": "mode/novice"
+    },
+    {
+      "label": "Special Ti",
+      "description": "A fast game for intermediates.",
       "fixedText": true,
       "action": "submenu",
       "submenu": "mode/sudden"

@@ -2,32 +2,33 @@
   "settings": {
     "width": 10,
     "height": 20,
-    "hiddenHeight": 4,
+    "hiddenHeight": 20,
     "pieces": "standard",
     "unfavored": null,
     "randomizer": "history6rolls",
-    "rotationSystem": "ars",
-    "skin": "arika",
+    "rotationSystem": "srs",
+    "skin": "srsx",
     "soundbank": "standard",
     "music": "../marathon/marathon-2",
     "hasDangerBgm": true,
     "scoreTable": "blank",
-    "background": "marathon.jpg",
-    "isHardMode": true
+    "background": "marathon.jpg"
   },
   "piece": {
     "arrLimit": 17
   },
   "next": {
-    "nextLimit": 1
-  },
-  "hold": {
-    "isDisabled": true
+    "nextLimit": 3
   },
   "stats": [
     "grade",
     "score",
     "level",
-    "line"
+    "fallspeed",
+    "line",
+    "maxcombo",
+    "piece",
+    "b2b",
+    "pcCount"
   ]
 }

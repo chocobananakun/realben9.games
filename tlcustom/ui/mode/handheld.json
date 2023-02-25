@@ -22,6 +22,15 @@
       "setting": "startingLevel",
       "gameName": "handheld",
       "settingType": "game"
+    },
+    {
+      "string": "ruleOptionLabel",
+      "stringDesc": "ruleOptionDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "ruleOption",
+      "gameName": "handheld",
+      "settingType": "game"
     }
   ]
 }

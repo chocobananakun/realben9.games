@@ -6,7 +6,7 @@
       "pieces": "standard",
       "unfavored": null,
       "randomizer": "history6rolls",
-      "rotationSystem": "ars",
+      "rotationSystem": "srs",
       "skin": "arika",
       "soundbank": "standard",
       "music": "../marathon/marathon-2",
