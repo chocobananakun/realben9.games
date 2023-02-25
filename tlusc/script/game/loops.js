@@ -196,7 +196,7 @@ export const loops = {
         sound.add('voxexcellent');
         game.end(true);
       }
-      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level = game.stat.level + 1;}
+      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++;}
       if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
       updateFallSpeed(game);
     }
@@ -238,9 +238,8 @@ export const loops = {
         sound.killVox();
         sound.add('voxexcellent');
         game.end(true);
-      } else if (game.stat.initPieces === 0 && game.stat.level !== 299) {
-        game.stat.level = game.stat.level + 1;
-      } else {game.stat.initPieces = game.stat.initPieces - 1;}
+      } else if (game.stat.initPieces === 0 && game.stat.level !== 299) {game.stat.level++;}
+      else {game.stat.initPieces = game.stat.initPieces - 1;}
       if (game.stat.level >= 280) {sound.killBgm();}
       let gravityDenominator = 1;
       const gravityTable = [

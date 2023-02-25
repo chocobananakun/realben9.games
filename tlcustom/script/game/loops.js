@@ -181,8 +181,9 @@ export const loops = {
         sound.add('voxexcellent');
         game.end(true);
       }
-      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level = game.stat.level + 1;}
+      if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++;}
       if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
+      window.hasHeld = false
       updateFallSpeed(game);
     }
   },
@@ -197,76 +198,200 @@ export const loops = {
       linesToLevel(arg, 999, 100);
       game.endSectionLevel = game.stat.level >= 900 ? 999 : Math.floor((game.stat.level / 100) + 1) * 100;
       game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
-      if (game.stat.level >= 500) $('#stat-level').classList.add("middelay");
-      if (game.stat.score >= 1260000 && game.stat.level >= 999) game.stat.grade = "GM";
-      else if (game.stat.score >= 1200000 && game.stat.gradeid < 17) {
-        game.stat.grade = "S9 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 17;
-    }
-      else if (game.stat.score >= 1000000 && game.stat.gradeid < 16) {
-        game.stat.grade = "S8 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 16;
-    }
-      else if (game.stat.score >= 820000 && game.stat.gradeid < 15) {
-        game.stat.grade = "S7 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 15;
-    }
-      else if (game.stat.score >= 660000 && game.stat.gradeid < 14) {
-        game.stat.grade = "S6 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 14;
-    }
-      else if (game.stat.score >= 520000 && game.stat.gradeid < 13) {
-        game.stat.grade = "S5 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 13;
-    }
-      else if (game.stat.score >= 400000 && game.stat.gradeid < 12) {
-        game.stat.grade = "S4 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 12;
-    }
-      else if (game.stat.score >= 300000 && game.stat.gradeid < 11) {
-        game.stat.grade = "S3 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 11;
-    }
-      else if (game.stat.score >= 220000 && game.stat.gradeid < 10) {
-        game.stat.grade = "S2 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 10;
-    }
-      else if (game.stat.score >= 160000 && game.stat.gradeid < 9) {
-        game.stat.grade = "S1 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 9;
-    }
-      else if (game.stat.score >= 120000 && game.stat.gradeid < 8) {
-        game.stat.grade = "1 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 8;
-    }
-      else if (game.stat.score >= 80000 && game.stat.gradeid < 7) {
-        game.stat.grade = "2 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 7;
-    }
-      else if (game.stat.score >= 55000 && game.stat.gradeid < 6) {
-        game.stat.grade = "3 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 6;
-    }
-      else if (game.stat.score >= 35000 && game.stat.gradeid < 5) {
-        game.stat.grade = "4 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 5;
-    }
-      else if (game.stat.score >= 20000 && game.stat.gradeid < 4) {
-        game.stat.grade = "5 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 4;
-    }
-      else if (game.stat.score >= 14000 && game.stat.gradeid < 3) {
-        game.stat.grade = "6 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 3;
-    }
-      else if (game.stat.score >= 8000 && game.stat.gradeid < 2) {
-        game.stat.grade = "7 (" + game.stat.gradetime + ")";
-        game.stat.gradeid = 2;
-    }
-      else if (game.stat.score >= 4000 && game.stat.gradeid < 1) {
-        game.stat.grade = "8 (" + game.stat.gradetime + ")"
-        game.stat.gradeid = 1
-    };
+      if ($('#timer-real').innerHTML[8] == "0") {game.stat.gradetime = $('#timer-real').innerHTML.slice(9);}
+      else {game.stat.gradetime = $('#timer-real').innerHTML.slice(8);}
+      if (game.stat.level >= 900) $('#stat-level').classList.add("lowmiddelay")
+      else if (game.stat.level >= 500) $('#stat-level').classList.add("middelay");
+      if (!arg.piece.inAre && game.stat.gradepoints > 0) {game.stat.decayrate++;
+      switch (game.stat.gradeid) {
+        case 0:
+          if (game.stat.decayrate >= 125) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          };
+          break;
+        case 1:
+          if (game.stat.decayrate >= 80) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 2:
+          if (game.stat.decayrate >= 80) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 3:
+          if (game.stat.decayrate >= 50) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 4:
+          if (game.stat.decayrate >= 45) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 5:
+          if (game.stat.decayrate >= 45) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 6:
+          if (game.stat.decayrate >= 45) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 7:
+          if (game.stat.decayrate >= 40) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 8:
+          if (game.stat.decayrate >= 40) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 9:
+          if (game.stat.decayrate >= 40) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 10:
+          if (game.stat.decayrate >= 40) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 11:
+          if (game.stat.decayrate >= 40) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 12:
+          if (game.stat.decayrate >= 30) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 13:
+          if (game.stat.decayrate >= 30) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 14:
+          if (game.stat.decayrate >= 30) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 15:
+          if (game.stat.decayrate >= 20) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 16:
+          if (game.stat.decayrate >= 20) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 17:
+          if (game.stat.decayrate >= 20) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 18:
+          if (game.stat.decayrate >= 20) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 19:
+          if (game.stat.decayrate >= 20) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 20:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 21:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 22:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 23:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 24:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 25:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 26:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 27:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 28:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        case 29:
+          if (game.stat.decayrate >= 15) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+        default:
+          if (game.stat.decayrate >= 10) {
+            game.stat.gradepoints = game.stat.gradepoints - 1
+            game.stat.decayrate = 0
+          }
+          break;
+      }};
+      if (game.stat.gradeid >= 31 && game.stat.level >= 999) game.stat.grade = "GM";
       collapse(arg);
       if (arg.piece.inAre) {
         initialDas(arg);
@@ -280,6 +405,7 @@ export const loops = {
       }
       gravity(arg);
       softDrop(arg);
+      sonicDrop(arg);
       firmDrop(arg);
       classicLockdown(arg);
       if (!arg.piece.inAre) {
@@ -289,6 +415,197 @@ export const loops = {
       updateLasts(arg);
     },
     onPieceSpawn: (game) => {
+      if (window.lineClear == 0) {game.stat.gradepoints = game.stat.gradepoints}
+      else if (window.lineClear == 1) {
+        switch (game.stat.gradeid) {
+          case 0:
+            game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 1:
+            game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 2:
+            game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 3:
+            game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 4:
+            game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 5:
+            game.stat.gradepoints = game.stat.gradepoints + (5 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 6:
+            game.stat.gradepoints = game.stat.gradepoints + (5 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 7:
+            game.stat.gradepoints = game.stat.gradepoints + (5 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 8:
+            game.stat.gradepoints = game.stat.gradepoints + (5 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 9:
+            game.stat.gradepoints = game.stat.gradepoints + (5 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          default:
+            game.stat.gradepoints = game.stat.gradepoints + (2 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+        }}
+      else if (window.lineClear == 2) {
+        switch (game.stat.gradeid) {
+          case 0:
+            game.stat.gradepoints = game.stat.gradepoints + (20 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 1:
+            game.stat.gradepoints = game.stat.gradepoints + (20 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 2:
+            game.stat.gradepoints = game.stat.gradepoints + (20 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 3:
+            game.stat.gradepoints = game.stat.gradepoints + (15 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 4:
+            game.stat.gradepoints = game.stat.gradepoints + (15 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 5:
+            game.stat.gradepoints = game.stat.gradepoints + (15 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 6:
+            game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 7:
+            game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 8:
+            game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 9:
+            game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          default:
+            game.stat.gradepoints = game.stat.gradepoints + (12 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+        }}
+      else if (window.lineClear == 3) {
+        switch (game.stat.gradeid) {
+          case 0:
+            game.stat.gradepoints = game.stat.gradepoints + (40 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 1:
+            game.stat.gradepoints = game.stat.gradepoints + (30 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 2:
+            game.stat.gradepoints = game.stat.gradepoints + (30 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 3:
+            game.stat.gradepoints = game.stat.gradepoints + (30 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 4:
+            game.stat.gradepoints = game.stat.gradepoints + (20 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 5:
+            game.stat.gradepoints = game.stat.gradepoints + (20 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 6:
+            game.stat.gradepoints = game.stat.gradepoints + (20 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 7:
+            game.stat.gradepoints = game.stat.gradepoints + (15 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 8:
+            game.stat.gradepoints = game.stat.gradepoints + (15 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 9:
+            game.stat.gradepoints = game.stat.gradepoints + (15 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          default:
+            game.stat.gradepoints = game.stat.gradepoints + (13 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+        }}
+      else {
+        switch (game.stat.gradeid) {
+          case 0:
+            game.stat.gradepoints = game.stat.gradepoints + (50 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 1:
+            game.stat.gradepoints = game.stat.gradepoints + (40 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 2:
+            game.stat.gradepoints = game.stat.gradepoints + (40 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 3:
+            game.stat.gradepoints = game.stat.gradepoints + (40 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          case 4:
+            game.stat.gradepoints = game.stat.gradepoints + (40 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+          default:
+            game.stat.gradepoints = game.stat.gradepoints + (30 * Math.floor(1 + (game.stat.level / 250)));
+            break;
+        }}
+      window.lineClear = 0;
+      console.log(game.stat.gradepoints)
+      if (game.stat.gradepoints >= 100) {
+        game.stat.gradeid++
+        game.stat.gradepoints = 0
+      };
+      if (game.stat.gradeid > game.stat.gradedisp) {
+        switch (game.stat.gradeid) {
+          case 1:
+            game.stat.grade = "8 (" + game.stat.gradetime + ")";
+            break;
+          case 2:
+            game.stat.grade = "7 (" + game.stat.gradetime + ")";
+            break;
+          case 3:
+            game.stat.grade = "6 (" + game.stat.gradetime + ")";
+            break;
+          case 4:
+            game.stat.grade = "5 (" + game.stat.gradetime + ")";
+            break;
+          case 5:
+            game.stat.grade = "4 (" + game.stat.gradetime + ")";
+            break;
+          case 7:
+            game.stat.grade = "3 (" + game.stat.gradetime + ")";
+            break;
+          case 9:
+            game.stat.grade = "2 (" + game.stat.gradetime + ")";
+            break;
+          case 12:
+            game.stat.grade = "1 (" + game.stat.gradetime + ")";
+            break;
+          case 15:
+            game.stat.grade = "S1 (" + game.stat.gradetime + ")";
+            break;
+          case 18:
+            game.stat.grade = "S2 (" + game.stat.gradetime + ")";
+            break;
+          case 19:
+            game.stat.grade = "S3 (" + game.stat.gradetime + ")";
+            break;
+          case 20:
+            game.stat.grade = "S4 (" + game.stat.gradetime + ")";
+            break;
+          case 23:
+            game.stat.grade = "S5 (" + game.stat.gradetime + ")";
+            break;
+          case 25:
+            game.stat.grade = "S6 (" + game.stat.gradetime + ")";
+            break;
+          case 27:
+            game.stat.grade = "S7 (" + game.stat.gradetime + ")";
+            break;
+          case 29:
+            game.stat.grade = "S8 (" + game.stat.gradetime + ")";
+            break;
+          case 31:
+            game.stat.grade = "S9 (" + game.stat.gradetime + ")";
+            break;
+        }
+        game.stat.gradedisp = game.stat.gradeid};
       game.drop = 0;
       if (game.stat.level === 999) {
         $('#kill-message').textContent = locale.getString('ui', 'excellent');
@@ -296,7 +613,7 @@ export const loops = {
         sound.add('voxexcellent');
         game.end(true);
       }
-      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level = game.stat.level + 1;}
+      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++;}
       if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
       if (game.stat.level >= 280) {sound.killBgm();}
       let gravityDenominator = 1;
@@ -316,6 +633,23 @@ export const loops = {
       }
       game.piece.gravity = framesToMs(256 / gravityDenominator);
       game.piece.ghostIsVisible = game.stat.level < 100;
+      if (game.stat.level >= 800) {
+        game.piece.areLimit = 200;
+        game.piece.areLineLimit = 100;}
+      else if (game.stat.level >= 700) {
+        game.piece.areLimit = framesToMs(16);
+        game.piece.areLineLimit = 200;}
+      else if (game.stat.level >= 600) {
+        game.piece.areLimit = framesToMs(25);
+        game.piece.areLineLimit = framesToMs(16);}
+      else if (game.stat.level >= 500) {
+        game.piece.areLimit = framesToMs(25);
+        game.piece.areLineLimit = framesToMs(25);}
+      else {
+        game.piece.areLimit = framesToMs(25);
+        game.piece.areLineLimit = framesToMs(40);}
+      if (game.stat.level < 900) {game.piece.lockDelayLimit = 500}
+      else {game.piece.lockDelayLimit = 283.3};
       updateFallSpeed(game);
     },
     onInit: (game) => {
@@ -331,6 +665,10 @@ export const loops = {
       game.rta = 0;
       game.isRaceMode = true;
       game.stat.grade = "9";
+      game.stat.gradeid = 0;
+      game.stat.gradedisp = 0;
+      game.stat.gradepoints = 0;
+      game.stat.decayrate = 0;
       game.arcadeCombo = 1;
       game.drop = 0;
       game.stat.initPieces = 2;
@@ -1703,9 +2041,7 @@ export const loops = {
           game.playedHurryUp = true;
         }
         sound.raisePaceBgm();
-      } else {
-        game.playedHurryUp = false;
-      }
+      } else {game.playedHurryUp = false;}
       collapse(arg);
       if (arg.piece.inAre) {
         initialDas(arg);
@@ -2113,7 +2449,7 @@ export const loops = {
       }
       if (window.hasHeld == false && game.stat.initPieces === 0 &&
         (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {
-        game.stat.level = game.stat.level + 1;
+        game.stat.level++;
         window.panlvl = game.stat.level;
       }
       window.hasHeld = false;
@@ -2302,7 +2638,7 @@ export const loops = {
         sound.add('voxexcellent');
         game.end(true);
       }
-      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level = game.stat.level + 1;}
+      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++;}
       if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
       if (game.stat.level >= 280) {sound.killBgm();}
       let gravityDenominator = 1;

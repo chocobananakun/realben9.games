@@ -33,6 +33,13 @@
       "action": "colorpreset"
     },
     {
+      "label": "KRS+",
+      "description": "Occasionally used with the KRS+ rotation system.",
+      "fixedText": true,
+      "isShort": true,
+      "action": "colorpreset"
+    },
+    {
       "label": "N-Blox",
       "description": "Color scheme exclusive to N-Blox",
       "fixedText": true,
