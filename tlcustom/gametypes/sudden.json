@@ -6,7 +6,7 @@
     "pieces": "standard",
     "unfavored": null,
     "randomizer": "history6rolls",
-    "rotationSystem": "srs",
+    "rotationSystem": "world",
     "skin": "srsx",
     "soundbank": "standard",
     "music": "../marathon/marathon-2",
@@ -15,7 +15,8 @@
     "background": "marathon.jpg"
   },
   "piece": {
-    "arrLimit": 17
+    "arrLimit": 17,
+    "spinDetectionType": "tspin3corner"
   },
   "next": {
     "nextLimit": 3

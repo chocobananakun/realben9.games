@@ -23,6 +23,15 @@
       "setting": "startingLevel",
       "gameName": "novice",
       "settingType": "game"
+    },
+    {
+      "string": "ruleOptionLabel",
+      "stringDesc": "ruleOptionDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "ruleOption",
+      "gameName": "novice",
+      "settingType": "game"
     }
   ]
 }

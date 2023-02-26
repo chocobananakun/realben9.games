@@ -68,7 +68,15 @@ export const loops = {
       game.endSectionLevel = game.stat.level >= 900 ? 999 : Math.floor((game.stat.level / 100) + 1) * 100;
       game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
       if (game.stat.level >= 999) game.stat.grade = "GM";
-      else if (game.stat.level >= 500 && game.torikanPassed) game.stat.grade = "M";
+      else if (game.stat.level >= 900) game.stat.grade = "S9";
+      else if (game.stat.level >= 800) game.stat.grade = "S8";
+      else if (game.stat.level >= 700) game.stat.grade = "S7";
+      else if (game.stat.level >= 600) game.stat.grade = "S6";
+      else if (game.stat.level >= 500 && game.torikanPassed) game.stat.grade = "S5";
+      else if (game.stat.level >= 400) game.stat.grade = "S4";
+      else if (game.stat.level >= 300) game.stat.grade = "S3";
+      else if (game.stat.level >= 200) game.stat.grade = "S2";
+      else if (game.stat.level >= 100) game.stat.grade = "S1";
       collapse(arg);
       if (arg.piece.inAre) {
         initialDas(arg);
@@ -81,8 +89,13 @@ export const loops = {
         shifting(arg);
       }
       gravity(arg);
-      sonicDrop(arg, true);
-      firmDrop(arg, 1, true);
+      if (settings.game.sudden.ruleOption == false) {
+        hardDrop(arg, true);
+        softDrop(arg);
+      } else {
+        sonicDrop(arg, true);
+        firmDrop(arg, 1, true);
+      }
       //extendedLockdown(arg);
       classicLockdown(arg);
       if (!arg.piece.inAre) {
@@ -92,7 +105,15 @@ export const loops = {
       updateLasts(arg);
     },
     onInit: (game) => {
-      game.stat.level = 0;
+      game.stat.level = settings.game.sudden.startingLevel;
+      if (game.stat.level != 0) {
+        $('#next-label').style.animationName = "hurry-up-timer";
+        $('#next-label').style.animationDuration = "0.4s";
+        $('#next-label').style.animationIterationCount = "infinite";
+        $('#next-label').style.animationDirection = "alternate";
+        $('#next-label').style.animationTimingFunction = "ease-in-out";
+        $('#next-label').style.fontSize = "1.3em";
+      }
       game.isRaceMode = true;
       game.stat.grade = "";
       game.rta = 0;
@@ -184,6 +205,13 @@ export const loops = {
       if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++;}
       if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
       window.hasHeld = false
+      if (settings.game.sudden.ruleOption == false) {
+        game.settings.rotationSystem = "world";
+        game.rotationSystem = "world";
+      } else {
+        game.settings.rotationSystem = "arsti";
+        game.rotationSystem = "arsti";
+      }
       updateFallSpeed(game);
     }
   },
@@ -200,6 +228,8 @@ export const loops = {
       game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
       if ($('#timer-real').innerHTML[8] == "0") {game.stat.gradetime = $('#timer-real').innerHTML.slice(9);}
       else {game.stat.gradetime = $('#timer-real').innerHTML.slice(8);}
+      $('#stat-level').classList.remove("middelay")
+      $('#stat-level').classList.remove("lowmiddelay")
       if (game.stat.level >= 900) $('#stat-level').classList.add("lowmiddelay")
       else if (game.stat.level >= 500) $('#stat-level').classList.add("middelay");
       if (!arg.piece.inAre && game.stat.gradepoints > 0) {game.stat.decayrate++;
@@ -546,7 +576,6 @@ export const loops = {
             break;
         }}
       window.lineClear = 0;
-      console.log(game.stat.gradepoints)
       if (game.stat.gradepoints >= 100) {
         game.stat.gradeid++
         game.stat.gradepoints = 0
@@ -650,6 +679,13 @@ export const loops = {
         game.piece.areLineLimit = framesToMs(40);}
       if (game.stat.level < 900) {game.piece.lockDelayLimit = 500}
       else {game.piece.lockDelayLimit = 283.3};
+      if (settings.game.novice.ruleOption == false) {
+        game.settings.rotationSystem = "srs";
+        game.rotationSystem = "srs";
+      } else {
+        game.settings.rotationSystem = "ars";
+        game.rotationSystem = "ars";
+      }
       updateFallSpeed(game);
     },
     onInit: (game) => {
@@ -2629,8 +2665,6 @@ export const loops = {
       updateLasts(arg);
     },
     onPieceSpawn: (game) => {
-      console.log(settings.game.handheld.ruleOption)
-      console.log(game.settings.rotationSystem)
       game.drop = 0;
       if (game.stat.level === 999) {
         $('#kill-message').textContent = locale.getString('ui', 'excellent');

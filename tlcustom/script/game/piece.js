@@ -1074,23 +1074,23 @@ export default class Piece extends GameModule {
     }
     switch(name){
       case 'Z':
-        if (!settings.settings.spinZ) { return {isSpin: false, isMini: false}; }
+        if (!settings.settings.spinZ || this.spinDetectionType === "tspin3corner") { return {isSpin: false, isMini: false}; }
         break;
       case 'L':
-        if (!settings.settings.spinL) { return {isSpin: false, isMini: false}; }
+        if (!settings.settings.spinL || this.spinDetectionType === "tspin3corner") { return {isSpin: false, isMini: false}; }
         break;
       case 'O':
-        if (!settings.settings.spinO) { return {isSpin: false, isMini: false}; }
+        if (!settings.settings.spinO || this.spinDetectionType === "tspin3corner") { return {isSpin: false, isMini: false}; }
         break;
       case 'S':
-        if (!settings.settings.spinS) { return {isSpin: false, isMini: false}; }
+        if (!settings.settings.spinS || this.spinDetectionType === "tspin3corner") { return {isSpin: false, isMini: false}; }
         break;
       case 'I':
-        if (!settings.settings.spinI) { return {isSpin: false, isMini: false}; }
+        if (!settings.settings.spinI || this.spinDetectionType === "tspin3corner") { return {isSpin: false, isMini: false}; }
         break;
-        case 'J':
-          if (!settings.settings.spinJ) { return {isSpin: false, isMini: false}; }
-          break;
+      case 'J':
+        if (!settings.settings.spinJ || this.spinDetectionType === "tspin3corner") { return {isSpin: false, isMini: false}; }
+        break;
       case 'T':
         if (!settings.settings.spinT) { return {isSpin: false, isMini: false}; }
         break;
