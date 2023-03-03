@@ -7,9 +7,8 @@
   },
   "data": [
     {
-      "fixedText": true,
       "label": "IC4W",
-      "langOverride": "menu_guideline",
+      "fixedText": true,
       "type": "header"
     },
     {

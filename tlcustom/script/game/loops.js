@@ -64,10 +64,13 @@ export const loops = {
       game.rta += arg.ms;
       game.b2b = 0;
       arcadeScore(arg)
-      linesToLevel(arg, 999, 100);
-      game.endSectionLevel = game.stat.level >= 900 ? 999 : Math.floor((game.stat.level / 100) + 1) * 100;
+      linesToLevel(arg, 1300, 100);
+      game.endSectionLevel = game.stat.level >= 1300 ? 1300 : Math.floor((game.stat.level / 100) + 1) * 100;
       game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
-      if (game.stat.level >= 999) game.stat.grade = "GM";
+      if (game.stat.level >= 1300) game.stat.grade = "S13";
+      else if (game.stat.level >= 1200) game.stat.grade = "S12";
+      else if (game.stat.level >= 1100) game.stat.grade = "S11";
+      else if (game.stat.level >= 1000) game.stat.grade = "S10";
       else if (game.stat.level >= 900) game.stat.grade = "S9";
       else if (game.stat.level >= 800) game.stat.grade = "S8";
       else if (game.stat.level >= 700) game.stat.grade = "S7";
@@ -123,14 +126,19 @@ export const loops = {
       game.endingStats.grade = true;
       game.musicProgression = 0;
       game.drop = 0;
+      window.lineClear = 0;
       game.updateStats();
     },
     onPieceSpawn: (game) => {
-      const areTable = [[101,18],[301,14],[401,8],[500,7],[1000,6]]
+      if (window.lineClear < 3) {game.stat.level = game.stat.level}
+      else if (window.lineClear == 3) {game.stat.level = game.stat.level + 1}
+      else {game.stat.level = game.stat.level + 2}
+      window.lineClear = 0;
+      const areTable = [[300,10],[1300,4]]
       const areLineModifierTable = [[101,-4],[301,-6],[1000,0]]
-      const areLineTable = [[101,12],[401,6],[500,5],[1000,4]]
-      const dasTable = [[200,12],[300,11],[400,10],[1000,8]]
-      const lockDelayTable = [[101,30],[201,26],[301,22],[401,18],[1000,15]]
+      const areLineTable = [[100,6],[200,5],[500,4],[1300,3]]
+      const dasTable = [[100,8],[500,6],[1300,4]]
+      const lockDelayTable = [[200,18],[300,17],[500,15],[600,13],[600,13],[1100,12],[1200,10],[1300,8]]
       const musicProgressionTable = [[279,1],[300,2],[479,3],[500,4]]
       for (const pair of areTable) {
         const level = pair[0];
@@ -194,15 +202,15 @@ export const loops = {
           game.musicProgression = entry;
         }
       }
-      if (game.stat.level >= 500 && game.rta <= 205000) game.torikanPassed = true;
-      else if ((game.stat.level >= 500 && !game.torikanPassed) || game.stat.level === 999) {
-        if (game.stat.level < 999) game.stat.level = 500;
+      if (game.stat.level >= 500 && ((settings.game.sudden.ruleOption == true && game.rta <= 148000) || (settings.game.sudden.ruleOption == false && game.rta <= 183000))) game.torikanPassed = true;
+      else if ((game.stat.level >= 500 && !game.torikanPassed) || game.stat.level === 1300) {
+        if (game.stat.level < 1300) game.stat.level = 500;
         $('#kill-message').textContent = locale.getString('ui', 'excellent');
         sound.killVox();
         sound.add('voxexcellent');
         game.end(true);
       }
-      if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++;}
+      if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level < 1300)) {game.stat.level++;}
       if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
       window.hasHeld = false
       if (settings.game.sudden.ruleOption == false) {

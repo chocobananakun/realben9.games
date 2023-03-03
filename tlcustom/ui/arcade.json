@@ -11,7 +11,7 @@
     },
     {
       "label": "Normal",
-      "description": "A slow game for beginners.",
+      "description": "An easier master mode variant for beginners.",
       "fixedText": true,
       "default": true,
       "action": "submenu",
@@ -19,14 +19,21 @@
     },
     {
       "label": "Special",
-      "description": "A fast game for intermediates.",
+      "description": "A harder master mode variant for intermediates.",
       "fixedText": true,
       "action": "submenu",
       "submenu": "mode/novice"
     },
     {
       "label": "Special Ti",
-      "description": "A fast game for intermediates.",
+      "description": "A harsh master mode variant for experts. May have promotional exams in the future.",
+      "fixedText": true,
+      "action": "submenu",
+      "submenu": "mode/sprint"
+    },
+    {
+      "label": "Sudden Ti",
+      "description": "An aggresive speed variant that is meant to be unplayable.",
       "fixedText": true,
       "action": "submenu",
       "submenu": "mode/sudden"

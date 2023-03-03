@@ -8,7 +8,6 @@
   "data": [
     {
       "label": "Zen",
-      "description": "",
       "fixedText": true,
       "type": "header"
     },

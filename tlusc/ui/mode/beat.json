@@ -8,7 +8,6 @@
   "data": [
     {
       "label": "Beat Mode",
-      "description": "",
       "fixedText": true,
       "type": "header"
     },

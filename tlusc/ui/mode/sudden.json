@@ -8,7 +8,6 @@
   "data": [
     {
       "label": "Sudden",
-      "description": "",
       "fixedText": true,
       "type": "header"
     },

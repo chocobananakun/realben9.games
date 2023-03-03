@@ -131,6 +131,8 @@ class Settings {
       sprint: {
         lineGoal: 40,
         regulationMode: false,
+        startingLevel: 0,
+        ruleOption: false,
       },
       ultra: {
         timeLimit: 120000,
@@ -154,6 +156,7 @@ class Settings {
       retro: {
         startingLevel: 0,
         mechanics: "accurate",
+        compMode: false,
       },
       prox: {
         startingLevel: 1,

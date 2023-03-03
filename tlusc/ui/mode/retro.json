@@ -41,6 +41,15 @@
       "setting": "mechanics",
       "gameName": "retro",
       "settingType": "game"
+    },
+    {
+      "string": "compModeLabel",
+      "stringDesc": "compModeDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "compMode",
+      "gameName": "retro",
+      "settingType": "game"
     }
   ]
 }

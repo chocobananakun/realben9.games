@@ -2109,7 +2109,8 @@ export const loops = {
       updateLasts(arg);
     },
     onPieceSpawn: (game) => {
-      const startLevel = settings.game.retro.startingLevel;
+      var startLevel = settings.game.retro.startingLevel
+      if (settings.game.retro.startingLevel > 19 && settings.game.retro.startingLevel < 29) {startLevel = 19};
       const startingLines = Math.min((Math.max(100, startLevel * 10 - 50)), (startLevel * 10 + 10));
       game.stat.level = Math.floor(Math.max(((game.stat.line + 10 - startingLines + (startLevel * 10)) / 10), startLevel));
       const SPEED_TABLE = [
@@ -2119,8 +2120,11 @@ export const loops = {
         4, 3, 3, 3, 2,
         2, 2, 2, 2, 2,
         2, 2, 2, 2, 1,
+        1, 1, 1, 1, 1,
+        1, 1, 1, 1, 0.5,
       ];
-      game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(29, game.stat.level)]);
+      if (settings.game.retro.compMode == false) {game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(29, game.stat.level)])}
+      else {game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(39, game.stat.level)])};
       if (game.next.queue[0] === 'I') {
         lastSeenI = 0;
       } else {
@@ -2135,9 +2139,13 @@ export const loops = {
       }
       lastSeenI = 0;
       game.piece.holdingTimeLimit = 1600;
-      game.stat.level = settings.game.retro.startingLevel;
       game.redrawOnLevelUp = true;
+      game.stat.level = settings.game.retro.startingLevel;
       lastLevel = parseInt(settings.game.retro.startingLevel);
+      if (settings.game.retro.startingLevel > 19 && settings.game.retro.startingLevel < 29) {
+        game.stat.level = 19;
+        lastLevel = parseInt(19);
+      };
       if (settings.settings.skin !== 'auto') {
         game.makeSprite();
       } else {

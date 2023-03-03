@@ -7,9 +7,8 @@
   },
   "data": [
     {
-      "fixedText": true,
       "label": "Big",
-      "langOverride": "menu_guideline",
+      "fixedText": true,
       "type": "header"
     },
     {

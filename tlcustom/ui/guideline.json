@@ -17,12 +17,6 @@
       "submenu": "mode/marathon"
     },
     {
-      "string": "sprintLabel",
-      "stringDesc": "sprintDescription",
-      "action": "submenu",
-      "submenu": "mode/sprint"
-    },
-    {
       "string": "ultraLabel",
       "stringDesc": "ultraDescription",
       "action": "submenu",

@@ -109,6 +109,13 @@
   "holdOptionDescription": {
     "message": "Determines whether or not you can hold a piece"
   },
+  "compModeLabel": {
+    "message": "Competitive Mode",
+    "description": "This option allows the user to toggle 2G at level 39. Often used in competitions."
+  },
+  "compModeDescription": {
+    "message": "If enabled, the gravity doubles at level 39. If disabled, remains at 1G past level 29."
+  },
   "gravityLabel": {
     "message": "Gravity",
     "description": "This option allows the user to set the gravity"

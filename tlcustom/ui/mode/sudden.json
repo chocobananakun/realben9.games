@@ -7,8 +7,7 @@
   },
   "data": [
     {
-      "label": "Special Ti",
-      "description": "",
+      "label": "Sudden Ti",
       "fixedText": true,
       "type": "header"
     },
@@ -17,7 +16,7 @@
       "stringDesc": "startingLevelDescription",
       "type": "slider",
       "action": "slider",
-      "max": 99,
+      "max": 129,
       "min": 0,
       "discrete": 1,
       "setting": "startingLevel",
