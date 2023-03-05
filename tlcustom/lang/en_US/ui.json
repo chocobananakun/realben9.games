@@ -95,6 +95,10 @@
     "message": "Excellent!",
     "description": "Displays as a victory message. Any sort of praising line like 'Excellent', 'Awesome', 'Great', 'Good Job' is fine"
   },
+  "torikan": {
+    "message": "Too Slow!",
+    "description": "Displays as a fail message when the user misses a torikan."
+  },
   "newRecord": {
     "message": "New Record!",
     "description": "Displays when the user beats their previous score or time"

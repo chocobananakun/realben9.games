@@ -849,6 +849,7 @@ export default class Game {
       types = ['mino', 'ghost', 'stack'],
       skin = (settings.settings.skin === 'auto') ? SKIN_SETS[this.settings.rotationSystem] : settings.settings.skin,
   ) {
+    if (window.tilvl >= 1000) {skin = 'bone'};
     this.loadFinished = false;
     $('#sprite').innerHTML = '';
     $('#load-message').classList.remove('hidden');
