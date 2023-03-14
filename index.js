@@ -1,3 +1,25 @@
+function togcorndogs() {
+    snow = document.querySelectorAll("div")[0]
+  switch (snow.classList.contains("nocorndogs")) {
+    case true:
+      snow.classList.remove("nocorndogs")
+      break;
+    case false:
+      snow.classList.add("nocorndogs")
+      break;
+  }
+}
+function tograinbow() {
+    snow = document.querySelectorAll("div")[0]
+  switch (snow.classList.contains("rainbow")) {
+    case true:
+      snow.classList.remove("rainbow")
+      break;
+    case false:
+      snow.classList.add("rainbow")
+      break;
+  }
+}
 var query = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 for (let i = 0; i < query.length; i++) {
 	if (query[i].toLowerCase() == atob("a2V5PTEyMzQ1NmI0MjBmOTI4Yjc2OTBkOGYzZWFlMzFiZmFkYmZlZWE1ZjRkMzlhYjEwZg==")) {
