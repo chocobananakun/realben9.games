@@ -83,7 +83,6 @@ export const loops = {
       gravity(arg);
       sonicDrop(arg, true);
       firmDrop(arg, 1, true);
-      //extendedLockdown(arg);
       classicLockdown(arg);
       if (!arg.piece.inAre) {
         hold(arg);
@@ -92,8 +91,17 @@ export const loops = {
       updateLasts(arg);
     },
     onInit: (game) => {
+      if (settings.game.sudden.big == false) {
+        game.settings.width = 10;
+        game.settings.height = 20;
+        game.stack.width = 10;
+        game.stack.height = 20;
+        game.stack.new();
+        game.piece.xSpawnOffset = 0;
+        game.resize();
+      };
       game.stat.level = settings.game.sudden.startingLevel;
-      if (game.stat.level != 0) {
+      if (game.stat.level != 0 || settings.game.sudden.big == true) {
         $('#next-label').style.animationName = "hurry-up-timer";
         $('#next-label').style.animationDuration = "0.4s";
         $('#next-label').style.animationIterationCount = "infinite";
@@ -256,13 +264,24 @@ export const loops = {
           break;
         }
       }
-      game.piece.gravity = framesToMs(256 / gravityDenominator);
-      game.piece.ghostIsVisible = game.stat.level < 100;
+      if (settings.game.novice.infG == false) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
+      else {game.piece.gravity = framesToMs(1 / 20)};
+      if (settings.game.novice.tls == false) {game.piece.ghostIsVisible = game.stat.level < 100}
+      else {game.piece.ghostIsVisible = true};
       updateFallSpeed(game);
     },
     onInit: (game) => {
+      if (settings.game.novice.big == false) {
+        game.settings.width = 10;
+        game.settings.height = 20;
+        game.stack.width = 10;
+        game.stack.height = 20;
+        game.stack.new();
+        game.piece.xSpawnOffset = 0;
+        game.resize();
+      };
       game.stat.level = settings.game.novice.startingLevel;
-      if (game.stat.level != 0) {
+      if (game.stat.level != 0 || settings.game.novice.infG == true || settings.game.novice.big == true || settings.game.novice.tls == true) {
         $('#next-label').style.animationName = "hurry-up-timer";
         $('#next-label').style.animationDuration = "0.4s";
         $('#next-label').style.animationIterationCount = "infinite";
@@ -601,6 +620,7 @@ export const loops = {
           break;
       }
       game.piece.lockDelayLimit = settings.game.zen.lockDelay;
+      game.stack.isInvisible = settings.game.zen.invisible;
     },
   },
   beat: {

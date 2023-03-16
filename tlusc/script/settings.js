@@ -171,10 +171,14 @@ class Settings {
       novice: {
         startingLevel: 0,
         ruleOption: false,
+        infG: false,
+        big: false,
+        tls: false,
       },
       sudden: {
         startingLevel: 0,
         ruleOption: false,
+        big: false,
       },
       beat: {
         song: "non",
@@ -187,6 +191,7 @@ class Settings {
         gravity: "0G",
         lockDelay: 500,
         matrixWidth: 10,
+        invisible: false,
       },
     }
     this.settings = {}

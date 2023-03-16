@@ -109,6 +109,13 @@
   "holdOptionDescription": {
     "message": "Determines whether or not you can hold a piece"
   },
+  "invisibleOptionLabel": {
+    "message": "Invisible Matrix",
+    "description": "This option allows the user to toggle the visibility of the matrix"
+  },
+  "invisibleOptionDescription": {
+    "message": "Determines whether or not you can see pieces after placement"
+  },
   "gravityLabel": {
     "message": "Gravity",
     "description": "This option allows the user to set the gravity"
@@ -209,6 +216,27 @@
   },
   "ruleOptionDescription": {
     "message": "If true, uses ARS. Otherwise uses SRS."
+  },
+  "20GCheatLabel": {
+    "message": "20G",
+    "description": "This option allows the user to toggle the 20G arcade cheat code"
+  },
+  "20GCheatDescription": {
+    "message": "Enforces 20G throughout the whole mode. Disables leaderboard rankings."
+  },
+  "bigCheatLabel": {
+    "message": "Big",
+    "description": "This option allows the user to toggle the Big arcade cheat code"
+  },
+  "bigCheatDescription": {
+    "message": "Allows play on a 5x10 matrix. Disables leaderboard rankings."
+  },
+  "tlsCheatLabel": {
+    "message": "TLS",
+    "description": "This option allows the user to toggle the TLS arcade cheat code"
+  },
+  "tlsCheatDescription": {
+    "message": "Instead of ending at level 100, the piece preview remains until the end of the game. Disables leaderboard rankings."
   },
   "classicRuleOption": {
     "message": "CLASSIC Rule",

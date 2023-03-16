@@ -1068,6 +1068,7 @@ export const loops = {
           break;
       }
       game.piece.lockDelayLimit = settings.game.zen.lockDelay;
+      game.stack.isInvisible = settings.game.zen.invisible;
     },
   },
   beat: {

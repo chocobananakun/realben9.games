@@ -202,6 +202,15 @@
       "discrete": 1,
       "setting": "brokenLineLimit",
       "settingType": "setting"
+    },
+    {
+      "string": "invisibleOptionLabel",
+      "stringDesc": "invisibleOptionDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "invisible",
+      "gameName": "zen",
+      "settingType": "game"
     }
   ]
 }
