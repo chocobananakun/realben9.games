@@ -24,11 +24,5 @@
     "useGarbageSending": true,
     "showGarbageSendAnimation": true
   },
-  "stats": [
-    "grade",
-    "score",
-    "level",
-    "line",
-    "piece"
-  ]
+  "stats": ["grade", "score", "level", "line", "piece"]
 }

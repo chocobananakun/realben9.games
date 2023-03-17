@@ -102,6 +102,13 @@
   "lockdownModeDescription": {
     "message": "Selects a mode that controls how the piece will lockdown"
   },
+  "lockDelayModeLabel": {
+    "message": "Lock Delay Mode",
+    "description": "This option allows the user to select a configuration of increasingly harsh lock delays"
+  },
+  "lockDelayModeDescription": {
+    "message": "Selects a configuration for the declining lock delay"
+  },
   "holdOptionLabel": {
     "message": "Hold",
     "description": "This option allows the user to toggle the ability to hold a piece"

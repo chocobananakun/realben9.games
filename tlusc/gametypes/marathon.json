@@ -23,11 +23,5 @@
     "areLimitLineModifier": 166.666666667,
     "spinDetectionType": "3corner"
   },
-  "stats": [
-    "score",
-    "level",
-    "fallspeed",
-    "line",
-    "piece"
-  ]
+  "stats": ["score", "level", "fallspeed", "line", "piece"]
 }

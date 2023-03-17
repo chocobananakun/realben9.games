@@ -21,15 +21,5 @@
     "areLimitLineModifier": 166.666666667,
     "spinDetectionType": "3corner"
   },
-  "stats": [
-    "grade",
-    "score",
-    "level",
-    "fallspeed",
-    "line",
-    "maxcombo",
-    "piece",
-    "b2b",
-    "pcCount"
-  ]
+  "stats": ["grade", "score", "level", "fallspeed", "line", "maxcombo", "piece", "b2b", "pcCount"]
 }

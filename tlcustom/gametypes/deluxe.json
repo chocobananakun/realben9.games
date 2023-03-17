@@ -24,15 +24,5 @@
   "next": {
     "nextLimit": 3
   },
-  "stats": [
-    "grade",
-    "score",
-    "level",
-    "fallspeed",
-    "line",
-    "maxcombo",
-    "piece",
-    "b2b",
-    "pcCount"
-  ]
+  "stats": ["grade", "score", "level", "fallspeed", "line", "maxcombo", "piece", "b2b", "pcCount"]
 }

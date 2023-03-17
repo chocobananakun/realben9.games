@@ -1,8 +1,8 @@
 {
   "settings": {
-    "width": 10,
-    "height": 20,
-    "hiddenHeight": 20,
+    "width": 5,
+    "height": 10,
+    "hiddenHeight": 10,
     "pieces": "standard",
     "unfavored": null,
     "randomizer": "history6rolls",
@@ -19,7 +19,8 @@
     "areLineLimit": 640,
     "dasLimit": 272,
     "arrLimit": 17,
-    "lockDelayLimit": 500
+    "lockDelayLimit": 500,
+    "xSpawnOffset": -3
   },
   "next": {
     "nextLimit": 1
@@ -27,15 +28,5 @@
   "hold": {
     "isDisabled": true
   },
-  "stats": [
-    "grade",
-    "score",
-    "level",
-    "fallspeed",
-    "line",
-    "maxcombo",
-    "piece",
-    "b2b",
-    "pcCount"
-  ]
+  "stats": ["grade", "score", "level", "fallspeed", "line", "maxcombo", "piece", "b2b", "pcCount"]
 }

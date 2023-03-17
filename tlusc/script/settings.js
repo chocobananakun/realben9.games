@@ -133,6 +133,9 @@ class Settings {
         regulationMode: false,
         startingLevel: 0,
         ruleOption: false,
+        infG: false,
+        big: false,
+        tls: false,
       },
       ultra: {
         timeLimit: 120000,
@@ -142,6 +145,7 @@ class Settings {
       master: {
         startingLevel: 1,
         lockdownMode: "infinity",
+        lockDelayMode: "Master",
         hold: true,
       },
       survival: {
@@ -164,6 +168,9 @@ class Settings {
       handheld: {
         startingLevel: 0,
         ruleOption: false,
+        infG: false,
+        big: false,
+        tls: false,
       },
       deluxe: {
         startingLevel: 0,

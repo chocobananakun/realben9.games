@@ -99,7 +99,6 @@ export const loops = {
         sonicDrop(arg, true);
         firmDrop(arg, 1, true);
       }
-      //extendedLockdown(arg);
       classicLockdown(arg);
       if (!arg.piece.inAre) {
         hold(arg);
@@ -108,8 +107,17 @@ export const loops = {
       updateLasts(arg);
     },
     onInit: (game) => {
+      if (settings.game.sudden.big == false) {
+        game.settings.width = 10;
+        game.settings.height = 20;
+        game.stack.width = 10;
+        game.stack.height = 20;
+        game.stack.new();
+        game.piece.xSpawnOffset = 0;
+        game.resize();
+      };
       game.stat.level = settings.game.sudden.startingLevel;
-      if (game.stat.level != 0) {
+      if (game.stat.level != 0 || settings.game.sudden.big == true) {
         $('#next-label').style.animationName = "hurry-up-timer";
         $('#next-label').style.animationDuration = "0.4s";
         $('#next-label').style.animationIterationCount = "infinite";
@@ -702,8 +710,10 @@ export const loops = {
           break;
         }
       }
-      game.piece.gravity = framesToMs(256 / gravityDenominator);
-      game.piece.ghostIsVisible = game.stat.level < 100;
+      if (settings.game.novice.infG == false) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
+      else {game.piece.gravity = framesToMs(1 / 20)};
+      if (settings.game.novice.tls == false) {game.piece.ghostIsVisible = game.stat.level < 100}
+      else {game.piece.ghostIsVisible = true};
       if (game.stat.level >= 800) {
         game.piece.areLimit = 200;
         game.piece.areLineLimit = 100;}
@@ -731,8 +741,17 @@ export const loops = {
       updateFallSpeed(game);
     },
     onInit: (game) => {
+      if (settings.game.novice.big == false) {
+        game.settings.width = 10;
+        game.settings.height = 20;
+        game.stack.width = 10;
+        game.stack.height = 20;
+        game.stack.new();
+        game.piece.xSpawnOffset = 0;
+        game.resize();
+      };
       game.stat.level = settings.game.novice.startingLevel;
-      if (game.stat.level != 0) {
+      if (game.stat.level != 0 || settings.game.novice.infG == true || settings.game.novice.big == true || settings.game.novice.tls == true) {
         $('#next-label').style.animationName = "hurry-up-timer";
         $('#next-label').style.animationDuration = "0.4s";
         $('#next-label').style.animationIterationCount = "infinite";
@@ -2167,7 +2186,6 @@ export const loops = {
           }
           break;
       }};
-      if (game.stat.gradeid >= 31 && game.stat.level >= 999) game.stat.grade = "GM";
       collapse(arg);
       if (arg.piece.inAre) {
         initialDas(arg);
@@ -2534,6 +2552,15 @@ export const loops = {
       game.stat.gradecalc = game.stat.gradeboost + game.cools - game.regs
       if (game.stat.gradecalc != game.stat.gradedraw) {
         switch (game.stat.gradecalc) {
+          case -2:
+            game.stat.grade = "10 (" + game.stat.gradetime + ")";
+            break;
+          case -1:
+            game.stat.grade = "9- (" + game.stat.gradetime + ")";
+            break;
+          case 0:
+            game.stat.grade = "9 (" + game.stat.gradetime + ")";
+            break;
           case 1:
             game.stat.grade = "8 (" + game.stat.gradetime + ")";
             break;
@@ -2630,6 +2657,12 @@ export const loops = {
           case 32:
             game.stat.grade = "GM (" + game.stat.gradetime + ")";
             break;
+          case 33:
+            game.stat.grade = "GM+ (" + game.stat.gradetime + ")";
+            break;
+          case 34:
+            game.stat.grade = "GM++ (" + game.stat.gradetime + ")";
+            break;
         }
         game.stat.gradedraw = game.stat.gradecalc};
       game.drop = 0;
@@ -2656,8 +2689,10 @@ export const loops = {
           break;
         }
       }
-      game.piece.gravity = framesToMs(256 / gravityDenominator);
-      game.piece.ghostIsVisible = game.stat.level < 100;
+      if (settings.game.sprint.infG == false) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
+      else {game.piece.gravity = framesToMs(1 / 20)};
+      if (settings.game.sprint.tls == false) {game.piece.ghostIsVisible = game.stat.level < 100}
+      else {game.piece.ghostIsVisible = true};
       if (game.stat.level + (game.cools * 100) >= 1200) {
         game.piece.areLimit = framesToMs(4);
         game.piece.areLineLimit = framesToMs(4);}
@@ -2700,8 +2735,17 @@ export const loops = {
       updateFallSpeed(game);
     },
     onInit: (game) => {
+      if (settings.game.sprint.big == false) {
+        game.settings.width = 10;
+        game.settings.height = 20;
+        game.stack.width = 10;
+        game.stack.height = 20;
+        game.stack.new();
+        game.piece.xSpawnOffset = 0;
+        game.resize();
+      };
       game.stat.level = settings.game.sprint.startingLevel;
-      if (game.stat.level != 0) {
+      if (game.stat.level != 0 || settings.game.sprint.infG == true || settings.game.sprint.big == true || settings.game.sprint.tls == true) {
         $('#next-label').style.animationName = "hurry-up-timer";
         $('#next-label').style.animationDuration = "0.4s";
         $('#next-label').style.animationIterationCount = "infinite";
@@ -3438,13 +3482,24 @@ export const loops = {
           break;
         }
       }
-      game.piece.gravity = framesToMs(256 / gravityDenominator);
-      game.piece.ghostIsVisible = game.stat.level < 100;
+      if (settings.game.handheld.infG == false) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
+      else {game.piece.gravity = framesToMs(1 / 20)};
+      if (settings.game.handheld.tls == false) {game.piece.ghostIsVisible = game.stat.level < 100}
+      else {game.piece.ghostIsVisible = true};
       updateFallSpeed(game);
     },
     onInit: (game) => {
+      if (settings.game.handheld.big == false) {
+        game.settings.width = 10;
+        game.settings.height = 20;
+        game.stack.width = 10;
+        game.stack.height = 20;
+        game.stack.new();
+        game.piece.xSpawnOffset = 0;
+        game.resize();
+      };
       game.stat.level = settings.game.handheld.startingLevel;
-      if (game.stat.level != 0) {
+      if (game.stat.level != 0 || settings.game.handheld.infG == true || settings.game.handheld.big == true || settings.game.handheld.tls == true) {
         $('#next-label').style.animationName = "hurry-up-timer";
         $('#next-label').style.animationDuration = "0.4s";
         $('#next-label').style.animationIterationCount = "infinite";

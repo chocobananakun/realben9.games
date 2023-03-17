@@ -47,6 +47,32 @@
       "settingType": "game"
     },
     {
+      "string": "lockDelayModeLabel",
+      "stringDesc": "lockDelayModeDescription",
+      "type": "select",
+      "action": "select",
+      "selectOptions": [
+        {
+          "label": "Master",
+          "fixedText": true,
+          "value": "Master"
+        },
+        {
+          "label": "Master+",
+          "fixedText": true,
+          "value": "Master+"
+        },
+        {
+          "label": "Connected",
+          "fixedText": true,
+          "value": "Connected"
+        }
+      ],
+      "setting": "lockDelayMode",
+      "gameName": "master",
+      "settingType": "game"
+    },
+    {
       "string": "holdOptionLabel",
       "stringDesc": "holdOptionDescription",
       "type": "toggle",

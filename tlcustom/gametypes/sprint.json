@@ -1,8 +1,8 @@
 {
   "settings": {
-    "width": 10,
-    "height": 20,
-    "hiddenHeight": 20,
+    "width": 5,
+    "height": 10,
+    "hiddenHeight": 10,
     "pieces": "standard",
     "unfavored": null,
     "randomizer": "history6rolls",
@@ -17,20 +17,11 @@
   },
   "piece": {
     "arrLimit": 17,
-    "spinDetectionType": "tspin3corner"
+    "spinDetectionType": "tspin3corner",
+    "xSpawnOffset": -3
   },
   "next": {
     "nextLimit": 3
   },
-  "stats": [
-    "grade",
-    "score",
-    "level",
-    "fallspeed",
-    "line",
-    "maxcombo",
-    "piece",
-    "b2b",
-    "pcCount"
-  ]
+  "stats": ["grade", "score", "level", "fallspeed", "line", "maxcombo", "piece", "b2b", "pcCount"]
 }

@@ -31,6 +31,15 @@
       "setting": "ruleOption",
       "gameName": "sudden",
       "settingType": "game"
+    },
+    {
+      "string": "bigCheatLabel",
+      "stringDesc": "bigCheatDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "big",
+      "gameName": "sudden",
+      "settingType": "game"
     }
   ]
 }
