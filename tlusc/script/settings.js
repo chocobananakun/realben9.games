@@ -147,6 +147,8 @@ class Settings {
         lockdownMode: "infinity",
         lockDelayMode: "Master",
         hold: true,
+        lineGoal: 150,
+        levelCap: -1,
       },
       survival: {
         startingLevel: 1,

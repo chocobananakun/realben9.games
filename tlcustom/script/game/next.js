@@ -95,7 +95,7 @@ export default class Next extends GameModule {
         }
         const img = document.getElementById(`mino-${color}${suffix}`);
         const isFilled = shape[y][x];
-        if (isFilled) {
+        if (isFilled && window.noNext == false) {
           const xPos = x * cellSize + offset[0] * cellSize;
           const yPos = y * cellSize + offset[1] * cellSize;
           img.height = cellSize;
@@ -143,7 +143,7 @@ export default class Next extends GameModule {
             const color = this.parent.colors[piece];
             const img = document.getElementById(`mino-${color}`);
             const isFilled = (game.shapedisp[y][x] !== 0);
-            if (isFilled) {
+            if (isFilled && window.noNext == false) {
               const xPos = x * cellSize + offset[0] * cellSize;
               const yPos = y * cellSize + offset[1] * cellSize + nextSpace * cellSize * multiplier;
               img.height = cellSize;
@@ -159,7 +159,7 @@ export default class Next extends GameModule {
           const color = this.parent.colors[piece];
           const img = document.getElementById(`mino-${color}`);
           const isFilled = shape[y][x];
-          if (isFilled) {
+          if (isFilled && window.noNext == false) {
             const xPos = x * cellSize + offset[0] * cellSize;
             const yPos = y * cellSize + offset[1] * cellSize + nextSpace * cellSize * multiplier;
             img.height = cellSize;

@@ -3111,63 +3111,86 @@ export const loops = {
       gravity(arg);
       softDrop(arg);
       hardDrop(arg);
-      switch (settings.game.master.lockdownMode) {
-        case 'infinity':
-          infiniteLockdown(arg);
-          break;
-        case 'extended':
-          extendedLockdown(arg);
-          break;
-        case 'classic':
-          classicLockdown(arg);
-          break;
-      }
+      extendedLockdown(arg);
       if (!arg.piece.inAre) {
         hold(arg);
       }
       lockFlash(arg);
       updateLasts(arg);
+      /* Might use this code later
+      $('#das').max = arg.piece.dasLimit;
+      $('#das').value = arg.piece.das;
+      $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0);
+      */
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.max(Math.floor(game.stat.line / 10 + 1), settings.game.master.startingLevel);
-      const calcLevel = Math.min(29, game.stat.level - 1);
-      const DELAY_TABLE = [
-        483.3, 466.7, 450, 433.3, 416.7,
-        400, 383.3, 366.7, 350, 333.3,
-        316.7, 300, 283.3, 266.7, 250,
-        233.3, 216.7, 200, 183.3, 166.7,
-        150, 133.3, 116.7, 100, 83.3,
-        66.7, 50, 33.3, 16.7, 1];
-      game.piece.lockDelayLimit = DELAY_TABLE[calcLevel];
-      const ARE_TABLE = [
-        400, 376, 353, 332, 312,
-        294, 276, 259, 244, 229,
-        215, 203, 190, 179, 168,
-        158, 149, 140, 131, 123,
-        116, 109, 103, 96, 91,
-        85, 80, 75, 71, 65];
-      game.piece.areLimit = ARE_TABLE[calcLevel];
-      game.piece.areLineLimit = ARE_TABLE[calcLevel];
-      game.stat.entrydelay = `${ARE_TABLE[calcLevel]}ms`;
+      if (window.hasHeld == false) {
+        game.piececounter++;
+        if (game.piececounter >= 14) {
+          game.hold.isDisabled = false;
+          game.piece.ghostIsVisible = true;
+          window.noNext = false;
+          $('#game-container').style.transform = "";
+          game.pieceeffect = Math.floor(Math.random() * 5)
+          if (game.pieceeffect == 0) {
+            $('#message').innerHTML = "No Hold";
+            resetAnimation('#message', 'dissolve');
+            game.hold.isDisabled = true;
+          }
+          else if (game.pieceeffect == 1) {
+            $('#message').innerHTML = "No Ghost";
+            resetAnimation('#message', 'dissolve');
+            game.piece.ghostIsVisible = false;
+          }
+          else if (game.pieceeffect == 2) {
+            $('#message').innerHTML = "No Next";
+            resetAnimation('#message', 'dissolve');
+            window.noNext = true;
+          }
+          else if (game.pieceeffect == 3) {
+            $('#message').innerHTML = "Vertical Flip";
+            resetAnimation('#message', 'dissolve');
+            $('#game-container').style.transform = "rotateZ(180deg)";
+          }
+          else if (game.pieceeffect == 4) {
+            $('#message').innerHTML = "Up Close";
+            resetAnimation('#message', 'dissolve');
+            $('#game-container').style.transform = "perspective(0em) translateY(-10em) rotateX(0.1deg)";
+          }
+          game.piececounter = 0;
+        }
+      }
+      window.hasHeld = false;
+      if (game.stat.initPieces > 0) {
+        game.stat.initPieces = game.stat.initPieces - 1;
+      }
+      game.stat.level = Math.max(settings.game.master.startingLevel, Math.floor(game.stat.line / 10 + 1));
+      if (settings.game.master.levelCap >= 0) {
+        game.stat.level = Math.min(game.stat.level, settings.game.master.levelCap);
+      }
+      const x = game.stat.level;
+      const gravityEquation = (0.8 - ((x - 1) * 0.007)) ** (x - 1);
+      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20));
+      if (game.stat.level >= 20) {
+        game.piece.lockDelayLimit = ~~framesToMs((30 * Math.pow(0.93, (Math.pow(game.stat.level - 20, 0.8)))));
+      } else {
+        game.piece.lockDelayLimit = 500;
+      }
+      updateFallSpeed(game);
       levelUpdate(game);
     },
     onInit: (game) => {
-      if (settings.game.master.startingLevel < 10) {
-        sound.playMenuSe('hardstart1');
-      } else if (settings.game.master.startingLevel < 20) {
-        sound.playMenuSe('hardstart2');
-      } else if (settings.game.master.startingLevel < 25) {
-        sound.playMenuSe('hardstart3');
-      } else {
-        sound.playMenuSe('hardstart4');
+      if (settings.game.master.lineGoal >= 0) {
+        game.lineGoal = settings.game.master.lineGoal;
       }
-      game.hold.isDisabled = !settings.game.master.hold;
-      game.lineGoal = 300;
       game.stat.level = settings.game.master.startingLevel;
       lastLevel = parseInt(settings.game.master.startingLevel);
-      game.prefixes.level = 'M';
-      game.stat.entrydelay = '400ms';
-      game.piece.gravity = framesToMs(1 / 20);
+      game.piececounter = 0;
+      game.pieceeffect = 0;
+      window.noNext = false;
+      game.piece.gravity = 1000;
+      game.piece.areLimit = 100;
+      game.piece.areLineLimit = 400;
       updateFallSpeed(game);
       game.updateStats();
     },
