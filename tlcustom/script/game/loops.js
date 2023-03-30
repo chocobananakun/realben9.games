@@ -2490,6 +2490,7 @@ export const loops = {
             break;
         }}
       window.lineClear = 0;
+      $('#stat-grade').style.color = "lime";
       if (game.stat.gradepoints >= 100) {
         game.stat.gradeid++
         game.stat.gradepoints = 0
