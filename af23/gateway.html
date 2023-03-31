@@ -1,0 +1,22 @@
+<title> 502 Bad Gateway </title>
+<head></head>
+<h1 style="text-align:center">502 Bad Gateway</h1>
+<hr></hr>
+<p id="type" style="text-align:center">nginx</p>
+<script>
+	var element;
+	element = document.getElementById("type");
+	if (element) {
+		var type = Math.floor(Math.random() * 10);
+		if (type == 0) {element.outerHTML = '<p id="type" style="text-align:center">nginx</p>'}
+		else if (type == 1) {element.outerHTML = '<p id="type" style="text-align:center">cloudflare</p>'}
+		else if (type == 2) {element.outerHTML = '<p id="type" style="text-align:center">cloudflare-nginx</p>'}
+		else if (type == 3) {element.outerHTML = '<p id="type" style="text-align:center">nginx/0.7.67</p>'}
+		else if (type == 4) {element.outerHTML = '<p id="type" style="text-align:center">nginx/1.2.6</p>'}
+		else if (type == 5) {element.outerHTML = '<p id="type" style="text-align:center">nginx/1.7.10</p>'}
+		else if (type == 6) {element.outerHTML = '<p id="type" style="text-align:center">nginx/1.10.3 (Ubuntu)</p>'}
+		else if (type == 7) {element.outerHTML = '<p id="type" style="text-align:center">nginx/1.13.3</p>'}
+		else if (type == 8) {element.outerHTML = '<p id="type" style="text-align:center">Microsoft-Azure-Application-Gateway/v2</p>'}
+		else if (type == 9) {element.outerHTML = '<p id="type" style="text-align:center">Apple</p>'}
+	}
+</script>
