@@ -65,7 +65,7 @@ class Sound {
       'hardstart1', 'hardstart2', 'hardstart3', 'hardstart4', 'error'];
     for (const soundName of files) {
       this.menuSounds[soundName] = new Howl({
-        src: [`./se/menu/${soundName}.ogg`],
+        src: [`../tlusc/se/menu/${soundName}.ogg`],
         volume: settings.settings.sfxVolume / 100,
       });
     }
@@ -76,7 +76,7 @@ class Sound {
       'menutuning', 'menuvideo', 'menuaudio'];
     for (const soundName of files) {
       this.menuVox[soundName] = new Howl({
-        src: [`./vox/${settings.settings.voicebank}/${soundName}.ogg`],
+        src: [`../tlusc/vox/${settings.settings.voicebank}/${soundName}.ogg`],
         volume: settings.settings.voiceVolume / 100,
       });
     }
@@ -119,7 +119,7 @@ class Sound {
           for (const soundName of this.files) {
             this.amountOfTimesEnded[soundName] = 0;
             this.sounds[soundName] = new Howl({
-              src: [`./se/game/${name}/${soundName}.ogg`],
+              src: [`../tlusc/se/game/${name}/${soundName}.ogg`],
               volume: settings.settings.sfxVolume / 100,
               onend: () => {
                 if (soundName == "topoutwarning"){
@@ -141,7 +141,7 @@ class Sound {
           }
           for (const ren of this.ren) {
             this.sounds[`ren${ren}`] = new Howl({
-              src: [`./se/game/${name}/ren/ren${ren}.ogg`],
+              src: [`../tlusc/se/game/${name}/ren/ren${ren}.ogg`],
               volume: settings.settings.sfxVolume / 100,
             });
           }
@@ -159,7 +159,7 @@ class Sound {
             ]) {
               this.files.push(`vox${voxName}`);
               this.sounds[`vox${voxName}`] = new Howl({
-                src: [`./vox/${settings.settings.voicebank}/${voxName}.ogg`],
+                src: [`../tlusc/vox/${settings.settings.voicebank}/${voxName}.ogg`],
                 volume: settings.settings.voiceVolume / 100,
               });
             }
@@ -172,7 +172,7 @@ class Sound {
             ]) {
               this.files.push(`vox${voxName}`);
               this.sounds[`vox${voxName}`] = new Howl({
-                src: [`./vox/${settings.settings.voicebank}/${voxName}.ogg`],
+                src: [`../tlusc/vox/${settings.settings.voicebank}/${voxName}.ogg`],
                 volume: settings.settings.voiceVolume / 100,
               });
             }
@@ -188,7 +188,7 @@ class Sound {
               const soundName = `piece${piece}`;
               this.files.push(soundName);
               this.sounds[soundName] = new Howl({
-                src: [`./se/piece/${name}/${soundName}.ogg`],
+                src: [`../tlusc/se/piece/${name}/${soundName}.ogg`],
                 volume: settings.settings.sfxVolume / 100,
                 onend: () => {
                   this.amountOfTimesEnded[soundName]++;
@@ -208,21 +208,21 @@ class Sound {
         });
     this.files.push('clutch');
     this.sounds['clutch'] = new Howl({
-      src: ['./se/game/clutch.ogg'],
+      src: ['../tlusc/se/game/clutch.ogg'],
       volume: settings.settings.sfxVolume / 100,
     });
   }
   loadBgm(name, type) {
     for (const currentName of name) {
       this.music[`${type}-${currentName}-start`] = new Howl({
-        src: [`./bgm/${type}/${currentName}-start.ogg`],
+        src: [`../tlusc/bgm/${type}/${currentName}-start.ogg`],
         volume: settings.settings.musicVolume / 100,
         onend: () => {
           this.music[`${type}-${currentName}-loop`].play();
         },
       });
       this.music[`${type}-${currentName}-loop`] = new Howl({
-        src: [`./bgm/${type}/${currentName}-loop.ogg`],
+        src: [`../tlusc/bgm/${type}/${currentName}-loop.ogg`],
         volume: settings.settings.musicVolume / 100,
         loop: true,
         onplay: () => {
@@ -232,14 +232,14 @@ class Sound {
       if (gameHandler.game.settings.hasDangerBgm) {
         this.dangerBgmIsRaised = false;
         this.music[`${type}-${currentName}-danger-start`] = new Howl({
-          src: [`./bgm/${type}/${currentName}-danger-start.ogg`],
+          src: [`../tlusc/bgm/${type}/${currentName}-danger-start.ogg`],
           volume: 0,
           onend: () => {
             this.music[`${type}-${currentName}-danger-loop`].play();
           },
         });
         this.music[`${type}-${currentName}-danger-loop`] = new Howl({
-          src: [`./bgm/${type}/${currentName}-danger-loop.ogg`],
+          src: [`../tlusc/bgm/${type}/${currentName}-danger-loop.ogg`],
           volume: 0,
           loop: true,
         });
@@ -247,14 +247,14 @@ class Sound {
       if (gameHandler.game.settings.hasPaceBgm) {
         this.paceBgmIsRaised = false;
         this.music[`${type}-${currentName}-pace-start`] = new Howl({
-          src: [`./bgm/${type}/${currentName}-pace-start.ogg`],
+          src: [`../tlusc/bgm/${type}/${currentName}-pace-start.ogg`],
           volume: 0,
           onend: () => {
             this.music[`${type}-${currentName}-pace-loop`].play();
           },
         });
         this.music[`${type}-${currentName}-pace-loop`] = new Howl({
-          src: [`./bgm/${type}/${currentName}-pace-loop.ogg`],
+          src: [`../tlusc/bgm/${type}/${currentName}-pace-loop.ogg`],
           volume: 0,
           loop: true,
         });

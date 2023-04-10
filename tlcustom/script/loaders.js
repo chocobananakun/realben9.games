@@ -7,11 +7,11 @@ export async function loadMenu(name) {
   return await r.json();
 }
 export async function loadSoundbank(name) {
-  const r = await fetch(`./se/game/${name}/info.json`, {cache: 'no-store'});
+  const r = await fetch(`../tlusc/se/game/${name}/info.json`, {cache: 'no-store'});
   return await r.json();
 }
 export async function loadPiecebank(name) {
-  const r = await fetch(`./se/piece/${name}/info.json`, {cache: 'no-store'});
+  const r = await fetch(`../tlusc/se/piece/${name}/info.json`, {cache: 'no-store'});
   return await r.json();
 }
 export async function loadLanguage(name, file) {

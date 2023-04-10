@@ -158,7 +158,7 @@
     {
       "fixedText": true,
       "label": "GitHub Repository",
-      "description": "Go to the GitHub Repository of Tetra Legends Ultimate",
+      "description": "Go to the GitHub Repository of Tetra Legends Ultimate. Note that I often won't merge Talon's version with this.",
       "width": "half",
       "action": "link",
       "url": "https://github.com/Talon125/talon125.github.io"
@@ -174,7 +174,7 @@
     {
       "fixedText": true,
       "label": "Edited by : Talon",
-      "description": "Find a problem? Have a suggestion? Just wanna talk to Talon? Message him on Discord : Talon#7854",
+      "description": "Find a problem? Have a suggestion? Just wanna talk to Talon? Message him on Discord : Talon#7854. Note that I often won't merge his version with this.",
       "width": "half"
     }
   ]

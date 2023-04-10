@@ -858,7 +858,7 @@ export default class Game {
     for (const type of types) {
       for (const color of colors) {
         const img = document.createElement('img');
-        img.src = `img/skin/${skin}/${type}-${color}.svg`;
+        img.src = `../tlusc/img/skin/${skin}/${type}-${color}.svg`;
         img.id = `${type}-${color}`;
         $('#sprite').appendChild(img);
         const onLoad = () => {

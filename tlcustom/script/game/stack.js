@@ -461,12 +461,12 @@ export default class Stack extends GameModule {
     if (this.alarmIsOn) {
       document.documentElement.style.setProperty(
         "--grid-image",
-        `url("../img/tetrion/grid-bg-${gridName}-danger.svg")`
+        `url("../../tlusc/img/tetrion/grid-bg-${gridName}-danger.svg")`
       )
     } else {
       document.documentElement.style.setProperty(
         "--grid-image",
-        `url("../img/tetrion/grid-bg-${gridName}.svg")`
+        `url("../../tlusc/img/tetrion/grid-bg-${gridName}.svg")`
       )
     }
   }
