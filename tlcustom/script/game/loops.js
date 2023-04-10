@@ -2862,15 +2862,6 @@ export const loops = {
   },
   combo: {
     update: (arg) => {
-      const game = gameHandler.game;
-      if (game.timePassed >= game.timeGoal - 10000) {
-        if (!game.playedHurryUp) {
-          sound.add('hurryup');
-          $('#timer').classList.add('hurry-up');
-          game.playedHurryUp = true;
-        }
-        sound.raisePaceBgm();
-      } else {game.playedHurryUp = false;}
       collapse(arg);
       if (arg.piece.inAre) {
         initialDas(arg);
@@ -2884,7 +2875,7 @@ export const loops = {
         shifting(arg);
       }
       gravity(arg);
-      softDrop(arg, 70);
+      softDrop(arg);
       hardDrop(arg);
       extendedLockdown(arg);
       if (!arg.piece.inAre) {
@@ -2894,66 +2885,21 @@ export const loops = {
       updateLasts(arg);
     },
     onPieceSpawn: (game) => {
+      game.stat.level = Math.max(Math.floor(game.stat.line / 10 + 1), settings.game.combo.startingLevel);
+      game.piece.lockDelayLimit = 133;
+      game.piece.areLimit = Math.round((-71.42857142857143 * game.stat.level) + 1571.42857142857143)
+      game.stat.entrydelay = `${game.piece.areLimit}ms`;
+      game.hold.isDisabled = !settings.game.combo.hold;
+      levelUpdate(game);
     },
     onInit: (game) => {
-      if (settings.game.combo.holdType === 'skip') {
-        game.hold.useSkip = true;
-        game.hold.holdAmount = 2;
-        game.hold.holdAmountLimit = 2;
-        game.hold.gainHoldOnPlacement = true;
-        game.resize();
-      }
-      if (!(input.holdingShift)) {game.timeGoal = 30000;}
-      else {
-        $('#next-label').style.animationName = "hurry-up-timer";
-        $('#next-label').style.animationDuration = "0.4s";
-        $('#next-label').style.animationIterationCount = "infinite";
-        $('#next-label').style.animationDirection = "alternate";
-        $('#next-label').style.animationTimingFunction = "ease-in-out";
-        $('#next-label').style.fontSize = "1.3em";
-      }
-      game.isRaceMode = true;
-      game.piece.gravity = 1000;
+      game.lineGoal = 150;
+      game.stat.level = settings.game.combo.startingLevel;
+      lastLevel = parseInt(settings.game.combo.startingLevel);
+      game.stat.entrydelay = '???ms';
+      game.piece.gravity = framesToMs(1 / 20);
       updateFallSpeed(game);
-      game.stat.level = 1;
       game.updateStats();
-      window.gridtemp = Math.floor(Math.random() * 9);
-      if (window.gridtemp == 0) window.gridtemp = 'red';
-      else if (window.gridtemp == 1) window.gridtemp = 'orange';
-      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
-      else if (window.gridtemp == 3) window.gridtemp = 'green';
-      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
-      else if (window.gridtemp == 5) window.gridtemp = 'blue';
-      else if (window.gridtemp == 6) window.gridtemp = 'purple';
-      else if (window.gridtemp == 7) window.gridtemp = 'white';
-      else if (window.gridtemp == 8) window.gridtemp = 'black';
-      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp;
-      window.gridtemp = Math.floor(Math.random() * 9);
-      if (window.gridtemp == 0) window.gridtemp = 'red';
-      else if (window.gridtemp == 1) window.gridtemp = 'orange';
-      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
-      else if (window.gridtemp == 3) window.gridtemp = 'green';
-      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
-      else if (window.gridtemp == 5) window.gridtemp = 'blue';
-      else if (window.gridtemp == 6) window.gridtemp = 'purple';
-      else if (window.gridtemp == 7) window.gridtemp = 'white';
-      else if (window.gridtemp == 8) window.gridtemp = 'black';
-      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp;
-      window.gridtemp = Math.floor(Math.random() * 9);
-      if (window.gridtemp == 0) window.gridtemp = 'red';
-      else if (window.gridtemp == 1) window.gridtemp = 'orange';
-      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
-      else if (window.gridtemp == 3) window.gridtemp = 'green';
-      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
-      else if (window.gridtemp == 5) window.gridtemp = 'blue';
-      else if (window.gridtemp == 6) window.gridtemp = 'purple';
-      else if (window.gridtemp == 7) window.gridtemp = 'white';
-      else if (window.gridtemp == 8) window.gridtemp = 'black';
-      if (game.next.queue[0] === 'J') {
-        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp;
-      } else {
-        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp;
-      }
     },
   },
   standardx: {

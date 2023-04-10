@@ -1,6 +1,6 @@
 {
   "settings": {
-    "width": 4,
+    "width": 10,
     "height": 20,
     "hiddenHeight": 20,
     "pieces": "standard",
@@ -9,18 +9,18 @@
     "rotationSystem": "srs",
     "skin": "srsx",
     "soundbank": "standard",
-    "music": "../sprint/sprint",
+    "music": ["master", "master-last"],
+    "musicLinePoints": [250],
     "hasDangerBgm": true,
-    "hasPaceBgm": true,
     "scoreTable": "guideline",
-    "background": "marathon.jpg"
+    "background": "marathon.jpg",
+    "isHardMode": true
   },
   "piece": {
     "areLimit": 100,
-    "areLineLimit": 166.666666667,
+    "areLineLimit": 0,
     "areLimitLineModifier": 166.666666667,
-    "spinDetectionType": "3corner",
-    "xSpawnOffset": -3
+    "spinDetectionType": "3corner"
   },
-  "stats": ["score", "maxcombo"]
+  "stats": ["score", "level", "entrydelay", "line", "piece"]
 }

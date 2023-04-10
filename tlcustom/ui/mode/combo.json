@@ -12,21 +12,23 @@
       "type": "header"
     },
     {
-      "string": "holdTypeLabel",
-      "stringDesc": "holdTypeDescription",
-      "type": "select",
-      "action": "select",
-      "selectOptions": [
-        {
-          "string": "skipOption",
-          "value": "skip"
-        },
-        {
-          "string": "holdOption",
-          "value": "hold"
-        }
-      ],
-      "setting": "holdType",
+      "string": "startingLevelLabel",
+      "stringDesc": "startingLevelDescription",
+      "type": "slider",
+      "action": "slider",
+      "max": 15,
+      "min": 1,
+      "discrete": 1,
+      "setting": "startingLevel",
+      "gameName": "combo",
+      "settingType": "game"
+    },
+    {
+      "string": "holdOptionLabel",
+      "stringDesc": "holdOptionDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "hold",
       "gameName": "combo",
       "settingType": "game"
     }

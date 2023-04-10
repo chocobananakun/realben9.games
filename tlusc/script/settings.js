@@ -158,6 +158,8 @@ class Settings {
       },
       combo: {
         holdType: "hold",
+        startingLevel: 1,
+        hold: true,
       },
       retro: {
         startingLevel: 0,
