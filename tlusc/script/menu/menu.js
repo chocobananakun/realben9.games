@@ -941,6 +941,15 @@ class Menu {
             settings.changeSetting('colorJ', "lightBlue");
             settings.changeSetting('colorS', "orange");
             break;
+          case 'VRS':
+            settings.changeSetting('colorI', "purple");
+            settings.changeSetting('colorL', "red");
+            settings.changeSetting('colorO', "orange");
+            settings.changeSetting('colorZ', "blue");
+            settings.changeSetting('colorT', "green");
+            settings.changeSetting('colorJ', "lightBlue");
+            settings.changeSetting('colorS', "yellow");
+            break;
           case 'N-Blox':
             settings.changeSetting('colorI', "orange");
             settings.changeSetting('colorL', "blue");

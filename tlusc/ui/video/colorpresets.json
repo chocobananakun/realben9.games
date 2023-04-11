@@ -5,7 +5,7 @@
   "data": [
     {
       "label": "Default",
-      "description": "The default color scheme. Is commonly used in guideline.",
+      "description": "The default color scheme. Is commonly used in guideline block stackers.",
       "fixedText": true,
       "default": true,
       "isShort": true,
@@ -35,6 +35,13 @@
     {
       "label": "KRS+",
       "description": "Occasionally used with the KRS+ rotation system.",
+      "fixedText": true,
+      "isShort": true,
+      "action": "colorpreset"
+    },
+    {
+      "label": "VRS",
+      "description": "Occasionally used with the VRS rotation system.",
       "fixedText": true,
       "isShort": true,
       "action": "colorpreset"
