@@ -83,6 +83,40 @@ export default class Next extends GameModule {
     const offset = this.parent.nextOffsets[piece];
     let ctx = this.ctx;
 
+    
+    if (window.panlvl >= 700) {
+      game.shapedisp0 = Math.floor(Math.random() * 7);
+      if (game.shapedisp0 == 0) game.piecedisp = "T";
+      else if (game.shapedisp0 == 1) game.piecedisp = "J";
+      else if (game.shapedisp0 == 2) game.piecedisp = "Z";
+      else if (game.shapedisp0 == 3) game.piecedisp = "O";
+      else if (game.shapedisp0 == 4) game.piecedisp = "S";
+      else if (game.shapedisp0 == 5) game.piecedisp = "L";
+      else if (game.shapedisp0 == 6) game.piecedisp = "I";
+      game.shapedisp = PIECES[game.piecedisp].shape[INITIAL_ORIENTATION[this.parent.rotationSystem][game.piecedisp]];
+      const offset = this.parent.nextOffsets[game.piecedisp];
+      for (let y = 0; y < game.shapedisp.length; y++) {
+        for (let x = 0; x < game.shapedisp[y].length; x++) {
+          const color = this.parent.colors[piece];
+          let suffix = '';
+          if (this.parent.piece.useSpecialI && piece === 'I') {
+            suffix = game.shapedisp[y][x];
+          }
+          if (this.parent.piece.useRetroColors) {
+            suffix = `-${this.parent.stat.level % 10}`;
+          }
+          const img = document.getElementById(`mino-${color}${suffix}`);
+          const isFilled = game.shapedisp[y][x];
+          if (isFilled && window.noNext != true) {
+            const xPos = x * cellSize + offset[0] * cellSize;
+            const yPos = y * cellSize + offset[1] * cellSize;
+            img.height = cellSize;
+            ctx.drawImage(img, xPos, Math.floor(yPos), cellSize, cellSize);
+          }
+        }
+      }
+    }
+    else {
     for (let y = 0; y < shape.length; y++) {
       for (let x = 0; x < shape[y].length; x++) {
         const color = this.parent.colors[piece];
@@ -102,6 +136,7 @@ export default class Next extends GameModule {
           ctx.drawImage(img, xPos, Math.floor(yPos), cellSize, cellSize);
         }
       }
+    }
     }
     cellSize = Math.floor(cellSize * .62);
     ctx = this.subCtx;
@@ -127,7 +162,7 @@ export default class Next extends GameModule {
           shape = PIECES[piece].shape[INITIAL_ORIENTATION[this.parent.rotationSystem][piece]];
           break;
       }
-      if (window.panlvl >= 500) {
+      if (((window.panlvl >= 500) && (nextSpace == 1)) || ((window.panlvl >= 600) && (nextSpace == 0))) {
         game.shapedisp0 = Math.floor(Math.random() * 7);
         if (game.shapedisp0 == 0) game.piecedisp = "T";
         else if (game.shapedisp0 == 1) game.piecedisp = "J";
