@@ -633,55 +633,55 @@ export const loops = {
       if (game.stat.gradeid > game.stat.gradedisp) {
         switch (game.stat.gradeid) {
           case 1:
-            game.stat.grade = "8 (" + game.stat.gradetime + ")";
+            game.stat.grade = '8 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 2:
-            game.stat.grade = "7 (" + game.stat.gradetime + ")";
+            game.stat.grade = '7 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 3:
-            game.stat.grade = "6 (" + game.stat.gradetime + ")";
+            game.stat.grade = '6 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 4:
-            game.stat.grade = "5 (" + game.stat.gradetime + ")";
+            game.stat.grade = '5 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 5:
-            game.stat.grade = "4 (" + game.stat.gradetime + ")";
+            game.stat.grade = '4 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 7:
-            game.stat.grade = "3 (" + game.stat.gradetime + ")";
+            game.stat.grade = '3 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 9:
-            game.stat.grade = "2 (" + game.stat.gradetime + ")";
+            game.stat.grade = '2 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 12:
-            game.stat.grade = "1 (" + game.stat.gradetime + ")";
+            game.stat.grade = '1 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 15:
-            game.stat.grade = "S1 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S1 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 18:
-            game.stat.grade = "S2 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S2 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 19:
-            game.stat.grade = "S3 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S3 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 20:
-            game.stat.grade = "S4 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S4 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 23:
-            game.stat.grade = "S5 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S5 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 25:
-            game.stat.grade = "S6 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S6 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 27:
-            game.stat.grade = "S7 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S7 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 29:
-            game.stat.grade = "S8 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S8 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
           case 31:
-            game.stat.grade = "S9 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S9 <span class="small">(' + game.stat.gradetime + ')</span>'
             break;
         }
         game.stat.gradedisp = game.stat.gradeid};
@@ -2554,115 +2554,115 @@ export const loops = {
       if (game.stat.gradecalc != game.stat.gradedraw) {
         switch (game.stat.gradecalc) {
           case -2:
-            game.stat.grade = "10 (" + game.stat.gradetime + ")";
+            game.stat.grade = '10 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case -1:
-            game.stat.grade = "9- (" + game.stat.gradetime + ")";
+            game.stat.grade = '9- <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 0:
-            game.stat.grade = "9 (" + game.stat.gradetime + ")";
+            game.stat.grade = '9 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 1:
-            game.stat.grade = "8 (" + game.stat.gradetime + ")";
+            game.stat.grade = '8 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 2:
-            game.stat.grade = "7 (" + game.stat.gradetime + ")";
+            game.stat.grade = '7 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 3:
-            game.stat.grade = "6 (" + game.stat.gradetime + ")";
+            game.stat.grade = '6 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 4:
-            game.stat.grade = "5 (" + game.stat.gradetime + ")";
+            game.stat.grade = '5 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 5:
-            game.stat.grade = "4 (" + game.stat.gradetime + ")";
+            game.stat.grade = '4 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 6:
-            game.stat.grade = "3 (" + game.stat.gradetime + ")";
+            game.stat.grade = '3 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 7:
-            game.stat.grade = "2 (" + game.stat.gradetime + ")";
+            game.stat.grade = '2 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 8:
-            game.stat.grade = "1 (" + game.stat.gradetime + ")";
+            game.stat.grade = '1 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 9:
-            game.stat.grade = "S1 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S1 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 10:
-            game.stat.grade = "S2 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S2 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 11:
-            game.stat.grade = "S3 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S3 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 12:
-            game.stat.grade = "S4 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S4 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 13:
-            game.stat.grade = "S5 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S5 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 14:
-            game.stat.grade = "S6 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S6 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 15:
-            game.stat.grade = "S7 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S7 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 16:
-            game.stat.grade = "S8 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S8 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 17:
-            game.stat.grade = "S9 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'S9 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 18:
-            game.stat.grade = "m1 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'm1 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 19:
-            game.stat.grade = "m2 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'm2 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 20:
-            game.stat.grade = "m3 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'm3 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 21:
-            game.stat.grade = "m4 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'm4 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 22:
-            game.stat.grade = "m5 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'm5 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 23:
-            game.stat.grade = "m6 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'm6 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 24:
-            game.stat.grade = "m7 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'm7 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 25:
-            game.stat.grade = "m8 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'm8 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 26:
-            game.stat.grade = "m9 (" + game.stat.gradetime + ")";
+            game.stat.grade = 'm9 <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 27:
-            game.stat.grade = "M (" + game.stat.gradetime + ")";
+            game.stat.grade = 'M <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 28:
-            game.stat.grade = "MK (" + game.stat.gradetime + ")";
+            game.stat.grade = 'MK <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 29:
-            game.stat.grade = "MV (" + game.stat.gradetime + ")";
+            game.stat.grade = 'MV <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 30:
-            game.stat.grade = "MO (" + game.stat.gradetime + ")";
+            game.stat.grade = 'MO <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 31:
-            game.stat.grade = "MM (" + game.stat.gradetime + ")";
+            game.stat.grade = 'MM <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 32:
-            game.stat.grade = "GM (" + game.stat.gradetime + ")";
+            game.stat.grade = 'GM <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 33:
-            game.stat.grade = "GM+ (" + game.stat.gradetime + ")";
+            game.stat.grade = 'GM+ <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
           case 34:
-            game.stat.grade = "GM++ (" + game.stat.gradetime + ")";
+            game.stat.grade = 'GM++ <span class="small">(' + game.stat.gradetime + ')</span>';
             break;
         }
         game.stat.gradedraw = game.stat.gradecalc};
@@ -3338,71 +3338,71 @@ export const loops = {
       else {game.stat.gradetime = $('#timer-real').innerHTML.slice(8);}
       if (game.stat.score >= 1260000 && game.stat.level >= 999) game.stat.grade = "GM";
       else if (game.stat.score >= 1200000 && game.stat.gradeid < 17) {
-        game.stat.grade = "S9 (" + game.stat.gradetime + ")";
+        game.stat.grade = 'S9 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 17;
     }
       else if (game.stat.score >= 1000000 && game.stat.gradeid < 16) {
-        game.stat.grade = "S8 (" + game.stat.gradetime + ")";
+        game.stat.grade = 'S8 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 16;
     }
       else if (game.stat.score >= 820000 && game.stat.gradeid < 15) {
-        game.stat.grade = "S7 (" + game.stat.gradetime + ")";
+        game.stat.grade = 'S7 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 15;
     }
       else if (game.stat.score >= 660000 && game.stat.gradeid < 14) {
-        game.stat.grade = "S6 (" + game.stat.gradetime + ")";
+        game.stat.grade = 'S6 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 14;
     }
       else if (game.stat.score >= 520000 && game.stat.gradeid < 13) {
-        game.stat.grade = "S5 (" + game.stat.gradetime + ")";
+        game.stat.grade = 'S5 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 13;
     }
       else if (game.stat.score >= 400000 && game.stat.gradeid < 12) {
-        game.stat.grade = "S4 (" + game.stat.gradetime + ")";
+        game.stat.grade = 'S4 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 12;
     }
       else if (game.stat.score >= 300000 && game.stat.gradeid < 11) {
-        game.stat.grade = "S3 (" + game.stat.gradetime + ")";
+        game.stat.grade = 'S3 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 11;
     }
       else if (game.stat.score >= 220000 && game.stat.gradeid < 10) {
-        game.stat.grade = "S2 (" + game.stat.gradetime + ")";
+        game.stat.grade = 'S2 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 10;
     }
       else if (game.stat.score >= 160000 && game.stat.gradeid < 9) {
-        game.stat.grade = "S1 (" + game.stat.gradetime + ")";
+        game.stat.grade = 'S1 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 9;
     }
       else if (game.stat.score >= 120000 && game.stat.gradeid < 8) {
-        game.stat.grade = "1 (" + game.stat.gradetime + ")";
+        game.stat.grade = '1 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 8;
     }
       else if (game.stat.score >= 80000 && game.stat.gradeid < 7) {
-        game.stat.grade = "2 (" + game.stat.gradetime + ")";
+        game.stat.grade = '2 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 7;
     }
       else if (game.stat.score >= 55000 && game.stat.gradeid < 6) {
-        game.stat.grade = "3 (" + game.stat.gradetime + ")";
+        game.stat.grade = '3 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 6;
     }
       else if (game.stat.score >= 35000 && game.stat.gradeid < 5) {
-        game.stat.grade = "4 (" + game.stat.gradetime + ")";
+        game.stat.grade = '4 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 5;
     }
       else if (game.stat.score >= 20000 && game.stat.gradeid < 4) {
-        game.stat.grade = "5 (" + game.stat.gradetime + ")";
+        game.stat.grade = '5 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 4;
     }
       else if (game.stat.score >= 14000 && game.stat.gradeid < 3) {
-        game.stat.grade = "6 (" + game.stat.gradetime + ")";
+        game.stat.grade = '6 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 3;
     }
       else if (game.stat.score >= 8000 && game.stat.gradeid < 2) {
-        game.stat.grade = "7 (" + game.stat.gradetime + ")";
+        game.stat.grade = '7 <span class="small">(' + game.stat.gradetime + ')</span>';
         game.stat.gradeid = 2;
     }
       else if (game.stat.score >= 4000 && game.stat.gradeid < 1) {
-        game.stat.grade = "8 (" + game.stat.gradetime + ")"
+        game.stat.grade = '8 <span class="small">(' + game.stat.gradetime + ')</span>'
         game.stat.gradeid = 1
     };
       collapse(arg);
