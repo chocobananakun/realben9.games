@@ -1,0 +1,63 @@
+{
+  "properties": {
+    "parent": "arcade",
+    "langOverride": "mode-options",
+    "game": "handheld",
+    "pgmusic": "pg-handheld"
+  },
+  "data": [
+    {
+      "string": "handheldLabel",
+      "langOverride": "menu_retro",
+      "type": "header"
+    },
+    {
+      "string": "startingLevelLabel",
+      "stringDesc": "startingLevelDescription",
+      "type": "slider",
+      "action": "slider",
+      "max": 99,
+      "min": 0,
+      "discrete": 1,
+      "setting": "startingLevel",
+      "gameName": "handheld",
+      "settingType": "game"
+    },
+    {
+      "string": "ruleOptionLabel",
+      "stringDesc": "ruleOptionDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "ruleOption",
+      "gameName": "handheld",
+      "settingType": "game"
+    },
+    {
+      "string": "20GCheatLabel",
+      "stringDesc": "20GCheatDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "infG",
+      "gameName": "handheld",
+      "settingType": "game"
+    },
+    {
+      "string": "bigCheatLabel",
+      "stringDesc": "bigCheatDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "big",
+      "gameName": "handheld",
+      "settingType": "game"
+    },
+    {
+      "string": "tlsCheatLabel",
+      "stringDesc": "tlsCheatDescription",
+      "type": "toggle",
+      "action": "toggle",
+      "setting": "tls",
+      "gameName": "handheld",
+      "settingType": "game"
+    }
+  ]
+}
