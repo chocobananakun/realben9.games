@@ -2,6 +2,10 @@
     font-family: 'perfect-dos-vga-437-win';
     src: local('perfect-dos-vga-437-win'), url(perfect-dos-vga-437-win.ttf);
 }
+@font-face {
+  font-family: 'vcr-osd-mono-1-001';
+  src: local('vcr-osd-mono-1-001'), url(vcr-osd-mono-1-001.ttf);
+}
 body { background-color:lightBlue; filter:hue-rotate(0deg); }
         #snow{
             font-family: perfect-dos-vga-437-win;
@@ -25,6 +29,7 @@ body { background-color:lightBlue; filter:hue-rotate(0deg); }
         }
         #snow.nocorndogs {background-image: none}
         #snow.rainbow {animation: rainbow 1000s linear infinite}
+        #snow.font {font-family: vcr-osd-mono-1-001}
         @keyframes snow {
           0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
           100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          

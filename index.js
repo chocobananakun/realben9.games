@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
 	snow = document.querySelectorAll("div")[0]
-	snow.innerHTML = '<p>Toggle<button onclick="togcorndogs()">Corndogs</button><button onclick="tograinbow()">Rainbow</button></p>' + snow.innerHTML
+	snow.innerHTML = '<p>Toggle<button onclick="togcorndogs()">Corndogs</button><button onclick="tograinbow()">Rainbow</button><button onclick="togfont()">Font</button></p>' + snow.innerHTML
 })
 function togcorndogs() {
   switch (snow.classList.contains("nocorndogs")) {
@@ -19,6 +19,16 @@ function tograinbow() {
       break;
     case false:
       snow.classList.add("rainbow")
+      break;
+  }
+}
+function togfont() {
+  switch (snow.classList.contains("font")) {
+    case true:
+      snow.classList.remove("font")
+      break;
+    case false:
+      snow.classList.add("font")
       break;
   }
 }
