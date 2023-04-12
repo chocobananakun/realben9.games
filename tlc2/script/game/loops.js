@@ -2945,6 +2945,13 @@ export const loops = {
         game.piece.lockDelayLimit = 500 - game.stat.level;
       }
       if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
+      if (game.stat.level >= 500) {
+        game.stat.level = 500
+        $('#kill-message').textContent = locale.getString('ui', 'torikan');
+        sound.killVox();
+        sound.add('voxexcellent');
+        game.end(true);
+      }
       window.hasHeld = false
       updateFallSpeed(game);
     }
