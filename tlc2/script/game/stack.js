@@ -91,7 +91,7 @@ export default class Stack extends GameModule {
       isSpin = checkSpin.isSpin
       isMini = checkSpin.isMini
     }
-    // isSpin = true;
+    // isSpin = true
     sound.add("lock")
     this.parent.shiftMatrix("down")
     this.parent.stat.piece++
@@ -311,8 +311,8 @@ export default class Stack extends GameModule {
     ) {
       this.collapse()
     }
-    // console.log(this.highest, this.skyToFloor);
-    // console.log(this.skyToFloor);
+    // console.log(this.highest, this.skyToFloor)
+    // console.log(this.skyToFloor)
     this.parent.calculateActionText(
       this.lineClear,
       isSpin,
@@ -431,7 +431,7 @@ export default class Stack extends GameModule {
     }
     this.alarmCheck()
     /* if (isMini && this.lineClear >= 2) { // If you uncomment this, the game will softlock on TSDM
-    //   this.parent.noUpdate = true;
+    //   this.parent.noUpdate = true
     } */
     this.parent.updateStats()
   }
@@ -525,13 +525,13 @@ export default class Stack extends GameModule {
     let topOut = false
     for (let i = 0; i < amount; i++) {
       // if (this.garbageHoleUsed >= this.garbageSwitchRate && !this.copyBottomForGarbage) {
-      //   const last = this.garbageRandomHole;
+      //   const last = this.garbageRandomHole
       //   while (this.garbageRandomHole === last) {
       if (Math.random() > 0.7) {
         this.garbageRandomHole = Math.floor(Math.random() * this.grid.length)
       }
       //   }
-      //   this.garbageHoleUsed = 0;
+      //   this.garbageHoleUsed = 0
       // }
       for (let i = 0; i < this.flashY.length; i++) {
         this.flashY[i]--
@@ -699,7 +699,7 @@ export default class Stack extends GameModule {
       "0" +
       Math.floor((1 - this.flashTime / this.flashLimit) * 255).toString(16)
     ).slice(-2)
-    // clearCtx(this.ctx);
+    // clearCtx(this.ctx)
     this.dirtyCells = Array.from(
       new Set(this.dirtyCells.map(JSON.stringify)),
       JSON.parse
@@ -710,20 +710,20 @@ export default class Stack extends GameModule {
       ctx.clearRect(x, Math.floor(y), cellSize, cellSize)
     }
     /*
-    for (let x = 0; x < this.grid.length; x++) {
-      for (let y = 0; y < this.grid[x].length; y++) {
-        const isFilled = this.grid[x][y];
+    for (let x = 0 x < this.grid.length x++) {
+      for (let y = 0 y < this.grid[x].length y++) {
+        const isFilled = this.grid[x][y]
         if (isFilled) {
-          const color = this.grid[x][y];
-          let name = 'stack';
+          const color = this.grid[x][y]
+          let name = 'stack'
           if (this.useMinoSkin) {
-            name = 'mino';
+            name = 'mino'
           }
-          const img = document.getElementById(`${name}-${color}`);
-          const xPos = x * cellSize;
-          const yPos = y * cellSize + cellSize * buffer - cellSize * this.hiddenHeight;
-          img.height = cellSize;
-          ctx.drawImage(img, xPos, Math.floor(yPos), cellSize, cellSize);
+          const img = document.getElementById(`${name}-${color}`)
+          const xPos = x * cellSize
+          const yPos = y * cellSize + cellSize * buffer - cellSize * this.hiddenHeight
+          img.height = cellSize
+          ctx.drawImage(img, xPos, Math.floor(yPos), cellSize, cellSize)
         }
       }
     }
@@ -900,14 +900,8 @@ export default class Stack extends GameModule {
   arcadeScore(drop = 0, multiplier = 1) {
     let pc = true
     for (let x = 0; x < this.grid.length; x++) {
-      if (!pc) {
-        break
-      }
-      for (
-        let y = 0;
-        y < this.grid[x].length - this.parent.stack.lineClear;
-        y++
-      ) {
+      if (!pc) break
+      for (let y = 0; y < this.grid[x].length - this.parent.stack.lineClear; y++) {
         const isFilled = this.grid[x][y]
         if (isFilled) {
           pc = false
@@ -920,15 +914,7 @@ export default class Stack extends GameModule {
       this.parent.arcadeCombo += 2 * (this.parent.stack.lineClear - 1)
     } else this.parent.arcadeCombo = 1
     this.parent.stat.score +=
-      Math.ceil(
-        (this.parent.stat.level + this.parent.stack.lineClear) / 4 + drop
-      ) *
-      this.parent.stack.lineClear *
-      this.parent.arcadeCombo *
-      bravo *
-      multiplier
+      Math.ceil((this.parent.stat.level + this.parent.stack.lineClear) / 4 + drop) * this.parent.stack.lineClear * this.parent.arcadeCombo * bravo * multiplier
   }
-  addStaticScore(score = 0) {
-    this.parent.stat.score += score
-  }
+  addStaticScore(score = 0) {this.parent.stat.score += score}
 }

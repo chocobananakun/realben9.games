@@ -1,131 +1,131 @@
 /* This file needs to be modified to allow for custom gamemodes */
-import $, {bpmToMs, framesToMs, resetAnimation, roundBpmToMs, roundMsToFrames} from '../shortcuts.js';
-import {gravity, classicGravity, deluxeGravity} from './loop-modules/gravity.js';
-import {PIECE_COLORS, SOUND_SETS} from '../consts.js';
-import addStaticScore from './loop-modules/add-static-score.js';
-import arcadeScore from './loop-modules/arcade-score.js';
-import collapse from './loop-modules/collapse.js';
-import firmDrop from './loop-modules/firm-drop.js';
-import gameHandler from './game-handler.js';
-import handheldDasAre from './loop-modules/handheld-das-are.js';
-import hardDrop from './loop-modules/hard-drop.js';
-import hold from './loop-modules/hold.js';
-import hyperSoftDrop from './loop-modules/hyper-soft-drop.js';
-import initialDas from './loop-modules/initial-das.js';
-import initialHold from './loop-modules/initial-hold.js';
-import initialRotation from './loop-modules/initial-rotation.js';
-import linesToLevel from './loop-modules/lines-to-level.js';
-import lockFlash from './loop-modules/lock-flash.js';
-import respawnPiece from './loop-modules/respawn-piece.js';
-import rotate from './loop-modules/rotate.js';
-import rotate180 from './loop-modules/rotate-180.js';
-import shifting from './loop-modules/shifting.js';
-import shiftingRetro from './loop-modules/shifting-retro.js';
-import sonicDrop from './loop-modules/sonic-drop.js';
-import softDrop from './loop-modules/soft-drop.js';
-import softDropRetro from './loop-modules/soft-drop-retro.js';
-import softDropNes from './loop-modules/soft-drop-nes.js';
-import sound from '../sound.js';
-import updateLasts from './loop-modules/update-lasts.js';
-import {extendedLockdown, retroLockdown, classicLockdown, infiniteLockdown, beatLockdown, zenLockdown} from './loop-modules/lockdown.js';
-import updateFallSpeed from './loop-modules/update-fallspeed.js';
-import shiftingNes from './loop-modules/shifting-nes.js';
-import nesDasAre from './loop-modules/nes-das-are.js';
-import settings from '../settings.js';
-import input from '../input.js';
-import locale from '../lang.js';
+import $, {bpmToMs, framesToMs, resetAnimation, roundBpmToMs, roundMsToFrames} from '../shortcuts.js'
+import {gravity, classicGravity, deluxeGravity} from './loop-modules/gravity.js'
+import {PIECE_COLORS, SOUND_SETS} from '../consts.js'
+import addStaticScore from './loop-modules/add-static-score.js'
+import arcadeScore from './loop-modules/arcade-score.js'
+import collapse from './loop-modules/collapse.js'
+import firmDrop from './loop-modules/firm-drop.js'
+import gameHandler from './game-handler.js'
+import handheldDasAre from './loop-modules/handheld-das-are.js'
+import hardDrop from './loop-modules/hard-drop.js'
+import hold from './loop-modules/hold.js'
+import hyperSoftDrop from './loop-modules/hyper-soft-drop.js'
+import initialDas from './loop-modules/initial-das.js'
+import initialHold from './loop-modules/initial-hold.js'
+import initialRotation from './loop-modules/initial-rotation.js'
+import linesToLevel from './loop-modules/lines-to-level.js'
+import lockFlash from './loop-modules/lock-flash.js'
+import respawnPiece from './loop-modules/respawn-piece.js'
+import rotate from './loop-modules/rotate.js'
+import rotate180 from './loop-modules/rotate-180.js'
+import shifting from './loop-modules/shifting.js'
+import shiftingRetro from './loop-modules/shifting-retro.js'
+import sonicDrop from './loop-modules/sonic-drop.js'
+import softDrop from './loop-modules/soft-drop.js'
+import softDropRetro from './loop-modules/soft-drop-retro.js'
+import softDropNes from './loop-modules/soft-drop-nes.js'
+import sound from '../sound.js'
+import updateLasts from './loop-modules/update-lasts.js'
+import {extendedLockdown, retroLockdown, classicLockdown, infiniteLockdown, beatLockdown, zenLockdown} from './loop-modules/lockdown.js'
+import updateFallSpeed from './loop-modules/update-fallspeed.js'
+import shiftingNes from './loop-modules/shifting-nes.js'
+import nesDasAre from './loop-modules/nes-das-are.js'
+import settings from '../settings.js'
+import input from '../input.js'
+import locale from '../lang.js'
 import rotateReverse from './loop-modules/rotate-reverse.js'
-let lastLevel = 0;
-let garbageTimer = 0;
-let shown20GMessage = false;
-let shownHoldWarning = false;
-let lastSeenI = 0;
-let nonEvents = [];
-let bpm;
+let lastLevel = 0
+let garbageTimer = 0
+let shown20GMessage = false
+let shownHoldWarning = false
+let lastSeenI = 0
+let nonEvents = []
+let bpm
 const levelUpdate = (game) => {
-  let returnValue = false;
+  let returnValue = false
   if (game.stat.level !== lastLevel) {
-    sound.add('levelup');
-    game.stack.levelUpAnimation = 0;
+    sound.add('levelup')
+    game.stack.levelUpAnimation = 0
     if (game.stat.level % 5 === 0) {
-      sound.add('levelupmajor');
+      sound.add('levelupmajor')
     } else {
-      sound.add('levelupminor');
+      sound.add('levelupminor')
     }
-    returnValue = true;
+    returnValue = true
   }
-  lastLevel = game.stat.level;
-  return returnValue;
-};
+  lastLevel = game.stat.level
+  return returnValue
+}
 export const loops = {
   sudden: {
     update: (arg) => {
-      const game = gameHandler.game;
-      game.rta += arg.ms;
-      game.b2b = 0;
+      const game = gameHandler.game
+      game.rta += arg.ms
+      game.b2b = 0
       arcadeScore(arg)
-      linesToLevel(arg, 999, 100);
-      game.endSectionLevel = game.stat.level >= 900 ? 999 : Math.floor((game.stat.level / 100) + 1) * 100;
-      game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`;
-      if (game.stat.level >= 999) game.stat.grade = "GM";
-      else if (game.stat.level >= 500 && game.torikanPassed) game.stat.grade = "M";
-      collapse(arg);
+      linesToLevel(arg, 999, 100)
+      game.endSectionLevel = game.stat.level >= 900 ? 999 : Math.floor((game.stat.level / 100) + 1) * 100
+      game.appends.level = `<span class="small">/${game.endSectionLevel}</span>`
+      if (game.stat.level >= 999) game.stat.grade = "GM"
+      else if (game.stat.level >= 500 && game.torikanPassed) game.stat.grade = "M"
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      sonicDrop(arg, true);
-      firmDrop(arg, 1, true);
-      classicLockdown(arg);
+      gravity(arg)
+      sonicDrop(arg, true)
+      firmDrop(arg, 1, true)
+      classicLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onInit: (game) => {
       if (settings.game.sudden.big == false) {
-        game.settings.width = 10;
-        game.settings.height = 20;
-        game.stack.width = 10;
-        game.stack.height = 20;
-        game.stack.new();
-        game.piece.xSpawnOffset = 0;
-        game.resize();
-      };
-      game.stat.level = settings.game.sudden.startingLevel;
+        game.settings.width = 10
+        game.settings.height = 20
+        game.stack.width = 10
+        game.stack.height = 20
+        game.stack.new()
+        game.piece.xSpawnOffset = 0
+        game.resize()
+      }
+      game.stat.level = settings.game.sudden.startingLevel
       if (game.stat.level != 0 || settings.game.sudden.big == true) {
-        $('#next-label').style.animationName = "hurry-up-timer";
-        $('#next-label').style.animationDuration = "0.4s";
-        $('#next-label').style.animationIterationCount = "infinite";
-        $('#next-label').style.animationDirection = "alternate";
-        $('#next-label').style.animationTimingFunction = "ease-in-out";
-        $('#next-label').style.fontSize = "1.3em";
+        $('#next-label').style.animationName = "hurry-up-timer"
+        $('#next-label').style.animationDuration = "0.4s"
+        $('#next-label').style.animationIterationCount = "infinite"
+        $('#next-label').style.animationDirection = "alternate"
+        $('#next-label').style.animationTimingFunction = "ease-in-out"
+        $('#next-label').style.fontSize = "1.3em"
       }
-      game.isRaceMode = true;
-      game.stat.grade = "";
-      game.rta = 0;
-      game.piece.gravity = framesToMs(1 / 20);
-      game.torikanPassed = false;
-      game.stat.initPieces = 2;
-      game.endingStats.grade = true;
-      game.musicProgression = 0;
-      game.drop = 0;
+      game.isRaceMode = true
+      game.stat.grade = ""
+      game.rta = 0
+      game.piece.gravity = framesToMs(1 / 20)
+      game.torikanPassed = false
+      game.stat.initPieces = 2
+      game.endingStats.grade = true
+      game.musicProgression = 0
+      game.drop = 0
       if (settings.game.sudden.ruleOption == false) {
-        game.settings.rotationSystem = "srs";
-        game.rotationSystem = "srs";
+        game.settings.rotationSystem = "srs"
+        game.rotationSystem = "srs"
       } else {
-        game.settings.rotationSystem = "ars";
-        game.rotationSystem = "ars";
+        game.settings.rotationSystem = "ars"
+        game.rotationSystem = "ars"
       }
-      game.updateStats();
+      game.updateStats()
     },
     onPieceSpawn: (game) => {
       const areTable = [[101,18],[301,14],[401,8],[500,7],[1000,6]]
@@ -135,121 +135,121 @@ export const loops = {
       const lockDelayTable = [[101,30],[201,26],[301,22],[401,18],[1000,15]]
       const musicProgressionTable = [[279,1],[300,2],[479,3],[500,4]]
       for (const pair of areTable) {
-        const level = pair[0];
-        const entry = pair[1];
+        const level = pair[0]
+        const entry = pair[1]
         if (game.stat.level < level) {
-          game.piece.areLimit = framesToMs(entry);
-          break;
+          game.piece.areLimit = framesToMs(entry)
+          break
         }
       }
       for (const pair of areLineModifierTable) {
-        const level = pair[0];
-        const entry = pair[1];
+        const level = pair[0]
+        const entry = pair[1]
         if (game.stat.level < level) {
-          game.piece.areLimitLineModifier = framesToMs(entry);
-          break;
+          game.piece.areLimitLineModifier = framesToMs(entry)
+          break
         }
       }
       for (const pair of areLineTable) {
-        const level = pair[0];
-        const entry = pair[1];
+        const level = pair[0]
+        const entry = pair[1]
         if (game.stat.level < level) {
-          game.piece.areLineLimit = framesToMs(entry);
-          break;
+          game.piece.areLineLimit = framesToMs(entry)
+          break
         }
       }
       for (const pair of dasTable) {
-        const level = pair[0];
-        const entry = pair[1];
+        const level = pair[0]
+        const entry = pair[1]
         if (game.stat.level < level) {
-          game.piece.dasLimit = framesToMs(entry);
-          break;
+          game.piece.dasLimit = framesToMs(entry)
+          break
         }
       }
       for (const pair of lockDelayTable) {
-        const level = pair[0];
-        const entry = pair[1];
+        const level = pair[0]
+        const entry = pair[1]
         if (game.stat.level < level) {
-          game.piece.lockDelayLimit = Math.ceil(framesToMs(entry));
-          break;
+          game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
+          break
         }
       }
       for (const pair of musicProgressionTable) {
-        const level = pair[0];
-        const entry = pair[1];
+        const level = pair[0]
+        const entry = pair[1]
         if (game.stat.level >= level && game.musicProgression < entry) {
           switch (entry) {
             case 1:
             case 3:
-              sound.killBgm();
-              break;
+              sound.killBgm()
+              break
             case 2:
-              sound.loadBgm(["survival"], "survival");
-              sound.killBgm();
-              sound.playBgm(["survival"], "survival");
-              break;
+              sound.loadBgm(["survival"], "survival")
+              sound.killBgm()
+              sound.playBgm(["survival"], "survival")
+              break
             case 4:
-              sound.loadBgm(["master-last"], "master");
-              sound.killBgm();
-              sound.playBgm(["master-last"], "master");
+              sound.loadBgm(["master-last"], "master")
+              sound.killBgm()
+              sound.playBgm(["master-last"], "master")
           }
-          game.musicProgression = entry;
+          game.musicProgression = entry
         }
       }
-      if (game.stat.level >= 500 && game.rta <= 205000) game.torikanPassed = true;
+      if (game.stat.level >= 500 && game.rta <= 205000) game.torikanPassed = true
       else if ((game.stat.level >= 500 && !game.torikanPassed) || game.stat.level === 999) {
-        if (game.stat.level < 999) game.stat.level = 500;
-        $('#kill-message').textContent = locale.getString('ui', 'excellent');
-        sound.killVox();
-        sound.add('voxexcellent');
-        game.end(true);
+        if (game.stat.level < 999) game.stat.level = 500
+        $('#kill-message').textContent = locale.getString('ui', 'excellent')
+        sound.killVox()
+        sound.add('voxexcellent')
+        game.end(true)
       }
-      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++;}
-      if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1;}
-      updateFallSpeed(game);
+      if (game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++}
+      if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1}
+      updateFallSpeed(game)
     }
   },
   novice: {
     update: (arg) => {
-      gameHandler.game.b2b = 0;
-      gameHandler.game.rta += arg.ms;
-      if (input.getGameDown('softDrop')) {gameHandler.game.drop += arg.ms;}
-      if (input.getGamePress('hardDrop')) {gameHandler.game.drop += framesToMs(2 * arg.piece.getDrop());}
+      gameHandler.game.b2b = 0
+      gameHandler.game.rta += arg.ms
+      if (input.getGameDown('softDrop')) {gameHandler.game.drop += arg.ms}
+      if (input.getGamePress('hardDrop')) {gameHandler.game.drop += framesToMs(2 * arg.piece.getDrop())}
       arcadeScore(arg, roundMsToFrames(gameHandler.game.drop), 6)
-      linesToLevel(arg, 300, 300);
-      collapse(arg);
+      linesToLevel(arg, 300, 300)
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      sonicDrop(arg);
-      firmDrop(arg);
-      classicLockdown(arg);
+      gravity(arg)
+      sonicDrop(arg)
+      firmDrop(arg)
+      classicLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
-      game.drop = 0;
+      game.drop = 0
       if (game.stat.level === 300) {
         game.stat.score += Math.max(0, (300 - Math.floor(game.rta / 1000)) * 1253)
-        $('#kill-message').textContent = locale.getString('ui', 'excellent');
-        sound.killVox();
-        sound.add('voxexcellent');
-        game.end(true);
-      } else if (game.stat.initPieces === 0 && game.stat.level !== 299) {game.stat.level++;}
-      else {game.stat.initPieces = game.stat.initPieces - 1;}
-      if (game.stat.level >= 280) {sound.killBgm();}
-      let gravityDenominator = 1;
+        $('#kill-message').textContent = locale.getString('ui', 'excellent')
+        sound.killVox()
+        sound.add('voxexcellent')
+        game.end(true)
+      } else if (game.stat.initPieces === 0 && game.stat.level !== 299) {game.stat.level++}
+      else {game.stat.initPieces = game.stat.initPieces - 1}
+      if (game.stat.level >= 280) {sound.killBgm()}
+      let gravityDenominator = 1
       const gravityTable = [
         [8,4],[19,5],[35,6],[40,8],[50,10],[60,12],[70,16],[80,32],[90,48],[100,64],
         [108,4],[119,5],[125,6],[131,8],[139,12],[149,32],[156,48],[164,80],[174,112],
@@ -257,221 +257,221 @@ export const loops = {
         [277,192],[287,208],[295,224],[300,240]
       ]
       for (const pair of gravityTable) {
-        const level = pair[0];
-        const denom = pair[1];
+        const level = pair[0]
+        const denom = pair[1]
         if (game.stat.level < level) {
-          gravityDenominator = denom;
-          break;
+          gravityDenominator = denom
+          break
         }
       }
       if (settings.game.novice.infG == false) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
-      else {game.piece.gravity = framesToMs(1 / 20)};
+      else {game.piece.gravity = framesToMs(1 / 20)}
       if (settings.game.novice.tls == false) {game.piece.ghostIsVisible = game.stat.level < 100}
-      else {game.piece.ghostIsVisible = true};
-      updateFallSpeed(game);
+      else {game.piece.ghostIsVisible = true}
+      updateFallSpeed(game)
     },
     onInit: (game) => {
       if (settings.game.novice.big == false) {
-        game.settings.width = 10;
-        game.settings.height = 20;
-        game.stack.width = 10;
-        game.stack.height = 20;
-        game.stack.new();
-        game.piece.xSpawnOffset = 0;
-        game.resize();
-      };
-      game.stat.level = settings.game.novice.startingLevel;
+        game.settings.width = 10
+        game.settings.height = 20
+        game.stack.width = 10
+        game.stack.height = 20
+        game.stack.new()
+        game.piece.xSpawnOffset = 0
+        game.resize()
+      }
+      game.stat.level = settings.game.novice.startingLevel
       if (game.stat.level != 0 || settings.game.novice.infG == true || settings.game.novice.big == true || settings.game.novice.tls == true) {
-        $('#next-label').style.animationName = "hurry-up-timer";
-        $('#next-label').style.animationDuration = "0.4s";
-        $('#next-label').style.animationIterationCount = "infinite";
-        $('#next-label').style.animationDirection = "alternate";
-        $('#next-label').style.animationTimingFunction = "ease-in-out";
-        $('#next-label').style.fontSize = "1.3em";
+        $('#next-label').style.animationName = "hurry-up-timer"
+        $('#next-label').style.animationDuration = "0.4s"
+        $('#next-label').style.animationIterationCount = "infinite"
+        $('#next-label').style.animationDirection = "alternate"
+        $('#next-label').style.animationTimingFunction = "ease-in-out"
+        $('#next-label').style.fontSize = "1.3em"
       }
-      game.rta = 0;
-      game.isRaceMode = true;
-      game.arcadeCombo = 1;
-      game.drop = 0;
-      game.stat.initPieces = 2;
-      game.appends.level = `<span class="small">/300</span>`;
+      game.rta = 0
+      game.isRaceMode = true
+      game.arcadeCombo = 1
+      game.drop = 0
+      game.stat.initPieces = 2
+      game.appends.level = `<span class="small">/300</span>`
       if (settings.game.novice.ruleOption == false) {
-        game.settings.rotationSystem = "srs";
-        game.rotationSystem = "srs";
+        game.settings.rotationSystem = "srs"
+        game.rotationSystem = "srs"
       } else {
-        game.settings.rotationSystem = "ars";
-        game.rotationSystem = "ars";
+        game.settings.rotationSystem = "ars"
+        game.rotationSystem = "ars"
       }
-      updateFallSpeed(game);
-      game.updateStats();
+      updateFallSpeed(game)
+      game.updateStats()
     },
   },
   marathon: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      softDrop(arg);
-      hardDrop(arg);
-      extendedLockdown(arg);
+      gravity(arg)
+      softDrop(arg)
+      hardDrop(arg)
+      extendedLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
       /* Might use this code later
-      $('#das').max = arg.piece.dasLimit;
-      $('#das').value = arg.piece.das;
-      $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0);
+      $('#das').max = arg.piece.dasLimit
+      $('#das').value = arg.piece.das
+      $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0)
       */
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.max(settings.game.marathon.startingLevel, Math.floor(game.stat.line / 10 + 1));
+      game.stat.level = Math.max(settings.game.marathon.startingLevel, Math.floor(game.stat.line / 10 + 1))
       if (settings.game.marathon.levelCap >= 0) {
-        game.stat.level = Math.min(game.stat.level, settings.game.marathon.levelCap);
+        game.stat.level = Math.min(game.stat.level, settings.game.marathon.levelCap)
       }
-      const x = game.stat.level;
-      const gravityEquation = (0.8 - ((x - 1) * 0.007)) ** (x - 1);
-      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20));
+      const x = game.stat.level
+      const gravityEquation = (0.8 - ((x - 1) * 0.007)) ** (x - 1)
+      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
       if (game.stat.level >= 20) {
-        game.piece.lockDelayLimit = ~~framesToMs((30 * Math.pow(0.93, (Math.pow(game.stat.level - 20, 0.8)))));
+        game.piece.lockDelayLimit = ~~framesToMs((30 * Math.pow(0.93, (Math.pow(game.stat.level - 20, 0.8)))))
       } else {
-        game.piece.lockDelayLimit = 500;
+        game.piece.lockDelayLimit = 500
       }
-      updateFallSpeed(game);
-      levelUpdate(game);
+      updateFallSpeed(game)
+      levelUpdate(game)
     },
     onInit: (game) => {
       if (settings.game.marathon.lineGoal >= 0) {
-        game.lineGoal = settings.game.marathon.lineGoal;
+        game.lineGoal = settings.game.marathon.lineGoal
       }
-      game.stat.level = settings.game.marathon.startingLevel;
-      lastLevel = parseInt(settings.game.marathon.startingLevel);
-      game.piece.gravity = 1000;
-      updateFallSpeed(game);
-      game.updateStats();
+      game.stat.level = settings.game.marathon.startingLevel
+      lastLevel = parseInt(settings.game.marathon.startingLevel)
+      game.piece.gravity = 1000
+      updateFallSpeed(game)
+      game.updateStats()
     },
   },
   ic4w: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      softDrop(arg);
-      hardDrop(arg);
-      extendedLockdown(arg);
+      gravity(arg)
+      softDrop(arg)
+      hardDrop(arg)
+      extendedLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
       /* Might use this code later
-      $('#das').max = arg.piece.dasLimit;
-      $('#das').value = arg.piece.das;
-      $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0);
+      $('#das').max = arg.piece.dasLimit
+      $('#das').value = arg.piece.das
+      $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0)
       */
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.max(settings.game.marathon.startingLevel, Math.floor(game.stat.line / 10 + 1));
+      game.stat.level = Math.max(settings.game.marathon.startingLevel, Math.floor(game.stat.line / 10 + 1))
       if (settings.game.marathon.levelCap >= 0) {
-        game.stat.level = Math.min(game.stat.level, settings.game.marathon.levelCap);
+        game.stat.level = Math.min(game.stat.level, settings.game.marathon.levelCap)
       }
-      const x = game.stat.level;
-      const gravityEquation = (0.8 - ((x - 1) * 0.007)) ** (x - 1);
-      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20));
+      const x = game.stat.level
+      const gravityEquation = (0.8 - ((x - 1) * 0.007)) ** (x - 1)
+      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
       if (game.stat.level >= 20) {
-        game.piece.lockDelayLimit = ~~framesToMs((30 * Math.pow(0.93, (Math.pow(game.stat.level - 20, 0.8)))));
+        game.piece.lockDelayLimit = ~~framesToMs((30 * Math.pow(0.93, (Math.pow(game.stat.level - 20, 0.8)))))
       } else {
-        game.piece.lockDelayLimit = 500;
+        game.piece.lockDelayLimit = 500
       }
-      updateFallSpeed(game);
-      levelUpdate(game);
+      updateFallSpeed(game)
+      levelUpdate(game)
     },
     onInit: (game) => {
       if (settings.game.marathon.lineGoal >= 0) {
-        game.lineGoal = settings.game.marathon.lineGoal;
+        game.lineGoal = settings.game.marathon.lineGoal
       }
-      game.stat.level = settings.game.marathon.startingLevel;
-      lastLevel = parseInt(settings.game.marathon.startingLevel);
-      game.piece.gravity = 1000;
-      updateFallSpeed(game);
-      game.updateStats();
+      game.stat.level = settings.game.marathon.startingLevel
+      lastLevel = parseInt(settings.game.marathon.startingLevel)
+      game.piece.gravity = 1000
+      updateFallSpeed(game)
+      game.updateStats()
     },
   },
   big: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      softDrop(arg);
-      hardDrop(arg);
-      extendedLockdown(arg);
+      gravity(arg)
+      softDrop(arg)
+      hardDrop(arg)
+      extendedLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
       /* Might use this code later
-      $('#das').max = arg.piece.dasLimit;
-      $('#das').value = arg.piece.das;
-      $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0);
+      $('#das').max = arg.piece.dasLimit
+      $('#das').value = arg.piece.das
+      $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0)
       */
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.max(settings.game.marathon.startingLevel, Math.floor(game.stat.line / 10 + 1));
+      game.stat.level = Math.max(settings.game.marathon.startingLevel, Math.floor(game.stat.line / 10 + 1))
       if (settings.game.marathon.levelCap >= 0) {
-        game.stat.level = Math.min(game.stat.level, settings.game.marathon.levelCap);
+        game.stat.level = Math.min(game.stat.level, settings.game.marathon.levelCap)
       }
-      const x = game.stat.level;
-      const gravityEquation = (0.8 - ((x - 1) * 0.007)) ** (x - 1);
-      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20));
+      const x = game.stat.level
+      const gravityEquation = (0.8 - ((x - 1) * 0.007)) ** (x - 1)
+      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
       if (game.stat.level >= 20) {
-        game.piece.lockDelayLimit = ~~framesToMs((30 * Math.pow(0.93, (Math.pow(game.stat.level - 20, 0.8)))));
+        game.piece.lockDelayLimit = ~~framesToMs((30 * Math.pow(0.93, (Math.pow(game.stat.level - 20, 0.8)))))
       } else {
-        game.piece.lockDelayLimit = 500;
+        game.piece.lockDelayLimit = 500
       }
-      updateFallSpeed(game);
-      levelUpdate(game);
+      updateFallSpeed(game)
+      levelUpdate(game)
     },
     onInit: (game) => {
       if (settings.game.marathon.lineGoal >= 0) {
-        game.lineGoal = settings.game.marathon.lineGoal;
+        game.lineGoal = settings.game.marathon.lineGoal
       }
-      game.stat.level = settings.game.marathon.startingLevel;
-      lastLevel = parseInt(settings.game.marathon.startingLevel);
-      game.piece.gravity = 1000;
-      updateFallSpeed(game);
-      game.updateStats();
+      game.stat.level = settings.game.marathon.startingLevel
+      lastLevel = parseInt(settings.game.marathon.startingLevel)
+      game.piece.gravity = 1000
+      updateFallSpeed(game)
+      game.updateStats()
     },
   },
   zen: {
@@ -516,152 +516,152 @@ export const loops = {
       game.updateStats()
     },
     onInit: (game) => {
-      game.settings.width = settings.game.zen.matrixWidth;
-      game.stack.width = settings.game.zen.matrixWidth;
-      game.stack.new();
+      game.settings.width = settings.game.zen.matrixWidth
+      game.stack.width = settings.game.zen.matrixWidth
+      game.stack.new()
       switch (settings.game.zen.matrixWidth) {
         case "4":
-          game.piece.xSpawnOffset = -3;
-          break;
+          game.piece.xSpawnOffset = -3
+          break
         case "5":
-          game.piece.xSpawnOffset = -3;
-          break;
+          game.piece.xSpawnOffset = -3
+          break
         case "6":
-          game.piece.xSpawnOffset = -2;
-          break;
+          game.piece.xSpawnOffset = -2
+          break
         case "7":
-          game.piece.xSpawnOffset = -2;
-          break;
+          game.piece.xSpawnOffset = -2
+          break
         case "8":
-          game.piece.xSpawnOffset = -1;
-          break;
+          game.piece.xSpawnOffset = -1
+          break
         case "9":
-          game.piece.xSpawnOffset = -1;
-          break;
+          game.piece.xSpawnOffset = -1
+          break
         case "10":
-          game.piece.xSpawnOffset = 0;
-          break;
+          game.piece.xSpawnOffset = 0
+          break
       }
-      game.resize();
+      game.resize()
       if (settings.game.zen.holdType === "skip") {
         game.hold.useSkip = true
-        // game.hold.holdAmount = 2;
-        // game.hold.holdAmountLimit = 2;
-        // game.hold.gainHoldOnPlacement = true;
-        // game.resize();
+        // game.hold.holdAmount = 2
+        // game.hold.holdAmountLimit = 2
+        // game.hold.gainHoldOnPlacement = true
+        // game.resize()
       }
       if (settings.game.zen.holdType == "disabled") {
-        game.hold.isDisabled = true;
+        game.hold.isDisabled = true
       } else {
-        game.hold.isDisabled = false;
+        game.hold.isDisabled = false
       }
       game.stat.level = 1
-      // game.piece.gravity = 1000;
-      // updateFallSpeed(game);
-      // game.stat.b2b = 0;
-      // game.updateStats();
+      // game.piece.gravity = 1000
+      // updateFallSpeed(game)
+      // game.stat.b2b = 0
+      // game.updateStats()
       switch(settings.game.zen.gravity){
         case '0G':
-          game.piece.gravity = 2000;
-          break;
+          game.piece.gravity = 2000
+          break
         case '1/60G':
-          game.piece.gravity = 1000;
-          break;
+          game.piece.gravity = 1000
+          break
         case '0.05G':
-          game.piece.gravity = framesToMs(1 / 0.05);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.05)
+          break
         case '0.1G':
-          game.piece.gravity = framesToMs(1 / 0.1);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.1)
+          break
         case '0.2G':
-          game.piece.gravity = framesToMs(1 / 0.2);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.2)
+          break
         case '0.3G':
-          game.piece.gravity = framesToMs(1 / 0.3);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.3)
+          break
         case '0.4G':
-          game.piece.gravity = framesToMs(1 / 0.4);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.4)
+          break
         case '0.5G':
-          game.piece.gravity = framesToMs(1 / 0.5);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.5)
+          break
         case '0.6G':
-          game.piece.gravity = framesToMs(1 / 0.6);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.6)
+          break
         case '0.7G':
-          game.piece.gravity = framesToMs(1 / 0.7);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.7)
+          break
         case '0.8G':
-          game.piece.gravity = framesToMs(1 / 0.8);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.8)
+          break
         case '0.9G':
-          game.piece.gravity = framesToMs(1 / 0.9);
-          break;
+          game.piece.gravity = framesToMs(1 / 0.9)
+          break
         case '1G':
-          game.piece.gravity = framesToMs(1 / 1);
-          break;
+          game.piece.gravity = framesToMs(1 / 1)
+          break
         case '2G':
-          game.piece.gravity = framesToMs(1 / 2);
-          break;
+          game.piece.gravity = framesToMs(1 / 2)
+          break
         case '3G':
-          game.piece.gravity = framesToMs(1 / 3);
-          break;
+          game.piece.gravity = framesToMs(1 / 3)
+          break
         case '4G':
-          game.piece.gravity = framesToMs(1 / 4);
-          break;
+          game.piece.gravity = framesToMs(1 / 4)
+          break
         case '5G':
-          game.piece.gravity = framesToMs(1 / 5);
-          break;
+          game.piece.gravity = framesToMs(1 / 5)
+          break
         case '10G':
-          game.piece.gravity = framesToMs(1 / 10);
-          break;
+          game.piece.gravity = framesToMs(1 / 10)
+          break
         case '20G':
-          game.piece.gravity = framesToMs(1 / 20);
-          break;
+          game.piece.gravity = framesToMs(1 / 20)
+          break
       }
-      game.piece.lockDelayLimit = settings.game.zen.lockDelay;
-      game.stack.isInvisible = settings.game.zen.invisible;
+      game.piece.lockDelayLimit = settings.game.zen.lockDelay
+      game.stack.isInvisible = settings.game.zen.invisible
     },
   },
   beat: {
     update: (arg) => {
-      const game = gameHandler.game;
-      let respawn = false;
+      const game = gameHandler.game
+      let respawn = false
       if (arg.piece.startingAre >= arg.piece.startingAreLimit) {
-        game.beatTime += arg.ms;
+        game.beatTime += arg.ms
       }
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      softDrop(arg);
+      gravity(arg)
+      softDrop(arg)
       if (input.getGamePress('hardDrop')) {
         if (!arg.piece.isFrozen) {
-          sound.add('lockforce');
+          sound.add('lockforce')
         }
-        arg.piece.isFrozen = true;
+        arg.piece.isFrozen = true
       }
       while (game.beatTime > bpmToMs(bpm)) {
-        arg.piece.hardDrop();
-        respawn = true;
-        game.beatTime -= bpmToMs(bpm);
+        arg.piece.hardDrop()
+        respawn = true
+        game.beatTime -= bpmToMs(bpm)
       }
-      beatLockdown(arg);
+      beatLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
       if (respawn) {
-        respawnPiece(arg);
+        respawnPiece(arg)
       }
-      // for (let i = 0; i < events.length; i++) {
+      // for (let i = 0 i < events.length i++) {
       //   const event = events[i]
       //   if (event[0] <= game.timePassed) {
       //     const eType = event[1]
@@ -674,61 +674,61 @@ export const loops = {
       //     break
       //   }
       // }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
-      game.piece.gravity = framesToMs(1 / 20);
-      game.piece.lockDelayLimit = roundBpmToMs(bpm);
+      game.piece.gravity = framesToMs(1 / 20)
+      game.piece.lockDelayLimit = roundBpmToMs(bpm)
     },
     onInit: (game) => {
       switch(settings.game.beat.song){
         case 'non':
-          bpm = 180;
-          break;
+          bpm = 180
+          break
         case 'beat':
-          bpm = 166;
-          break;
+          bpm = 166
+          break
         case 'ritn':
-          bpm = 158.5;
-          break;
+          bpm = 158.5
+          break
       }
-      /* game.isRaceMode = true; */
-      game.beatTime = bpmToMs(bpm);
-      game.updateStats();
+      /* game.isRaceMode = true */
+      game.beatTime = bpmToMs(bpm)
+      game.updateStats()
     },
   },
   nontwo: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       const game = gameHandler.game
       const timePassed = game.timePassed + game.timePassedAre
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
+        respawnPiece(arg)
         if (timePassed > 54830 && timePassed < 63660) {
-          rotateReverse(arg);
+          rotateReverse(arg)
         } else {
-          rotate(arg);
+          rotate(arg)
         }
-        rotate180(arg);
-        shifting(arg);
+        rotate180(arg)
+        shifting(arg)
       }
       if (game.hold.isDisabled) {
-        classicGravity(arg);
+        classicGravity(arg)
       } else {
-        gravity(arg);
+        gravity(arg)
       }
-      hyperSoftDrop(arg);
-      hardDrop(arg);
+      hyperSoftDrop(arg)
+      hardDrop(arg)
       if (timePassed > 32000 && timePassed < 42660) {
         const calcNum = 42660 - 32000
         arg.piece.lockDelayLimit = Math.round(500 - ((timePassed - 32000) / calcNum) * 300)
-        $('#delay').innerHTML = `${Math.round(arg.piece.lockDelayLimit)} <b>ms</b>`;
+        $('#delay').innerHTML = `${Math.round(arg.piece.lockDelayLimit)} <b>ms</b>`
         $('#delay').classList.add('danger')
       } else {
         $('#delay').classList.remove('danger')
@@ -737,10 +737,10 @@ export const loops = {
       if (game.hold.isDisabled) {
         retroLockdown(arg, false)
       } else {
-        classicLockdown(arg);
+        classicLockdown(arg)
       }
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
       while (
         (((nonEvents[0][0] - 1) * 16) + (nonEvents[0][1] - 1)) * (1 / 12) * 1000
@@ -749,69 +749,69 @@ export const loops = {
         switch (eType) {
         case 'flashBg':
           resetAnimation('body', 'non-flash')
-          break;
+          break
         case 'gravChange':
           arg.piece.gravity = nonEvents[0][3]
-          break;
+          break
         case 'silOn':
           $('#game-container').classList.add('sil')
-          break;
+          break
         case 'silOff':
           $('#game-container').classList.remove('sil')
-          break;
+          break
         case 'silBoardOn':
           $('#stack').classList.add('sil')
-          break;
+          break
         case 'silBoardOff':
           $('#stack').classList.remove('sil')
-          break;
+          break
         case 'silPieceOn':
           $('#piece').classList.add('sil')
-          break;
+          break
         case 'silPieceOff':
           $('#piece').classList.remove('sil')
-          break;
+          break
         case 'setFlashSpeed':
           $('body').style.setProperty('--flash-speed', `${nonEvents[0][3]}s`)
-          break;
+          break
         case 'transform':
           const x = nonEvents[0][3]
           $('#game-container').style.transform = `perspective(${x[0]}em) translateX(${x[1]}em) translateY(${x[2]}em) translateZ(${x[3]}em) rotateX(${x[4]}deg) rotateY(${x[5]}deg) rotateZ(${x[6]}deg)`
-          break;
+          break
         case 'tranFunc':
             $('#game-container').style.transitionTimingFunction = nonEvents[0][3]
-            break;
+            break
         case 'tranSpeed':
           $('#game-container').style.transitionProperty = `transform`
           $('#game-container').style.transitionDuration = `${nonEvents[0][3]}s`
-          break;
+          break
         case 'showMessage':
-          $('#message').innerHTML = nonEvents[0][3];
-          resetAnimation('#message', 'dissolve');
-          break;
+          $('#message').innerHTML = nonEvents[0][3]
+          resetAnimation('#message', 'dissolve')
+          break
         case 'changeNext':
           game.next.nextLimit = nonEvents[0][3]
           game.next.isDirty = true
-          break;
+          break
         case 'startRetro':
           game.hold.isDirty = true
           game.hold.isDisabled = true
           game.piece.ghostIsVisible = false
           game.next.nextLimit = 1
           game.next.isDirty = true
-          break;
+          break
         case 'endRetro':
           game.hold.isDirty = true
           game.hold.isDisabled = false
           game.piece.ghostIsVisible = true
           game.next.nextLimit = 6
           game.next.isDirty = true
-          break;
+          break
         }
         nonEvents.shift()
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
 
@@ -821,8 +821,8 @@ export const loops = {
       game.rtaLimit = true
       game.stat.level = 1
       const PERS = 35
-      game.hideGrid = true;
-      game.stack.updateGrid();
+      game.hideGrid = true
+      game.stack.updateGrid()
       nonEvents = [
         [1, 1, 'tranFunc', 'linear'],
         [1, 1, 'gravChange', 16.6666666667],
@@ -1485,259 +1485,259 @@ export const loops = {
         [97, 1, 'transform', [PERS, 0, 0, -150, 0, 0, 0]],
         [Number.MAX_SAFE_INTEGER, 'none']
       ]
-      game.updateStats();
+      game.updateStats()
     },
   },
   sprint: {
     update: (arg) => {
-      const game = gameHandler.game;
+      const game = gameHandler.game
       if (game.pps >= 2 && game.settings.hasPaceBgm) {
         if (!game.startedOnPaceEvent) {
-          game.onPaceTime = game.timePassed;
-          game.startedOnPaceEvent = true;
+          game.onPaceTime = game.timePassed
+          game.startedOnPaceEvent = true
         }
         if (game.timePassed - game.onPaceTime >= 3000) {
           if (!sound.paceBgmIsRaised) {
-            sound.add('onpace');
+            sound.add('onpace')
           }
-          sound.raisePaceBgm();
-          $('#timer').classList.add('pace');
+          sound.raisePaceBgm()
+          $('#timer').classList.add('pace')
         }
       } else {
         if (sound.paceBgmIsRaised) {
-          sound.add('offpace');
+          sound.add('offpace')
         }
-        game.startedOnPaceEvent = false;
-        sound.lowerPaceBgm();
-        $('#timer').classList.remove('pace');
+        game.startedOnPaceEvent = false
+        sound.lowerPaceBgm()
+        $('#timer').classList.remove('pace')
       }
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      softDrop(arg, 70);
-      hardDrop(arg);
-      extendedLockdown(arg);
+      gravity(arg)
+      softDrop(arg, 70)
+      hardDrop(arg)
+      extendedLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
     },
     onInit: (game) => {
-      game.lineGoal = settings.game.sprint.lineGoal;
-      game.isRaceMode = true;
-      game.stat.level = 1;
-      game.appends.line = `<span class="small">/${settings.game.sprint.lineGoal}</span>`;
-      game.piece.gravity = 1000;
+      game.lineGoal = settings.game.sprint.lineGoal
+      game.isRaceMode = true
+      game.stat.level = 1
+      game.appends.line = `<span class="small">/${settings.game.sprint.lineGoal}</span>`
+      game.piece.gravity = 1000
       if (settings.game.sprint.regulationMode) {
-        game.piece.areLimit = 0;
-        game.piece.areLineLimit = 0;
-        game.piece.areLimitLineModifier = 0;
+        game.piece.areLimit = 0
+        game.piece.areLineLimit = 0
+        game.piece.areLimitLineModifier = 0
       }
-      updateFallSpeed(game);
-      game.updateStats();
+      updateFallSpeed(game)
+      game.updateStats()
     },
   },
   ultra: {
     update: (arg) => {
-      const game = gameHandler.game;
+      const game = gameHandler.game
       if (game.timePassed + (game.rtaLimit ? game.timePassedAre : 0) >= game.timeGoal - 30000) {
         if (!game.playedHurryUp) {
-          sound.add('hurryup');
-          $(`#timer${game.rtaLimit ? '-real' : ''}`).classList.add('hurry-up');
-          game.playedHurryUp = true;
+          sound.add('hurryup')
+          $(`#timer${game.rtaLimit ? '-real' : ''}`).classList.add('hurry-up')
+          game.playedHurryUp = true
         }
-        sound.raisePaceBgm();
+        sound.raisePaceBgm()
       } else {
-        game.playedHurryUp = false;
+        game.playedHurryUp = false
       }
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      softDrop(arg, 70);
-      hardDrop(arg);
-      extendedLockdown(arg);
+      gravity(arg)
+      softDrop(arg, 70)
+      hardDrop(arg)
+      extendedLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
     },
     onInit: (game) => {
-      game.timeGoal = settings.game.ultra.timeLimit;
-      game.rtaLimit = settings.game.ultra.useRta;
-      game.isRaceMode = true;
-      game.piece.gravity = 1000;
-      updateFallSpeed(game);
-      game.stat.level = 1;
-      game.updateStats();
+      game.timeGoal = settings.game.ultra.timeLimit
+      game.rtaLimit = settings.game.ultra.useRta
+      game.isRaceMode = true
+      game.piece.gravity = 1000
+      updateFallSpeed(game)
+      game.stat.level = 1
+      game.updateStats()
     },
   },
   combo: {
     update: (arg) => {
-      const game = gameHandler.game;
+      const game = gameHandler.game
       if (game.timePassed >= game.timeGoal - 10000) {
         if (!game.playedHurryUp) {
-          sound.add('hurryup');
-          $('#timer').classList.add('hurry-up');
-          game.playedHurryUp = true;
+          sound.add('hurryup')
+          $('#timer').classList.add('hurry-up')
+          game.playedHurryUp = true
         }
-        sound.raisePaceBgm();
+        sound.raisePaceBgm()
       } else {
-        game.playedHurryUp = false;
+        game.playedHurryUp = false
       }
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      softDrop(arg, 70);
-      hardDrop(arg);
-      extendedLockdown(arg);
+      gravity(arg)
+      softDrop(arg, 70)
+      hardDrop(arg)
+      extendedLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
     },
     onInit: (game) => {
       if (settings.game.combo.holdType === 'skip') {
-        game.hold.useSkip = true;
-        game.hold.holdAmount = 2;
-        game.hold.holdAmountLimit = 2;
-        game.hold.gainHoldOnPlacement = true;
-        game.resize();
+        game.hold.useSkip = true
+        game.hold.holdAmount = 2
+        game.hold.holdAmountLimit = 2
+        game.hold.gainHoldOnPlacement = true
+        game.resize()
       }
-      if (!(input.holdingShift)) {game.timeGoal = 30000;}
+      if (!(input.holdingShift)) {game.timeGoal = 30000}
       else {
-        $('#next-label').style.animationName = "hurry-up-timer";
-        $('#next-label').style.animationDuration = "0.4s";
-        $('#next-label').style.animationIterationCount = "infinite";
-        $('#next-label').style.animationDirection = "alternate";
-        $('#next-label').style.animationTimingFunction = "ease-in-out";
-        $('#next-label').style.fontSize = "1.3em";
+        $('#next-label').style.animationName = "hurry-up-timer"
+        $('#next-label').style.animationDuration = "0.4s"
+        $('#next-label').style.animationIterationCount = "infinite"
+        $('#next-label').style.animationDirection = "alternate"
+        $('#next-label').style.animationTimingFunction = "ease-in-out"
+        $('#next-label').style.fontSize = "1.3em"
       }
-      game.isRaceMode = true;
-      game.piece.gravity = 1000;
-      updateFallSpeed(game);
-      game.stat.level = 1;
-      game.updateStats();
-      window.gridtemp = Math.floor(Math.random() * 9);
-      if (window.gridtemp == 0) window.gridtemp = 'red';
-      else if (window.gridtemp == 1) window.gridtemp = 'orange';
-      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
-      else if (window.gridtemp == 3) window.gridtemp = 'green';
-      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
-      else if (window.gridtemp == 5) window.gridtemp = 'blue';
-      else if (window.gridtemp == 6) window.gridtemp = 'purple';
-      else if (window.gridtemp == 7) window.gridtemp = 'white';
-      else if (window.gridtemp == 8) window.gridtemp = 'black';
-      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp;
-      window.gridtemp = Math.floor(Math.random() * 9);
-      if (window.gridtemp == 0) window.gridtemp = 'red';
-      else if (window.gridtemp == 1) window.gridtemp = 'orange';
-      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
-      else if (window.gridtemp == 3) window.gridtemp = 'green';
-      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
-      else if (window.gridtemp == 5) window.gridtemp = 'blue';
-      else if (window.gridtemp == 6) window.gridtemp = 'purple';
-      else if (window.gridtemp == 7) window.gridtemp = 'white';
-      else if (window.gridtemp == 8) window.gridtemp = 'black';
-      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp;
-      window.gridtemp = Math.floor(Math.random() * 9);
-      if (window.gridtemp == 0) window.gridtemp = 'red';
-      else if (window.gridtemp == 1) window.gridtemp = 'orange';
-      else if (window.gridtemp == 2) window.gridtemp = 'yellow';
-      else if (window.gridtemp == 3) window.gridtemp = 'green';
-      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue';
-      else if (window.gridtemp == 5) window.gridtemp = 'blue';
-      else if (window.gridtemp == 6) window.gridtemp = 'purple';
-      else if (window.gridtemp == 7) window.gridtemp = 'white';
-      else if (window.gridtemp == 8) window.gridtemp = 'black';
+      game.isRaceMode = true
+      game.piece.gravity = 1000
+      updateFallSpeed(game)
+      game.stat.level = 1
+      game.updateStats()
+      window.gridtemp = Math.floor(Math.random() * 9)
+      if (window.gridtemp == 0) window.gridtemp = 'red'
+      else if (window.gridtemp == 1) window.gridtemp = 'orange'
+      else if (window.gridtemp == 2) window.gridtemp = 'yellow'
+      else if (window.gridtemp == 3) window.gridtemp = 'green'
+      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue'
+      else if (window.gridtemp == 5) window.gridtemp = 'blue'
+      else if (window.gridtemp == 6) window.gridtemp = 'purple'
+      else if (window.gridtemp == 7) window.gridtemp = 'white'
+      else if (window.gridtemp == 8) window.gridtemp = 'black'
+      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp
+      window.gridtemp = Math.floor(Math.random() * 9)
+      if (window.gridtemp == 0) window.gridtemp = 'red'
+      else if (window.gridtemp == 1) window.gridtemp = 'orange'
+      else if (window.gridtemp == 2) window.gridtemp = 'yellow'
+      else if (window.gridtemp == 3) window.gridtemp = 'green'
+      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue'
+      else if (window.gridtemp == 5) window.gridtemp = 'blue'
+      else if (window.gridtemp == 6) window.gridtemp = 'purple'
+      else if (window.gridtemp == 7) window.gridtemp = 'white'
+      else if (window.gridtemp == 8) window.gridtemp = 'black'
+      game.stack.grid[0][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp
+      window.gridtemp = Math.floor(Math.random() * 9)
+      if (window.gridtemp == 0) window.gridtemp = 'red'
+      else if (window.gridtemp == 1) window.gridtemp = 'orange'
+      else if (window.gridtemp == 2) window.gridtemp = 'yellow'
+      else if (window.gridtemp == 3) window.gridtemp = 'green'
+      else if (window.gridtemp == 4) window.gridtemp = 'lightBlue'
+      else if (window.gridtemp == 5) window.gridtemp = 'blue'
+      else if (window.gridtemp == 6) window.gridtemp = 'purple'
+      else if (window.gridtemp == 7) window.gridtemp = 'white'
+      else if (window.gridtemp == 8) window.gridtemp = 'black'
       if (game.next.queue[0] === 'J') {
-        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp;
+        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 1] = gridtemp
       } else {
-        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp;
+        game.stack.grid[1][game.stack.height + game.stack.hiddenHeight - 2] = gridtemp
       }
     },
   },
   standardx: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      hyperSoftDrop(arg);
-      hardDrop(arg);
-      classicLockdown(arg);
+      gravity(arg)
+      hyperSoftDrop(arg)
+      hardDrop(arg)
+      classicLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.floor(game.stat.line / 10 + 1);
-      const x = game.stat.level;
-      const gravityEquation = (0.9 - ((x - 1) * 0.001)) ** (x - 1);
-      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20));
+      game.stat.level = Math.floor(game.stat.line / 10 + 1)
+      const x = game.stat.level
+      const gravityEquation = (0.9 - ((x - 1) * 0.001)) ** (x - 1)
+      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
       if (game.stat.level >= 40) {
-        game.piece.lockDelayLimit = ~~framesToMs((30 * Math.pow(0.93, (Math.pow(game.stat.level - 40, 0.8)))));
+        game.piece.lockDelayLimit = ~~framesToMs((30 * Math.pow(0.93, (Math.pow(game.stat.level - 40, 0.8)))))
       } else {
-        game.piece.lockDelayLimit = 500;
+        game.piece.lockDelayLimit = 500
       }
-      updateFallSpeed(game);
-      levelUpdate(game);
+      updateFallSpeed(game)
+      levelUpdate(game)
     },
     onInit: (game) => {
-      game.stat.level = 1;
-      lastLevel = 1;
-      game.piece.gravity = 1000;
-      updateFallSpeed(game);
-      game.updateStats();
+      game.stat.level = 1
+      lastLevel = 1
+      game.piece.gravity = 1000
+      updateFallSpeed(game)
+      game.updateStats()
     },
   },
   survival: {
@@ -1801,25 +1801,19 @@ export const loops = {
     onPieceSpawn: (game) => {},
     onInit: (game) => {
       if (settings.game.survival.matrixWidth === 'standard') {
-        game.settings.width = 10;
-        game.stack.width = 10;
-        game.stack.new();
-        game.piece.xSpawnOffset = 0;
-        game.resize();
+        game.settings.width = 10
+        game.stack.width = 10
+        game.stack.new()
+        game.piece.xSpawnOffset = 0
+        game.resize()
       }
       const difficulty = settings.game.survival.difficulty
-      game.garbageRateExponent = [1.91, 1.95, 1.97, 2, 2.03, 2.07, 2.1][
-        difficulty
-      ]
-      game.garbageRateMultiplier = [0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.1][
-        difficulty
-      ]
+      game.garbageRateExponent = [1.91, 1.95, 1.97, 2, 2.03, 2.07, 2.1][difficulty]
+      game.garbageRateMultiplier = [0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.1][difficulty]
       game.garbageRateAdditive = [1, 1.5, 2, 2.5, 9, 18, 35][difficulty]
       game.stack.garbageSwitchRate = [1, 1, 8, 4, 2, 1, 1][difficulty]
       game.stack.antiGarbageBuffer = [-20, -10, -8, -6, -4, -2, 0][difficulty]
-      if (difficulty <= 1) {
-        game.stack.copyBottomForGarbage = true
-      }
+      if (difficulty <= 1) game.stack.copyBottomForGarbage = true
       game.garbageRate = 0
       game.marginTime = 0
       game.marginTimeLimit = 5000
@@ -1833,191 +1827,191 @@ export const loops = {
   },
   master: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      softDrop(arg);
-      hardDrop(arg);
+      gravity(arg)
+      softDrop(arg)
+      hardDrop(arg)
       switch (settings.game.master.lockdownMode) {
         case 'infinity':
-          infiniteLockdown(arg);
-          break;
+          infiniteLockdown(arg)
+          break
         case 'extended':
-          extendedLockdown(arg);
-          break;
+          extendedLockdown(arg)
+          break
         case 'classic':
-          classicLockdown(arg);
-          break;
+          classicLockdown(arg)
+          break
       }
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.max(Math.floor(game.stat.line / 10 + 1), settings.game.master.startingLevel);
-      const calcLevel = Math.min(29, game.stat.level - 1);
+      game.stat.level = Math.max(Math.floor(game.stat.line / 10 + 1), settings.game.master.startingLevel)
+      const calcLevel = Math.min(29, game.stat.level - 1)
       switch (settings.game.master.lockDelayMode) {
         case "Master":
-          var DELAY_TABLE = [500, 480, 461, 442, 425, 408, 391, 376, 361, 346, 332, 319, 306, 294, 282, 271, 260, 250, 240, 230, 221, 212, 204, 196, 188, 180, 173, 166, 159, 153];
-          var ARE_TABLE = [400, 376, 353, 332, 312, 294, 276, 259, 244, 229, 215, 203, 190, 179, 168, 158, 149, 140, 131, 123, 116, 109, 103, 96, 91, 85, 80, 75, 71, 65];
-          break;
+          var DELAY_TABLE = [500, 480, 461, 442, 425, 408, 391, 376, 361, 346, 332, 319, 306, 294, 282, 271, 260, 250, 240, 230, 221, 212, 204, 196, 188, 180, 173, 166, 159, 153]
+          var ARE_TABLE = [400, 376, 353, 332, 312, 294, 276, 259, 244, 229, 215, 203, 190, 179, 168, 158, 149, 140, 131, 123, 116, 109, 103, 96, 91, 85, 80, 75, 71, 65]
+          break
         case "Master+":
-          var DELAY_TABLE = [483.3, 466.7, 450, 433.3, 416.7, 400, 383.3, 366.7, 350, 333.3, 316.7, 300, 283.3, 266.7, 250, 233.3, 216.7, 200, 183.3, 166.7, 150, 133.3, 116.7, 100, 83.3, 66.7, 50, 33.3, 16.7, 1];
-          var ARE_TABLE = [400, 376, 353, 332, 312, 294, 276, 259, 244, 229, 215, 203, 190, 179, 168, 158, 149, 140, 131, 123, 116, 109, 103, 96, 91, 85, 80, 75, 71, 65];
-          break;
+          var DELAY_TABLE = [483.3, 466.7, 450, 433.3, 416.7, 400, 383.3, 366.7, 350, 333.3, 316.7, 300, 283.3, 266.7, 250, 233.3, 216.7, 200, 183.3, 166.7, 150, 133.3, 116.7, 100, 83.3, 66.7, 50, 33.3, 16.7, 1]
+          var ARE_TABLE = [400, 376, 353, 332, 312, 294, 276, 259, 244, 229, 215, 203, 190, 179, 168, 158, 149, 140, 131, 123, 116, 109, 103, 96, 91, 85, 80, 75, 71, 65]
+          break
         case "Connected":
-          var DELAY_TABLE = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 167, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 95];
-          var ARE_TABLE = [400, 376, 353, 332, 312, 294, 276, 259, 244, 229, 215, 203, 190, 179, 168, 158, 149, 140, 131, 123, 116, 109, 103, 96, 91, 85, 80, 75, 71, 65];
-          break;
+          var DELAY_TABLE = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 167, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 95]
+          var ARE_TABLE = [400, 376, 353, 332, 312, 294, 276, 259, 244, 229, 215, 203, 190, 179, 168, 158, 149, 140, 131, 123, 116, 109, 103, 96, 91, 85, 80, 75, 71, 65]
+          break
       }
-      game.piece.lockDelayLimit = DELAY_TABLE[calcLevel];
-      game.piece.areLimit = ARE_TABLE[calcLevel];
-      game.piece.areLineLimit = ARE_TABLE[calcLevel];
-      game.stat.entrydelay = `${ARE_TABLE[calcLevel]}ms`;
-      game.hold.isDisabled = !settings.game.master.hold;
-      levelUpdate(game);
+      game.piece.lockDelayLimit = DELAY_TABLE[calcLevel]
+      game.piece.areLimit = ARE_TABLE[calcLevel]
+      game.piece.areLineLimit = ARE_TABLE[calcLevel]
+      game.stat.entrydelay = `${ARE_TABLE[calcLevel]}ms`
+      game.hold.isDisabled = !settings.game.master.hold
+      levelUpdate(game)
     },
     onInit: (game) => {
       if (settings.game.master.startingLevel < 10) {
-        sound.playMenuSe('hardstart1');
+        sound.playMenuSe('hardstart1')
       } else if (settings.game.master.startingLevel < 20) {
-        sound.playMenuSe('hardstart2');
+        sound.playMenuSe('hardstart2')
       } else if (settings.game.master.startingLevel < 25) {
-        sound.playMenuSe('hardstart3');
+        sound.playMenuSe('hardstart3')
       } else {
-        sound.playMenuSe('hardstart4');
+        sound.playMenuSe('hardstart4')
       }
-      game.lineGoal = 300;
-      game.stat.level = settings.game.master.startingLevel;
-      lastLevel = parseInt(settings.game.master.startingLevel);
-      game.prefixes.level = 'M';
-      game.stat.entrydelay = '400ms';
-      game.piece.gravity = framesToMs(1 / 20);
-      updateFallSpeed(game);
-      game.updateStats();
+      game.lineGoal = 300
+      game.stat.level = settings.game.master.startingLevel
+      lastLevel = parseInt(settings.game.master.startingLevel)
+      game.prefixes.level = 'M'
+      game.stat.entrydelay = '400ms'
+      game.piece.gravity = framesToMs(1 / 20)
+      updateFallSpeed(game)
+      game.updateStats()
     },
   },
   prox: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        initialDas(arg);
-        initialRotation(arg);
-        initialHold(arg);
-        arg.piece.are += arg.ms;
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        rotate180(arg);
-        shifting(arg);
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
       }
-      gravity(arg);
-      hyperSoftDrop(arg);
-      hardDrop(arg);
-      classicLockdown(arg);
+      gravity(arg)
+      hyperSoftDrop(arg)
+      hardDrop(arg)
+      classicLockdown(arg)
       if (!arg.piece.inAre) {
-        hold(arg);
+        hold(arg)
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.min(10, Math.max(settings.game.prox.startingLevel, Math.floor(game.stat.line / 20 + 1)));
-      const calcLevel = game.stat.level - 1;
+      game.stat.level = Math.min(10, Math.max(settings.game.prox.startingLevel, Math.floor(game.stat.line / 20 + 1)))
+      const calcLevel = game.stat.level - 1
       const SPEED_TABLE = [
         1, 1 / 2, 1 / 5, 1 / 20, 1 / 20,
-        1 / 20, 1 / 20, 1 / 20, 1 / 20, 1 / 20];
-      game.piece.gravity = framesToMs(SPEED_TABLE[calcLevel]);
+        1 / 20, 1 / 20, 1 / 20, 1 / 20, 1 / 20]
+      game.piece.gravity = framesToMs(SPEED_TABLE[calcLevel])
       const DELAY_TABLE = [
         500, 475, 450, 375, 350,
-        325, 300, 275, 250, 225];
-      game.piece.lockDelayLimit = DELAY_TABLE[calcLevel];
+        325, 300, 275, 250, 225]
+      game.piece.lockDelayLimit = DELAY_TABLE[calcLevel]
       const NEXT_TABLE = [
         6, 5, 4, 3, 2,
-        1, 1, 1, 1, 1];
-      game.next.nextLimit = NEXT_TABLE[calcLevel];
+        1, 1, 1, 1, 1]
+      game.next.nextLimit = NEXT_TABLE[calcLevel]
       if (calcLevel >= 3 && !shown20GMessage) {
-        $('#message').textContent = '20G';
-        resetAnimation('#message', 'dissolve');
-        shown20GMessage = true;
+        $('#message').textContent = '20G'
+        resetAnimation('#message', 'dissolve')
+        shown20GMessage = true
       }
       if (calcLevel >= 8 && !game.hold.isDisabled) {
         if (game.stat.piece > 0) {
-          sound.killBgm();
-          sound.playBgm(game.settings.music[1], game.type);
+          sound.killBgm()
+          sound.playBgm(game.settings.music[1], game.type)
         }
-        game.useAltMusic = true;
-        game.hold.isDisabled = true;
-        game.hold.isDirty = true;
+        game.useAltMusic = true
+        game.hold.isDisabled = true
+        game.hold.isDirty = true
       }
       // if (game.stat.level > 1 && !shownHoldWarning) {
-      //   $('#hold-disappear-message').textContent = locale.getString('ui', 'watchOutWarning');
+      //   $('#hold-disappear-message').textContent = locale.getString('ui', 'watchOutWarning')
       // }
-      levelUpdate(game);
+      levelUpdate(game)
     },
     onInit: (game) => {
-      sound.playMenuSe('hardstart3');
-      shown20GMessage = (settings.game.prox.startingLevel > 3) ? true : false;
-      shownHoldWarning = false;
-      game.lineGoal = 200;
-      game.stat.level = settings.game.prox.startingLevel;
-      lastLevel = parseInt(settings.game.prox.startingLevel);
-      game.prefixes.level = 'MACH ';
-      game.smallStats.level = true;
-      game.resize();
-      updateFallSpeed(game);
-      game.updateStats();
+      sound.playMenuSe('hardstart3')
+      shown20GMessage = (settings.game.prox.startingLevel > 3) ? true : false
+      shownHoldWarning = false
+      game.lineGoal = 200
+      game.stat.level = settings.game.prox.startingLevel
+      lastLevel = parseInt(settings.game.prox.startingLevel)
+      game.prefixes.level = 'MACH '
+      game.smallStats.level = true
+      game.resize()
+      updateFallSpeed(game)
+      game.updateStats()
     },
   },
   deluxe: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        handheldDasAre(arg, framesToMs(9), framesToMs(3));
-        arg.piece.are += arg.ms;
+        handheldDasAre(arg, framesToMs(9), framesToMs(3))
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        shiftingRetro(arg, framesToMs(9), framesToMs(3));
+        respawnPiece(arg)
+        rotate(arg)
+        shiftingRetro(arg, framesToMs(9), framesToMs(3))
       }
-      deluxeGravity(arg);
-      softDropRetro(arg, framesToMs(2));
-      classicLockdown(arg);
-      lockFlash(arg);
-      updateLasts(arg);
+      deluxeGravity(arg)
+      softDropRetro(arg, framesToMs(2))
+      classicLockdown(arg)
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
-      // game.stat.level = Math.floor(game.stat.line / 10);
-      game.stat.level = Math.max(settings.game.deluxe.startingLevel, Math.floor(game.stat.line / 10));
-      const SPEED_TABLE = [53, 49, 45, 41, 37, 33, 28, 22, 17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3];
-      let levelAdd = 0;
+      // game.stat.level = Math.floor(game.stat.line / 10)
+      game.stat.level = Math.max(settings.game.deluxe.startingLevel, Math.floor(game.stat.line / 10))
+      const SPEED_TABLE = [53, 49, 45, 41, 37, 33, 28, 22, 17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3]
+      let levelAdd = 0
       if (game.appends.level === '♥') {
-        levelAdd = 10;
+        levelAdd = 10
       }
-      game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(20, game.stat.level + levelAdd)]);
-      levelUpdate(game);
+      game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(20, game.stat.level + levelAdd)])
+      levelUpdate(game)
     },
     onInit: (game) => {
-      // game.stat.level = 0;
-      // game.appends.level = '♥';
-      // lastLevel = 0;
-      game.stat.level = settings.game.deluxe.startingLevel;
-      lastLevel = parseInt(settings.game.deluxe.startingLevel);
+      // game.stat.level = 0
+      // game.appends.level = '♥'
+      // lastLevel = 0
+      game.stat.level = settings.game.deluxe.startingLevel
+      lastLevel = parseInt(settings.game.deluxe.startingLevel)
       if (settings.settings.skin !== 'auto') {
-        game.makeSprite();
-        game.piece.useSpecialI = false;
+        game.makeSprite()
+        game.piece.useSpecialI = false
       } else {
         game.makeSprite(
             [
@@ -2028,48 +2022,48 @@ export const loops = {
             ],
             ['mino', 'stack'],
             'deluxe-special',
-        );
-        game.colors = PIECE_COLORS.handheldSpecial;
+        )
+        game.colors = PIECE_COLORS.handheldSpecial
       }
     },
   },
   handheld: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       if (arg.piece.inAre) {
-        handheldDasAre(arg, framesToMs(23), 150);
-        arg.piece.are += arg.ms;
+        handheldDasAre(arg, framesToMs(23), 150)
+        arg.piece.are += arg.ms
       } else {
-        respawnPiece(arg);
-        rotate(arg);
-        shiftingRetro(arg, framesToMs(23), 150);
+        respawnPiece(arg)
+        rotate(arg)
+        shiftingRetro(arg, framesToMs(23), 150)
       }
-      classicGravity(arg);
-      softDropRetro(arg, 50);
-      retroLockdown(arg);
-      lockFlash(arg);
-      updateLasts(arg);
+      classicGravity(arg)
+      softDropRetro(arg, 50)
+      retroLockdown(arg)
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.max(settings.game.handheld.startingLevel, Math.floor(game.stat.line / 10));
-      const SPEED_TABLE = [53, 49, 45, 41, 37, 33, 28, 22, 17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3];
-      let levelAdd = 0;
+      game.stat.level = Math.max(settings.game.handheld.startingLevel, Math.floor(game.stat.line / 10))
+      const SPEED_TABLE = [53, 49, 45, 41, 37, 33, 28, 22, 17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3]
+      let levelAdd = 0
       if (game.appends.level === '♥') {
-        levelAdd = 10;
+        levelAdd = 10
       }
-      game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(20, game.stat.level + levelAdd)]);
-      levelUpdate(game);
+      game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(20, game.stat.level + levelAdd)])
+      levelUpdate(game)
     },
     onInit: (game) => {
-      game.stat.level = settings.game.handheld.startingLevel;
-      lastLevel = parseInt(settings.game.handheld.startingLevel);
+      game.stat.level = settings.game.handheld.startingLevel
+      lastLevel = parseInt(settings.game.handheld.startingLevel)
       if (input.holdingShift) {
         sound.add('levelup')
-        game.appends.level = '♥';
+        game.appends.level = '♥'
       }
       if (settings.settings.skin !== 'auto') {
-        game.makeSprite();
-        game.piece.useSpecialI = false;
+        game.makeSprite()
+        game.piece.useSpecialI = false
       } else {
         game.makeSprite(
             [
@@ -2080,59 +2074,59 @@ export const loops = {
             ],
             ['mino'],
             'handheld-special',
-        );
-        game.colors = PIECE_COLORS.handheldSpecial;
-        game.updateStats();
+        )
+        game.colors = PIECE_COLORS.handheldSpecial
+        game.updateStats()
       }
     },
   },
   retro: {
     update: (arg) => {
-      collapse(arg);
+      collapse(arg)
       if (arg.stack.levelUpAnimation < arg.stack.levelUpAnimationLimit) {
-        arg.stack.makeAllDirty();
-        arg.stack.isDirty = true;
-        arg.stack.levelUpAnimation += arg.ms;
+        arg.stack.makeAllDirty()
+        arg.stack.isDirty = true
+        arg.stack.levelUpAnimation += arg.ms
       }
       if (settings.game.retro.mechanics === 'accurate') {
         if (arg.piece.inAre) {
-          nesDasAre(arg);
-          arg.piece.are += arg.ms;
+          nesDasAre(arg)
+          arg.piece.are += arg.ms
         } else {
-          respawnPiece(arg);
-          shiftingNes(arg);
-          rotate(arg);
-          classicGravity(arg);
-          softDropNes(arg);
-          retroLockdown(arg, true);
+          respawnPiece(arg)
+          shiftingNes(arg)
+          rotate(arg)
+          classicGravity(arg)
+          softDropNes(arg)
+          retroLockdown(arg, true)
         }
       } else {
         if (arg.piece.inAre) {
-          initialDas(arg);
-          initialRotation(arg);
-          arg.piece.are += arg.ms;
+          initialDas(arg)
+          initialRotation(arg)
+          arg.piece.are += arg.ms
         } else {
-          respawnPiece(arg);
-          rotate(arg);
-          rotate180(arg);
-          shifting(arg);
+          respawnPiece(arg)
+          rotate(arg)
+          rotate180(arg)
+          shifting(arg)
         }
-        classicGravity(arg);
-        softDropNes(arg, false);
-        hardDrop(arg);
-        retroLockdown(arg, true);
+        classicGravity(arg)
+        softDropNes(arg, false)
+        hardDrop(arg)
+        retroLockdown(arg, true)
       }
       if (!arg.piece.inAre) {
-        arg.piece.holdingTime += arg.ms;
+        arg.piece.holdingTime += arg.ms
       }
-      lockFlash(arg);
-      updateLasts(arg);
+      lockFlash(arg)
+      updateLasts(arg)
     },
     onPieceSpawn: (game) => {
       var startLevel = settings.game.retro.startingLevel
-      if (settings.game.retro.startingLevel > 19 && settings.game.retro.startingLevel < 29) {startLevel = 19};
-      const startingLines = Math.min((Math.max(100, startLevel * 10 - 50)), (startLevel * 10 + 10));
-      game.stat.level = Math.floor(Math.max(((game.stat.line + 10 - startingLines + (startLevel * 10)) / 10), startLevel));
+      if (settings.game.retro.startingLevel > 19 && settings.game.retro.startingLevel < 29) {startLevel = 19}
+      const startingLines = Math.min((Math.max(100, startLevel * 10 - 50)), (startLevel * 10 + 10))
+      game.stat.level = Math.floor(Math.max(((game.stat.line + 10 - startingLines + (startLevel * 10)) / 10), startLevel))
       const SPEED_TABLE = [
         48, 43, 38, 33, 28,
         23, 18, 13, 8, 5,
@@ -2142,32 +2136,32 @@ export const loops = {
         2, 2, 2, 2, 1,
         1, 1, 1, 1, 1,
         1, 1, 1, 1, 0.5,
-      ];
+      ]
       if (settings.game.retro.compMode == false) {game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(29, game.stat.level)])}
-      else {game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(39, game.stat.level)])};
+      else {game.piece.gravity = framesToMs(SPEED_TABLE[Math.min(39, game.stat.level)])}
       if (game.next.queue[0] === 'I') {
-        lastSeenI = 0;
+        lastSeenI = 0
       } else {
-        lastSeenI++;
+        lastSeenI++
       }
-      levelUpdate(game);
+      levelUpdate(game)
     },
     onInit: (game) => {
       if (settings.game.retro.mechanics === 'accurate') {
-        game.hideGrid = true;
-        game.stack.updateGrid();
+        game.hideGrid = true
+        game.stack.updateGrid()
       }
-      lastSeenI = 0;
-      game.piece.holdingTimeLimit = 1600;
-      game.redrawOnLevelUp = true;
-      game.stat.level = settings.game.retro.startingLevel;
-      lastLevel = parseInt(settings.game.retro.startingLevel);
+      lastSeenI = 0
+      game.piece.holdingTimeLimit = 1600
+      game.redrawOnLevelUp = true
+      game.stat.level = settings.game.retro.startingLevel
+      lastLevel = parseInt(settings.game.retro.startingLevel)
       if (settings.game.retro.startingLevel > 19 && settings.game.retro.startingLevel < 29) {
-        game.stat.level = 19;
-        lastLevel = parseInt(19);
-      };
+        game.stat.level = 19
+        lastLevel = parseInt(19)
+      }
       if (settings.settings.skin !== 'auto') {
-        game.makeSprite();
+        game.makeSprite()
       } else {
         game.makeSprite(
             [
@@ -2184,15 +2178,15 @@ export const loops = {
             ],
             ['mino'],
             'retro-special',
-        );
-        game.piece.useRetroColors = true;
-        game.colors = PIECE_COLORS.retroSpecial;
+        )
+        game.piece.useRetroColors = true
+        game.colors = PIECE_COLORS.retroSpecial
       }
-      game.stack.levelUpAnimation = 1000;
-      game.stack.levelUpAnimationLimit = 450;
-      game.updateStats();
-      game.piece.lockDownType = null;
-      game.drawLockdown();
+      game.stack.levelUpAnimation = 1000
+      game.stack.levelUpAnimationLimit = 450
+      game.updateStats()
+      game.piece.lockDownType = null
+      game.drawLockdown()
     },
   },
-};
+}

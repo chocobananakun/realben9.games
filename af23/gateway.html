@@ -4,10 +4,10 @@
 <hr></hr>
 <p id="type" style="text-align:center">nginx</p>
 <script>
-	var element;
-	element = document.getElementById("type");
+	var element
+	element = document.getElementById("type")
 	if (element) {
-		var type = Math.floor(Math.random() * 10);
+		var type = Math.floor(Math.random() * 10)
 		if (type == 0) {element.outerHTML = '<p id="type" style="text-align:center">nginx</p>'}
 		else if (type == 1) {element.outerHTML = '<p id="type" style="text-align:center">cloudflare</p>'}
 		else if (type == 2) {element.outerHTML = '<p id="type" style="text-align:center">cloudflare-nginx</p>'}

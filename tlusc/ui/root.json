@@ -145,7 +145,8 @@
       "width": "half",
       "description": "Listen to the original soundtrack (coming soon!)",
       "action": "link",
-      "url": "https://soundcloud.com/tetra-developer-studio/sets/tetra-legends-soundtrack"
+      "url": "https://www.youtube.com/playlist?list=OLAK5uy_ka56F4BS_XXfxY3YZGN5mfBGSoSIrPvj0",
+      "oldUrl": "https://soundcloud.com/tetra-developer-studio/sets/tetra-legends-soundtrack"
     },
     {
       "fixedText": true,
@@ -175,7 +176,9 @@
       "fixedText": true,
       "label": "Edited by : Talon",
       "description": "Find a problem? Have a suggestion? Just wanna talk to Talon? Message him on Discord : Talon#7854. Note that I often won't merge his version with this.",
-      "width": "half"
+      "width": "half",
+      "action": "link",
+      "url": "https://oktalon-szoradi.github.io"
     }
   ]
 }
