@@ -111,18 +111,45 @@ export default class Hold extends GameModule {
         break
     }
     const cellSize = this.parent.cellSize
-    const offset = this.parent.nextOffsets[this.pieceName]
     const ctx = this.ctx
-    for (let y = 0; y < shape.length; y++) {
-      for (let x = 0; x < shape[y].length; x++) {
-        const color = this.parent.colors[this.pieceName]
-        const img = document.getElementById(`mino-${color}`)
-        const isFilled = shape[y][x]
-        if (isFilled) {
-          const xPos = x * cellSize + offset[0] * cellSize
-          const yPos = y * cellSize + offset[1] * cellSize
-          img.height = cellSize
-          ctx.drawImage(img, xPos, Math.floor(yPos), cellSize, cellSize)
+    if (window.panlvl >= 800) {
+      game.shapedisp0 = Math.floor(Math.random() * 7)
+      if (game.shapedisp0 == 0) game.piecedisp = "T"
+      else if (game.shapedisp0 == 1) game.piecedisp = "J"
+      else if (game.shapedisp0 == 2) game.piecedisp = "Z"
+      else if (game.shapedisp0 == 3) game.piecedisp = "O"
+      else if (game.shapedisp0 == 4) game.piecedisp = "S"
+      else if (game.shapedisp0 == 5) game.piecedisp = "L"
+      else if (game.shapedisp0 == 6) game.piecedisp = "I"
+      game.shapedisp = PIECES[game.piecedisp].shape[INITIAL_ORIENTATION[this.parent.rotationSystem][game.piecedisp]]
+      const offset = this.parent.nextOffsets[game.piecedisp]
+      for (let y = 0; y < game.shapedisp.length; y++) {
+        for (let x = 0; x < game.shapedisp[y].length; x++) {
+          const color = this.parent.colors[this.pieceName]
+          const img = document.getElementById(`mino-${color}`)
+          const isFilled = game.shapedisp[y][x]
+          if (isFilled) {
+            const xPos = x * cellSize + offset[0] * cellSize
+            const yPos = y * cellSize + offset[1] * cellSize
+            img.height = cellSize
+            ctx.drawImage(img, xPos, Math.floor(yPos), cellSize, cellSize)
+          }
+        }
+      }
+    }
+    else {
+      const offset = this.parent.nextOffsets[this.pieceName]
+      for (let y = 0; y < shape.length; y++) {
+        for (let x = 0; x < shape[y].length; x++) {
+          const color = this.parent.colors[this.pieceName]
+          const img = document.getElementById(`mino-${color}`)
+          const isFilled = shape[y][x]
+          if (isFilled) {
+            const xPos = x * cellSize + offset[0] * cellSize
+            const yPos = y * cellSize + offset[1] * cellSize
+            img.height = cellSize
+            ctx.drawImage(img, xPos, Math.floor(yPos), cellSize, cellSize)
+          }
         }
       }
     }

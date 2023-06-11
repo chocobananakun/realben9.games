@@ -116,6 +116,13 @@
   "invisibleOptionDescription": {
     "message": "Determines whether or not you can see pieces after placement"
   },
+  "customBoardLabel": {
+    "message": "Custom Board",
+    "description": "This option allows the user to import a custom board"
+  },
+  "customBoardDescription": {
+    "message": "When enabled, a prompt will open upon loading the mode, which asks you to import a custom board string. Custom board strings can be made with the board editor. Only works when using a default-sized board."
+  },
   "gravityLabel": {
     "message": "Gravity",
     "description": "This option allows the user to set the gravity"

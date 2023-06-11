@@ -203,6 +203,7 @@ class Settings {
         lockDelay: 500,
         matrixWidth: 10,
         invisible: false,
+        customBoard: false,
       },
     }
     this.settings = {}

@@ -39,7 +39,8 @@ function updateLockdownBar(piece) {
   $('#lockdown').max = piece.lockDelayLimit;
   $('#lockdown').value = piece.lockDelayLimit - piece.lockDelay;
   game.lockDelayDisp = Math.max(0,Math.floor(piece.lockDelayLimit - piece.lockDelay));
-  $('#delay').innerHTML = `${game.lockDelayDisp}/${piece.lockDelayLimit} <b>ms</b>`;
+  if (game.lockDelayDisp < piece.lockDelayLimit) {$('#delay').innerHTML = `<font color=#0ff>${game.lockDelayDisp}</font>/${piece.lockDelayLimit} <b>ms</b>`}
+  else {$('#delay').innerHTML = `${game.lockDelayDisp}/${piece.lockDelayLimit} <b>ms</b>`};
 }
 function fallReset(piece, usesManipulations) {
   if (Math.floor(piece.visualY) > Math.floor(piece.lowestVisualY)) {
