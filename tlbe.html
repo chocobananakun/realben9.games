@@ -12,10 +12,10 @@ function viewinput() {
 	const height = canvas.height
 	// Generate a random color for each pixel
 	const colors = new Uint8ClampedArray(width * height * 4)
-	for (let x = 0; x < 10; x++) {
+	for (let x = 0; x < 200; x++) {
 		for (let y = 0; y < 20; y++) {
-			pixelColor = pixelColors[x + (y * 10)]
-			pixelCoordinate = (x + (y * 10)) * 4
+			pixelColor = pixelColors[Math.floor(x / 20) + (y * 10)]
+			pixelCoordinate = (x + (y * 200)) * 4
 			if (pixelColor == 0) {
 				colors[pixelCoordinate] = 0 // red
 				colors[pixelCoordinate + 1] = 0 // green
@@ -87,7 +87,14 @@ function viewinput() {
 <div id="snow">
 <h1>Board Editor</h1>
 <p>Any boards that you make here can be used in TLU's zen mode. Just remember to copy the board string first.</p>
-Board String : <input id="boardString" style="width:90%"></input>
+Board String : <input id="boardString" maxlength=200 style="width:90%"></input>
 <p><button onclick="viewinput()">View</button></p>
-<canvas id="canvas" width="10" height="20" style="width:200px;height:400px;transform:rotateX(180deg)"></canvas>
+<canvas id="canvas" width="200" height="20" style="width:200px;height:400px;transform:rotateX(180deg)"></canvas>
+<h2>How to use</h2>
+<p>Enter numbers into the board string input, then press "View" to view the output. This output is functionally identical to the output of TLU.</p>
+<p>A "board string" is intended to have up to 200 characters, where each character represents 1 mino. (The 1st character is the bottom-left mino & the 2nd is the mino to the right.)</p>
+<p>Each character can be a number from 0-9, which represent the following : 0 : Empty | <font color=#f00>1 : Red</font> | <font color=#f70>2 : Orange</font> | <font color=#ff0>3 : Yellow</font> | <font color=#0f0>4 : Green</font> | <font color=#0ff>5 : Light Blue</font> | <font color=#00f>6 : Blue</font> | <font color=#f0f>7 : Purple</font> | <font color=#bbb>8 : White</font> | <font color=#333>9 : Black</font></p>
+<p>Here are some example board strings. Note that any trailing 0s can be truncated.</p>
+<p>01010101011010101010020202020220202020200303030303303030303004040404044040404040050505050550505050500606060606606060606007070707077070707070080808080880808080800909090909909090909000000000000000000000</p>
+<p>00000000000000000000000000000000000000000000000000000000000000004400000004334000004322340004321123400432112340004322340000043340000000440000000000000000000000000000000000000000000000000000000000000000</p>
 </div>
