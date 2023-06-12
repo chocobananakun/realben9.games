@@ -1,5 +1,2 @@
 # realben9.github.io
-Hi! I'm RealBen9. I update this sometimes. Things I know :
-- How to 'crawl' a webpage
-- How to write Python & HTML (& maybe CSS & JS)
-- Possibly more, possibly less idk
+Hi! Currently this readme is useless but I might eventually do something with it!
