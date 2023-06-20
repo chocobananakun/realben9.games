@@ -622,13 +622,15 @@ export const loops = {
       game.piece.lockDelayLimit = settings.game.zen.lockDelay
       game.stack.isInvisible = settings.game.zen.invisible
       if (settings.game.zen.customBoard == true) {
-        window.boardString = prompt("Enter your custom board string :", "")
+        function escape(s) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
+        window.cookieMatch = document.cookie.match(RegExp('(?:^|;\\s*)' + escape("TlBeSaVe") + '=([^;]*)'));
+        window.cookieData = window.cookieMatch ? window.cookieMatch[1] : "";
+        window.boardString = prompt("Enter your custom board string (may connect to tlbe via cookies) :", window.cookieData)
         if (window.boardString != null) {
           for (let x = 0; x < 10; x++) {
             for (let y = 0; y < 20; y++) {
               window.gridtemp = window.boardString[x + (y * 10)]
-              if (window.gridtemp == 0) window.gridtemp = undefined
-              else if (window.gridtemp == 1) window.gridtemp = 'red'
+              if (window.gridtemp == 1) window.gridtemp = 'red'
               else if (window.gridtemp == 2) window.gridtemp = 'orange'
               else if (window.gridtemp == 3) window.gridtemp = 'yellow'
               else if (window.gridtemp == 4) window.gridtemp = 'green'
@@ -637,6 +639,7 @@ export const loops = {
               else if (window.gridtemp == 7) window.gridtemp = 'purple'
               else if (window.gridtemp == 8) window.gridtemp = 'white'
               else if (window.gridtemp == 9) window.gridtemp = 'black'
+              else window.gridtemp = undefined
               game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1 - y] = gridtemp
             }
           }

@@ -1,34 +1,34 @@
 // World generation as a worker.
-function Distort (source, distort) {
+function Distort(source, distort) {
 
     this.source = source;
     this.distort = distort;
-    
-    this.getValue = function(x, y) {
+
+    this.getValue = function (x, y) {
         return this.source.getValue(x + this.distort.getValue(x, y), y);
     }
 
 }
 
-function ImprovedNoise (random) {
+function ImprovedNoise(random) {
 
-    var fadeCurve = function(d0) {
+    var fadeCurve = function (d0) {
         return d0 * d0 * d0 * (d0 * (d0 * 6.0 - 15.0) + 10.0);
     }
 
-    var lerp = function(d0, d1, d2) {
+    var lerp = function (d0, d1, d2) {
         return d1 + d0 * (d2 - d1);
     }
 
-    var grad = function(i, d0, d1, d2) {
+    var grad = function (i, d0, d1, d2) {
         var d3 = (i &= 15) < 8 ? d0 : d1;
         var d4 = i < 4 ? d1 : (i != 12 && i != 14 ? d2 : d0);
 
         return ((i & 1) == 0 ? d3 : -d3) + ((i & 2) == 0 ? d4 : -d4);
     }
 
-   	
-	this.p = [];
+
+    this.p = [];
 
     for (var i = 0; i < 256; i++) {
         this.p[i] = i;
@@ -37,7 +37,7 @@ function ImprovedNoise (random) {
     for (var i = 0; i < 256; i++) {
         //var j = random.nextInt(256 - i) + i;
         //var j = Math.round( Math.random() * 256-i ) + i;
-        var j = Math.round( random * (256-i) ) + i;
+        var j = Math.round(random * (256 - i)) + i;
 
         var tmp = this.p[i];
         this.p[i] = this.p[j];
@@ -47,7 +47,7 @@ function ImprovedNoise (random) {
     }
 
 
-    this.getValue = function(d0, d1) {
+    this.getValue = function (d0, d1) {
         var d2 = 0.0;
         var d3 = d1;
         var d4 = d0;
@@ -73,7 +73,7 @@ function ImprovedNoise (random) {
 
 }
 
-function PerlinNoise (random, levels) {
+function PerlinNoise(random, levels) {
 
     //var ImprovedNoise = require("./ImprovedNoise.js");
 
@@ -83,8 +83,8 @@ function PerlinNoise (random, levels) {
     for (var i = 0; i < 8; ++i) {
         noiseLevels[i] = new ImprovedNoise(random);
     }
-    
-    this.getValue = function(x, y) {
+
+    this.getValue = function (x, y) {
         var value = 0;
         var pow = 1;
 
@@ -105,39 +105,39 @@ function PerlinNoise (random, levels) {
  * http://www.firstpr.com.au/dsp/rand31/
  */
 function Random(seed) {
-  this._seed = seed % 2147483647;
-  if (this._seed <= 0) this._seed += 2147483646;
+    this._seed = seed % 2147483647;
+    if (this._seed <= 0) this._seed += 2147483646;
 }
 
 /**
  * Returns a pseudo-random value between 1 and 2^32 - 2.
  */
 Random.prototype.next = function () {
-  return this._seed = this._seed * 16807 % 2147483647;
+    return this._seed = this._seed * 16807 % 2147483647;
 };
 
 Random.prototype.nextInt = function (max) {
-    return Math.floor( this.nextFloat()*max );
+    return Math.floor(this.nextFloat() * max);
 };
 
 /**
  * Returns a pseudo-random floating point number in range [0, 1).
  */
 Random.prototype.nextFloat = function (opt_minOrMax, opt_max) {
-  // We know that result of next() will be 1 to 2147483646 (inclusive).
-  return (this.next() - 1) / 2147483646;
+    // We know that result of next() will be 1 to 2147483646 (inclusive).
+    return (this.next() - 1) / 2147483646;
 };
 
 
 var RandomLevel = function () {
 
     var progress = {
-    	string: "",
-    	percent: 0,
-    	tiles: null        	
+        string: "",
+        percent: 0,
+        tiles: null
     }
 
-    this.createLevel = function(seed, xSize, zSize, ySize) {
+    this.createLevel = function (seed, xSize, zSize, ySize) {
 
         //this.progressRenderer.progressStart("Generating level");
         //return;
@@ -154,7 +154,7 @@ var RandomLevel = function () {
         //console.log(this.random);
 
         // grow
-        this.grow = function(aint) {
+        this.grow = function (aint) {
             var i = this.xSize;
             var j = this.zSize;
             var k = this.ySize;
@@ -164,17 +164,17 @@ var RandomLevel = function () {
             for (var l = 0; l < i; ++l) {
                 //this.progress(l * 100 / (this.xSize - 1));
                 progress.percent = l * 100 / (this.xSize - 1);
-            	self.postMessage(progress);
+                self.postMessage(progress);
 
                 for (var i1 = 0; i1 < j; ++i1) {
-                    var flag = perlinnoise.getValue( l, i1) > 8.0;
-                    var flag1 = perlinnoise1.getValue( l, i1) > 12.0;
+                    var flag = perlinnoise.getValue(l, i1) > 8.0;
+                    var flag1 = perlinnoise1.getValue(l, i1) > 12.0;
                     var j1;
-                    var k1 = parseInt( ((j1 = parseInt(aint[l + i1 * i],10)) * this.zSize + i1) * this.xSize + l, 10);
+                    var k1 = parseInt(((j1 = parseInt(aint[l + i1 * i], 10)) * this.zSize + i1) * this.xSize + l, 10);
                     var l1;
                     // 7 waterid
                     //if (((l1 = this.tiles[((j1 + 1) * this.zSize + i1) * this.xSize + l] & 255) == 7) && j1 <= k / 2 - 1 && flag1) {
-                    if (((l1 = parseInt(this.tiles[((j1 + 1) * this.zSize + i1) * this.xSize + l],10) & 255) == 7) && j1 <= k / 2 - 1 && flag1) {
+                    if (((l1 = parseInt(this.tiles[((j1 + 1) * this.zSize + i1) * this.xSize + l], 10) & 255) == 7) && j1 <= k / 2 - 1 && flag1) {
 
                         this.tiles[k1] = 12;//(byte) Tile.gravel.id;
                     }
@@ -194,15 +194,15 @@ var RandomLevel = function () {
         }
 
         // melt
-        this.melt = function() {
+        this.melt = function () {
             var i = 0;
             var j = this.xSize * this.zSize * this.ySize / 10000;
 
             for (var k = 0; k < j; ++k) {
                 if (k % 100 == 0) {
-                //    this.progress(k * 100 / (j - 1));
-                	progress.percent = k * 100 / (j - 1);
-  	                self.postMessage(progress);
+                    //    this.progress(k * 100 / (j - 1));
+                    progress.percent = k * 100 / (j - 1);
+                    self.postMessage(progress);
                 }
 
                 var extray = 16;
@@ -225,7 +225,7 @@ var RandomLevel = function () {
         }
 
         // plant
-        this.plant = function(aint) {
+        this.plant = function (aint) {
             var i = this.xSize;
             var j = this.xSize * this.zSize / 4000;
 
@@ -308,7 +308,7 @@ var RandomLevel = function () {
         }
 
         // place ore
-        this.placeOre = function(tile, j, k, l) {
+        this.placeOre = function (tile, j, k, l) {
             l = this.xSize;
             var i1 = this.zSize;
             var j1 = this.ySize;
@@ -322,16 +322,16 @@ var RandomLevel = function () {
                 var f = random.nextFloat() * l;
                 var f1 = random.nextFloat() * j1;
                 var f2 = random.nextFloat() * i1;
-                var i2 = parseInt( ((random.nextFloat() + random.nextFloat()) * 75.0 * j / 100.0) , 10);
+                var i2 = parseInt(((random.nextFloat() + random.nextFloat()) * 75.0 * j / 100.0), 10);
                 var f3 = (random.nextFloat() * 3.141592653589793 * 2.0);
                 var f4 = 0.0;
                 var f5 = (random.nextFloat() * 3.141592653589793 * 2.0);
                 var f6 = 0.0;
 
                 for (var j2 = 0; j2 < i2; ++j2) {
-                    f = ( f + Math.sin(f3) * Math.cos(f5));
-                    f2 = ( f2 + Math.cos(f3) * Math.cos(f5));
-                    f1 = ( f1 + Math.sin(f5));
+                    f = (f + Math.sin(f3) * Math.cos(f5));
+                    f2 = (f2 + Math.cos(f3) * Math.cos(f5));
+                    f1 = (f1 + Math.sin(f5));
                     f3 += f4 * 0.2;
                     f4 = (f4 *= 0.9) + (random.nextFloat() - random.nextFloat());
                     f5 = (f5 + f6 * 0.5) * 0.5;
@@ -346,7 +346,7 @@ var RandomLevel = function () {
                                 var f10 = i3 - f2;
 
                                 if (f8 * f8 + f9 * f9 * 2.0 + f10 * f10 < f7 * f7 && k2 >= 1 && l2 >= 1 && i3 >= 1 && k2 < this.xSize - 1 && l2 < this.ySize - 1 && i3 < this.zSize - 1) {
-                                    var j3 = parseInt( (l2 * this.zSize + i3) * this.xSize + k2 , 10);
+                                    var j3 = parseInt((l2 * this.zSize + i3) * this.xSize + k2, 10);
 
                                     //if (this.tiles[j3] == Tile.rock.id) {
                                     if (this.tiles[j3] == 2) {
@@ -439,11 +439,11 @@ var RandomLevel = function () {
                     if (z > 0) {
                         if ((flag3 = this.tiles[val - this.xSize] == 0) && !flag) {
                             //if (count == this.fillQueue.length) {
-                                //fillBuffer.add(this.fillQueue);
-                                //console.log("111");
-                                //fillBuffer.concat(this.fillQueue);
-                                //this.fillQueue = [];
-                                //count = 0;
+                            //fillBuffer.add(this.fillQueue);
+                            //console.log("111");
+                            //fillBuffer.concat(this.fillQueue);
+                            //this.fillQueue = [];
+                            //count = 0;
                             //}
 
                             this.fillQueue[count++] = val - this.xSize;
@@ -455,11 +455,11 @@ var RandomLevel = function () {
                     if (z < this.zSize - 1) {
                         if ((flag3 = this.tiles[val + this.xSize] == 0) && !flag1) {
                             //if (count == this.fillQueue.length) {
-                                //fillBuffer.add(this.fillQueue);
-                                //console.log("222");
-                                //fillBuffer.concat(this.fillQueue);
-                                //this.fillQueue = [];
-                                //count = 0;
+                            //fillBuffer.add(this.fillQueue);
+                            //console.log("222");
+                            //fillBuffer.concat(this.fillQueue);
+                            //this.fillQueue = [];
+                            //count = 0;
                             //}
 
                             this.fillQueue[count++] = val + this.xSize;
@@ -472,17 +472,17 @@ var RandomLevel = function () {
                         var b2 = this.tiles[val - offset];
 
                         //if (( tile == Tile.lava.id || tile == Tile.calmLava.id) && (b2 == Tile.water.id || b2 == Tile.calmWater.id)) {
-                        if (( tile == 17) && (b2 == 7)) {
+                        if ((tile == 17) && (b2 == 7)) {
                             this.tiles[val - offset] = 2;//Tile.rock.id;
                         }
 
                         if ((flag3 = b2 == 0) && !flag2) {
                             //if (count == this.fillQueue.length) {
-                                //fillBuffer.add(this.fillQueue);
-                                //console.log("333");
-                                //fillBuffer.concat(this.fillQueue);
-                               // this.fillQueue = [];
-                                //count = 0;
+                            //fillBuffer.add(this.fillQueue);
+                            //console.log("333");
+                            //fillBuffer.concat(this.fillQueue);
+                            // this.fillQueue = [];
+                            //count = 0;
                             //}
 
                             this.fillQueue[count++] = val - offset;
@@ -520,10 +520,10 @@ var RandomLevel = function () {
             self.postMessage(progress);
 
             for (i1 = 0; i1 < zSize; ++i1) {
-                var d0 = distort.getValue( ( l * f), ( i1 * f)) / 8.0 - 8.0;
-                var d1 = distort1.getValue( ( l * f), ( i1 * f)) / 6.0 + 6.0;
+                var d0 = distort.getValue((l * f), (i1 * f)) / 8.0 - 8.0;
+                var d1 = distort1.getValue((l * f), (i1 * f)) / 6.0 + 6.0;
 
-                if (perlinnoise.getValue( l, i1) / 8.0 > 0.0) {
+                if (perlinnoise.getValue(l, i1) / 8.0 > 0.0) {
                     d1 = d0;
                 }
 
@@ -556,9 +556,9 @@ var RandomLevel = function () {
             self.postMessage(progress);
 
             for (k1 = 0; k1 < zSize; ++k1) {
-                var d3 = distort1.getValue( (j1 << 1), (k1 << 1)) / 8.0;
+                var d3 = distort1.getValue((j1 << 1), (k1 << 1)) / 8.0;
 
-                l1 = distort2.getValue( (j1 << 1), (k1 << 1)) > 0.0 ? 1 : 0;
+                l1 = distort2.getValue((j1 << 1), (k1 << 1)) > 0.0 ? 1 : 0;
                 if (d3 > 2.0) {
                     i2 = ((aint1[j1 + k1 * xSize] - l1) / 2 << 1) + l1;
                     aint1[j1 + k1 * xSize] = i2;
@@ -585,7 +585,7 @@ var RandomLevel = function () {
             self.postMessage(progress);
 
             for (i1 = 0; i1 < k2; ++i1) {
-                l1 = (perlinnoise1.getValue( l, i1) / 24.0) - 4;
+                l1 = (perlinnoise1.getValue(l, i1) / 24.0) - 4;
                 l2 = (i2 = aint1[l + i1 * j2] + j1 / 2) + l1;
                 aint1[l + i1 * j2] = Math.max(i2, l2);
 
@@ -625,15 +625,15 @@ var RandomLevel = function () {
             var f3 = random.nextFloat() * j1;
 
             i3 = ((random.nextFloat() + random.nextFloat()) * 75.0);
-            var f4 = ( random.nextFloat() * 3.141592653589793 * 2.0);
+            var f4 = (random.nextFloat() * 3.141592653589793 * 2.0);
             var f5 = 0.0;
-            var f6 = ( random.nextFloat() * 3.141592653589793 * 2.0);
+            var f6 = (random.nextFloat() * 3.141592653589793 * 2.0);
             var f7 = 0.0;
 
             for (var l3 = 0; l3 < i3; ++l3) {
-                f1 = ( f1 + Math.sin(f4) * Math.cos(f6));
-                f3 = ( f3 + Math.cos(f4) * Math.cos(f6));
-                f2 = ( f2 + Math.sin(f6));
+                f1 = (f1 + Math.sin(f4) * Math.cos(f6));
+                f3 = (f3 + Math.cos(f4) * Math.cos(f6));
+                f2 = (f2 + Math.sin(f6));
                 f4 += f5 * 0.2;
                 f5 = (f5 *= 0.9) + (random.nextFloat() - random.nextFloat());
                 f6 = (f6 + f7 * 0.5) * 0.5;
@@ -642,17 +642,17 @@ var RandomLevel = function () {
                     var f8 = f1 + random.nextFloat() * 4.0 - 2.0;
                     var f9 = f2 + random.nextFloat() * 4.0 - 2.0;
                     var f10 = f3 + random.nextFloat() * 4.0 - 2.0;
-                    var f11 = (Math.sin( l3 * 3.141592653589793 / i3) * 2.5 + 1.0);
+                    var f11 = (Math.sin(l3 * 3.141592653589793 / i3) * 2.5 + 1.0);
 
-                    for (var i4 = parseInt( (f8 - f11), 10); i4 <= parseInt( (f8 + f11), 10); ++i4) {
-                        for (var j4 = parseInt( (f9 - f11), 10); j4 <= parseInt( (f9 + f11), 10); ++j4) {
+                    for (var i4 = parseInt((f8 - f11), 10); i4 <= parseInt((f8 + f11), 10); ++i4) {
+                        for (var j4 = parseInt((f9 - f11), 10); j4 <= parseInt((f9 + f11), 10); ++j4) {
                             for (var k4 = (f10 - f11); k4 <= (f10 + f11); ++k4) {
                                 var f12 = i4 - f8;
                                 var f13 = j4 - f9;
                                 var f14 = k4 - f10;
 
                                 if (f12 * f12 + f13 * f13 * 2.0 + f14 * f14 < f11 * f11 && i4 >= 1 && j4 >= 1 && k4 >= 1 && i4 < xSize - 1 && j4 < ySize - 1 && k4 < zSize - 1) {
-                                    var l4 = parseInt( (j4 * zSize + k4) * xSize + i4 , 10);
+                                    var l4 = parseInt((j4 * zSize + k4) * xSize + i4, 10);
 
                                     //if (tiles[l4] == Tile.rock.id) {
                                     if (this.tiles[l4] == 2) {
@@ -680,9 +680,9 @@ var RandomLevel = function () {
         //this.progress(0);
 
         // hack for floodfill to work...
-        var extray = 64-35;
-        if(xSize >= 256) extray = 128-36;
-        if(xSize >= 512) extray = 256-37;
+        var extray = 64 - 35;
+        if (xSize >= 256) extray = 128 - 36;
+        if (xSize >= 512) extray = 256 - 37;
 
         //console.log(ySize / 2 - 1)
 
@@ -699,8 +699,8 @@ var RandomLevel = function () {
 
         for (l1 = 0; l1 < i1; ++l1) {
             if (l1 % 100 == 0) {
-            //    progress(l1 * 100 / (i1 - 1));
-            	progress.percent = l1 * 100 / (i1 - 1);
+                //    progress(l1 * 100 / (i1 - 1));
+                progress.percent = l1 * 100 / (i1 - 1);
                 self.postMessage(progress);
             }
 
@@ -711,7 +711,7 @@ var RandomLevel = function () {
                 j5 += this.floodFill(i2, l2, i3, 0, l);
             }
         }
-            	
+
         progress.percent = 100;
         self.postMessage(progress);
 
@@ -734,16 +734,16 @@ var RandomLevel = function () {
 
 }
 
-function startGeneration (obj) { //{worldSize: worldSize, seed: props.seed, seedrandom: seedrandom}
-	var level = new RandomLevel();
-	//console.log(level)
-	var width = obj.worldSize;
-	var depth = obj.worldSize;
-	var height = 64;
-	level.createLevel(obj.seed, width, depth, height);
+function startGeneration(obj) { //{worldSize: worldSize, seed: props.seed, seedrandom: seedrandom}
+    var level = new RandomLevel();
+    //console.log(level)
+    var width = obj.worldSize;
+    var depth = obj.worldSize;
+    var height = 64;
+    level.createLevel(obj.seed, width, depth, height);
 }
 
-self.addEventListener('message', function(e) {
-  //console.log("worker get "+e.data);
-  startGeneration(e.data)
+self.addEventListener('message', function (e) {
+    //console.log("worker get "+e.data);
+    startGeneration(e.data)
 }, false);

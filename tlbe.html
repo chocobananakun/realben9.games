@@ -4,6 +4,7 @@
 <script>
 function viewinput() {
 	pixelColors = document.getElementById("boardString").value
+	document.cookie = "TlBeSaVe=" + pixelColors // TlBeSaVe=pixelColors; name : TlBeSaVe & value : pixelColors
 	// Get the canvas element and its 2D context
 	const canvas = document.getElementById("canvas")
 	const ctx = canvas.getContext("2d")
@@ -16,13 +17,7 @@ function viewinput() {
 		for (let y = 0; y < 20; y++) {
 			pixelColor = pixelColors[Math.floor(x / 20) + (y * 10)]
 			pixelCoordinate = (x + (y * 200)) * 4
-			if (pixelColor == 0) {
-				colors[pixelCoordinate] = 0 // red
-				colors[pixelCoordinate + 1] = 0 // green
-				colors[pixelCoordinate + 2] = 0 // blue
-				colors[pixelCoordinate + 3] = 255 // alpha (fully opaque)
-			}
-			else if (pixelColor == 1) {
+			if (pixelColor == 1) {
 				colors[pixelCoordinate] = 255
 				colors[pixelCoordinate + 1] = 0
 				colors[pixelCoordinate + 2] = 0
@@ -76,6 +71,12 @@ function viewinput() {
 				colors[pixelCoordinate + 2] = 63
 				colors[pixelCoordinate + 3] = 255
 			}
+			else {
+				colors[pixelCoordinate] = 0 // red
+				colors[pixelCoordinate + 1] = 0 // green
+				colors[pixelCoordinate + 2] = 0 // blue
+				colors[pixelCoordinate + 3] = 255 // alpha (fully opaque)
+			}
 		}
 	}
 	// Create a new ImageData object and set its pixel colors
@@ -86,15 +87,25 @@ function viewinput() {
 </script>
 <div id="snow">
 <h1>Board Editor</h1>
-<p>Any boards that you make here can be used in TLU's zen mode. Just remember to copy the board string first.</p>
-Board String : <input id="boardString" maxlength=200 style="width:90%"></input>
+<p id="boardDesc">Any boards that you make here can be used in TLU's zen mode. Just remember to copy the board string first. (May connect to TLU via cookies)</p>
 <p><button onclick="viewinput()">View</button></p>
 <canvas id="canvas" width="200" height="20" style="width:200px;height:400px;transform:rotateX(180deg)"></canvas>
 <h2>How to use</h2>
 <p>Enter numbers into the board string input, then press "View" to view the output. This output is functionally identical to the output of TLU.</p>
 <p>A "board string" is intended to have up to 200 characters, where each character represents 1 mino. (The 1st character is the bottom-left mino & the 2nd is the mino to the right.)</p>
 <p>Each character can be a number from 0-9, which represent the following : 0 : Empty | <font color=#f00>1 : Red</font> | <font color=#f70>2 : Orange</font> | <font color=#ff0>3 : Yellow</font> | <font color=#0f0>4 : Green</font> | <font color=#0ff>5 : Light Blue</font> | <font color=#00f>6 : Blue</font> | <font color=#f0f>7 : Purple</font> | <font color=#bbb>8 : White</font> | <font color=#333>9 : Black</font></p>
-<p>Here are some example board strings. Note that any trailing 0s can be truncated.</p>
-<p>01010101011010101010020202020220202020200303030303303030303004040404044040404040050505050550505050500606060606606060606007070707077070707070080808080880808080800909090909909090909000000000000000000000</p>
-<p>00000000000000000000000000000000000000000000000000000000000000004400000004334000004322340004321123400432112340004322340000043340000000440000000000000000000000000000000000000000000000000000000000000000</p>
-</div>
+<p>Note that any character that isn't 1,2,3,4,5,6,7,8 or 9 will act as a 0. Also note that any trailing "0"s can be truncated.</p>
+<h2>Examples</h2>
+<p>Initial Template : [01010101011010101010020202020220202020200303030303303030303004040404044040404040050505050550505050500606060606606060606007070707077070707070080808080880808080800909090909909090909000000000000000000000]</p>
+<p>Ball (?) : [00000000000000000000000000000000000000000000000000000000000000004400000004334000004322340004321123400432112340004322340000043340000000440000000000000000000000000000000000000000000000000000000000000000]</p>
+<p>Diagonal Lines : [10000100000200002000003000030000040000400000500005000600006000700007000800008000900009000001000010000020000200000300003000004000040005000050006000060007000070008000080000000000000000000000000000000000]</p>
+<p>4+ Wide : [11100001112220000222333000033344400000445550000055666000006677000000778800000088990000009911000000012200000002330000000340000000045000000005600000000600000000000000000000000000000000000000000000000000]</p>
+<p>Secret Grade : [01111111112022222222330333333344404444445555055555666660666677777707778888888088999999990911111111102222222202333333303344444404445555505555666606666677707777778808888888909999999901111111112022222222]</p>
+<p>Inverse Secret Grade : [10000000000200000000003000000000040000000000500000000006000000000070000000000800000000009000000000010000000020000000030000000040000000050000000060000000070000000080000000090000000010000000000200000000]</p>
+<p>idk : [00000000000000000000000000000000000000000000000000400000000403000000300020110200000100100000100001000010000100000100100000201102000300000030400000000400000000000000000000000000000000000000000000000000]</p>
+</div><script>
+	function escape(s) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
+	var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape("TlBeSaVe") + '=([^;]*)'));
+	cookieData = match ? match[1] : "";
+	document.getElementById("boardDesc").outerHTML = document.getElementById("boardDesc").outerHTML + 'Board String : <input id="boardString" maxlength=200 value="' + cookieData + '" style="width:90%"></input>'
+</script>

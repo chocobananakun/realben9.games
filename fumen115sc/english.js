@@ -1,7 +1,6 @@
 // Add-on
 // English translation
 // Rev.4
-
 STRING_FIELD_SETTING     = "Place Blocks"; // "フィールド作成";
 STRING_FIELD_SHIFT_UP    = "↑ Up"; // "↑ 上シフト";
 STRING_FIELD_SHIFT_LEFT  = "← Left"; // "← 左シフト";
@@ -28,16 +27,13 @@ STRING_CODE_AUTOOUTPUT   = "Auto Output"; // "自動";
 STRING_CODE_NEW          = "＊ New Data"; // "＊ 新規作成";
 STRING_CODE_LOAD         = "☆ Load Data"; // "☆ データ読み込み";
 STRING_DESTROY_CONFIRM   = "※ Current data will be lost."; // "※ 作成中のデータは失われます。";
-
 STRING_FRAME_DELETE      = "－ Delete current frame"; // "－ 現ページ削除";
 STRING_FRAME_INSERT      = "＋ Copy current frame"; // "＋ 現ページ複製";
 STRING_FRAME_DELPAST     = "／ Clear past frames"; // "／ 前ページまでを削除";
 STRING_FRAME_IMPORT      = "＃ Append Data"; // "＃ 追加読み込み";
 STRING_DELPAST_CONFIRM   = "Are you sure you want to clear all past frames?"; // "前ページまでを完全に削除してよろしいですか？";
-
 STRING_WIKICODE_UPPERCASE= "Upper-case"; // "大文字";
 STRING_WIKICODE_OUTPUT   = "Output Diagram code"; // "Wikiコード出力";
-
 STRING_LISTING_SHOW_CAPTION   = "List of captions"; // "コメントリスト";
 STRING_LISTING_SHOW_ALLFRAMES = "List of frames"; // "全ページリスト";
 STRING_LISTING_AUTOJUMP       = "Auto Jump"; // "自動的に移動";

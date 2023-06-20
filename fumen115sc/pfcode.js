@@ -14,18 +14,17 @@ Please contact (PM) message me at harddrop.com/chopin if you can.
 Big help appreciated!
 */
 
-if(typeof STRING_WIKICODE_OUTPUT    == 'undefined') STRING_WIKICODE_OUTPUT    = "Wikiコード出力";
-if(typeof STRING_WIKICODE_UPPERCASE == 'undefined') STRING_WIKICODE_UPPERCASE = "大文字";
+if (typeof STRING_WIKICODE_OUTPUT == 'undefined') STRING_WIKICODE_OUTPUT = "Wikiコード出力";
+if (typeof STRING_WIKICODE_UPPERCASE == 'undefined') STRING_WIKICODE_UPPERCASE = "大文字";
 
 addon_ui += '<hr width=90% size=1>';
 addon_ui += '<table border=0 cellspacing=0 cellpadding=0>';
-addon_ui += '<td><input type=button value="'+STRING_WIKICODE_OUTPUT+'" onclick="outputpfcode();">';
-addon_ui += '<td><input type=checkbox name=pfucase id=pfucase checked><label for=pfucase>'+STRING_WIKICODE_UPPERCASE+'</label><td>';
+addon_ui += '<td><input type=button value="' + STRING_WIKICODE_OUTPUT + '" onclick="outputpfcode();">';
+addon_ui += '<td><input type=checkbox name=pfucase id=pfucase checked><label for=pfucase>' + STRING_WIKICODE_UPPERCASE + '</label><td>';
 addon_ui += '</table>';
 addon_ui += '<textarea name=pfcode id=pfcode cols=32 rows=4 style="font-size:9pt;" onfocus="this.select();"></textarea><br>';
 
-function outputpfcode()
-{
+function outputpfcode() {
 	var pfcode = document.getElementById("pfcode");
 	var pfucase = document.getElementById("pfucase");
 	var pfout = "";

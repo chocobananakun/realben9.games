@@ -3,34 +3,34 @@ window.addEventListener('load', function () {
 	snow.innerHTML = '<p>Toggle<button onclick="togcorndogs()">Corndogs</button><button onclick="tograinbow()">Rainbow</button><button onclick="togfont()">Font</button></p>' + snow.innerHTML
 })
 function togcorndogs() {
-  switch (snow.classList.contains("nocorndogs")) {
-    case true:
-      snow.classList.remove("nocorndogs")
-      break
-    case false:
-      snow.classList.add("nocorndogs")
-      break
-  }
+	switch (snow.classList.contains("nocorndogs")) {
+		case true:
+			snow.classList.remove("nocorndogs")
+			break
+		case false:
+			snow.classList.add("nocorndogs")
+			break
+	}
 }
 function tograinbow() {
-  switch (snow.classList.contains("rainbow")) {
-    case true:
-      snow.classList.remove("rainbow")
-      break
-    case false:
-      snow.classList.add("rainbow")
-      break
-  }
+	switch (snow.classList.contains("rainbow")) {
+		case true:
+			snow.classList.remove("rainbow")
+			break
+		case false:
+			snow.classList.add("rainbow")
+			break
+	}
 }
 function togfont() {
-  switch (snow.classList.contains("font")) {
-    case true:
-      snow.classList.remove("font")
-      break
-    case false:
-      snow.classList.add("font")
-      break
-  }
+	switch (snow.classList.contains("font")) {
+		case true:
+			snow.classList.remove("font")
+			break
+		case false:
+			snow.classList.add("font")
+			break
+	}
 }
 var query = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')
 for (let i = 0; i < query.length; i++) {
