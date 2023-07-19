@@ -69,9 +69,14 @@
       "action": "select",
       "selectOptions": [
         {
-          "label": "1/120G",
+          "label": "0G",
           "fixedText": true,
           "value": "0G"
+        },
+        {
+          "label": "1/120G",
+          "fixedText": true,
+          "value": "1/120G"
         },
         {
           "label": "1/60G",

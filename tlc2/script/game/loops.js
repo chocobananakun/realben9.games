@@ -803,6 +803,70 @@ export const loops = {
       */
     },
     onPieceSpawn: (game) => {
+      if (window.hasHeld == false) {
+        game.stat.boardBanks[game.stat.boardBank] = ""
+        for (let x = 0; x < 10; x++) {
+          for (let y = 0; y < 20; y++) {
+            window.gridtemp = game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1 - y]
+            switch (window.gridtemp) {
+              case undefined:
+                window.gridtemp = 0
+                break
+              case "red":
+                window.gridtemp = 1
+                break
+              case "orange":
+                window.gridtemp = 2
+                break
+              case "yellow":
+                window.gridtemp = 3
+                break
+              case "green":
+                window.gridtemp = 4
+                break
+              case "lightBlue":
+                window.gridtemp = 5
+                break
+              case "blue":
+                window.gridtemp = 6
+                break
+              case "purple":
+                window.gridtemp = 7
+                break
+              case "white":
+                window.gridtemp = 8
+                break
+              case "black":
+                window.gridtemp = 9
+                break
+            }
+            game.stat.boardBanks[game.stat.boardBank] = game.stat.boardBanks[game.stat.boardBank] + gridtemp
+          }
+        }
+        console.log(game.stat.boardBank + " : " + game.stat.boardBanks[game.stat.boardBank])
+        if (game.stat.boardBank == 0) {
+          game.stat.boardBank = 1
+        } else {
+          game.stat.boardBank = 0
+        }
+        for (let x = 0; x < 10; x++) {
+          for (let y = 0; y < 20; y++) {
+            window.gridtemp = game.stat.boardBanks[game.stat.boardBank][x + (y * 10)]
+            if (window.gridtemp == 1) window.gridtemp = 'red'
+            else if (window.gridtemp == 2) window.gridtemp = 'orange'
+            else if (window.gridtemp == 3) window.gridtemp = 'yellow'
+            else if (window.gridtemp == 4) window.gridtemp = 'green'
+            else if (window.gridtemp == 5) window.gridtemp = 'lightBlue'
+            else if (window.gridtemp == 6) window.gridtemp = 'blue'
+            else if (window.gridtemp == 7) window.gridtemp = 'purple'
+            else if (window.gridtemp == 8) window.gridtemp = 'white'
+            else if (window.gridtemp == 9) window.gridtemp = 'black'
+            else window.gridtemp = undefined
+            game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1 - y] = gridtemp
+          }
+        }
+      }
+      window.hasHeld = false
       game.stat.level = Math.max(settings.game.marathon.startingLevel, Math.floor(game.stat.line / 10 + 1))
       if (settings.game.marathon.levelCap >= 0) {
         game.stat.level = Math.min(game.stat.level, settings.game.marathon.levelCap)
@@ -825,6 +889,8 @@ export const loops = {
       game.stat.level = settings.game.marathon.startingLevel
       lastLevel = parseInt(settings.game.marathon.startingLevel)
       game.piece.gravity = 1000
+      game.stat.boardBank = 0
+      game.stat.boardBanks = ["",""]
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -956,7 +1022,11 @@ export const loops = {
         shifting(arg)
       }
       gravity(arg)
-      softDrop(arg, 20, true)
+      if (settings.game.zen.gravity == "0G") {
+        softDrop(arg, 2e7, true)
+      } else {
+        softDrop(arg, 20, true)
+      }
       hardDrop(arg)
       switch (settings.game.zen.lockdownMode) {
         case "zen":
@@ -1029,6 +1099,9 @@ export const loops = {
       // game.updateStats()
       switch(settings.game.zen.gravity){
         case '0G':
+          game.piece.gravity = 1e9
+          break
+        case '1/120G':
           game.piece.gravity = 2000
           break
         case '1/60G':

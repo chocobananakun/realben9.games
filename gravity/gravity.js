@@ -1764,7 +1764,8 @@ function getElementsByClass(searchClass) {
 
 	for (i = 0, j = 0; i < elsLen; i++) {
 		// sometimes has incompatibilities
-		var classes = els[i].className.split(' ');
+		classSplit = ' '
+		var classes = els[i].className.split(classSplit);
 		for (k = 0; k < classes.length; k++)
 			if (classes[k] == searchClass)
 				classElements[j++] = els[i];

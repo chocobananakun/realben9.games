@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
 	snow = document.querySelectorAll("div")[0]
-	snow.innerHTML = '<p>Toggle<button onclick="togcorndogs()">Corndogs</button><button onclick="tograinbow()">Rainbow</button><button onclick="togfont()">Font</button></p>' + snow.innerHTML
+	snow.innerHTML = '<p>Toggle<button onclick="togcorndogs()" class="box2d">Corndogs</button><button onclick="tograinbow()" class="box2d">Rainbow</button><button onclick="togfont()" class="box2d">Font</button></p>' + snow.innerHTML
 })
 function togcorndogs() {
 	switch (snow.classList.contains("nocorndogs")) {
@@ -39,35 +39,35 @@ for (let i = 0; i < query.length; i++) {
 			var element
 			element = document.getElementById("key0")
 			if (element) {
-				element.outerHTML = atob("PGgxPiBZb3UgZm91bmQgaXQhIDwvaDE+PHA+IDxhIGhyZWY9J2Njc2MvbWVtZS92NDIwNjknPkNvb2tpZSBDbGlja2VyIE1lbWUgdjQuMjA2OTwvYT4gPC9wPjxwPiAoVGhpcyBpcyBhIHJlZmVyZW5jZSB0byA8aT5XZWxjb21lIHRvIHRoZSBHYW1lPC9pPikgPC9wPjxwPiBbdjEuMC4xLTIgfCBMYXN0IFVwZGF0ZWQgMTYtMDUtMjAyMl0gPC9wPjxwIHN0eWxlPSd0ZXh0LWFsaWduOnJpZ2h0Jz4gPGEgaHJlZj0na2V5Mi5odG1sJz42IC0gMTAxMDAwMTExMDExMDAxMDExMDAwMDAxPC9hPiA8L3A+")
+				element.outerHTML = atob("PGgxPllvdSBmb3VuZCBpdCEgPGk+KFRoaXMgaXMgYSByZWZlcmVuY2UgdG8gV2VsY29tZSB0byB0aGUgR2FtZSk8L2k+PC9oMT48cD48YSBocmVmPSdjY3NjL21lbWUvdjQyMDY5Jz5Db29raWUgQ2xpY2tlciBNZW1lIHY0LjIwNjk8L2E+PC9wPjxwIHN0eWxlPSd0ZXh0LWFsaWduOnJpZ2h0Jz48YSBocmVmPSdrZXkyLmh0bWwnPjYgLSAxMDEwMDAxMTEwMTEwMDEwMTEwMDAwMDE8L2E+PC9wPg==")
 			}
 			element = document.getElementById("key1")
 			if (element) {
-				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPiA8YSBocmVmPScuLi9rZXkyLmh0bWwnPjEgLSAxMTEwMDAwMDAxMTExMTAxMDAxMTAxMDA8L2E+IDwvcD4=")
+				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxhIGhyZWY9Jy4uL2tleTIuaHRtbCc+MSAtIDExMTAwMDAwMDExMTExMDEwMDExMDEwMDwvYT48L3A+")
 			}
 			element = document.getElementById("key2")
 			if (element) {
-				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxmb250IHN0eWxlPSdiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsI2ZmODk4MyAxNy44NSUsIzdmMGU3ZiA1My4yOCUsIzAwN2E2NSAxMDAlKSc+IDxhIGhyZWY9Jy4uLy4uL2tleTIuaHRtbCc+MiAtIDEwMDAxMTExMTExMTExMDAxMTExMTExMDwvYT48L2ZvbnQ+IDwvcD4=")
+				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxmb250IHN0eWxlPSdiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCh0byByaWdodCwjZmY4OTgzIDE3Ljg1JSwjN2YwZTdmIDUzLjI4JSwjMDA3YTY1IDEwMCUpJz48YSBocmVmPScuLi8uLi9rZXkyLmh0bWwnPjIgLSAxMDAwMTExMTExMTExMTAwMTExMTExMTA8L2E+PC9mb250PjwvcD4=")
 			}
 			element = document.getElementById("key3")
 			if (element) {
-				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxmb250IHN0eWxlPSdiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsI2ZmODk4MyAxNy44NSUsIzdmMGU3ZiA1My4yOCUsIzAwN2E2NSAxMDAlKSc+IDxhIGhyZWY9Jy4uL2tleTIuaHRtbCc+MyAtIDEwMDAxMTAxMDAwMTAwMTExMTAxMDEwMDwvYT48L2ZvbnQ+IDwvcD4=")
+				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxmb250IHN0eWxlPSdiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCh0byByaWdodCwjZmY4OTgzIDE3Ljg1JSwjN2YwZTdmIDUzLjI4JSwjMDA3YTY1IDEwMCUpJz48YSBocmVmPScuLi9rZXkyLmh0bWwnPjMgLSAxMDAwMTEwMTAwMDEwMDExMTEwMTAxMDA8L2E+PC9mb250PjwvcD4=")
 			}
 			element = document.getElementById("key4")
 			if (element) {
-				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPiA8YSBocmVmPScuLi9rZXkyLmh0bWwnPjQgLSAwMTEwMTEwMTAxMTAwMDAwMTAxMTExMTE8L2E+IDwvcD4=")
+				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxhIGhyZWY9Jy4uL2tleTIuaHRtbCc+NCAtIDAxMTAxMTAxMDExMDAwMDAxMDExMTExMTwvYT48L3A+")
 			}
 			element = document.getElementById("key5")
 			if (element) {
-				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxmb250IHN0eWxlPSdiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsI2ZmODk4MyAxNy44NSUsIzdmMGU3ZiA1My4yOCUsIzAwN2E2NSAxMDAlKSc+IDxhIGhyZWY9Jy4uL2tleTIuaHRtbCc+NSAtIDAxMDExMDExMTEwMTExMTAxMDExMTExMDwvYT48L2ZvbnQ+IDwvcD4=")
+				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxmb250IHN0eWxlPSdiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCh0byByaWdodCwjZmY4OTgzIDE3Ljg1JSwjN2YwZTdmIDUzLjI4JSwjMDA3YTY1IDEwMCUpJz48YSBocmVmPScuLi9rZXkyLmh0bWwnPjUgLSAwMTAxMTAxMTExMDExMTEwMTAxMTExMTA8L2E+PC9mb250PjwvcD4=")
 			}
 			element = document.getElementById("key6")
 			if (element) {
-				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPiA8YSBocmVmPScuLi9rZXkyLmh0bWwnPjcgLSAwMTAxMDEwMDEwMTAxMTAxMDAxMTAxMTA8L2E+IDwvcD4=")
+				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxhIGhyZWY9Jy4uL2tleTIuaHRtbCc+NyAtIDAxMDEwMTAwMTAxMDExMDEwMDExMDExMDwvYT48L3A+")
 			}
 			element = document.getElementById("key7")
 			if (element) {
-				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxmb250IHN0eWxlPSdiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsI2ZmODk4MyAxNy44NSUsIzdmMGU3ZiA1My4yOCUsIzAwN2E2NSAxMDAlKSc+IDxhIGhyZWY9Jy4uL2tleTIuaHRtbCc+OCAtIDAwMDAwMDEwMDEwMTAwMTAxMDAwMDEwMTwvYT48L2ZvbnQ+IDwvcD4=")
+				element.outerHTML = atob("PHAgc3R5bGU9J3RleHQtYWxpZ246cmlnaHQnPjxmb250IHN0eWxlPSdiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCh0byByaWdodCwjZmY4OTgzIDE3Ljg1JSwjN2YwZTdmIDUzLjI4JSwjMDA3YTY1IDEwMCUpJz48YSBocmVmPScuLi9rZXkyLmh0bWwnPjggLSAwMDAwMDAxMDAxMDEwMDEwMTAwMDAxMDE8L2E+PC9mb250PjwvcD4=")
 			}
 		})
 	}
@@ -76,7 +76,7 @@ for (let i = 0; i < query.length; i++) {
 			var element
 			element = document.getElementById("key0")
 			if (element) {
-				element.outerHTML = atob("PGgxPiBZb3UgZm91bmQgaXQgYWdhaW4hIDwvaDE+PHA+IDxhIGhyZWY9J2h0dHBzOi8vcmI5YmV0YS5naXRodWIuaW8nPkJldGE8L2E+IDwvcD48cD4gKFRoaXMgaXMgbGVzcyBvZiBhIHJlZmVyZW5jZSB0byA8aT5XZWxjb21lIHRvIHRoZSBHYW1lPC9pPikgPC9wPjxwIHN0eWxlPSd0ZXh0LWFsaWduOnJpZ2h0Jz4gPGEgaHJlZj0na2V5My5odG1sJz4uLi4tLSAvIC0tLS4uLiAvIC0tLiAtIC0uLi4uIC0tLS0uIC4tIC4tLS0tIC0uLi4gLTwvYT4gPC9wPg==")
+				element.outerHTML = atob("PGgxPllvdSBmb3VuZCBpdCBhZ2FpbiEgPGk+KFRoaXMgaXMgbGVzcyBvZiBhIHJlZmVyZW5jZSB0byBXZWxjb21lIHRvIHRoZSBHYW1lKTwvaT48L2gxPjxwPjxhIGhyZWY9J2h0dHBzOi8vcmI5YmV0YS5naXRodWIuaW8nPkJldGE8L2E+PC9wPjxwIHN0eWxlPSd0ZXh0LWFsaWduOnJpZ2h0Jz48YSBocmVmPSdrZXkzLmh0bWwnPi4uLi0tIC8gLS0tLi4uIC8gLS0uIC0gLS4uLi4gLS0tLS4gLi0gLi0tLS0gLS4uLiAtPC9hPjwvcD4=")
 			}
 			element = document.getElementById("morse")
 			if (element) {

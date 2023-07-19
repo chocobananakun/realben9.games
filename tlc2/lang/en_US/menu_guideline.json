@@ -1,10 +1,10 @@
 {
   "marathonLabel": {
-    "message": "Big",
-    "description": "A guideline mode where you attempt to clear a set amount of lines (or endless) with a rising difficulty"
+    "message": "Duality",
+    "description": "A guideline mode where you have to play 2 boards at once whilst switching which board is in play after every piece."
   },
   "marathonDescription": {
-    "message": "The pieces are double their height & width",
+    "message": "How well can you play 2 boards at once?",
     "description": "Feel free to take any liberties as long you can accurately describe the mode in a way that's localized to the language."
   },
   "masterLabel": {

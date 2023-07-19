@@ -956,7 +956,11 @@ export const loops = {
         shifting(arg)
       }
       gravity(arg)
-      softDrop(arg, 20, true)
+      if (settings.game.zen.gravity == "0G") {
+        softDrop(arg, 2e7, true)
+      } else {
+        softDrop(arg, 20, true)
+      }
       hardDrop(arg)
       switch (settings.game.zen.lockdownMode) {
         case "zen":
@@ -1029,6 +1033,9 @@ export const loops = {
       // game.updateStats()
       switch(settings.game.zen.gravity){
         case '0G':
+          game.piece.gravity = 1e9
+          break
+        case '1/120G':
           game.piece.gravity = 2000
           break
         case '1/60G':
