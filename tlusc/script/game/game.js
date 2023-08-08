@@ -16,8 +16,8 @@ import locale from '../lang.js'
 let endScreenTimeout = null
 export default class Game {
   constructor(gametype) {
-    if (gametype === 'beat'){document.getElementById('myVideo').style.opacity = 1}
-    else {document.getElementById('myVideo').style.opacity = 0}
+    if (gametype === 'beat') document.getElementById('myVideo').style.opacity = 1
+    else document.getElementById('myVideo').style.opacity = 0
     this.userSettings = {...settings.settings}
     this.type = gametype
     this.pieceCanvas = $('#piece')
@@ -137,6 +137,7 @@ export default class Game {
           this.stack = new Stack(this, toCtx(this.stackCanvas))
           this.piece = new Piece(this, toCtx(this.pieceCanvas), toCtx(this.nextMatrixPreviewCanvas))
           let randomseed = new Math.seedrandom()()
+          //console.log("Seed : " + randomseed)
           if ($('#queuerand').value !== '') {
             randomseed = $('#queuerand').value
           }
@@ -251,6 +252,11 @@ export default class Game {
           window.onresize = this.resize
           $('.game').classList.remove('paused')
           $('.game').classList.remove('zen-paused')
+          if (gameHandler.game.lives == undefined) {
+            gameHandler.game.lives = 0
+            $('#lives').innerHTML = ""
+          }
+          else $('#lives').innerHTML = `Lives : ${gameHandler.game.lives}`
           this.request = requestAnimationFrame(this.gameLoop)
           document.documentElement.style.setProperty('--current-background', `url("../img/bg/${this.settings.background}")`)
           setTimeout(() => {this.resize()}, 10)
@@ -301,62 +307,72 @@ export default class Game {
     this.isDead = true
   }
   end(victory = false) {
-    document.getElementById('myVideo').style.opacity = 0
-    this.resetBeatStuff()
-    this.isOver = true
-    $('#combo-counter-container').classList.add('hidden')
-    this.stack.endAlarm()
-    this.noUpdate = true
-    if (this.type === 'zen' && settings.game.zen.holdType === 'skip') { this.stats.splice(0, 0, 'skipCount') }
-    $('#end-stats').innerHTML = ''
-    for (const statName of this.stats) {
-      const append = (this.appends[statName]) ? this.appends[statName] : ''
-      if (this.endingStats[statName] && !"b2b piece pcCount skipCount".includes(statName)) {
-        $('#end-stats').innerHTML += `<b>${locale.getString('ui', statName)}:</b> ${this.stat[statName]}${append}<br>`
+    if (victory == true || gameHandler.game.lives <= 0) {
+      gameHandler.game.stack.isInvisible = false
+      gameHandler.game.stack.makeAllDirty()
+      document.getElementById('myVideo').style.opacity = 0
+      this.resetBeatStuff()
+      this.isOver = true
+      $('#combo-counter-container').classList.add('hidden')
+      this.stack.endAlarm()
+      this.noUpdate = true
+      if (this.type === 'zen' && settings.game.zen.holdType === 'skip') { this.stats.splice(0, 0, 'skipCount') }
+      $('#end-stats').innerHTML = ''
+      for (const statName of this.stats) {
+        const append = (this.appends[statName]) ? this.appends[statName] : ''
+        if (this.endingStats[statName] && !"b2b piece pcCount skipCount".includes(statName)) {
+          $('#end-stats').innerHTML += `<b>${locale.getString('ui', statName)}:</b> ${this.stat[statName]}${append}<br>`
+        }
+        switch(statName){
+          case 'b2b':
+            $('#end-stats').innerHTML += `<b>Max. ${locale.getString('action-text', 'b2b').substring(1, locale.getString('action-text', 'b2b').length-1)}:</b> ×${this.maxb2b-1 < 0 ? 0 : this.maxb2b-1}<br>`
+            break
+          case 'piece':
+            $('#end-stats').innerHTML += `<b>${locale.getString('ui', 'piece')}:</b> ${this.stat['piece']}<br>`
+            $('#end-stats').innerHTML += `<b>Avg. PPS:</b> ${Math.round(gameHandler.game.stat.piece / (gameHandler.game.timePassed / 1000) * 100) / 100}<br>`
+            break
+          case 'pcCount':
+            $('#end-stats').innerHTML += `<b>${locale.getString('action-text', 'pc')}:</b> ${this.stat['pcCount']}<br>`
+            break
+          case 'skipCount':
+            $('#end-stats').innerHTML += `<b>${locale.getString('ui', 'skip')}:</b> ${this.stat['skipCount']}<br>`
+            break
+        }
       }
-      switch(statName){
-        case 'b2b':
-          $('#end-stats').innerHTML += `<b>Max. ${locale.getString('action-text', 'b2b').substring(1, locale.getString('action-text', 'b2b').length-1)}:</b> ×${this.maxb2b-1 < 0 ? 0 : this.maxb2b-1}<br>`
-          break
-        case 'piece':
-          $('#end-stats').innerHTML += `<b>${locale.getString('ui', 'piece')}:</b> ${this.stat['piece']}<br>`
-          $('#end-stats').innerHTML += `<b>Avg. PPS:</b> ${Math.round(gameHandler.game.stat.piece / (gameHandler.game.timePassed / 1000) * 100) / 100}<br>`
-          break
-        case 'pcCount':
-          $('#end-stats').innerHTML += `<b>${locale.getString('action-text', 'pc')}:</b> ${this.stat['pcCount']}<br>`
-          break
-        case 'skipCount':
-          $('#end-stats').innerHTML += `<b>${locale.getString('ui', 'skip')}:</b> ${this.stat['skipCount']}<br>`
-          break
+      if (this.timeGoal == null) {
+        $('#end-stats').innerHTML += `<b>${locale.getString('ui', 'inGameTime', [`<span style="font-weight: normal">${msToTime(this.timePassed)}</span>`])}</b><br>`
+        $('#end-stats').innerHTML += `<b>${locale.getString('ui', 'realTimeAttack', [`<span style="font-weight: normal">${msToTime(this.timePassed + this.timePassedAre)}</span>`])}</b><br>`
       }
+      $('#kill-message-container').classList.remove('hidden')
+      if (victory) {
+        sound.add('excellent')
+      } else {
+        if (!(settings.settings.soundbank === 't99' && settings.settings.voicebank !== 'off')) {
+          sound.add('ko')
+        }
+      }
+      sound.killBgm()
+      sound.killAllLoops()
+      $('#game').classList.add('dead')
+      endScreenTimeout = setTimeout(() => {
+        sound.stopSeLoop('alarm')
+        $('#kill-message-container').classList.add('hidden')
+        sound.add('gameover')
+        sound.add('voxgameover')
+        $('#end-message').textContent = locale.getString('ui', 'gameover')
+        if (this.type === 'handheld' || this.type === 'deluxe') {
+          $('#end-message').innerHTML = `${locale.getString('ui', 'gameover')}<br><span class="small">${locale.getString('ui', 'pleasetryagain')}♥</span>`
+        }
+        $('#end-message-container').classList.remove('hidden')
+        $('#return-to-menu').textContent = locale.getString('ui', 'returnToMenu')
+      }, 1700)
     }
-    if (this.timeGoal == null) {
-      $('#end-stats').innerHTML += `<b>${locale.getString('ui', 'inGameTime', [`<span style="font-weight: normal">${msToTime(this.timePassed)}</span>`])}</b><br>`
-      $('#end-stats').innerHTML += `<b>${locale.getString('ui', 'realTimeAttack', [`<span style="font-weight: normal">${msToTime(this.timePassed + this.timePassedAre)}</span>`])}</b><br>`
+    else {
+      gameHandler.game.stack.new()
+      gameHandler.game.stack.makeAllDirty()
+      gameHandler.game.lives--
+      $('#lives').innerHTML = `Lives : ${gameHandler.game.lives}`
     }
-    $('#kill-message-container').classList.remove('hidden')
-    if (victory) {
-      sound.add('excellent')
-    } else {
-      if (!(settings.settings.soundbank === 't99' && settings.settings.voicebank !== 'off')) {
-        sound.add('ko')
-      }
-    }
-    sound.killBgm()
-    sound.killAllLoops()
-    $('#game').classList.add('dead')
-    endScreenTimeout = setTimeout(() => {
-      sound.stopSeLoop('alarm')
-      $('#kill-message-container').classList.add('hidden')
-      sound.add('gameover')
-      sound.add('voxgameover')
-      $('#end-message').textContent = locale.getString('ui', 'gameover')
-      if (this.type === 'handheld' || this.type === 'deluxe') {
-        $('#end-message').innerHTML = `${locale.getString('ui', 'gameover')}<br><span class="small">${locale.getString('ui', 'pleasetryagain')}♥</span>`
-      }
-      $('#end-message-container').classList.remove('hidden')
-      $('#return-to-menu').textContent = locale.getString('ui', 'returnToMenu')
-    }, 1700)
   }
   calculateActionText(lineClear, isSpin, isMini, b2b, isClutch) {
     if (!settings.settings.displayActionText) {

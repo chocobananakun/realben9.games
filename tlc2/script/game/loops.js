@@ -865,6 +865,7 @@ export const loops = {
             game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1 - y] = gridtemp
           }
         }
+        game.stack.makeAllDirty()
       }
       window.hasHeld = false
       game.stat.level = Math.max(settings.game.marathon.startingLevel, Math.floor(game.stat.line / 10 + 1))
@@ -3120,6 +3121,7 @@ export const loops = {
           game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1] = 'white'
         }
       }
+      game.stack.makeAllDirty()
     },
     onInit: (game) => {
       const difficulty = settings.game.survival.difficulty

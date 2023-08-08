@@ -652,6 +652,7 @@ export const loops = {
           }
         }
       }
+      game.lives = 2
     },
   },
   beat: {

@@ -3045,6 +3045,7 @@ export const loops = {
           game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1] = 'white'
         }
       }
+      game.stack.makeAllDirty()
     },
     onInit: (game) => {
       const difficulty = settings.game.survival.difficulty
