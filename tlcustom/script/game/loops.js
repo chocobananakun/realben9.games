@@ -1165,11 +1165,11 @@ export const loops = {
         136, 130, 125, 120, 115,
         111, 107, 103, 100, 96.8,
         93.8, 90.9, 88.2, 85.7, 83.3,
-        81.1, 78.9]
+        81.1, 78.9, 76.9]
       if (game.stat.level < 21) {
         game.piece.lockDelayLimit = 500
       } else {
-        game.piece.lockDelayLimit = DELAY_TABLE[Math.min(31, game.stat.level - 21)]
+        game.piece.lockDelayLimit = DELAY_TABLE[Math.min(32, game.stat.level - 21)]
       }
       const SPN_TABLE = [
         0, 0, 0, 0, 0,
@@ -1178,7 +1178,8 @@ export const loops = {
         75.2, 70.7, 66.4, 62.5, 58.7,
         55.2, 51.9, 48.8, 45.8, 43.1,
         40.5, 38.1, 35.8, 33.6, 31.6,
-        29.7, 27.9, 26.3, 24.7, 23.2, 21.8, 20.5]
+        29.7, 27.9, 26.3, 24.7, 23.2,
+        21.8, 20.5, 19.3]
       const CLR_TABLE = [
         333, 238, 185, 152, 128,
         191, 178, 168, 159, 152,
@@ -1186,15 +1187,16 @@ export const loops = {
         123, 116, 109, 103, 97.5,
         92.2, 87.3, 82.8, 78.5, 74.5,
         70.8, 67.3, 64, 61, 58.1,
-        55.4, 52.8, 50.4, 48.2, 46, 44, 42.2]
+        55.4, 52.8, 50.4, 48.2, 46,
+        44, 42.2, 40.4]
       if (game.stat.level < 16) {
         game.piece.areLimit = 0
         game.piece.areLineLimit = 500
         game.stat.entrydelay = `0ms, 500 Line`
       } else {
-        game.piece.areLimit = SPN_TABLE[Math.min(36, game.stat.level - 16)]
-        game.piece.areLineLimit = CLR_TABLE[Math.min(36, game.stat.level - 16)]
-        game.stat.entrydelay = `${SPN_TABLE[Math.min(36, game.stat.level - 16)]}ms, ${CLR_TABLE[Math.min(29, game.stat.level - 1)]} Line`
+        game.piece.areLimit = SPN_TABLE[Math.min(37, game.stat.level - 16)]
+        game.piece.areLineLimit = CLR_TABLE[Math.min(37, game.stat.level - 16)]
+        game.stat.entrydelay = `${game.piece.areLimit}ms, ${game.piece.areLineLimit} Line`
       }
       levelUpdate(game)
       const GRAVITY_TABLE = [
