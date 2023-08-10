@@ -209,6 +209,18 @@
       "settingType": "setting"
     },
     {
+      "string": "lifeCountLabel",
+      "stringDesc": "lifeCountDescription",
+      "type": "slider",
+      "action": "slider",
+      "max": 99,
+      "min": 0,
+      "discrete": 1,
+      "setting": "lifeCount",
+      "gameName": "zen",
+      "settingType": "game"
+    },
+    {
       "string": "invisibleOptionLabel",
       "stringDesc": "invisibleOptionDescription",
       "type": "toggle",

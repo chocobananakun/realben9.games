@@ -178,6 +178,13 @@
   "garbageCapDescription": {
     "message": "Limit how many broken lines (lines of garbage) may enter the Matrix at a time"
   },
+  "lifeCountLabel": {
+    "message": "Extra Lives",
+    "description": "Give yourself extra lives to insure yourself from your skill issues"
+  },
+  "lifeCountDescription": {
+    "message": "Give yourself extra lives to insure yourself from your skill issues"
+  },
   "matrixWidthLabel": {
     "message": "Matrix Width",
     "description": "'Matrix' in this context can also be known as grid, field, play area; this option determines how wide in blocks the playfield is. The standard amount is 10"

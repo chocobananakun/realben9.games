@@ -161,6 +161,13 @@
     "message": "Garbage Cap",
     "description": "Limit how many broken lines (lines of garbage) may enter the Matrix at a time"
   },
+  "lifeCountLabel": {
+    "message": "Extra Lives",
+    "description": "Give yourself extra lives to insure yourself from your skill issues"
+  },
+  "lifeCountDescription": {
+    "message": "Give yourself extra lives to insure yourself from your skill issues"
+  },
   "garbageCapDescription": {
     "message": "Limit how many broken lines (lines of garbage) may enter the Matrix at a time"
   },

@@ -202,6 +202,7 @@ class Settings {
         gravity: "0G",
         lockDelay: 500,
         matrixWidth: 10,
+        lifeCount: 0,
         invisible: false,
         customBoard: false,
       },

@@ -254,7 +254,17 @@ export default class Game {
             gameHandler.game.lives = 0
             $('#lives').innerHTML = ""
           }
-          else $('#lives').innerHTML = `Lives : ${gameHandler.game.lives}`
+          else {
+            for (let i = 0; i < 12; i++) {$('#life' + i).style.display = "none"}
+            if (gameHandler.game.lives < 13) {
+              for (let i = 0; i < gameHandler.game.lives; i++) {$('#life' + i).style.display = ""}
+              $('#lives').innerHTML = ""
+            }
+            else {
+              $('#life0').style.display = ""
+              $('#lives').innerHTML = "×" + gameHandler.game.lives
+            }
+          }
           this.request = requestAnimationFrame(this.gameLoop)
           document.documentElement.style.setProperty('--current-background', `url("../img/bg/${this.settings.background}")`)
           setTimeout(() => {this.resize()}, 10)
@@ -365,7 +375,15 @@ export default class Game {
       gameHandler.game.stack.new()
       gameHandler.game.stack.makeAllDirty()
       gameHandler.game.lives--
-      $('#lives').innerHTML = `Lives : ${gameHandler.game.lives}`
+      for (let i = 0; i < 12; i++) {$('#life' + i).style.display = "none"}
+      if (gameHandler.game.lives < 13) {
+        for (let i = 0; i < gameHandler.game.lives; i++) {$('#life' + i).style.display = ""}
+        $('#lives').innerHTML = ""
+      }
+      else {
+        $('#life0').style.display = ""
+        $('#lives').innerHTML = "×" + gameHandler.game.lives
+      }
     }
   }
   calculateActionText(lineClear, isSpin, isMini, b2b, isClutch) {

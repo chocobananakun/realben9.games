@@ -1,7 +1,32 @@
 window.addEventListener('load', function () {
-	snow = document.querySelectorAll("div")[0]
+	snow = document.getElementById("snow")
 	if (snow) {
 		snow.innerHTML = '<p>Toggle<button onclick="togcorndogs()" class="box2d">Corndogs</button><button onclick="tograinbow()" class="box2d">Rainbow</button><button onclick="togfont()" class="box2d">Font</button></p>' + snow.innerHTML
+	}
+	splash = document.getElementById("splash")
+	if (splash) {
+		splashRand = Math.floor(Math.random() * 4)
+		if (splashRand == 0) {
+			splashText = "Hello World"
+			splashXoffset = 11.7
+			splashYoffset = 5.3
+		}
+		else if (splashRand == 1) {
+			splashText = "oof"
+			splashXoffset = 14
+			splashYoffset = 5.3
+		}
+		else if (splashRand == 2) {
+			splashText = "Made by RealBen9!"
+			splashXoffset = 10.5
+			splashYoffset = 5.2
+		}
+		else {
+			splashText = "This splash was hard to make."
+			splashXoffset = 7
+			splashYoffset = 5.2
+		}
+		splash.innerHTML = '<p style="left:' + splashXoffset + 'em;top:' + splashYoffset + 'em">' + splashText + '</p>' //'<p style="--leftness:' + splashXoffset + 'em;--topness:' + splashYoffset + 'em;left:var(--leftness);top:var(--topness)">' + splashText + '</p>'
 	}
 })
 function togcorndogs() {
@@ -28,9 +53,15 @@ function togfont() {
 	switch (snow.classList.contains("font")) {
 		case true:
 			snow.classList.remove("font")
+			if (splash) {
+				splash.classList.remove("font")
+			}
 			break
 		case false:
 			snow.classList.add("font")
+			if (splash) {
+				splash.classList.add("font")
+			}
 			break
 	}
 }

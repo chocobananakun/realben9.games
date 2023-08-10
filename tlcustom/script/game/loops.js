@@ -1094,6 +1094,7 @@ export const loops = {
           break
       }
       game.piece.lockDelayLimit = settings.game.zen.lockDelay
+      game.lives = settings.game.zen.lifeCount
       game.stack.isInvisible = settings.game.zen.invisible
       if (settings.game.zen.customBoard == true) {
         function escape(s) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
