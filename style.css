@@ -39,6 +39,12 @@ i { font-size:50%; }
   z-index: 1;
   /*animation: splash .5s linear infinite;*/
 }
+#puzzle {
+  color: rgba(0,0,0,.5);
+  position: sticky;
+  text-align: center;
+  top: 100%;
+}
 @keyframes snow {
   0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
   100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}
