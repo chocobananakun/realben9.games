@@ -1,0 +1,135 @@
+<title>6 - Puzzle Room</title>
+<head><link rel="icon" type="image/x-icon" href="../img/favicon.ico"><link rel="stylesheet" type="text/css" href="../style.css"></head>
+<script src="../index.js"></script>
+<div id="snow">
+<p>Simple enough. After all, that was only the 5th one.</p>
+<p>But this one is the 6th one. Surely that means these should be getting harder, right?</p>
+<p>Well, here's a challenge. Find 00 without me telling you what these buttons do.</p>
+<h1 id="levelDisplay"></h1>
+<button onclick="moveSmallY()">↕</button><button onclick="moveSmallX()">↔</button>
+<button onclick="moveLargeY()">⇕</button><button onclick="moveLargeX()">⇔</button>
+<button onclick="nextlevel()">▣</button>
+<p id="levelFeedback"></p>
+<h1 id="puzzle">6</h1>
+</div>
+<script>
+var largeX = Math.floor(Math.random() * 3)
+var largeY = Math.floor(Math.random() * 3)
+var smallX = Math.floor(Math.random() * 3)
+var smallY = Math.floor(Math.random() * 3)
+while (largeX == 0 && largeY == 0 && smallX == 0 && smallY == 0) {
+    var largeX = Math.floor(Math.random() * 3)
+    var largeY = Math.floor(Math.random() * 3)
+    var smallX = Math.floor(Math.random() * 3)
+    var smallY = Math.floor(Math.random() * 3)
+}
+function updateDisp() {
+    levelDisp = document.getElementById("levelDisplay")
+    if (largeX == 0 && largeY == 0 && smallX == 0 && smallY == 0) levelDisp.innerHTML = '60'
+    else if (largeX == 0 && largeY == 0 && smallX == 0 && smallY == 1) levelDisp.innerHTML = '88'
+    else if (largeX == 0 && largeY == 0 && smallX == 0 && smallY == 2) levelDisp.innerHTML = '74'
+    else if (largeX == 0 && largeY == 0 && smallX == 1 && smallY == 0) levelDisp.innerHTML = '02'
+    else if (largeX == 0 && largeY == 0 && smallX == 1 && smallY == 1) levelDisp.innerHTML = '46'
+    else if (largeX == 0 && largeY == 0 && smallX == 1 && smallY == 2) levelDisp.innerHTML = '27'
+    else if (largeX == 0 && largeY == 0 && smallX == 2 && smallY == 0) levelDisp.innerHTML = '15'
+    else if (largeX == 0 && largeY == 0 && smallX == 2 && smallY == 1) levelDisp.innerHTML = '31'
+    else if (largeX == 0 && largeY == 0 && smallX == 2 && smallY == 2) levelDisp.innerHTML = '53'
+    else if (largeX == 0 && largeY == 1 && smallX == 0 && smallY == 0) levelDisp.innerHTML = '52'
+    else if (largeX == 0 && largeY == 1 && smallX == 0 && smallY == 1) levelDisp.innerHTML = '33'
+    else if (largeX == 0 && largeY == 1 && smallX == 0 && smallY == 2) levelDisp.innerHTML = '47'
+    else if (largeX == 0 && largeY == 1 && smallX == 1 && smallY == 0) levelDisp.innerHTML = '10'
+    else if (largeX == 0 && largeY == 1 && smallX == 1 && smallY == 1) levelDisp.innerHTML = '65'
+    else if (largeX == 0 && largeY == 1 && smallX == 1 && smallY == 2) levelDisp.innerHTML = '81'
+    else if (largeX == 0 && largeY == 1 && smallX == 2 && smallY == 0) levelDisp.innerHTML = '04'
+    else if (largeX == 0 && largeY == 1 && smallX == 2 && smallY == 1) levelDisp.innerHTML = '78'
+    else if (largeX == 0 && largeY == 1 && smallX == 2 && smallY == 2) levelDisp.innerHTML = '26'
+    else if (largeX == 0 && largeY == 2 && smallX == 0 && smallY == 0) levelDisp.innerHTML = '06'
+    else if (largeX == 0 && largeY == 2 && smallX == 0 && smallY == 1) levelDisp.innerHTML = '25'
+    else if (largeX == 0 && largeY == 2 && smallX == 0 && smallY == 2) levelDisp.innerHTML = '11'
+    else if (largeX == 0 && largeY == 2 && smallX == 1 && smallY == 0) levelDisp.innerHTML = '38'
+    else if (largeX == 0 && largeY == 2 && smallX == 1 && smallY == 1) levelDisp.innerHTML = '73'
+    else if (largeX == 0 && largeY == 2 && smallX == 1 && smallY == 2) levelDisp.innerHTML = '54'
+    else if (largeX == 0 && largeY == 2 && smallX == 2 && smallY == 0) levelDisp.innerHTML = '42'
+    else if (largeX == 0 && largeY == 2 && smallX == 2 && smallY == 1) levelDisp.innerHTML = '67'
+    else if (largeX == 0 && largeY == 2 && smallX == 2 && smallY == 2) levelDisp.innerHTML = '80'
+    else if (largeX == 1 && largeY == 0 && smallX == 0 && smallY == 0) levelDisp.innerHTML = '57'
+    else if (largeX == 1 && largeY == 0 && smallX == 0 && smallY == 1) levelDisp.innerHTML = '70'
+    else if (largeX == 1 && largeY == 0 && smallX == 0 && smallY == 2) levelDisp.innerHTML = '05'
+    else if (largeX == 1 && largeY == 0 && smallX == 1 && smallY == 0) levelDisp.innerHTML = '36'
+    else if (largeX == 1 && largeY == 0 && smallX == 1 && smallY == 1) levelDisp.innerHTML = '22'
+    else if (largeX == 1 && largeY == 0 && smallX == 1 && smallY == 2) levelDisp.innerHTML = '41'
+    else if (largeX == 1 && largeY == 0 && smallX == 2 && smallY == 0) levelDisp.innerHTML = '83'
+    else if (largeX == 1 && largeY == 0 && smallX == 2 && smallY == 1) levelDisp.innerHTML = '64'
+    else if (largeX == 1 && largeY == 0 && smallX == 2 && smallY == 2) levelDisp.innerHTML = '18'
+    else if (largeX == 1 && largeY == 1 && smallX == 0 && smallY == 0) levelDisp.innerHTML = '43'
+    else if (largeX == 1 && largeY == 1 && smallX == 0 && smallY == 1) levelDisp.innerHTML = '21'
+    else if (largeX == 1 && largeY == 1 && smallX == 0 && smallY == 2) levelDisp.innerHTML = '68'
+    else if (largeX == 1 && largeY == 1 && smallX == 1 && smallY == 0) levelDisp.innerHTML = '85'
+    else if (largeX == 1 && largeY == 1 && smallX == 1 && smallY == 1) levelDisp.innerHTML = '00'
+    else if (largeX == 1 && largeY == 1 && smallX == 1 && smallY == 2) levelDisp.innerHTML = '14'
+    else if (largeX == 1 && largeY == 1 && smallX == 2 && smallY == 0) levelDisp.innerHTML = '37'
+    else if (largeX == 1 && largeY == 1 && smallX == 2 && smallY == 1) levelDisp.innerHTML = '56'
+    else if (largeX == 1 && largeY == 1 && smallX == 2 && smallY == 2) levelDisp.innerHTML = '72'
+    else if (largeX == 1 && largeY == 2 && smallX == 0 && smallY == 0) levelDisp.innerHTML = '84'
+    else if (largeX == 1 && largeY == 2 && smallX == 0 && smallY == 1) levelDisp.innerHTML = '16'
+    else if (largeX == 1 && largeY == 2 && smallX == 0 && smallY == 2) levelDisp.innerHTML = '32'
+    else if (largeX == 1 && largeY == 2 && smallX == 1 && smallY == 0) levelDisp.innerHTML = '63'
+    else if (largeX == 1 && largeY == 2 && smallX == 1 && smallY == 1) levelDisp.innerHTML = '58'
+    else if (largeX == 1 && largeY == 2 && smallX == 1 && smallY == 2) levelDisp.innerHTML = '77'
+    else if (largeX == 1 && largeY == 2 && smallX == 2 && smallY == 0) levelDisp.innerHTML = '20'
+    else if (largeX == 1 && largeY == 2 && smallX == 2 && smallY == 1) levelDisp.innerHTML = '01'
+    else if (largeX == 1 && largeY == 2 && smallX == 2 && smallY == 2) levelDisp.innerHTML = '45'
+    else if (largeX == 2 && largeY == 0 && smallX == 0 && smallY == 0) levelDisp.innerHTML = '48'
+    else if (largeX == 2 && largeY == 0 && smallX == 0 && smallY == 1) levelDisp.innerHTML = '07'
+    else if (largeX == 2 && largeY == 0 && smallX == 0 && smallY == 2) levelDisp.innerHTML = '86'
+    else if (largeX == 2 && largeY == 0 && smallX == 1 && smallY == 0) levelDisp.innerHTML = '71'
+    else if (largeX == 2 && largeY == 0 && smallX == 1 && smallY == 1) levelDisp.innerHTML = '55'
+    else if (largeX == 2 && largeY == 0 && smallX == 1 && smallY == 2) levelDisp.innerHTML = '30'
+    else if (largeX == 2 && largeY == 0 && smallX == 2 && smallY == 0) levelDisp.innerHTML = '24'
+    else if (largeX == 2 && largeY == 0 && smallX == 2 && smallY == 1) levelDisp.innerHTML = '13'
+    else if (largeX == 2 && largeY == 0 && smallX == 2 && smallY == 2) levelDisp.innerHTML = '62'
+    else if (largeX == 2 && largeY == 1 && smallX == 0 && smallY == 0) levelDisp.innerHTML = '61'
+    else if (largeX == 2 && largeY == 1 && smallX == 0 && smallY == 1) levelDisp.innerHTML = '12'
+    else if (largeX == 2 && largeY == 1 && smallX == 0 && smallY == 2) levelDisp.innerHTML = '50'
+    else if (largeX == 2 && largeY == 1 && smallX == 1 && smallY == 0) levelDisp.innerHTML = '28'
+    else if (largeX == 2 && largeY == 1 && smallX == 1 && smallY == 1) levelDisp.innerHTML = '44'
+    else if (largeX == 2 && largeY == 1 && smallX == 1 && smallY == 2) levelDisp.innerHTML = '03'
+    else if (largeX == 2 && largeY == 1 && smallX == 2 && smallY == 0) levelDisp.innerHTML = '76'
+    else if (largeX == 2 && largeY == 1 && smallX == 2 && smallY == 1) levelDisp.innerHTML = '87'
+    else if (largeX == 2 && largeY == 1 && smallX == 2 && smallY == 2) levelDisp.innerHTML = '35'
+    else if (largeX == 2 && largeY == 2 && smallX == 0 && smallY == 0) levelDisp.innerHTML = '75'
+    else if (largeX == 2 && largeY == 2 && smallX == 0 && smallY == 1) levelDisp.innerHTML = '34'
+    else if (largeX == 2 && largeY == 2 && smallX == 0 && smallY == 2) levelDisp.innerHTML = '23'
+    else if (largeX == 2 && largeY == 2 && smallX == 1 && smallY == 0) levelDisp.innerHTML = '17'
+    else if (largeX == 2 && largeY == 2 && smallX == 1 && smallY == 1) levelDisp.innerHTML = '82'
+    else if (largeX == 2 && largeY == 2 && smallX == 1 && smallY == 2) levelDisp.innerHTML = '66'
+    else if (largeX == 2 && largeY == 2 && smallX == 2 && smallY == 0) levelDisp.innerHTML = '51'
+    else if (largeX == 2 && largeY == 2 && smallX == 2 && smallY == 1) levelDisp.innerHTML = '40'
+    else levelDisp.innerHTML = '08'
+}
+function moveSmallY() {
+    smallY = (smallY + 1) % 3
+    updateDisp()
+}
+function moveSmallX() {
+    smallX = (smallX + 1) % 3
+    updateDisp()
+}
+function moveLargeY() {
+    largeY = (largeY + 1) % 3
+    updateDisp()
+}
+function moveLargeX() {
+    largeX = (largeX + 1) % 3
+    updateDisp()
+}
+function nextlevel() {
+    levelFeedbacker = document.getElementById("levelFeedback")
+    if (largeX == 1 && largeY == 1 && smallX == 1 && smallY == 1) {
+        levelFeedbacker.outerHTML = '<p id="levelFeedback" style="color:#070">Correct!</p>'
+        window.location.replace('double_oh.html')
+    }
+    else levelFeedbacker.outerHTML = '<p id="levelFeedback" style="color:#700">Incorrect!</p>'
+}
+updateDisp()
+</script>
