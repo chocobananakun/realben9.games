@@ -2753,7 +2753,7 @@ export const loops = {
         game.piece.areLimit = framesToMs(25)
         game.piece.areLineLimit = framesToMs(40)}
       if (game.stat.level + (game.cools * 100) < 900) {game.piece.lockDelayLimit = 500}
-      else if (game.stat.level + (game.cools * 100) < 1100) {game.piece.lockDelayLimit = 283.3}
+      else if (game.stat.level + (game.cools * 100) < 1100) {game.piece.lockDelayLimit = 283}
       else {game.piece.lockDelayLimit = 250}
       if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {
         game.stat.level++
@@ -3284,7 +3284,7 @@ export const loops = {
       }
       let lockDelayDenominator = 1
       const lockDelayTable = [
-        [0,200],[100,183.3],[200,166.6],[300,150],[400,133.3],[500,116.6],[600,100],[700,83.3],[800,66.6],[900,50],[999,33.3]
+        [0,200],[100,183],[200,166],[300,150],[400,133],[500,116],[600,100],[700,83.3],[800,66.6],[900,50],[999,33.3]
       ]
       for (const pair of lockDelayTable) {
         const level = pair[0]
@@ -3308,7 +3308,7 @@ export const loops = {
       }
       let clearDenominator = 1
       const clearTable = [
-        [0,150],[200,133.3],[300,100],[500,83.3],[700,66.6],[900,50]
+        [0,150],[200,133],[300,100],[500,83.3],[700,66.6],[900,50]
       ]
       for (const pair of clearTable) {
         const level = pair[0]

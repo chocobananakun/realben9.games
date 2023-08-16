@@ -804,11 +804,21 @@ export const loops = {
     },
     onPieceSpawn: (game) => {
       if (window.hasHeld == false) {
-        game.stat.boardBanks[game.stat.boardBank] = ""
         for (let x = 0; x < 10; x++) {
           for (let y = 0; y < 20; y++) {
+            game.stat.boardBanks[game.stat.boardBank] = game.stat.boardBanks[game.stat.boardBank].split('')
             window.gridtemp = game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1 - y]
-            switch (window.gridtemp) {
+            if (window.gridtemp == 'red') window.gridtemp = 1
+            else if (window.gridtemp == 'orange') window.gridtemp = 2
+            else if (window.gridtemp == 'yellow') window.gridtemp = 3
+            else if (window.gridtemp == 'green') window.gridtemp = 4
+            else if (window.gridtemp == 'lightBlue') window.gridtemp = 5
+            else if (window.gridtemp == 'blue') window.gridtemp = 6
+            else if (window.gridtemp == 'purple') window.gridtemp = 7
+            else if (window.gridtemp == 'white') window.gridtemp = 8
+            else if (window.gridtemp == 'black') window.gridtemp = 9
+            else window.gridtemp = 0
+            /*switch (window.gridtemp) {
               case undefined:
                 window.gridtemp = 0
                 break
@@ -839,11 +849,11 @@ export const loops = {
               case "black":
                 window.gridtemp = 9
                 break
-            }
-            game.stat.boardBanks[game.stat.boardBank] = game.stat.boardBanks[game.stat.boardBank] + gridtemp
+            }*/
+            game.stat.boardBanks[game.stat.boardBank][x + (y * 10)] = gridtemp
+            game.stat.boardBanks[game.stat.boardBank] = game.stat.boardBanks[game.stat.boardBank].join('')
           }
         }
-        console.log(game.stat.boardBank + " : " + game.stat.boardBanks[game.stat.boardBank])
         if (game.stat.boardBank == 0) {
           game.stat.boardBank = 1
         } else {
@@ -891,7 +901,7 @@ export const loops = {
       lastLevel = parseInt(settings.game.marathon.startingLevel)
       game.piece.gravity = 1000
       game.stat.boardBank = 0
-      game.stat.boardBanks = ["",""]
+      game.stat.boardBanks = ["00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"]
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -2820,7 +2830,7 @@ export const loops = {
         game.piece.areLimit = framesToMs(25)
         game.piece.areLineLimit = framesToMs(40)}
       if (game.stat.level + (game.cools * 100) < 900) {game.piece.lockDelayLimit = 500}
-      else if (game.stat.level + (game.cools * 100) < 1100) {game.piece.lockDelayLimit = 283.3}
+      else if (game.stat.level + (game.cools * 100) < 1100) {game.piece.lockDelayLimit = 283}
       else {game.piece.lockDelayLimit = 250}
       if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {
         game.stat.level++
@@ -3362,7 +3372,7 @@ export const loops = {
       }
       let lockDelayDenominator = 1
       const lockDelayTable = [
-        [0,200],[100,183.3],[200,166.6],[300,150],[400,133.3],[500,116.6],[600,100],[700,83.3],[800,66.6],[900,50],[999,33.3]
+        [0,200],[100,183],[200,166],[300,150],[400,133],[500,116],[600,100],[700,83.3],[800,66.6],[900,50],[999,33.3]
       ]
       for (const pair of lockDelayTable) {
         const level = pair[0]
@@ -3386,7 +3396,7 @@ export const loops = {
       }
       let clearDenominator = 1
       const clearTable = [
-        [0,150],[200,133.3],[300,100],[500,83.3],[700,66.6],[900,50]
+        [0,150],[200,133],[300,100],[500,83.3],[700,66.6],[900,50]
       ]
       for (const pair of clearTable) {
         const level = pair[0]

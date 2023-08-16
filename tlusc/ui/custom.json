@@ -21,7 +21,6 @@
       "fixedText": true,
       "label": "Big",
       "description": "The pieces are double their height & width",
-      "default": true,
       "action": "submenu",
       "submenu": "mode/big"
     }

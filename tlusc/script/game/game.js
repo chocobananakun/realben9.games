@@ -252,12 +252,12 @@ export default class Game {
           window.onresize = this.resize
           $('.game').classList.remove('paused')
           $('.game').classList.remove('zen-paused')
+          for (let i = 0; i < 12; i++) {$('#life' + i).style.display = "none"}
           if (gameHandler.game.lives == undefined) {
             gameHandler.game.lives = 0
             $('#lives').innerHTML = ""
           }
           else {
-            for (let i = 0; i < 12; i++) {$('#life' + i).style.display = "none"}
             if (gameHandler.game.lives < 13) {
               for (let i = 0; i < gameHandler.game.lives; i++) {$('#life' + i).style.display = ""}
               $('#lives').innerHTML = ""
