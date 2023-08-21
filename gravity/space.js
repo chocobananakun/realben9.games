@@ -1258,8 +1258,8 @@
 					var param = params[i].split("=");
 
 					if (param[0] == "q") {
-
-						document.getElementById('q').value = param[1];
+						try {document.getElementById('q').value = param[1]} //also sometimes breaks
+						catch {};
 						break;
 					}
 				}
@@ -1296,32 +1296,68 @@
 				worldAABB.maxVertex.Set( window.innerWidth + 200, window.innerHeight + 200 );
 
 				world = new b2World( worldAABB, new b2Vec2( 0, 0 ), true );
-
 				// walls
 				setWalls();
-
 				// Get box2d elements
-
-				elements0 = getElementsByClass("box2d");elements1 = getElementsByClass("loadingScreen");elements2 = getElementsByClass("MYOkWc");elements3 = getElementsByClass("RponAc");elements4 = getElementsByClass("langSelectButton title");elements5 = getElementsByClass("topBar");elements6 = getElementsByClass("title");elements7 = getElementsByClass("separatorLeft");elements8 = getElementsByClass("separatorRight");elements9 = getElementsByClass("page-header");elementsA = getElementsByClass("ui-button-text");elementsB = getElementsByClass("doge2lol");elementsC = getElementsByClass("ptreon");elementsD = getElementsByClass("discordcta");elementsE = getElementsByClass("p-landing__start--play");elementsF = getElementsByClass("google-signin-box");elementsG = getElementsByClass("button");elementsH = getElementsByClass("btn");elementsI = getElementsByClass("rounded");elementsJ = getElementsByClass("footer");elementsK = getElementsByClass("lang");elementsL = getElementsByClass("icon");elementsM = getElementsByClass("logo");elementsN = getElementsByClass("diagram");elementsO = getElementsByClass("flavour-text");elementsP = getElementsByClass("media-thumb");elementsQ = getElementsByClass("media-info");elementsR = getElementsByClass("stat");
-				elements = elements0.concat(elements1,elements2,elements3,elements4,elements5,elements6,elements7,elements8,elements9,elementsA,elementsB,elementsC,elementsD,elementsE,elementsF,elementsG,elementsH,elementsI,elementsJ,elementsK,elementsL,elementsM,elementsN,elementsO,elementsP,elementsQ,elementsR);
+				elem0 = getElementsByClass("box2d")
+				elem1 = getElementsByClass("loadingScreen")
+				elem2 = getElementsByClass("MYOkWc")
+				elem3 = getElementsByClass("RponAc")
+				elem4 = getElementsByClass("langSelectButton title")
+				elem5 = getElementsByClass("topBar")
+				elem6 = getElementsByClass("page-header")
+				elem7 = getElementsByClass("ui-button-text")
+				elem8 = getElementsByClass("doge2lol")
+				elem9 = getElementsByClass("ptreon")
+				elemA = getElementsByClass("discordcta")
+				elemB = getElementsByClass("p-landing__start--play")
+				elemC = getElementsByClass("google-signin-box")
+				elemD = getElementsByClass("button")
+				elemE = getElementsByClass("btn")
+				elemF = getElementsByClass("rounded")
+				elemG = getElementsByClass("footer")
+				elemH = getElementsByClass("lang")
+				elemI = getElementsByClass("icon")
+				elemJ = getElementsByClass("logo")
+				elemK = getElementsByClass("diagram")
+				elemL = getElementsByClass("flavour-text")
+				elemM = getElementsByClass("media-thumb")
+				elemN = getElementsByClass("media-info")
+				elemO = getElementsByClass("stat")
+				elemCC1 = getElementsByClass("title")
+				elemCC2 = getElementsByClass("separatorLeft")
+				elemCC3 = getElementsByClass("separatorRight")
+				elemGoog0 = getElementsByClass("lnXdpd")
+				elemGoog1 = getElementsByClass("gb_y")
+				elemGoog2 = getElementsByClass("gb_d")
+				elemGoog3 = getElementsByClass("MV3Tnb")
+				elemGoog4 = getElementsByClass("RNNXgb")
+				elemGoog5 = getElementsByClass("gNO89b")
+				elemGoog6 = getElementsByClass("pHiOh")
+				elemGoog7 = getElementsByClass("gb_ta")
+				elemGoog8 = getElementsByClass("usJj9c")
+				elemGoog9 = getElementsByClass("LC20lb")
+				elemGoogA = getElementsByClass("eqA2re")
+				elemGoogB = getElementsByClass("VuuXrf")
+				elemGoogC = getElementsByClass("VwiC3b")
+				elemGoogD = getElementsByClass("fLciMb")
+				elemGoogE = getElementsByClass("GKS7s")
+				elements = elem0.concat(elem1, elem2, elem3, elem4, elem5, elem6, elem7, elem8, elem9, elemA, elemB, elemC, elemD, elemE, elemF, elemG, elemH, elemI, elemJ, elemK, elemL, elemM, elemN, elemO, elemGoog0, elemGoog1, elemGoog2, elemGoog3, elemGoog4, elemGoog5, elemGoog6, elemGoog7, elemGoog8, elemGoog9, elemGoogA, elemGoogB, elemGoogC, elemGoogD, elemGoogE, elemCC0, elemCC1, elemCC2)
 				console.log("Boxes Detected :", elements)
 
 				for ( var i = 0; i < elements.length; i ++ ) {
-
 					properties[i] = getElementProperties( elements[i] );
-
 				}
 
 				for ( var i = 0; i < elements.length; i ++ ) {
-
 					var element = elements[ i ];
-					element.style.position = 'absolute';
-					element.style.left = properties[i][0] + 'px';
-					element.style.top = properties[i][1] + 'px';
-					element.style.width = properties[i][2] + 'px';
-					element.addEventListener( 'mousedown', onElementMouseDown, false );
-					element.addEventListener( 'mouseup', onElementMouseUp, false );
-					element.addEventListener( 'click', onElementClick, false );
+								element.style.position = 'absolute';
+								element.style.left = properties[i][0] + 'px';
+								element.style.top = properties[i][1] + 'px';
+								element.style.width = properties[i][2] + 'px';
+								element.addEventListener( 'mousedown', onElementMouseDown, false );
+								element.addEventListener( 'mouseup', onElementMouseUp, false );
+								element.addEventListener( 'click', onElementClick, false );
 
 					bodies[i] = createBox( world, properties[i][0] + (properties[i][2] >> 1), properties[i][1] + (properties[i][3] >> 1), properties[i][2] / 2, properties[i][3] / 2, false );
 
@@ -1329,8 +1365,8 @@
 
 					while ( element.offsetParent ) {
 
-						element = element.offsetParent;
-						element.style.position = 'static';
+									element = element.offsetParent;
+									element.style.position = 'static';
 
 					}
 
@@ -1498,7 +1534,7 @@
 			function addWeb( data ) {
 
 				var element = document.createElement('div');
-				element.innerHTML = '<div class="result animate"><div class="title"><a href="' + data.unescapedUrl + '" target="_blank">' + data.title + '</a></div><div class="url">' + data.visibleUrl + '</div><div class="content">' + data.content + '</div>';
+							element.innerHTML = '<div class="result animate"><div class="title"><a href="' + data.unescapedUrl + '" target="_blank">' + data.title + '</a></div><div class="url">' + data.visibleUrl + '</div><div class="content">' + data.content + '</div>';
 
 				document.body.appendChild( element );
 
@@ -1506,20 +1542,20 @@
 					Math.random() * ( window.innerWidth - 546 ),
 					Math.random() * ( window.innerHeight - element.offsetHeight ),
 					546,
-					element.offsetHeight
+								element.offsetHeight
 				] );
 
 				var i = properties.length - 1;
 
-				element.style.position = 'absolute';
-				element.style.left = 0 + 'px';
-				element.style.top = - 100 + 'px';
-				element.style.backgroundColor = '#ffffff';
-				element.addEventListener( 'mousedown', onElementMouseDown, false );
-				element.addEventListener( 'mouseup', onElementMouseUp, false );
-				element.addEventListener( 'click', onElementClick, false );
+							element.style.position = 'absolute';
+							element.style.left = 0 + 'px';
+							element.style.top = - 100 + 'px';
+							element.style.backgroundColor = '#ffffff';
+							element.addEventListener( 'mousedown', onElementMouseDown, false );
+							element.addEventListener( 'mouseup', onElementMouseUp, false );
+							element.addEventListener( 'click', onElementClick, false );
 
-				elements[i] = element;
+							elements[i] = element;
 
 				resultBodies.push( bodies[i] = createBox( world, properties[i][0] + ( properties[i][2] >> 1 ), properties[i][1] + ( properties[i][3] >> 1 ), properties[i][2] / 2, properties[i][3] / 2, false, element ) );
 
@@ -1528,29 +1564,29 @@
 			function addImage( data ) {
 
 				var element = document.createElement( 'img' );
-				element.style.display = 'none';
-				element.style.cursor = 'pointer';
-				element.style.cssName = 'animate';
-				element.addEventListener( 'load', function () {
+							element.style.display = 'none';
+							element.style.cursor = 'pointer';
+							element.style.cssName = 'animate';
+							element.addEventListener( 'load', function () {
 
 					properties.push( [
 						Math.random() * ( window.innerWidth - element.width ),
 						Math.random() * ( window.innerHeight - element.height ),
-						element.width,
-						element.height
+									element.width,
+									element.height
 					] );
 
 					var i = properties.length - 1;
 
-					element.style.display = 'block';
-					element.style.position = 'absolute';
-					element.style.left = 0 + 'px';
-					element.style.top = - 200 + 'px';
-					element.style.backgroundColor = '#ffffff';
-					element.addEventListener( 'mousedown', onElementMouseDown, false );
-					element.addEventListener( 'mouseup', onElementMouseUp, false );
-					element.addEventListener( 'click', onElementClick, false );
-					element.addEventListener( 'click', function ( event ) {
+								element.style.display = 'block';
+								element.style.position = 'absolute';
+								element.style.left = 0 + 'px';
+								element.style.top = - 200 + 'px';
+								element.style.backgroundColor = '#ffffff';
+								element.addEventListener( 'mousedown', onElementMouseDown, false );
+								element.addEventListener( 'mouseup', onElementMouseUp, false );
+								element.addEventListener( 'click', onElementClick, false );
+								element.addEventListener( 'click', function ( event ) {
 
 						var range = 5;
 
@@ -1563,12 +1599,12 @@
 
 					}, false );
 
-					elements[i] = element;
+								elements[i] = element;
 
 					resultBodies.push( bodies[i] = createBox( world, properties[i][0] + ( properties[i][2] >> 1 ), properties[i][1] + ( properties[i][3] >> 1 ), properties[i][2] / 2, properties[i][3] / 2, false, element ) );
 
 				}, false );
-				element.src = data.tbUrl;
+							element.src = data.tbUrl;
 				document.body.appendChild( element );
 
 			}
@@ -1594,16 +1630,16 @@
 					var body = bodies[i];
 					var element = elements[i];
 
-					element.style.left = (body.m_position0.x - (properties[i][2] >> 1)) + 'px';
-					element.style.top = (body.m_position0.y - (properties[i][3] >> 1)) + 'px';
+								element.style.left = (body.m_position0.x - (properties[i][2] >> 1)) + 'px';
+								element.style.top = (body.m_position0.y - (properties[i][3] >> 1)) + 'px';
 
 					var style = 'rotate(' + (body.m_rotation0 * 57.2957795) + 'deg)';
 
-					element.style.transform = style;
-					element.style.WebkitTransform = style + ' translateZ(0)'; // Force HW Acceleration
-					element.style.MozTransform = style;
-					element.style.OTransform = style;
-					element.style.msTransform = style;
+								element.style.transform = style;
+								element.style.WebkitTransform = style + ' translateZ(0)'; // Force HW Acceleration
+								element.style.MozTransform = style;
+								element.style.OTransform = style;
+								element.style.msTransform = style;
 				}
 			}
 
@@ -1730,8 +1766,8 @@
 				var elsLen = els.length
 
 				for (i = 0, j = 0; i < elsLen; i++) {
-
-					var classes = els[i].className.split(' ');
+					try {var classes = els[i].className.split(' ')} //sometimes has incompatibilities; related to "SVGAnimatedString"?
+					catch {}
 					for (k = 0; k < classes.length; k++)
 						if ( classes[k] == searchClass )
 							classElements[j++] = els[i];
