@@ -213,6 +213,7 @@ export default class Stack extends GameModule {
         }
       }
     }
+    window.hasPCed = pc
     if (this.lineClear > 0) {
       // TODO mini tspin and clean this up
       if (SCORE_TABLES[this.parent.settings.scoreTable].hasCombo) {

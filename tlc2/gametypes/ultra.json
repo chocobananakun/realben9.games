@@ -16,9 +16,9 @@
     "background": "marathon.jpg"
   },
   "piece": {
-    "areLimit": 100,
-    "areLineLimit": 166.666666667,
-    "areLimitLineModifier": 166.666666667,
+    "areLimit": 0,
+    "areLineLimit": 1,
+    "areLimitLineModifier": 1,
     "spinDetectionType": "3corner"
   },
   "stats": ["grade", "score", "level", "fallspeed", "line", "maxcombo", "piece", "b2b", "pcCount"]

@@ -44,7 +44,7 @@ let nonEvents = []
 let bpm
 const levelUpdate = (game) => {
   let returnValue = false
-  if (game.stat.level !== lastLevel) {
+  if (game.stat.level !== lastLevel && game.type != "ultra") {
     sound.add('levelup')
     game.stack.levelUpAnimation = 0
     if (game.stat.level % 5 === 0) {
@@ -135,7 +135,7 @@ export const loops = {
       game.endingStats.grade = true
       game.musicProgression = 0
       game.drop = 0
-      window.lineClear = 0
+      lineClear = 0
       game.updateStats()
     },
     onPieceSpawn: (game) => {
@@ -163,10 +163,10 @@ export const loops = {
           }
         }
       }
-      if (window.lineClear < 3) {game.stat.level = game.stat.level}
-      else if (window.lineClear == 3) {game.stat.level = game.stat.level + 1}
+      if (lineClear < 3) {game.stat.level = game.stat.level}
+      else if (lineClear == 3) {game.stat.level = game.stat.level + 1}
       else {game.stat.level = game.stat.level + 2}
-      window.lineClear = 0
+      lineClear = 0
       const areTable = [[300,10],[1300,4]]
       const areLineModifierTable = [[101,-4],[301,-6],[1000,0]]
       const areLineTable = [[100,6],[200,5],[500,4],[1300,3]]
@@ -495,8 +495,8 @@ export const loops = {
       updateLasts(arg)
     },
     onPieceSpawn: (game) => {
-      if (window.lineClear == 0) {game.stat.gradepoints = game.stat.gradepoints}
-      else if (window.lineClear == 1) {
+      if (lineClear == 0) {game.stat.gradepoints = game.stat.gradepoints}
+      else if (lineClear == 1) {
         switch (game.stat.gradeid) {
           case 0:
             game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)))
@@ -532,7 +532,7 @@ export const loops = {
             game.stat.gradepoints = game.stat.gradepoints + (2 * Math.floor(1 + (game.stat.level / 250)))
             break
         }}
-      else if (window.lineClear == 2) {
+      else if (lineClear == 2) {
         switch (game.stat.gradeid) {
           case 0:
             game.stat.gradepoints = game.stat.gradepoints + (20 * Math.floor(1 + (game.stat.level / 250)))
@@ -568,7 +568,7 @@ export const loops = {
             game.stat.gradepoints = game.stat.gradepoints + (12 * Math.floor(1 + (game.stat.level / 250)))
             break
         }}
-      else if (window.lineClear == 3) {
+      else if (lineClear == 3) {
         switch (game.stat.gradeid) {
           case 0:
             game.stat.gradepoints = game.stat.gradepoints + (40 * Math.floor(1 + (game.stat.level / 250)))
@@ -625,7 +625,7 @@ export const loops = {
             game.stat.gradepoints = game.stat.gradepoints + (30 * Math.floor(1 + (game.stat.level / 250)))
             break
         }}
-      window.lineClear = 0
+      lineClear = 0
       if (game.stat.gradepoints >= 100) {
         game.stat.gradeid++
         game.stat.gradepoints = 0
@@ -2391,8 +2391,8 @@ export const loops = {
           }
         }
       }
-      if (window.lineClear == 0) {game.stat.gradepoints = game.stat.gradepoints}
-      else if (window.lineClear == 1) {
+      if (lineClear == 0) {game.stat.gradepoints = game.stat.gradepoints}
+      else if (lineClear == 1) {
         switch (game.stat.gradeid) {
           case 0:
             game.stat.gradepoints = game.stat.gradepoints + (10 * Math.floor(1 + (game.stat.level / 250)))
@@ -2428,7 +2428,7 @@ export const loops = {
             game.stat.gradepoints = game.stat.gradepoints + (2 * Math.floor(1 + (game.stat.level / 250)))
             break
         }}
-      else if (window.lineClear == 2) {
+      else if (lineClear == 2) {
         switch (game.stat.gradeid) {
           case 0:
             game.stat.gradepoints = game.stat.gradepoints + (20 * Math.floor(1 + (game.stat.level / 250)))
@@ -2464,7 +2464,7 @@ export const loops = {
             game.stat.gradepoints = game.stat.gradepoints + (12 * Math.floor(1 + (game.stat.level / 250)))
             break
         }}
-      else if (window.lineClear == 3) {
+      else if (lineClear == 3) {
         game.stat.level = game.stat.level + 1
         switch (game.stat.gradeid) {
           case 0:
@@ -2523,7 +2523,7 @@ export const loops = {
             game.stat.gradepoints = game.stat.gradepoints + (30 * Math.floor(1 + (game.stat.level / 250)))
             break
         }}
-      window.lineClear = 0
+      lineClear = 0
       $('#stat-grade').style.color = "lime"
       if (game.stat.gradepoints >= 100) {
         game.stat.gradeid++
@@ -2837,42 +2837,42 @@ export const loops = {
     onPieceSpawn: (game) => {
       if (window.isSpin == true) {
         if (window.isMini == true) {
-          if (window.lineClear == 0 && window.hasHeld == false) {game.stat.level = game.stat.level + 10}
-          else if (window.lineClear == 0 && window.hasHeld == true) {game.stat.level = game.stat.level}
-          else if (window.lineClear == 1) {game.stat.level = game.stat.level + 20}
-          else if (window.lineClear == 2) {game.stat.level = game.stat.level + 35}
-          else if (window.lineClear == 3) {game.stat.level = game.stat.level + 35}
+          if (lineClear == 0 && window.hasHeld == false) {game.stat.level = game.stat.level + 10}
+          else if (lineClear == 0 && window.hasHeld == true) {game.stat.level = game.stat.level}
+          else if (lineClear == 1) {game.stat.level = game.stat.level + 20}
+          else if (lineClear == 2) {game.stat.level = game.stat.level + 35}
+          else if (lineClear == 3) {game.stat.level = game.stat.level + 35}
         }
         else {
-          if (window.lineClear == 0 && window.hasHeld == false) {game.stat.level = game.stat.level + 50}
-          else if (window.lineClear == 0 && window.hasHeld == true) {game.stat.level = game.stat.level}
-          else if (window.lineClear == 1) {game.stat.level = game.stat.level + 80}
-          else if (window.lineClear == 2) {game.stat.level = game.stat.level + 120}
-          else if (window.lineClear == 3) {game.stat.level = game.stat.level + 170}
+          if (lineClear == 0 && window.hasHeld == false) {game.stat.level = game.stat.level + 50}
+          else if (lineClear == 0 && window.hasHeld == true) {game.stat.level = game.stat.level}
+          else if (lineClear == 1) {game.stat.level = game.stat.level + 80}
+          else if (lineClear == 2) {game.stat.level = game.stat.level + 120}
+          else if (lineClear == 3) {game.stat.level = game.stat.level + 170}
         }
       }
       else {
-        if (window.lineClear == 0) {game.stat.level = game.stat.level}
-        else if (window.lineClear == 1) {game.stat.level = game.stat.level + 10}
-        else if (window.lineClear == 2) {game.stat.level = game.stat.level + 25}
-        else if (window.lineClear == 3) {game.stat.level = game.stat.level + 50}
+        if (lineClear == 0) {game.stat.level = game.stat.level}
+        else if (lineClear == 1) {game.stat.level = game.stat.level + 10}
+        else if (lineClear == 2) {game.stat.level = game.stat.level + 25}
+        else if (lineClear == 3) {game.stat.level = game.stat.level + 50}
         else {game.stat.level = game.stat.level + 100}
       }
+      if (game.combo >= 1 && window.hasHeld == false) {game.stat.level = game.stat.level + (5 * game.combo)}
+      if (window.hasPCed == true) {game.stat.level = game.stat.level + 50}
       window.hasHeld = false
       window.isSpin = false
       window.isMini = false
       if (game.stat.level > game.stat.grade) {game.stat.grade = game.stat.level}
-      game.stat.level = game.stat.level - 1
+      game.stat.level--
       if (game.stat.level < 0) {game.stat.level = 0}
-      window.lineClear = 0
+      lineClear = 0
       const calcLevel = Math.min(31, game.stat.level - 1)
       if (game.stat.level < 4000) {
         game.piece.lockDelayLimit = 500
       } else {
         game.piece.lockDelayLimit = Math.ceil((Math.sqrt(15 * (game.stat.level - 4000))) * -1) + 500
       }
-      game.piece.areLimit = 15
-      game.piece.areLineLimit = 15
       levelUpdate(game)
       const GRAVITY_TABLE = [
         1000, 800, 621, 467, 341,
@@ -2889,7 +2889,7 @@ export const loops = {
     onInit: (game) => {
       game.stat.level = settings.game.ultra.startingLevel
       game.stat.grade = settings.game.ultra.startingLevel
-      window.lineClear = 0
+      lineClear = 0
       lastLevel = parseInt(settings.game.ultra.startingLevel)
       game.updateStats()
     },

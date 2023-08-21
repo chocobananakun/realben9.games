@@ -4,6 +4,7 @@ import sound from "../sound.js"
 import locale from "../lang.js"
 import settings from "../settings.js"
 import { SCORE_TABLES } from "../consts.js"
+import gameHandler from "./game-handler.js"
 export default class Stack extends GameModule {
   constructor(parent, ctx) {
     super(parent)
@@ -213,6 +214,7 @@ export default class Stack extends GameModule {
         }
       }
     }
+    window.hasPCed = pc
     if (this.lineClear > 0) {
       // TODO mini tspin and clean this up
       if (SCORE_TABLES[this.parent.settings.scoreTable].hasCombo) {
