@@ -136,6 +136,15 @@ export const loops = {
       game.musicProgression = 0
       game.drop = 0
       lineClear = 0
+      if (settings.game.sudden.ruleOption == false) {
+        game.settings.rotationSystem = "world"
+        game.rotationSystem = "world"
+        $('#levelType').innerHTML = '<font color="#f66">Sudden Ti</font>'
+      } else {
+        game.settings.rotationSystem = "arsti"
+        game.rotationSystem = "arsti"
+        $('#levelType').innerHTML = '<font color="#66f">Sudden Ti (Classic)</font>'
+      }
       game.updateStats()
     },
     onPieceSpawn: (game) => {
@@ -255,13 +264,6 @@ export const loops = {
       }
       if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1}
       window.hasHeld = false
-      if (settings.game.sudden.ruleOption == false) {
-        game.settings.rotationSystem = "world"
-        game.rotationSystem = "world"
-      } else {
-        game.settings.rotationSystem = "arsti"
-        game.rotationSystem = "arsti"
-      }
       updateFallSpeed(game)
     }
   },
@@ -730,13 +732,15 @@ export const loops = {
         game.piece.areLimit = framesToMs(25)
         game.piece.areLineLimit = framesToMs(40)}
       if (game.stat.level < 900) {game.piece.lockDelayLimit = 500}
-      else {game.piece.lockDelayLimit = 283.3}
+      else {game.piece.lockDelayLimit = 283}
       if (settings.game.novice.ruleOption == false) {
         game.settings.rotationSystem = "srs"
         game.rotationSystem = "srs"
+        $('#levelType').innerHTML = '<font color="#f66">Special</font>'
       } else {
         game.settings.rotationSystem = "ars"
         game.rotationSystem = "ars"
+        $('#levelType').innerHTML = '<font color="#66f">Special (Classic)</font>'
       }
       updateFallSpeed(game)
     },
@@ -821,7 +825,9 @@ export const loops = {
     onInit: (game) => {
       if (settings.game.marathon.lineGoal >= 0) {
         game.lineGoal = settings.game.marathon.lineGoal
+        $('#levelType').innerHTML = "Big (" + settings.game.marathon.lineGoal + "L, " + settings.game.marathon.startingLevel + "S)"
       }
+      else $('#levelType').innerHTML = "Big (∞L, " + settings.game.marathon.startingLevel + "S)"
       game.stat.level = settings.game.marathon.startingLevel
       lastLevel = parseInt(settings.game.marathon.startingLevel)
       game.piece.gravity = 1000
@@ -875,6 +881,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#levelType').innerHTML = "IC4W"
       if (settings.game.marathon.lineGoal >= 0) {
         game.lineGoal = settings.game.marathon.lineGoal
       }
@@ -931,6 +938,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#levelType').innerHTML = "Big"
       if (settings.game.marathon.lineGoal >= 0) {
         game.lineGoal = settings.game.marathon.lineGoal
       }
@@ -987,6 +995,7 @@ export const loops = {
       game.updateStats()
     },
     onInit: (game) => {
+      $('#levelType').innerHTML = "Zen"
       game.settings.width = settings.game.zen.matrixWidth
       game.stack.width = settings.game.zen.matrixWidth
       game.stack.new()
@@ -1213,6 +1222,9 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
+      if (settings.game.beat.lockdownMode == 'infinity') $('#levelType').innerHTML = "Pull (Forgiving, " + settings.game.beat.startingLevel + "S)"
+      else if (settings.game.beat.lockdownMode == 'extended') $('#levelType').innerHTML = "Pull (Limited, " + settings.game.beat.startingLevel + "S)"
+      else $('#levelType').innerHTML = "Pull (Strict, " + settings.game.beat.startingLevel + "S)"
       if (settings.game.beat.startingLevel < 10) {
         sound.playMenuSe('hardstart1')
       } else if (settings.game.beat.startingLevel < 20) {
@@ -1346,6 +1358,7 @@ export const loops = {
 
     },
     onInit: (game) => {
+      $('#levelType').innerHTML = "Night of Nights X"
       game.timeGoal = 140000
       game.rtaLimit = true
       game.stat.level = 1
@@ -2760,13 +2773,6 @@ export const loops = {
       }
       if (game.stat.initPieces > 0) {game.stat.initPieces = game.stat.initPieces - 1}
       window.hasHeld = false
-      if (settings.game.sprint.ruleOption == false) {
-        game.settings.rotationSystem = "world"
-        game.rotationSystem = "world"
-      } else {
-        game.settings.rotationSystem = "arsti"
-        game.rotationSystem = "arsti"
-      }
       updateFallSpeed(game)
     },
     onInit: (game) => {
@@ -2806,6 +2812,15 @@ export const loops = {
       game.arcadeCombo = 1
       game.drop = 0
       game.stat.initPieces = 2
+      if (settings.game.sprint.ruleOption == false) {
+        game.settings.rotationSystem = "world"
+        game.rotationSystem = "world"
+        $('#levelType').innerHTML = '<font color="#f66">Special Ti</font>'
+      } else {
+        game.settings.rotationSystem = "arsti"
+        game.rotationSystem = "arsti"
+        $('#levelType').innerHTML = '<font color="#66f">Special Ti (Classic)</font>'
+      }
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -2887,6 +2902,7 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
+      $('#levelType').innerHTML = "Dynamic (" + settings.game.ultra.startingLevel + "S)"
       game.stat.level = settings.game.ultra.startingLevel
       game.stat.grade = settings.game.ultra.startingLevel
       lineClear = 0
@@ -2927,6 +2943,10 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      if (settings.game.combo.hold) {
+        $('#levelType').innerHTML = "Strategy (" + settings.game.combo.startingLevel + "S)"
+      }
+      else $('#levelType').innerHTML = "Strategy (Holdless, " + settings.game.combo.startingLevel + "S)"
       game.lineGoal = 150
       game.stat.level = settings.game.combo.startingLevel
       lastLevel = parseInt(settings.game.combo.startingLevel)
@@ -2974,6 +2994,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#levelType').innerHTML = "Standard (1S)"
       game.stat.level = 1
       lastLevel = 1
       game.piece.gravity = 1000
@@ -3051,6 +3072,10 @@ export const loops = {
       game.stack.makeAllDirty()
     },
     onInit: (game) => {
+      if (settings.game.survival.riseSpeed == 0) {
+        $('#levelType').innerHTML = "Rise (Classic, " + settings.game.survival.startingLevel + "S)"
+      }
+      else $('#levelType').innerHTML = "Rise (Normal, " + settings.game.survival.startingLevel + "S)"
       const difficulty = settings.game.survival.difficulty
       game.garbageRateExponent = [1.91, 1.95, 1.97, 2, 2.03, 2.07, 2.1][difficulty]
       game.garbageRateMultiplier = [0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.1][difficulty]
@@ -3154,7 +3179,9 @@ export const loops = {
     onInit: (game) => {
       if (settings.game.master.lineGoal >= 0) {
         game.lineGoal = settings.game.master.lineGoal
+        $('#levelType').innerHTML = "Mystery (" + settings.game.master.lineGoal + "L, " + settings.game.master.startingLevel + "S)"
       }
+      else $('#levelType').innerHTML = "Mystery (∞L, " + settings.game.master.startingLevel + "S)"
       game.stat.level = settings.game.master.startingLevel
       lastLevel = parseInt(settings.game.master.startingLevel)
       game.piececounter = 0
@@ -3209,6 +3236,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#levelType').innerHTML = "Death (" + settings.game.prox.startingLevel + "S)"
       sound.playMenuSe('hardstart3')
       shown20GMessage = (settings.game.prox.startingLevel > 19) ? true : false
       shownHoldWarning = false
@@ -3327,6 +3355,8 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
+      if (settings.game.deluxe.startingLevel == 0) $('#levelType').innerHTML = "Pandaemonium (0S)"
+      else $('#levelType').innerHTML = "Pandaemonium (" + settings.game.deluxe.startingLevel + "0S)"
       game.stat.level = settings.game.deluxe.startingLevel
       if (game.stat.level != 0) {
         $('#next-label').style.animationName = "hurry-up-timer"
@@ -3512,9 +3542,11 @@ export const loops = {
       if (settings.game.handheld.ruleOption == false) {
         game.settings.rotationSystem = "srs"
         game.rotationSystem = "srs"
+        $('#levelType').innerHTML = '<font color="#f66">Normal</font>'
       } else {
         game.settings.rotationSystem = "ars"
         game.rotationSystem = "ars"
+        $('#levelType').innerHTML = '<font color="#66f">Normal (Classic)</font>'
       }
       updateFallSpeed(game)
       game.updateStats()
@@ -3588,7 +3620,9 @@ export const loops = {
       if (settings.game.retro.mechanics === 'accurate') {
         game.hideGrid = true
         game.stack.updateGrid()
+        if (settings.game.retro.compMode == false) $('#levelType').innerHTML = "Fall (Accurate, " + settings.game.retro.startingLevel + "S)"
       }
+      else $('#levelType').innerHTML = "Fall (Modern, " + settings.game.retro.startingLevel + "S)"
       lastSeenI = 0
       game.piece.holdingTimeLimit = 1600
       game.stat.level = settings.game.retro.startingLevel

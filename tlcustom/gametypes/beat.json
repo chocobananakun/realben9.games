@@ -20,7 +20,8 @@
     "areLimit": 100,
     "areLineLimit": 0,
     "areLimitLineModifier": 166.666666667,
-    "spinDetectionType": "3corner"
+    "spinDetectionType": "3corner",
+    "arrLimit": 33.3333333333
   },
   "stats": ["score", "level", "entrydelay", "fallspeed", "line", "maxcombo", "piece", "b2b", "pcCount"]
 }
