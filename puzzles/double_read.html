@@ -1,23 +1,23 @@
-<title>12 - Puzzle Room</title>
+<title>14 - Puzzle Room</title>
 <head><link rel="icon" type="image/x-icon" href="../img/favicon.ico"><link rel="stylesheet" type="text/css" href="../style.css"></head>
 <script src="../index.js"></script>
 <div id="snow">
-<p>I apologize about that, maybe I bumped it too high.</p>
-<p>Equally, you would expect something that's meant to be infinite to become difficult.</p>
-<p>Look, I'll give you something a bit easier : The Caesar Cipher.</p>
-<p>To verify you know what that is, retype that line into the input, but using the caesar cipher to shift it this puzzle number times.</p>
-<input id="levelCheck"></input>
+<p>I feel like I should tone the difficulty down a bit, so here's something a bit different.</p>
+<p>You probably already knew this, but I can add random data to the page title.</p>
+What number did I add this time? : <input id="levelCheck"></input>
 <button onclick="nextlevel()">Submit!</button>
 <p id="levelFeedback"></p>
-<h1 id="puzzle">12</h1>
+<h1 id="puzzle">14</h1>
 </div>
 <script>
+titleRand = Math.floor(Math.random() * 100)
+document.title = document.title + titleRand
 function nextlevel() {
     levelFeedbacker = document.getElementById("levelFeedback")
     levelTest = document.getElementById("levelCheck").value
-    if (levelTest == "Xaaw, U'xx suhq kag eayqftuzs m nuf qmeuqd : Ftq Omqemd Oubtqd.") {
+    if (levelTest == titleRand) {
         levelFeedbacker.outerHTML = '<p id="levelFeedback" style="color:#070">Correct!</p>'
-        window.location.replace('caesar_cipher.html')
+        window.location.replace('title_rand.html')
     }
     else levelFeedbacker.outerHTML = '<p id="levelFeedback" style="color:#700">Incorrect!</p>'
 }
