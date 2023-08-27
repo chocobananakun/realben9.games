@@ -9,22 +9,22 @@ window.addEventListener('load', function () {
 		if (splashRand == 0) {
 			splashText = "Hello World"
 			splashXoffset = 11.7
-			splashYoffset = 5.3
+			splashYoffset = 7.3
 		}
 		else if (splashRand == 1) {
 			splashText = "oof"
 			splashXoffset = 14
-			splashYoffset = 5.3
+			splashYoffset = 7.3
 		}
 		else if (splashRand == 2) {
 			splashText = "Made by RealBen9!"
 			splashXoffset = 10.5
-			splashYoffset = 5.2
+			splashYoffset = 7.2
 		}
 		else {
 			splashText = "This splash was hard to make."
 			splashXoffset = 7
-			splashYoffset = 5.2
+			splashYoffset = 7.2
 		}
 		splash.innerHTML = '<p style="left:' + splashXoffset + 'em;top:' + splashYoffset + 'em">' + splashText + '</p>' //'<p style="--leftness:' + splashXoffset + 'em;--topness:' + splashYoffset + 'em;left:var(--leftness);top:var(--topness)">' + splashText + '</p>'
 	}
