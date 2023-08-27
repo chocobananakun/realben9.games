@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
 	info0 = document.getElementById("info0")
+    strikesdisp = document.getElementById("strikes")
 	if (info0) {
         serial0 = Math.floor(Math.random() * 2)
         if (serial0 == 0) {serial0 = Math.floor(Math.random() * 10)}
@@ -16,8 +17,17 @@ window.addEventListener('load', function () {
         batteries = Math.floor(Math.random() * 4)
         if (batteries == 0) {}
         else if (batteries == 1) {info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget battery d"></div>'}
-        else if (batteries == 2) {info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget battery aa"></div>'}
-        else {info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget battery aa"></div><div class="widget battery d"></div>'}
+        else if (batteries == 2) {
+            indcount = Math.floor(Math.random() * 2)
+            if (indcount == 0) info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget battery aa"></div>'
+            else info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget battery d"></div><div class="widget battery d"></div>'
+        }
+        else {
+            indcount = Math.floor(Math.random() * 3)
+            if (indcount == 0) info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget battery aa"></div><div class="widget battery d"></div>'
+            else if (indcount == 1) info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget battery d"></div><div class="widget battery aa"></div>'
+            else info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget battery d"></div><div class="widget battery d"></div><div class="widget battery d"></div>'
+        }
         indcount = Math.floor(Math.random() * 3)
         if (indcount == 0) {}
         else if (indcount == 1) {
@@ -39,6 +49,8 @@ window.addEventListener('load', function () {
         }
         else {
             ind0 = Math.floor(Math.random() * 11)
+            ind1 = Math.floor(Math.random() * 11)
+            while (ind0 == ind1) ind1 = Math.floor(Math.random() * 11)
             if (ind0 == 0) {ind0 = "BOB"}
             else if (ind0 == 1) {ind0 = "CAR"}
             else if (ind0 == 2) {ind0 = "CLR"}
@@ -53,7 +65,6 @@ window.addEventListener('load', function () {
             lit0 = Math.floor(Math.random() * 2)
             if (lit0 == 0) {info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget indicator unlit"><span class="label">' + ind0 + '</span></div>'}
             else {info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget indicator lit"><span class="label">' + ind0 + '</span></div>'}
-            ind1 = Math.floor(Math.random() * 11)
             if (ind1 == 0) {ind1 = "BOB"}
             else if (ind1 == 1) {ind1 = "CAR"}
             else if (ind1 == 2) {ind1 = "CLR"}
@@ -71,3 +82,17 @@ window.addEventListener('load', function () {
         }
 	}
 })
+function strike() {
+    console.log("[" + time + "] Strike!")
+    strikes++
+    striketimer = 500
+    if (strikes == 1) strikesdisp.innerHTML = "X_"
+    else if (strikes == 2) strikesdisp.innerHTML = "XX"
+    else if (strikes < 100) strikesdisp.innerHTML = strikes + "X"
+    else strikesdisp.innerHTML = strikes
+}
+function solve() {
+    console.log("[" + time + "] Solve!")
+    document.getElementById("clock").style.color = "#0f0"
+    modulesolved = true
+}

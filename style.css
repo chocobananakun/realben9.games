@@ -21,7 +21,7 @@ i { font-size:50%; }
 }
 #snow.nocorndogs {background-image: none}
 #snow.rainbow {animation: rainbow 1000s linear infinite}
-#snow.font, #splash.font {font-family: vcr-osd-mono-1-001}
+#snow.font, #splash.font, #clock.font {font-family: vcr-osd-mono-1-001}
 #inv {visibility:hidden}
 #splash{
   font-family: perfect-dos-vga-437-win;

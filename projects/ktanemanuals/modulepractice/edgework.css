@@ -6,6 +6,10 @@
     font-family: 'Ostrich';
     src: local('Ostrich'), url(OstrichSans-Heavy_90.otf);
 }
+@font-face {
+    font-family: 'Seven_Segment';
+    src: local('Seven_Segment'), url(Seven_Segment.ttf);
+}
 :root {
     --background: #eee;
     --foreground: white;
