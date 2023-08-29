@@ -1,7 +1,8 @@
 window.addEventListener('load', function () {
 	snow = document.getElementById("snow")
 	if (snow) {
-		snow.innerHTML = '<p>Toggle<button onclick="togcorndogs()" class="box2d">Corndogs</button><button onclick="tograinbow()" class="box2d">Rainbow</button><button onclick="togfont()" class="box2d">Font</button></p>' + snow.innerHTML
+		snow.innerHTML = '<p id="clock" onload="currentTime()">??:??.???| | | Toggle<button onclick="togcorndogs()" class="box2d">Corndogs</button><button onclick="tograinbow()" class="box2d">Rainbow</button><button onclick="togfont()" class="box2d">Font</button></p>' + snow.innerHTML
+		currentTime()
 	}
 	splash = document.getElementById("splash")
 	if (splash) {
@@ -9,26 +10,40 @@ window.addEventListener('load', function () {
 		if (splashRand == 0) {
 			splashText = "Hello World"
 			splashXoffset = 11.7
-			splashYoffset = 7.3
+			splashYoffset = 5.3
 		}
 		else if (splashRand == 1) {
 			splashText = "oof"
 			splashXoffset = 14
-			splashYoffset = 7.3
+			splashYoffset = 5.3
 		}
 		else if (splashRand == 2) {
 			splashText = "Made by RealBen9!"
 			splashXoffset = 10.5
-			splashYoffset = 7.2
+			splashYoffset = 5.2
 		}
 		else {
 			splashText = "This splash was hard to make."
 			splashXoffset = 7
-			splashYoffset = 7.2
+			splashYoffset = 5.2
 		}
 		splash.innerHTML = '<p style="left:' + splashXoffset + 'em;top:' + splashYoffset + 'em">' + splashText + '</p>' //'<p style="--leftness:' + splashXoffset + 'em;--topness:' + splashYoffset + 'em;left:var(--leftness);top:var(--topness)">' + splashText + '</p>'
 	}
 })
+function currentTime() {
+    let date = new Date()
+    let hh = date.getHours()
+    let mm = date.getMinutes()
+    let ss = date.getSeconds()
+    let ms = date.getMilliseconds()
+    hh = (hh < 10) ? "0" + hh : hh
+    mm = (mm < 10) ? "0" + mm : mm
+    ss = (ss < 10) ? "0" + ss : ss
+    ms = (ms < 100) ? (ms < 10) ? "00" + ms : "0" + ms : ms
+    let time = hh + ":" + mm + ":" + ss + "." + ms
+    document.getElementById("clock").innerHTML = time + document.getElementById("clock").innerHTML.slice(12)
+    var t = setTimeout(function(){currentTime()},17)
+}
 function togcorndogs() {
 	switch (snow.classList.contains("nocorndogs")) {
 		case true:

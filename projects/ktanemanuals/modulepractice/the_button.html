@@ -3,7 +3,7 @@
 <script src="../../../index.js"></script><script src="edgework.js"></script>
 <div id="snow">
 <p id="strikes" style="color:#f00;font-size:32px;font-family:'Seven_Segment'">__</p>
-<p id="clock" onload="currentTime()" style="color:#0ff;font-size:32px;font-family:'Seven_Segment'"></p>
+<p id="bombClock" onload="currentTime()" style="color:#0ff;font-size:32px;font-family:'Seven_Segment'"></p>
 <h1>The Button</h1>
 <h2>Edgework</h2>
 <div class="edgework" id="info0"></div>
@@ -62,7 +62,7 @@ setTimeout(function(){
         console.log("[" + time + "] Rule 6 : Hold")
         tap = false
     }
-},33)
+},49)
 function buttonpress() {
     console.log("[" + time + "] Tapping!")
     if (tap == true) {
@@ -92,13 +92,6 @@ function buttonhold() {
     }
     buttongrid.innerHTML = '<button onclick="buttonrelease()">Release</button><div id="light" style="width:128px;height:16px;background-color:' + lightdisp + '"></div>'
 }
-/*
-The search() method matches a string against a regular expression *
-The search() method returns the index (position) of the first match.
-The search() method returns -1 if no match is found.
-The search() method is case sensitive.
-*If the search value is a string, it is converted to a regular expression.
-*/
 function buttonrelease() {
     console.log("[" + time + "] Releasing!")
     if (tap == false) {
@@ -124,46 +117,4 @@ function buttonrelease() {
         strike()
     }
 }
-</script>
-<script>
-modulesolved = false
-strikes = 0
-striketimer = 0
-mm = 0
-ss = 0
-ms = 0
-function currentTime() {
-    if (modulesolved == false) {
-        ms = ms + (17 * Math.min(2,(1 + (strikes / 4))))
-        if (striketimer > 0) {
-            striketimer = striketimer - 17
-            document.getElementById("clock").style.color = "#f00"
-        }
-        else document.getElementById("clock").style.color = "#0ff"
-        if (ms >= 1000) {
-            ss++
-            ms = ms - 1000
-            if (ss >= 60) {
-                mm++
-                ss = ss - 60
-            }
-        }
-        mmdisp = (mm < 10) ? "0" + mm : mm
-        ssdisp = (ss < 10) ? "0" + ss : ss
-        msdisp0 = (ms < 100) ? (ms < 10) ? "00" + ms : "0" + ms : ms
-        msdisp = ("" + msdisp0).slice(0,2)
-        if (mm >= 1) time = mmdisp + ":" + ssdisp
-        else time = ssdisp + "." + msdisp
-        document.getElementById("clock").innerText = time
-        var t = setTimeout(function(){currentTime()},17)
-    }
-    else {
-        if (("" + msdisp0).length == 5) msdisp0 = msdisp0 * 10
-        else if (("" + msdisp0).length == 6) msdisp0 = msdisp0 * 100
-        if (mm >= 1) time = mmdisp + ":" + ssdisp + "." + msdisp0
-        else time = ssdisp + "." + msdisp0
-        document.getElementById("clock").innerText = time
-    }
-}
-currentTime()
 </script>

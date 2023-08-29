@@ -1,4 +1,10 @@
 window.addEventListener('load', function () {
+    modulesolved = false
+    strikes = 0
+    striketimer = 0
+    mm = 0
+    ss = 0
+    ms = 0
 	info0 = document.getElementById("info0")
     strikesdisp = document.getElementById("strikes")
 	if (info0) {
@@ -81,6 +87,7 @@ window.addEventListener('load', function () {
             else {info0.innerHTML = info0.innerHTML + '<div class="widget indicator lit"><span class="label">' + ind1 + '</span></div>'}
         }
 	}
+    currentBombTime()
 })
 function strike() {
     console.log("[" + time + "] Strike!")
@@ -93,6 +100,45 @@ function strike() {
 }
 function solve() {
     console.log("[" + time + "] Solve!")
-    document.getElementById("clock").style.color = "#0f0"
+    document.getElementById("bombClock").style.color = "#0f0"
     modulesolved = true
+}
+function currentBombTime() {
+    if (modulesolved == false) {
+        ms = ms + (17 * Math.min(2,(1 + (strikes / 4))))
+        if (striketimer > 0) {
+            striketimer = striketimer - 17
+            document.getElementById("bombClock").style.color = "#f00"
+        }
+        else document.getElementById("bombClock").style.color = "#0ff"
+        if (ms >= 1000) {
+            ss++
+            ms = ms - 1000
+            if (ss >= 60) {
+                mm++
+                ss = ss - 60
+            }
+        }
+        mmdisp = (mm < 10) ? "0" + mm : mm
+        ssdisp = (ss < 10) ? "0" + ss : ss
+        msdisp0 = (ms < 100) ? (ms < 10) ? "00" + ms : "0" + ms : ms
+        msdisp = ("" + msdisp0).slice(0,2)
+        if (mm >= 1) time = mmdisp + ":" + ssdisp
+        else time = ssdisp + "." + msdisp
+        document.getElementById("bombClock").innerText = time
+        var t = setTimeout(function(){currentBombTime()},17)
+    }
+    else {
+        msdisp0 = ("" + msdisp0).split('')
+        for (let x = 0; x < msdisp0.length; x++) {
+            if (msdisp0[x] == ".") {
+                msdisp0[x] = ''
+                break
+            }
+        }
+        msdisp0 = msdisp0.join('')
+        if (mm >= 1) time = mmdisp + ":" + ssdisp + "." + msdisp0
+        else time = ssdisp + "." + msdisp0
+        document.getElementById("bombClock").innerText = time
+    }
 }

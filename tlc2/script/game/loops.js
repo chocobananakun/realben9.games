@@ -818,38 +818,6 @@ export const loops = {
             else if (window.gridtemp == 'white') window.gridtemp = 8
             else if (window.gridtemp == 'black') window.gridtemp = 9
             else window.gridtemp = 0
-            /*switch (window.gridtemp) {
-              case undefined:
-                window.gridtemp = 0
-                break
-              case "red":
-                window.gridtemp = 1
-                break
-              case "orange":
-                window.gridtemp = 2
-                break
-              case "yellow":
-                window.gridtemp = 3
-                break
-              case "green":
-                window.gridtemp = 4
-                break
-              case "lightBlue":
-                window.gridtemp = 5
-                break
-              case "blue":
-                window.gridtemp = 6
-                break
-              case "purple":
-                window.gridtemp = 7
-                break
-              case "white":
-                window.gridtemp = 8
-                break
-              case "black":
-                window.gridtemp = 9
-                break
-            }*/
             game.stat.boardBanks[game.stat.boardBank][x + (y * 10)] = gridtemp
             game.stat.boardBanks[game.stat.boardBank] = game.stat.boardBanks[game.stat.boardBank].join('')
           }
