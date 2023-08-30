@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
-    <title>KTaNE - en Optimised v1</title>
+    <title>KTaNE - RealBen9 v1</title>
     <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/font.css">
     <link rel="stylesheet" type="text/css" href="css/timwi-norm.css">
@@ -37,6 +37,74 @@
 		
         table.whos-on-first-step-2 { font-size: 9pt; }
 		td, th { padding: .18em .6em 0; }
+		
+		table.double-oh td {
+			height: 29px;
+			width: 29px;
+			text-align: center;
+		}
+		table.double-oh tr:nth-child(3n) td {border-bottom: 1.5mm solid;}
+		table.double-oh td:nth-child(3n) {border-right: 1.5mm solid;}
+		
+		
+        svg#redArrows.maze {
+            width: 150mm;
+            height: 150mm;
+            display: block;
+            margin: auto;
+        }
+        svg#redArrows.maze path {
+            fill: none;
+            stroke: #000;
+            stroke-width: 13;
+        }
+        svg#redArrows.maze text {
+            font-weight: bold;
+            font-size: 50px;
+            fill: #222;
+        }
+        .dark svg#redArrows.maze path { stroke: #DDD; }
+        .dark svg#redArrows.maze text { fill: #DDD; }
+		
+		table.simon-screams, table.simon-screams table {
+			border: none;
+		}
+		table.simon-screams td.corner, table.simon-screams th.corner {
+			border: none;
+		}
+		table.simon-screams td {
+			text-align: center;
+		}
+		table.simon-screams th {
+			text-align: right;
+		}
+		table.simon-screams th.little {
+			text-align: left;
+		}
+		table.simon-screams tr.top > th {
+			text-align: center;
+			vertical-align: bottom;
+		}
+		table.simon-screams tr.top > th > p {
+			margin: .25em;
+		}
+		table.simon-screams tr.rotated > th {
+			position: relative;
+			text-align: left;
+			height: 4em;
+		}
+		table.simon-screams tr.rotated > th > span.text {
+			top: 50%;
+			left: 50%;
+			position: absolute;
+			transform: translate(-50%, -50%) rotate(-50deg);
+			transform-origin: center center;
+			text-align: center;
+			line-height: 1.25;
+		}
+		table.simon-screams-small td, table.simon-screams-small th {
+			white-space: nowrap;
+		}
     </style></head>
 <body class="multipage">
 	<div class="section">
@@ -109,19 +177,593 @@
         </div>
 				<div class="page-footer relative-footer">Page 3 of 23</div>
     </div>
-    <div id="Section1" class="page page-bg-04">
-        		<div class="page-header">
-			<span class="page-header-doc-title">Keep Talking and Nobody Explodes Optimised v<bdo dir="ltr">1</bdo></span>
-			<span class="page-header-section-title">Section 1 : Modules & Wires</span>
-		</div>
-        		<div class="page-footer absolute-footer">Page 4 of 23</div>
-        <div class="page-content">
-		    <img src="img/Modules/Component.svg" class="diagram"><div class="new-block-formatting-context" style="text-align:center;">
+	<div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Optimised v1</span>
+                <span class="page-header-section-title" name-id="0">Section 1 : Modules & Backgrounds [1/2]</span>
+            </div>
+            <div class="page-content">
+			<img src="img/Modules/Component.svg" class="diagram"><div class="new-block-formatting-context" style="text-align:center;">
 				<h1>Section 1 : Modules</h1>
 				<p>Modules can be identified by an LED in the top right corner. When this LED is lit green, the module has been disarmed.</p>
 				<p>All modules must be disarmed to defuse the bomb.</p>
 			</div>
             <div class="vertical-spacer" style="height:0.6em"></div>
+                <img class="diagram" src="img/Modules/Backgrounds.svg">
+                <h2>On the Subject of Backgrounds</h2>
+                <p class="flavour-text">For once you aren’t only focusing on what’s right in front of you. Make sure you pay attention to what’s going on behind the scenes here. We all know how you feel about exploding.</p>
+                <p>This module will present you with a colored button, a counter, and a submit button. However, the backing may be a certain color. Based on the color of the backing and the color of the button, press the button until the counter matches a certain number and press submit.</p>
+                <h3>Step 1:</h3>
+                <p>Use the rules in Table B to determine your letter pair, finding the first two conditions that apply, using the first letter from the first rule and the second letter from the second rule.</p>
+                <h3>Step 2:</h3>
+                <p>With the letter pair found in Step 1 and Table A, use the first letter along the left and the second letter along the top to find the number of times to press the button before pressing submit. </p>
+
+                <p class="caption">Table A (Step 2) :</p>
+                <table>
+                    <tbody><tr>
+                        <td class="corner"></td>
+                        <td><strong>A</strong></td>
+                        <td><strong>B</strong></td>
+                        <td><strong>C</strong></td>
+                        <td><strong>D</strong></td>
+                        <td><strong>E</strong></td>
+                        <td><strong>F</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>A</strong></td>
+                        <td><div id="background-tbl-0">3</div></td>
+                        <td><div id="background-tbl-1">2</div></td>
+                        <td><div id="background-tbl-2">9</div></td>
+                        <td><div id="background-tbl-3">1</div></td>
+                        <td><div id="background-tbl-4">7</div></td>
+                        <td><div id="background-tbl-5">4</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>B</strong></td>
+                        <td><div id="background-tbl-6">7</div></td>
+                        <td><div id="background-tbl-7">9</div></td>
+                        <td><div id="background-tbl-8">8</div></td>
+                        <td><div id="background-tbl-9">8</div></td>
+                        <td><div id="background-tbl-10">2</div></td>
+                        <td><div id="background-tbl-11">3</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>C</strong></td>
+                        <td><div id="background-tbl-12">5</div></td>
+                        <td><div id="background-tbl-13">1</div></td>
+                        <td><div id="background-tbl-14">7</div></td>
+                        <td><div id="background-tbl-15">4</div></td>
+                        <td><div id="background-tbl-16">4</div></td>
+                        <td><div id="background-tbl-17">6</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>D</strong></td>
+                        <td><div id="background-tbl-18">6</div></td>
+                        <td><div id="background-tbl-19">4</div></td>
+                        <td><div id="background-tbl-20">2</div></td>
+                        <td><div id="background-tbl-21">6</div></td>
+                        <td><div id="background-tbl-22">8</div></td>
+                        <td><div id="background-tbl-23">5</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>E</strong></td>
+                        <td><div id="background-tbl-24">5</div></td>
+                        <td><div id="background-tbl-25">1</div></td>
+                        <td><div id="background-tbl-26">5</div></td>
+                        <td><div id="background-tbl-27">3</div></td>
+                        <td><div id="background-tbl-28">9</div></td>
+                        <td><div id="background-tbl-29">9</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>F</strong></td>
+                        <td><div id="background-tbl-30">1</div></td>
+                        <td><div id="background-tbl-31">2</div></td>
+                        <td><div id="background-tbl-32">3</div></td>
+                        <td><div id="background-tbl-33">6</div></td>
+                        <td><div id="background-tbl-34">7</div></td>
+                        <td><div id="background-tbl-35">8</div></td>
+                    </tr>
+                </tbody></table>
+                <p class="note">(Please note that if you press the button when the counter reads 9, the counter will reset to 0.)</p>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 2</div>
+        </div>
+		<div class="page page-bg-02">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Optimised v1</span>
+                <span class="page-header-section-title" name-id="1">Backgrounds [2/2]</span>
+            </div>
+            <div class="page-content">
+                <p class="caption">Table B (Step 1) : Priority rules</p>
+                <table>
+                    <tbody><tr>
+                        <td><strong>Rule</strong></td>
+                        <td><strong>1st Letter</strong></td>
+                        <td><strong>2nd Letter</strong></td>
+                    </tr>
+                    <tr>
+                        <td id="background-rule-0">If the color of the backing matches the color of the button</td>
+                        <td><div id="background-l-0">A</div></td>
+                        <td><div id="background-r-0">C</div></td>
+                    </tr>
+                    <tr>
+                        <td id="background-rule-1">Otherwise, if the button or the backing (but not both) are white or black</td>
+                        <td><div id="background-l-1">D</div></td>
+                        <td><div id="background-r-1">B</div></td>
+                    </tr>
+                    <tr>
+                        <td id="background-rule-2">Otherwise, if there are no D batteries present on the bomb *</td>
+                        <td><div id="background-l-2">C</div></td>
+                        <td><div id="background-r-2">E</div></td>
+                    </tr>
+                    <tr>
+                        <td id="background-rule-3">Otherwise, if there are no AA batteries present on the bomb</td>
+                        <td><div id="background-l-3">D</div></td>
+                        <td><div id="background-r-3">D</div></td>
+                    </tr>
+                    <tr>
+                        <td id="background-rule-4">Otherwise, if the button and the backing are primary colors **</td>
+                        <td><div id="background-l-4">B</div></td>
+                        <td><div id="background-r-4">F</div></td>
+                    </tr>
+                    <tr>
+                        <td id="background-rule-5">Otherwise, if the color of the button is a secondary color ***</td>
+                        <td><div id="background-l-5">F</div></td>
+                        <td><div id="background-r-5">E</div></td>
+                    </tr>
+                    <tr>
+                        <td id="background-rule-6">Otherwise, if there is an unlit SND indicator present on the bomb</td>
+                        <td><div id="background-l-6">E</div></td>
+                        <td><div id="background-r-6">B</div></td>
+                    </tr>
+                    <tr>
+                        <td id="background-rule-7">Otherwise, if the bomb contains a Serial port</td>
+                        <td><div id="background-l-7">B</div></td>
+                        <td><div id="background-r-7">C</div></td>
+                    </tr>
+                    <tr>
+                        <td id="background-rule-8">Otherwise, if the backing's color mixed with blue creates the button’s color ****</td>
+                        <td><div id="background-l-8">C</div></td>
+                        <td><div id="background-r-8">D</div></td>
+                    </tr>
+                    <tr>
+                        <td>Otherwise, use this rule (This rule can be used twice)</td>
+                        <td><div id="background-l-9">E</div></td>
+                        <td><div id="background-r-9">A</div></td>
+                    </tr>
+                </tbody></table>
+                <p>
+                    <span id="background-foot-3" class="footnotes">*: D batteries are detected as any battery holder with exactly one battery.</span>
+                    <span id="background-foot-0" class="footnotes">**: Primary colors are <font color="red">Red</font>, <font color="orange">Yellow</font>, and <font color="blue">Blue</font></span>
+                    <span id="background-foot-1" class="footnotes">***: Secondary colors are <font color="orange">Orange</font>, <font color="green">Green</font>, and <font color="purple">Purple</font></span>
+                    <span id="background-foot-2" class="footnotes">****: Mixing <font color="red">Red</font> and <font color="orange">Yellow</font> will make <font color="orange">Orange</font>, <font color="blue">Blue</font> and <font color="orange">Yellow</font> will make <font color="green">Green</font>, and <font color="red">Red</font> and <font color="blue">Blue</font> will make <font color="purple">Purple</font>. Mixing <font color="blue">Blue</font> and <strong>White</strong> will <strong>not</strong> make <font color="blue">Blue</font>.</span>
+                </p>
+            </div>
+            <div class="page-footer relative-footer">Page 2 of 2</div>
+        </div>
+		<div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Optimised v1</span>
+                <span class="page-header-section-title">Bitwise Operations</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Modules/BitwiseOperations.svg" class="diagram">
+                <h2>On the Subject of Bitwise Operations</h2>
+                <p class="flavour-text">
+                    Nobody’s favorite kind of math. Who even likes math, anyway?
+                </p>
+
+                <ul>
+                    <li>There are 2 screens on the module:
+                        <ol>
+                            <li>Bitwise operator (AND, OR, XOR, NOT)</li>
+                            <li>Result input</li>
+                        </ol>
+                    </li>
+                    <li>Use the two bytes obtained from the tables below, and the operator from the first display, to determine the answer.
+                        In these tables, MSB is the most significant (leftmost) bit, LSB the least significant (rightmost) bit.</li>
+                </ul>
+
+                <table class="bitwise">
+                    <tbody><tr><th class="first">Byte 1                                        </th><th>Bit</th><th class="second">Byte 2                            </th></tr>
+                    <tr><td class="first">No AA batteries                                      </td><td>MSB</td><td class="second">1 or more D battery               </td></tr>
+                    <tr><td class="first">Parallel port                                        </td><td>   </td><td class="second">3 or more ports                   </td></tr>
+                    <tr><td class="first">Lit indicator NSA                                    </td><td>   </td><td class="second">2 battery holders or more         </td></tr>
+                    <tr><td class="first">More modules than you have (starting) time in minutes</td><td>   </td><td class="second">Lit indicator BOB                 </td></tr>
+                    <tr><td class="first">More than one lit indicator                          </td><td>   </td><td class="second">More than one unlit indicator     </td></tr>
+                    <tr><td class="first">Number of modules divisible by 3                     </td><td>   </td><td class="second">Last digit of serial number is odd</td></tr>
+                    <tr><td class="first">Less than 2 D batteries                              </td><td>   </td><td class="second">Even number of modules            </td></tr>
+                    <tr><td class="first">Less than 4 ports                                    </td><td>LSB</td><td class="second">2 or more batteries               </td></tr>
+                </tbody></table>
+
+                <p>Here is a table of explanations of each bitwise operator:</p>
+                <table>
+                    <tbody><tr>
+                        <th>Info</th>
+                        <th>AND</th>
+                        <th>OR</th>
+                        <th>XOR</th>
+                        <th>NOT</th>
+                    </tr>
+                    <tr>
+                        <td>HOW</td>
+                        <td>Going bit by bit, if both bits are 1, the return bit is 1. Otherwise, the return bit is 0.</td>
+                        <td>Going bit by bit, if either (or both) bit is 1, the return bit is 1. Otherwise, the return bit is 0.</td>
+                        <td>Going bit by bit, if either (but not both) bits are 1, the return bit is 1. Otherwise, the return bit is 0.</td>
+                        <td>Ignore the second operand. Going bit by bit, the return bit is the opposite.</td>
+                    </tr>
+                    <tr>
+                        <td>MATH</td>
+                        <td>bit1 &amp;&amp; bit2</td>
+                        <td>bit1 || bit2</td>
+                        <td>(bit1 &amp;&amp; !bit2) || (!bit1 &amp;&amp; bit2)</td>
+                        <td>!bit1</td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+		<div class="page page-bg-02">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Optimised v1</span>
+                <span class="page-header-section-title" name-id="0">Double-Oh</span>
+            </div>
+            <div class="page-content double-oh-content">
+                <h2>On the Subject of Double-Oh</h2>
+                <img class="diagram" src="img/Modules/DoubleOh.svg">
+                <p class="flavour-text">
+                    <span class="strike" style="text-decoration:line-through">A module, please.  Shaken, not stirred.</span> <b>Stupid piece of junk; broken display, broken buttons...</b>
+                </p><ul>
+                    <li>A display is shown with a two digit number, as well as five buttons.  Using the buttons, toggle the display to 00 (located in the center of the below table), then hit the submit button.
+                    </li><li>Four of the five buttons toggle the number in the display.  Based on the table below, consisting of a 3×3 grid of smaller 3×3 grids, the buttons will behave in the following fashion:
+                    </li><li>The “↕” button moves to the next position up or down within the current smaller grid, looping if reaching the edge (example: 00 to 85 to 14 to 00)
+                    </li><li>The “↔” button moves to the next position left or right within the current smaller grid, looping if reaching the edge (example: 00 to 56 to 21 to 00)
+                    </li><li>The “⇕” button moves to the same position in the next large 3×3 grid up or down, looping if reaching the edge (example: 00 to 22 to 58 to 00)
+                    </li><li>The “⇔” button moves to the same position in the next large 3×3 grid left or right, looping if reaching the edge (example: 00 to 44 to 65 to 00)
+                    </li><li>The “▣” button is the submit button.  Pressing it will disarm the module if 00 is displayed and cause a strike otherwise.
+                </li></ul>
+                <p class="note">NOTE: This module is old, and the last digit glitches out when the first digit is zero.
+                    In addition, the wiring for the buttons is acting up, so the functions of the buttons may be swapped.
+                    Fortunately, the strikes from the submit button are only registered by the bomb if the displayed number
+                    is less than 10.
+                </p><table class="double-oh" style="margin:0 auto 1em;border:2mm solid">
+                    <tbody><tr><td>60</td><td>0<font style="color:gray">2</font></td><td>15</td><td>57</td><td>36</td><td>83</td><td>48</td><td>71</td><td>24</td></tr>
+                    <tr><td>88</td><td>46</td><td>31</td><td>70</td><td>22</td><td>64</td><td>0<font style="color:gray">7</font></td><td>55</td><td>13</td></tr>
+                    <tr><td>74</td><td>27</td><td>53</td><td>0<font style="color:gray">5</font></td><td>41</td><td>18</td><td>86</td><td>30</td><td>62</td></tr>
+                    <tr><td>52</td><td>10</td><td>0<font style="color:gray">4</font></td><td>43</td><td>85</td><td>37</td><td>61</td><td>28</td><td>76</td></tr>
+                    <tr><td>33</td><td>65</td><td>78</td><td>21</td><td class="goal">0<font style="color:gray">0</font></td><td>56</td><td>12</td><td>44</td><td>87</td></tr>
+                    <tr><td>47</td><td>81</td><td>26</td><td>68</td><td>14</td><td>72</td><td>50</td><td>0<font style="color:gray">3</font></td><td>35</td></tr>
+                    <tr><td>0<font style="color:gray">6</font></td><td>38</td><td>42</td><td>84</td><td>63</td><td>20</td><td>75</td><td>17</td><td>51</td></tr>
+                    <tr><td>25</td><td>73</td><td>67</td><td>16</td><td>58</td><td>0<font style="color:gray">1</font></td><td>34</td><td>82</td><td>40</td></tr>
+                    <tr><td>11</td><td>54</td><td>80</td><td>32</td><td>77</td><td>45</td><td>23</td><td>66</td><td>0<font style="color:gray">8</font></td></tr>
+                </tbody></table>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+		<div class="page page-bg-02">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Optimised v1</span>
+                <span class="page-header-section-title">Listening</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Modules/Listening.svg" class="diagram">
+                <h2>On the Subject of Listening</h2>
+                <p class="flavour-text">“Why did we send a deaf person to defuse a bomb?” — Person who is no longer alive.</p>
+
+                <p>Press the <em>play</em> button to play a sound clip through the speaker.
+                    Each sound clip has a corresponding code that contains any of the 4 symbols
+                    <em>$ * &amp; #</em>. Match the sound clip to the table below and enter the code
+                    via the 4-button keypad.</p>
+
+                <table class="listening borderless">
+                    <tbody><tr><td>Taxi Dispatch</td><td>&amp;&amp;&amp;**</td><td>Dial-up Internet</td><td>*#&amp;*&amp;</td></tr>
+                    <tr><td>Cow</td><td>&amp;$#$&amp;</td><td>Police Radio Scanner</td><td>**###</td></tr>
+                    <tr><td>Extractor Fan</td><td>$#$*&amp;</td><td>Censorship Bleep</td><td>&amp;&amp;$&amp;*</td></tr>
+                    <tr><td>Train Station</td><td>#$$**</td><td>Medieval Weapons</td><td>&amp;$**&amp;</td></tr>
+                    <tr><td>Arcade</td><td>$#$#*</td><td>Door Closing</td><td>#$#&amp;$</td></tr>
+                    <tr><td>Casino</td><td>**$*#</td><td>Chainsaw</td><td>&amp;#&amp;&amp;#</td></tr>
+                    <tr><td>Supermarket</td><td>#$$&amp;*</td><td>Compressed Air</td><td>$$*$*</td></tr>
+                    <tr><td>Soccer Match</td><td>##*$*</td><td>Servo Motor</td><td>$&amp;#$$</td></tr>
+                    <tr><td>Tawny Owl</td><td>$#*$&amp;</td><td>Waterfall</td><td>&amp;**$$</td></tr>
+                    <tr><td>Sewing Machine</td><td>#&amp;&amp;*#</td><td>Tearing Fabric</td><td>$&amp;&amp;*&amp;</td></tr>
+                    <tr><td>Thrush Nightingale</td><td>**#**</td><td>Zipper</td><td>&amp;$&amp;##</td></tr>
+                    <tr><td>Car Engine</td><td>&amp;#**&amp;</td><td>Vacuum Cleaner</td><td>#&amp;$*&amp;</td></tr>
+                    <tr><td>Reloading Glock 19</td><td>$&amp;**#</td><td>Ballpoint Pen Writing</td><td>$*$**</td></tr>
+                    <tr><td>Oboe</td><td>&amp;#$$#</td><td>Rattling Iron Chain</td><td>*#$&amp;&amp;</td></tr>
+                    <tr><td>Saxophone</td><td>$&amp;&amp;**</td><td>Book Page Turning</td><td>###&amp;$</td></tr>
+                    <tr><td>Tuba</td><td>#&amp;$##</td><td>Table Tennis</td><td>*$$&amp;$</td></tr>
+                    <tr><td>Marimba</td><td>&amp;*$*$</td><td>Squeaky Toy</td><td>$*&amp;##</td></tr>
+                    <tr><td>Phone Ringing</td><td>&amp;$$&amp;*</td><td>Helicopter</td><td>#&amp;$&amp;&amp;</td></tr>
+                    <tr><td>Tibetan Nuns</td><td>#&amp;&amp;&amp;&amp;</td><td>Firework Exploding</td><td>$&amp;$$*</td></tr>
+                    <tr><td>Throat Singing</td><td>**$$$</td><td>Glass Shattering</td><td>*$*$*</td></tr>
+                    <tr><td>Beach</td><td>*&amp;*&amp;&amp;</td></tr>
+                </tbody></table>
+
+                <p><em>Note: pressing play also clears whatever code you have entered.</em></p>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+		<div class="page page-bg-01">
+                <div class="page-header">
+            <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+            <span class="page-header-section-title">Mastermind (+ Cruel)</span>
+        </div>
+        <div class="page-content">
+            <img src="img/Modules/Mastermind.svg" class="diagram">
+            <h2>On the Subject of Mastermind (+ Cruel)</h2>
+            <p class="flavour-text">
+                The game from your childhood. Only advanced. And harder to memorize. And the feedback isn’t what it used to be...
+            </p>
+            <ul>
+                <li>To solve this module you must find the correct 5 color code.</li>
+                <li>The colors used in this module are: White, Magenta, Yellow, Green, Red and Blue.</li>
+                <li>Note that each color may be used multiple times.</li>
+                <li>The LED colors can be cycled through by clicking the LEDs.</li>
+                <li>By pressing the "Query" button, information about the currently entered code will be displayed.</li>
+                <li>When the correct code is entered, the module will be solved by pressing the "Submit" button. Submitting the wrong code will invoke a strike.</li>
+                <li>If this is a normal mastermind, the left number gives the number of correct colors in the correct positions & the right number gives the number of correct colors in the wrong positions. Otherwise, continue reading below.</li>
+            </ul>
+            <p>Each query will generate two numbers on the display. These numbers each represent the <u>total</u> sum of two of the values listed in the table below.</p>
+            <p>Note that the table has been simplified & so the color white has been shown from the original table to show the simplifications.</p>
+            <p><font style="color:green">A</font> = Number of correct colors in the correct positions.
+            <br><font style="color:orange">B</font> = Number of correct colors in the wrong positions.
+            <br><font style="color:gray">C</font> = Number of colors not in the solution at all.</p>
+			<table class="repeaters-table">
+                    <tbody>
+                        <tr>
+                            <th>Color on the display:</th>
+                            <th class="repeaters-spacer" colspan="1"></th>
+                            <th>Left number</th>
+                            <th>Right number</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">White</th>
+                            <th>Left&nbsp;color:</th>
+                            <td>A</td>
+                            <td>B</td>
+                        </tr>
+                        <tr>
+                            <th>Right&nbsp;color:</th>
+                            <td># of batteries</td>
+                            <td># of solved modules</td>
+                        </tr>
+                    </tbody>
+                </table>
+            <table class="repeaters-table">
+                <tbody>
+                    <tr>
+                        <th>Color:</th>
+                        <th class="repeaters-spacer" colspan="3"></th>
+                    </tr>
+					<tr><th>White</th><td><font style="color:green">A</font><font style="color:orange">B</font></td><td>Batteries</td><td>Solved modules</td></tr>
+					<tr><th>Magenta</th><td><font style="color:gray">C</font><font style="color:green">A</font></td><td>Lit indicators</td><td>Last serial number digit</td></tr>
+					<tr><th>Yellow</th><td><font style="color:orange">B</font><font style="color:gray">C</font></td><td>Sum of serial number digits</td><td>Ports</td></tr>
+					<tr><th>Green</th><td><font style="color:orange">B</font><font style="color:green">A</font></td><td>Modules on the bomb</td><td>Unlit indicators</td></tr>
+					<tr><th>Red</th><td><font style="color:gray">C</font><font style="color:orange">B</font></td><td>Distinct port types</td><td>Strikes</td></tr>
+					<tr><th>Blue</th><td><font style="color:green">A</font><font style="color:gray">C</font></td><td>First serial number digit</td><td>Battery holders</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="page-footer relative-footer">Page 1 of 1</div>
+    </div>
+	<div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Optimised v1</span>
+                <span class="page-header-section-title">Red Arrows</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Modules/RedArrows.svg" class="diagram">
+                <h2>On the Subject of Red Arrows</h2>
+                <p class="flavour-text">I think you get the point now.</p>
+                <p>On the module are 4 directional buttons, and a display screen in the middle.</p>
+                <p>If the buttons are not Red, you’re looking at a different module.</p>
+                <p>On the screen is a random number somewhere between 0 to 9. That is your starting position in the maze below. Once your first valid move have been made, the display will turn blank.</p>
+                <p>To solve the module, use the buttons to navigate the maze toward the last digit of the Serial Number.</p>
+                <svg id="redArrows" class="maze" viewBox="-10 -10 1020 1020" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h1000v1000h-1000v-1005"></path>
+                    <path d="M0 300h100v-200h100"></path>
+                    <path d="M400 0v100"></path>
+                    <path d="M500 0v200"></path>
+                    <path d="M800 100h200"></path>
+                    <path d="M0 500h200v100v-400h100v-100v100h100v100h-100"></path>
+                    <path d="M100 400h400v100"></path>
+                    <path d="M600 100h100v200h-100v-100v100h-100"></path>
+                    <path d="M700 200h200v100h100"></path>
+                    <path d="M800 300v100h100v100h-200"></path>
+                    <path d="M800 400h-200v200h100v100h200v100"></path>
+                    <path d="M100 600v300"></path>
+                    <path d="M300 700v-200h100v100h505"></path>
+                    <path d="M100 700h500v100"></path>
+                    <path d="M500 800h300v100h100"></path>
+                    <path d="M400 700v200h300"></path>
+                    <path d="M300 900h300v100"></path>
+                    <path d="M200 1000v-200h100"></path>
+                    <text x="935" y="65">0</text>
+                    <text x="35" y="265">1</text>
+                    <text x="535" y="965">2</text>
+                    <text x="835" y="465">3</text>
+                    <text x="335" y="265">4</text>
+                    <text x="335" y="565">5</text>
+                    <text x="935" y="265">6</text>
+                    <text x="735" y="665">7</text>
+                    <text x="535" y="765">8</text>
+                    <text x="135" y="465">9</text>
+                <rect class="highlightable" x="0" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="0" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="0" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="100" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="0" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="200" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="0" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="300" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="0" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="400" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="0" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="500" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="0" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="600" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="0" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="700" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="0" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="800" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="0" y="900" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="100" y="900" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="200" y="900" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="300" y="900" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="400" y="900" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="500" y="900" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="600" y="900" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="700" y="900" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="800" y="900" width="100" height="100" fill="transparent"></rect><rect class="highlightable" x="900" y="900" width="100" height="100" fill="transparent"></rect></svg>
+            </div>
+           <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+		<div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title" name-id="0">Simon Screams</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Modules/SimonScreams.svg" class="diagram">
+                <h2>On the Subject of Simon Screams</h2>
+                <p class="flavour-text">
+                    He’s angry!  He’s furious!  He’s enraged!  He’s had it!
+                </p>
+                <ul>
+                    <li>
+                        This module has six lights colored red, orange, yellow, green, blue and purple.
+                        These will flash in a sequence that grows longer with each stage. There are 3 stages.
+                    </li>
+                    <li>
+                        At each stage, consider the whole sequence of flashes. In the large table,
+                        find the first applicable row and the correct column. From that entry,
+                        take the letter in the position corresponding to the current stage and look
+                        at its corresponding column in the smaller table.
+                    </li>
+                    <li>
+                        Go through that column from top to bottom and press every color whose condition applies.
+                        The colors are (R)ed, (O)range, (Y)ellow, (G)reen, (B)lue, (P)urple, and “#” means
+                        “serial number”.
+                    </li>
+                    <li>
+                        Every time the sequence flashes again, your current stage’s input is reset.
+                    </li>
+                </ul>
+
+                <table class="simon-screams">
+                    <tbody><tr class="top">
+                        <td class="corner" rowspan="2">
+                            <table class="simon-screams-small">
+                                <tbody><tr><td class="corner"></td><th>A</th><th>C</th><th>D</th><th>E</th><th>F</th><th>H</th></tr>
+                                <tr>
+                                    <th class="little">≥ 3 indicators</th>
+                                    <td class="small-rule">Y</td>
+                                    <td class="small-rule">O</td>
+                                    <td class="small-rule">G</td>
+                                    <td class="small-rule">R</td>
+                                    <td class="small-rule">B</td>
+                                    <td class="small-rule">P</td>
+                                </tr>
+                                <tr>
+                                    <th class="little">≥ 3 ports</th>
+                                    <td class="small-rule">P</td>
+                                    <td class="small-rule">Y</td>
+                                    <td class="small-rule">R</td>
+                                    <td class="small-rule">B</td>
+                                    <td class="small-rule">O</td>
+                                    <td class="small-rule">G</td>
+                                </tr>
+                                <tr>
+                                    <th class="little">≥ 3 digits in #</th>
+                                    <td class="small-rule">O</td>
+                                    <td class="small-rule">G</td>
+                                    <td class="small-rule">B</td>
+                                    <td class="small-rule">P</td>
+                                    <td class="small-rule">R</td>
+                                    <td class="small-rule">Y</td>
+                                </tr>
+                                <tr>
+                                    <th class="little">≥ 3 letters in #</th>
+                                    <td class="small-rule">G</td>
+                                    <td class="small-rule">B</td>
+                                    <td class="small-rule">O</td>
+                                    <td class="small-rule">Y</td>
+                                    <td class="small-rule">P</td>
+                                    <td class="small-rule">R</td>
+                                </tr>
+                                <tr>
+                                    <th class="little">≥ 3 batteries</th>
+                                    <td class="small-rule">R</td>
+                                    <td class="small-rule">P</td>
+                                    <td class="small-rule">Y</td>
+                                    <td class="small-rule">O</td>
+                                    <td class="small-rule">G</td>
+                                    <td class="small-rule">B</td>
+                                </tr>
+                                <tr>
+                                    <th class="little">≥ 3 bat. holders</th>
+                                    <td class="small-rule">B</td>
+                                    <td class="small-rule">R</td>
+                                    <td class="small-rule">P</td>
+                                    <td class="small-rule">G</td>
+                                    <td class="small-rule">Y</td>
+                                    <td class="small-rule">O</td>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                        <th colspan="6" class="corner">
+                            <p>Stage 1: <span class="column-rule">first</span> flashing color</p>
+                            <p>Stage 2: <span class="column-rule">second</span> flashing color</p>
+                            <p>Stage 3: <span class="column-rule">third</span> flashing color</p>
+                        </th>
+                    </tr>
+                    <tr class="rotated">
+                        <th><span class="text">red</span></th>
+                        <th><span class="text">orange</span></th>
+                        <th><span class="text">yellow</span></th>
+                        <th><span class="text">green</span></th>
+                        <th><span class="text">blue</span></th>
+                        <th><span class="text">purple</span></th>
+                    </tr>
+                    <tr>
+                        <th>If <span class="row-rule">three adjacent colors flashed in clockwise order</span></th>
+                        <td class="cell-rule">FFC</td>
+                        <td class="cell-rule">CEH</td>
+                        <td class="cell-rule">HAF</td>
+                        <td class="cell-rule">ECD</td>
+                        <td class="cell-rule">DDE</td>
+                        <td class="cell-rule">AHA</td>
+                    </tr>
+                    <tr>
+                        <th>Otherwise, if <span class="row-rule">a color flashed, then an adjacent color, then the first again</span></th>
+                        <td class="cell-rule">AHF</td>
+                        <td class="cell-rule">DFC</td>
+                        <td class="cell-rule">ECH</td>
+                        <td class="cell-rule">CDE</td>
+                        <td class="cell-rule">FEA</td>
+                        <td class="cell-rule">HAD</td>
+                    </tr>
+                    <tr>
+                        <th>Otherwise, if <span class="row-rule">at most one color flashed out of red, yellow, and blue</span></th>
+                        <td class="cell-rule">DED</td>
+                        <td class="cell-rule">ECF</td>
+                        <td class="cell-rule">FHE</td>
+                        <td class="cell-rule">HAA</td>
+                        <td class="cell-rule">AFH</td>
+                        <td class="cell-rule">CDC</td>
+                    </tr>
+                    <tr>
+                        <th>Otherwise, if <span class="row-rule">there are two colors opposite each other that didn’t flash</span></th>
+                        <td class="cell-rule">HCE</td>
+                        <td class="cell-rule">ADA</td>
+                        <td class="cell-rule">CFD</td>
+                        <td class="cell-rule">DHH</td>
+                        <td class="cell-rule">EAC</td>
+                        <td class="cell-rule">FEF</td>
+                    </tr>
+                    <tr>
+                        <th>Otherwise, if <span class="row-rule">two adjacent colors flashed in clockwise order</span></th>
+                        <td class="cell-rule">CAH</td>
+                        <td class="cell-rule">FHD</td>
+                        <td class="cell-rule">DDA</td>
+                        <td class="cell-rule">AEC</td>
+                        <td class="cell-rule">HCF</td>
+                        <td class="cell-rule">EFE</td>
+                    </tr>
+                    <tr>
+                        <th>Otherwise</th>
+                        <td class="cell-rule">EDA</td>
+                        <td class="cell-rule">HAE</td>
+                        <td class="cell-rule">AEC</td>
+                        <td class="cell-rule">FFF</td>
+                        <td class="cell-rule">CHD</td>
+                        <td class="cell-rule">DCH</td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+    <div id="Section1" class="page page-bg-04">
+        		<div class="page-header">
+			<span class="page-header-doc-title">Keep Talking and Nobody Explodes Optimised v<bdo dir="ltr">1</bdo></span>
+			<span class="page-header-section-title">Wires</span>
+		</div>
+        		<div class="page-footer absolute-footer">Page 4 of 23</div>
+        <div class="page-content">
                 <img src="img/Modules/Wires.svg" class="diagram">
                 <h2>On the Subject of Wires</h2>
                 <p class="flavour-text">
