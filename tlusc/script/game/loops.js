@@ -121,11 +121,13 @@ export const loops = {
       if (settings.game.sudden.ruleOption == false) {
         game.settings.rotationSystem = "srs"
         game.rotationSystem = "srs"
-        $('#levelType').innerHTML = '<font color="#f66">Sudden</font>'
+        if (settings.game.sudden.startingLevel == 0) $('#levelType').innerHTML = '<font color="#f66">Sudden (0S)</font>'
+        else $('#levelType').innerHTML = '<font color="#f66">Sudden (' + settings.game.sudden.startingLevel + '0S)</font>'
       } else {
         game.settings.rotationSystem = "ars"
         game.rotationSystem = "ars"
-        $('#levelType').innerHTML = '<font color="#66f">Sudden (Classic)</font>'
+        if (settings.game.sudden.startingLevel == 0) $('#levelType').innerHTML = '<font color="#66f">Sudden (Classic, 0S)</font>'
+        else $('#levelType').innerHTML = '<font color="#66f">Sudden (Classic, ' + settings.game.sudden.startingLevel + '0S)</font>'
       }
       game.updateStats()
     },
@@ -300,11 +302,13 @@ export const loops = {
       if (settings.game.novice.ruleOption == false) {
         game.settings.rotationSystem = "srs"
         game.rotationSystem = "srs"
-        $('#levelType').innerHTML = '<font color="#f66">Novice</font>'
+        if (settings.game.novice.startingLevel == 0) $('#levelType').innerHTML = '<font color="#f66">Novice (0S)</font>'
+        else $('#levelType').innerHTML = '<font color="#f66">Novice (' + settings.game.novice.startingLevel + '0S)</font>'
       } else {
         game.settings.rotationSystem = "ars"
         game.rotationSystem = "ars"
-        $('#levelType').innerHTML = '<font color="#66f">Novice (Classic)</font>'
+        if (settings.game.novice.startingLevel == 0) $('#levelType').innerHTML = '<font color="#66f">Novice (Classic, 0S)</font>'
+        else $('#levelType').innerHTML = '<font color="#66f">Novice (Classic, ' + settings.game.novice.startingLevel + '0S)</font>'
       }
       updateFallSpeed(game)
       game.updateStats()
