@@ -23,6 +23,7 @@ i { font-size:50%; }
 #snow.rainbow {animation: rainbow 1000s linear infinite}
 #snow.font, #splash.font, #clock.font {font-family: vcr-osd-mono-1-001}
 #inv {visibility:hidden}
+p#inv {font-size:0}
 #splash{
   font-family: perfect-dos-vga-437-win;
   left: 0;
