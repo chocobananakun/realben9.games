@@ -7,10 +7,21 @@
 <h1>The Button</h1>
 <h2>Edgework</h2>
 <div class="edgework" id="info0"></div>
-<div id="thebutton" style="width:96px;height:96px;-webkit-border-radius:48px;-moz-border-radius:48px;border-radius:48px;text-align:center"><p id="buttontext" style="position:relative;top:.9em;font-size:32px;font-family:'Ostrich'"></p></div>
+<div id="thebutton" style="text-transform:uppercase;width:96px;height:96px;-webkit-border-radius:48px;-moz-border-radius:48px;border-radius:48px;text-align:center">&nbsp;<p id="buttontext" style="position:relative;top:-0.5em;font-size:32px;font-family:'Ostrich'"></p></div>
 <p id="btngrid"><button onclick="buttonpress()">Press</button><button onclick="buttonhold()">Hold</button><div id="light" style="width:128px;height:16px"></div></p>
+<p id="cbnote">Add "?cb=true" to the URL for colourblind mode.</p>
 </div>
 <script>
+cbinfo = document.getElementById("cbnote")
+query = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')
+cb = false
+for (let i = 0; i < query.length; i++) {
+	if (query[i].toLowerCase() == "cb=true") {
+        console.log("[00.00] Colourblind Mode Enabled")
+        cbinfo.outerHTML = ""
+        cb = true
+    }
+}
 setTimeout(function(){
     thebutton = document.getElementById("thebutton")
     buttontextdisp = document.getElementById("buttontext")
@@ -20,9 +31,12 @@ setTimeout(function(){
     else if (buttoncolour == 1) {thebutton.style.backgroundColor = "red"}
     else if (buttoncolour == 2) {
         thebutton.style.backgroundColor = "blue"
+        thebutton.style.color = "white"
         buttontextdisp.style.color = "white"
     }
     else {thebutton.style.backgroundColor = "yellow"}
+    if (cb == true) {thebutton.innerHTML = thebutton.style.backgroundColor.slice(0,1) + thebutton.innerHTML.slice(6)}
+    buttontextdisp = document.getElementById("buttontext")
     buttontext = Math.floor(Math.random() * 4)
     if (buttontext == 0) {buttontextdisp.innerHTML = "Detonate"}
     else if (buttontext == 1) {buttontextdisp.innerHTML = "Hold"}
