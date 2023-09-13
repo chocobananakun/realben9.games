@@ -22,61 +22,57 @@ for (let i = 0; i < query.length; i++) {
         cb = true
     }
 }
-setTimeout(function(){
-    thebutton = document.getElementById("thebutton")
-    buttontextdisp = document.getElementById("buttontext")
-    buttongrid = document.getElementById("btngrid")
-    buttoncolour = Math.floor(Math.random() * 4)
-    if (buttoncolour == 0) {thebutton.style.backgroundColor = "white"}
-    else if (buttoncolour == 1) {thebutton.style.backgroundColor = "red"}
-    else if (buttoncolour == 2) {
-        thebutton.style.backgroundColor = "blue"
-        thebutton.style.color = "white"
-        buttontextdisp.style.color = "white"
+thebutton = document.getElementById("thebutton")
+buttontextdisp = document.getElementById("buttontext")
+buttoncolour = Math.floor(Math.random() * 4)
+if (buttoncolour == 0) {thebutton.style.backgroundColor = "white"}
+else if (buttoncolour == 1) {thebutton.style.backgroundColor = "red"}
+else if (buttoncolour == 2) {
+    thebutton.style.backgroundColor = "blue"
+    thebutton.style.color = "white"
+    buttontextdisp.style.color = "white"
+}
+else {thebutton.style.backgroundColor = "yellow"}
+if (cb == true) {thebutton.innerHTML = thebutton.style.backgroundColor.slice(0,1) + thebutton.innerHTML.slice(6)}
+buttontextdisp = document.getElementById("buttontext")
+buttontext = Math.floor(Math.random() * 4)
+if (buttontext == 0) {buttontextdisp.innerHTML = "Detonate"}
+else if (buttontext == 1) {buttontextdisp.innerHTML = "Hold"}
+else if (buttontext == 2) {buttontextdisp.innerHTML = "Abort"}
+else {buttontextdisp.innerHTML = "Press"}
+function waitforbatts() {
+    if (typeof batteries !== "undefined") {
+        if (buttoncolour == 1 && buttontext == 1) {
+            console.log("[" + time + "] Rule 1 : Tap")
+            tap = true
+        }
+        else if (batteries >= 2 && buttontext == 0) {
+            console.log("[" + time + "] Rule 2 : Tap")
+            tap = true
+        }
+        else if (buttoncolour == 2 && buttontext == 2) {
+            console.log("[" + time + "] Rule 3 : Hold")
+            tap = false
+        }
+        else if (((ind0 == "CAR" && lit0 == 1) || (ind1 == "CAR" && lit1 == 1)) && buttoncolour == 0) {
+            console.log("[" + time + "] Rule 4 : Hold")
+            tap = false
+        }
+        else if (batteries >= 3 && ((ind0 == "FRK" && lit0 == 1) || (ind1 == "FRK" && lit1 == 1))) {
+            console.log("[" + time + "] Rule 5 : Tap")
+            tap = true
+        }
+        else {
+            console.log("[" + time + "] Rule 6 : Hold")
+            tap = false
+        }
+        buttongrid = document.getElementById("btngrid")
     }
-    else {thebutton.style.backgroundColor = "yellow"}
-    if (cb == true) {thebutton.innerHTML = thebutton.style.backgroundColor.slice(0,1) + thebutton.innerHTML.slice(6)}
-    buttontextdisp = document.getElementById("buttontext")
-    buttontext = Math.floor(Math.random() * 4)
-    if (buttontext == 0) {buttontextdisp.innerHTML = "Detonate"}
-    else if (buttontext == 1) {buttontextdisp.innerHTML = "Hold"}
-    else if (buttontext == 2) {buttontextdisp.innerHTML = "Abort"}
-    else {buttontextdisp.innerHTML = "Press"}
-    if (indcount == 0) {
-        ind0 = -1
-        lit0 = -1
-        ind1 = -1
-        lit1 = -1
+    else{
+        setTimeout(waitforbatts, 1)
     }
-    else if (indcount == 1) {
-        ind1 = -1
-        lit1 = -1
-    }
-    if (buttoncolour == 1 && buttontext == 1) {
-        console.log("[" + time + "] Rule 1 : Tap")
-        tap = true
-    }
-    else if (batteries >= 2 && buttontext == 0) {
-        console.log("[" + time + "] Rule 2 : Tap")
-        tap = true
-    }
-    else if (buttoncolour == 2 && buttontext == 2) {
-        console.log("[" + time + "] Rule 3 : Hold")
-        tap = false
-    }
-    else if (((ind0 == "CAR" && lit0 == 1) || (ind1 == "CAR" && lit1 == 1)) && buttoncolour == 0) {
-        console.log("[" + time + "] Rule 4 : Hold")
-        tap = false
-    }
-    else if (batteries >= 3 && ((ind0 == "FRK" && lit0 == 1) || (ind1 == "FRK" && lit1 == 1))) {
-        console.log("[" + time + "] Rule 5 : Tap")
-        tap = true
-    }
-    else {
-        console.log("[" + time + "] Rule 6 : Hold")
-        tap = false
-    }
-},49)
+}
+waitforbatts()
 function buttonpress() {
     console.log("[" + time + "] Tapping!")
     if (tap == true) {

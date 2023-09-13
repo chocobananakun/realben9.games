@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
 	snow = document.getElementById("snow")
 	if (snow) {
-		snow.innerHTML = '<p id="clock" onload="currentTime()">??:??:??.??? | Toggle<button onmousedown="togcorndogs()" class="box2d">Corndogs</button><button onmousedown="tograinbow()" class="box2d">Rainbow</button><button onmousedown="togfont()" class="box2d">Font</button></p>' + snow.innerHTML
+		snow.innerHTML = '<p id="clock" onload="currentTime()">??:??:??.??? | Toggle<button onmousedown="togcorndogs()" tabindex="-1" class="box2d">Corndogs</button><button onmousedown="tograinbow()" tabindex="-1" class="box2d">Rainbow</button><button onmousedown="togfont()" tabindex="-1" class="box2d">Font</button></p>' + snow.innerHTML
 		currentTime()
 	}
 	splash = document.getElementById("splash")

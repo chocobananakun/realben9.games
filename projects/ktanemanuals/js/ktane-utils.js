@@ -35,7 +35,7 @@ e.onload = function()
             <div class='option-group'>
                 <h3>Highlighter</h3>
                 <div><input type='checkbox' id='highlighter-enabled'>&nbsp;<label for='highlighter-enabled' accesskey='h'>Enabled</label> (Alt-H)</div>
-                <div>Color: <select id='highlighter-color'></select> (Alt-<span id='highlighter-color-index'>1</span>)</div>
+                <div>Colour: <select id='highlighter-color'></select> (Alt-<span id='highlighter-color-index'>1</span>)</div>
                 <div>Highlights: <button id='clear-highlights' accesskey='c'>Clear</button> (Alt-C)</div>
             </div>
             <div class='option-group'>

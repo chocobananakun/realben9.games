@@ -35,9 +35,15 @@ window.addEventListener('load', function () {
             else info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget battery d"></div><div class="widget battery d"></div><div class="widget battery d"></div>'
         }
         indcount = Math.floor(Math.random() * 3)
-        if (indcount == 0) {}
+        if (indcount == 0) {
+            ind0 = -1
+            lit0 = -1
+            ind1 = -1
+            lit1 = -1
+        }
         else if (indcount == 1) {
             ind0 = Math.floor(Math.random() * 11)
+            ind1 = -1
             if (ind0 == 0) {ind0 = "BOB"}
             else if (ind0 == 1) {ind0 = "CAR"}
             else if (ind0 == 2) {ind0 = "CLR"}
@@ -52,6 +58,7 @@ window.addEventListener('load', function () {
             lit0 = Math.floor(Math.random() * 2)
             if (lit0 == 0) {info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget indicator unlit"><span class="label">' + ind0 + '</span></div>'}
             else {info0.innerHTML = info0.innerHTML + '<div class="widget separator"></div><div class="widget indicator lit"><span class="label">' + ind0 + '</span></div>'}
+            lit1 = -1
         }
         else {
             ind0 = Math.floor(Math.random() * 11)

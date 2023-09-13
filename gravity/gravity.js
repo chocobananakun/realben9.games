@@ -1336,7 +1336,9 @@ function init() {
 	elemGoogC = getElementsByClass("VwiC3b")
 	elemGoogD = getElementsByClass("fLciMb")
 	elemGoogE = getElementsByClass("GKS7s")
-	elements = elem0.concat(elem1, elem2, elem3, elem4, elem5, elem6, elem7, elem8, elem9, elemA, elemB, elemC, elemD, elemE, elemF, elemG, elemH, elemI, elemJ, elemK, elemL, elemM, elemN, elemO, elemGoog0, elemGoog1, elemGoog2, elemGoog3, elemGoog4, elemGoog5, elemGoog6, elemGoog7, elemGoog8, elemGoog9, elemGoogA, elemGoogB, elemGoogC, elemGoogD, elemGoogE, elemCC0, elemCC1, elemCC2)
+	elemGoogF = getElementsByClass("jfk-button")
+	elemGoogG = getElementsByClass("goog-toolbar-button")
+	elements = elem0.concat(elem1, elem2, elem3, elem4, elem5, elem6, elem7, elem8, elem9, elemA, elemB, elemC, elemD, elemE, elemF, elemG, elemH, elemI, elemJ, elemK, elemL, elemM, elemN, elemO, elemCC0, elemCC1, elemCC2, elemGoog0, elemGoog1, elemGoog2, elemGoog3, elemGoog4, elemGoog5, elemGoog6, elemGoog7, elemGoog8, elemGoog9, elemGoogA, elemGoogB, elemGoogC, elemGoogD, elemGoogE, elemGoogF, elemGoogG)
 	console.log("Boxes Detected :", elements)
 
 	for (var i = 0; i < elements.length; i++) {
