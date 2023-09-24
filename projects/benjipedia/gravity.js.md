@@ -5,16 +5,13 @@ gravity.js is a modified version of the script used in [Google Gravity](https://
 ## What did I change?
 ### Custom Gravity Settings
 By replacing `var gravity = { x: 0, y: 1 }` with
-
-`var promptX = prompt("Enter X Gravity (Must be a number between -10 & 10)", "0")`
-
-`if (promptX == null) {promptX = 0}`
-
-`var promptY = prompt("Enter Y Gravity (Must be a number between -10 & 10)", "1")`
-
-`if (promptY == null) {promptY = 1}`
-
-`var gravity = { x: promptX, y: promptY }`, I have effectively allowed for custom gravity settings. I find it interesting that custom gravity was only something I had to implement setting-wise.
+```var promptX = prompt("Enter X Gravity (Must be a number between -10 & 10)", "0")
+if (promptX == null) {promptX = 0}
+var promptY = prompt("Enter Y Gravity (Must be a number between -10 & 10)", "1")
+if (promptY == null) {promptY = 1}
+var gravity = { x: promptX, y: promptY }
+```
+, I have effectively allowed for custom gravity settings. I find it interesting that custom gravity was only something I had to implement setting-wise.
 > Note that it doesn't actually ***have*** to be a number between -10 & 10, I just said that because anything outside that range isn't as fun to use.
 #### How does this work?
 * `var` declares a variable.
@@ -27,13 +24,12 @@ By replacing `elements = getElementsByClass("box2d")` with several variant class
 There are 2 intended ways to use it :
 ### Bookmarklets
 Save a bookmark with the following code : `javascript:(function(d,s,src){s.setAttribute('src',src);d.getElementsByTagName('body')[0].appendChild(s);})(document, document.createElement('script'),"https://realben9.github.io/gravity/gravity.js")`
+
 When you want to execute the script, attempt to open it.
 #### What does this do?
 * `javascript:()` Indicates that this is a *bookmarklet*, instead of a *bookmark*. The only difference between the two is that a bookmark contains a URL to a website, but a bookmarklet contains 1 line of code.
-* `function(d,s,src){}` Declares a function with variables `d`, `s` & `src`, where `{}` represents what code will be inside of the function.
-`d` represents `#document`, which declares all of the elements inside of the active page.
-`s` represents the script, where `src` represents the link to the script.
-* `s.setAttribute('src',src)` sets the script (`s`)'s `'src'` (on the left) attribute to variable `src` (on the right). As mentioned before, `src` represents the link to the script.
+* `function(d,s,src){}` Declares a function with variables `d`, `s` & `src`, where `{}` represents what code will be inside of the function. `d` represents `#document`, which declares all of the elements inside of the active page. `s` represents the script, where `src` represents the link to the file for the script.
+* `s.setAttribute('src',src)` sets the script (`s`)'s `'src'` (on the left) attribute to variable `src` (on the right). As mentioned before, `src` represents the link to the file for the script.
 * `;` Represents a line break. This is required, because bookmarklets can only contain 1 line of code.
 * `d.getElementsByTagName('body')` gets every element with the `'body'` tag inside of `#document` (`d`). `[0]` indexes the first element it gets & in this case ignores any other elements it found.
 * `X.appendChild(s)` adds an element (`s`, the script) inside of, but at the end of element `X`. (in this case the `'body'` element from before.)
