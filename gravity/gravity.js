@@ -1227,14 +1227,10 @@ var gWebSearch, gImageSearch;
 var imFeelingLuckyMode = false;
 var resultBodies = [];
 
-var promptX = prompt("Enter X Gravity (Must be a number between -10 & 10)", "0")
-if (promptX == null) {
-	promptX = 0
-}
-var promptY = prompt("Enter Y Gravity (Must be a number between -10 & 10)", "1")
-if (promptY == null) {
-	promptY = 1
-}
+var promptX = prompt("Enter X Gravity (Recommended number between ±10)", "0")
+if (promptX == null) promptX = 0
+var promptY = prompt("Enter Y Gravity (Recommended number between ±10)", "1")
+if (promptY == null) promptY = 1
 var gravity = { x: promptX, y: promptY };
 
 init();

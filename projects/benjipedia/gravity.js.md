@@ -1,22 +1,23 @@
 # gravity.js
-**A JS file with a payload of converting some HTML elements into Box2D boxes.**
+**A script with a payload of converting some HTML elements into Box2D boxes.**
 
 gravity.js is a modified version of the script used in [Google Gravity](https://mrdoob.com/projects/chromeexperiments/google-gravity). ([Modified here!](https://realben9.github.io/gravity/c22.html))
 ## What did I change?
 ### Custom Gravity Settings
 By replacing `var gravity = { x: 0, y: 1 }` with
-```var promptX = prompt("Enter X Gravity (Must be a number between -10 & 10)", "0")
-if (promptX == null) {promptX = 0}
-var promptY = prompt("Enter Y Gravity (Must be a number between -10 & 10)", "1")
-if (promptY == null) {promptY = 1}
+```js
+var promptX = prompt("Enter X Gravity (Recommended number between ±10)", "0")
+if (promptX == null) promptX = 0
+var promptY = prompt("Enter Y Gravity (Recommended number between ±10)", "1")
+if (promptY == null) promptY = 1
 var gravity = { x: promptX, y: promptY }
 ```
 , I have effectively allowed for custom gravity settings. I find it interesting that custom gravity was only something I had to implement setting-wise.
-> Note that it doesn't actually ***have*** to be a number between -10 & 10, I just said that because anything outside that range isn't as fun to use.
+> Note that it doesn't ***have*** to be a number between ±10, I just said that because anything outside that range isn't as fun to use.
 #### How does this work?
-* `var` declares a variable.
+* `var` declares a variable. Sometimes this seems to be necessary, other times it isn't.
 * `prompt("X","Y")` declares a user prompt, where `"X"` defines the message & `"Y"` defines the default value.
-* `if (promptX == null) {promptX = 0}` is an error check to verify that a value has been submitted. If nothing was submitted (Likely either because the website wasn't active at the time of the prompt, or the user pressed "Cancel"), use the default value instead. (In this case 0.)
+* `if (promptX == null) promptX = 0` is an error check to verify that a value has been submitted. If nothing was submitted (Likely either because the website wasn't active at the time of the prompt, or the user pressed "Cancel"), use the default value instead. (In this case 0.)
 * `var gravity = { x: promptX, y: promptY }` is a modification to `var gravity = { x: 0, y: 1 }`. The only change I made was to replace the constants `0` for `x` & `1` for `y` with variables `promptX` for `x` & `promptY` for `y`.
 ### More Elements
 By replacing `elements = getElementsByClass("box2d")` with several variant classes (`"box2d"`, `"button"`, `"btn"`, etc.), I have effectively allowed for elements with those classes to be converted into Box2D boxes (to then be affected by "gravity").
