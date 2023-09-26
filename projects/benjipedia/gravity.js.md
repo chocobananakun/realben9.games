@@ -1,7 +1,7 @@
 # gravity.js
 **A script with a payload of converting some HTML elements into Box2D boxes.**
 
-gravity.js is a modified version of the script used in [Google Gravity](https://mrdoob.com/projects/chromeexperiments/google-gravity). ([Modified here!](https://realben9.github.io/gravity/c22.html))
+gravity.js is a modified version of the script used in [Google Gravity](https://mrdoob.com/projects/chromeexperiments/google-gravity). ([Modified here!](https://realben9.github.io/gravity/c23.html))
 ## What did I change?
 ### Custom Gravity Settings
 By replacing `var gravity = { x: 0, y: 1 }` with
@@ -34,7 +34,7 @@ When you want to execute the script, attempt to open it.
 * `;` Represents a line break. This is required, because bookmarklets can only contain 1 line of code.
 * `d.getElementsByTagName('body')` gets every element with the `'body'` tag inside of `#document` (`d`). `[0]` indexes the first element it gets & in this case ignores any other elements it found.
 * `X.appendChild(s)` adds an element (`s`, the script) inside of, but at the end of element `X`. (in this case the `'body'` element from before.)
-* `(document, document.createElement('script'),"https://realben9.github.io/gravity/gravity.js")` creats an element with the tag `'script'`, with an `src` of `"https://realben9.github.io/gravity/gravity.js"`. I'm not entirely sure why this is necessary, but I'm guessing that based on context it understands what variables `d`, `s` & `src` are supposed to be. Additionally, this part doesn't indicate *where* in the `#document` the script is.
+* `(document, document.createElement('script'),"https://realben9.github.io/gravity/gravity.js")` creates an element with the tag `'script'`, with an `src` of `"https://realben9.github.io/gravity/gravity.js"`. I'm not entirely sure why this is necessary, but I'm guessing that based on context it understands what variables `d`, `s` & `src` are supposed to be. Additionally, this part doesn't indicate *where* in the `#document` the script is.
 
 This effectively injects script `"https://realben9.github.io/gravity/gravity.js"` into the document, which is then executed. However, some websites block the ability to do this, but the other method seems to work in that case.
 ### Console
