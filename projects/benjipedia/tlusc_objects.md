@@ -3,9 +3,8 @@
 
 TLUSC (in the way I'm using it) is referencing the **s**ource **c**ode of [**T**etra **L**egends **U**ltimate](https://talon125.github.io). ([Modified here!](https://realben9.github.io/tlusc))
 My objective here is to document the contents of some of the objects TLUSC uses to store mid-game data.
-## The `game` object
-This object appears to contain 54 entries.
-
+The amount of entries listed in each object will be shown in brackets.
+## The `game` object (54)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `appends`|`object`| Tied to information shown to the left of the board.
@@ -64,13 +63,11 @@ This object appears to contain 54 entries.
 | `cellSize`|`integer`| ???
 
 Here are the contents of some of the objects ***within*** `game`.
-
-*Some object lengths are unknown. This is marked with a `*`.
-### `appends`*
+### `appends` (unknown length, 1 shown here)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `line`|`string`| ???
-### `colors`
+### `colors` (7)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `I`|`string`| Colour for the I piece.
@@ -80,7 +77,7 @@ Here are the contents of some of the objects ***within*** `game`.
 | `S`|`string`| Colour for the S piece.
 | `T`|`string`| Colour for the T piece.
 | `Z`|`string`| Colour for the Z piece.
-### `endingStats`*
+### `endingStats` (unknown length, 7 shown here)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `level`|`boolean`| ???
@@ -90,7 +87,7 @@ Here are the contents of some of the objects ***within*** `game`.
 | `piece`|`boolean`| ???
 | `score`|`boolean`| ???
 | `skipCount`|`boolean`| ???
-### `hold`
+### `hold` (13)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `ctx`|`object`| ???
@@ -106,13 +103,13 @@ Here are the contents of some of the objects ***within*** `game`.
 | `parent`|`object`| ???
 | `pieceName`|`string`| The name of the held piece.
 | `useSkip`|`boolean`| ???
-### `matrix`
+### `matrix` (3)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `position`|`object`| ???
 | `shakeVelocity`|`object`| ???
 | `velocity`|`object`| ???
-### `next`
+### `next` (11)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `ctx`|`object`| ???
@@ -126,7 +123,7 @@ Here are the contents of some of the objects ***within*** `game`.
 | `seed`|`number`| ???
 | `stats`|`object`| ???
 | `subCtx`|`object`| ???
-### `nextOffsets`
+### `nextOffsets` (7)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `I`|`array(2)`| ???
@@ -136,7 +133,7 @@ Here are the contents of some of the objects ***within*** `game`.
 | `S`|`array(2)`| ???
 | `T`|`array(2)`| ???
 | `Z`|`array(2)`| ???
-### `particle`
+### `particle` (5)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `ctx`|`object`| ???
@@ -144,11 +141,11 @@ Here are the contents of some of the objects ***within*** `game`.
 | `isDirty`|`boolean`| ???
 | `parent`|`object`| ???
 | `particles`|`array`| ???
-### `piece`
-This is a large object. I will attempt to document it at a later date.
-### `prefixes`*
+### `piece` (82)
+Due to the large amount of elements in this object, I will attempt to document it at a later date.
+### `prefixes` (unknown length)
 (empty)
-### `settings`
+### `settings` (14)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `background`|`string`| ???
@@ -165,7 +162,7 @@ This is a large object. I will attempt to document it at a later date.
 | `soundbank`|`string`| ???
 | `unfavored`|`string`| ???
 | `width`|`integer`| The width of the current board.
-### `smallStats`*
+### `smallStats` (unknown length, 7 shown here)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `b2b`|`boolean`| ???
@@ -175,9 +172,42 @@ This is a large object. I will attempt to document it at a later date.
 | `piece`|`boolean`| ???
 | `score`|`boolean`| ???
 | `skipCount`|`boolean`| ???
-### `stack`
-This is a large object. I will attempt to document it at a later date.
-### `stat`*
+### `stack` (32)
+| Field | Type | Notes |
+| ----- | ---- | ----- |
+| `alarmIsOn`|`boolean`| Whether or not the height-based alarm is active. This alarm is different to the game-over alarm.
+| `antiGarbageBuffer`|`integer`| ???
+| `copyBottomForGarbage`|`boolean`| ???
+| `ctx`|`object`| ???
+| `dirtyCells`|`array`| ???
+| `fadeLineClear`|`boolean`| ???
+| `flashClearRate`|`integer`| ???
+| `flashLimit`|`integer`| ???
+| `flashLineClear`|`boolean`| ???
+| `flashOnTetris`|`boolean`| ???
+| `flashTime`|`number`| ???
+| `flashX`|`array(4-)`| ???
+| `flashY`|`array(4-)`| ???
+| `garbageHoleUsed`|`integer`| ???
+| `garbageRandomHole`|`integer`| ???
+| `garbageSwitchRate`|`integer`| ???
+| `grid`|`array`| Cointains the colour of each tile on the current board. Accepted values are `"red"`, `"orange"`, `"yellow"`, `"green"`, `"lightBlue"`, `"blue"`, `"purple"`, `"white"` and `"black"`. (Along with `undefined` to denote that the tile is empty.)
+| `height`|`integer`| The height of the current board.
+| `hiddenHeight`|`integer`| The **off-screen** height of the current board.
+| `isClutch`|`boolean`| ???
+| `isDirty`|`boolean`| ???
+| `isInvisible`|`boolean`| ???
+| `levelUpAnimation`|`integer`| ???
+| `levelUpAnimationLimit`|`integer`| ???
+| `lineClear`|`integer`| ???
+| `parent`|`object`| ???
+| `toCollapse`|`array`| ???
+| `useMinoSkin`|`boolean`| ???
+| `waitingGarbage`|`integer`| ???
+| `width`|`integer`| The width of the current board.
+| `highest`|`integer`| The Y value of the highest tile on the current board which is not set to `undefined`.
+| `skyToFloor`|`integer`| ???
+### `stat` (unknown length, 9 shown here)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `b2b`|`integer`| ???
@@ -189,5 +219,5 @@ This is a large object. I will attempt to document it at a later date.
 | `piece`|`integer`| ???
 | `score`|`integer`| ???
 | `skipCount`|`integer`| ???
-### `userSettings`*
-This is a large object. I will attempt to document it at a later date.
+### `userSettings` (unknown length, 55 shown here)
+Due to the large amount of elements in this object, I will attempt to document it at a later date.
