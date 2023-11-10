@@ -3274,7 +3274,7 @@
         },
         "0_1": {
           "color": "white",
-          "type": "operation",
+          "type": "",
           "params": { "value": 0, "operator": "+" },
           "txt": "+0"
         },
@@ -3307,6 +3307,48 @@
           "type": "operation",
           "params": { "value": 1, "operator": "+" },
           "txt": "+1"
+        }
+      }
+    },
+    {
+      "screen": { "moves": 2e308, "goal": "69420", "lcd": "0" },
+      "solution": [4, 8, 1, 5, 7],
+      "buttons": {
+        "0_1": {
+          "color": "lightpurple",
+          "type": "concatenate",
+          "params": { "value": 4 },
+          "txt": "4"
+        },
+        "1_0": {
+          "color": "lightorange",
+          "type": "",
+          "params": { "value": 0, "operator": "+" },
+          "txt": "69420"
+        },
+        "1_1": {
+          "color": "lightpurple",
+          "type": "concatenate",
+          "params": { "value": 6 },
+          "txt": "6"
+        },
+        "1_2": {
+          "color": "lightpurple",
+          "type": "concatenate",
+          "params": { "value": 2 },
+          "txt": "2"
+        },
+        "2_1": {
+          "color": "lightpurple",
+          "type": "concatenate",
+          "params": { "value": 0 },
+          "txt": "0"
+        },
+        "2_2": {
+          "color": "lightpurple",
+          "type": "concatenate",
+          "params": { "value": 9 },
+          "txt": "9"
         }
       }
     },
