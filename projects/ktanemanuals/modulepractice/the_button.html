@@ -3,7 +3,7 @@
 <script src="../../../index.js"></script><script src="edgework.js"></script>
 <div id="snow">
 <p id="strikes" style="color:#f00;font-size:32px;font-family:'Seven_Segment'">__</p>
-<p id="bombClock" onload="currentTime()" style="color:#0ff;font-size:32px;font-family:'Seven_Segment'"></p>
+<p id="bombClock" onload="currentBombTime()" style="color:#0ff;font-size:32px;font-family:'Seven_Segment'"></p>
 <h1>The Button</h1>
 <h2>Edgework</h2>
 <div class="edgework" id="info0"></div>
@@ -25,21 +25,21 @@ for (let i = 0; i < query.length; i++) {
 thebutton = document.getElementById("thebutton")
 buttontextdisp = document.getElementById("buttontext")
 buttoncolour = Math.floor(Math.random() * 4)
-if (buttoncolour == 0) {thebutton.style.backgroundColor = "white"}
-else if (buttoncolour == 1) {thebutton.style.backgroundColor = "red"}
+if (buttoncolour == 0) thebutton.style.backgroundColor = "white"
+else if (buttoncolour == 1) thebutton.style.backgroundColor = "red"
 else if (buttoncolour == 2) {
     thebutton.style.backgroundColor = "blue"
     thebutton.style.color = "white"
     buttontextdisp.style.color = "white"
 }
-else {thebutton.style.backgroundColor = "yellow"}
-if (cb == true) {thebutton.innerHTML = thebutton.style.backgroundColor.slice(0,1) + thebutton.innerHTML.slice(6)}
+else thebutton.style.backgroundColor = "yellow"
+if (cb == true) thebutton.innerHTML = thebutton.style.backgroundColor.slice(0,1) + thebutton.innerHTML.slice(6)
 buttontextdisp = document.getElementById("buttontext")
 buttontext = Math.floor(Math.random() * 4)
-if (buttontext == 0) {buttontextdisp.innerHTML = "Detonate"}
-else if (buttontext == 1) {buttontextdisp.innerHTML = "Hold"}
-else if (buttontext == 2) {buttontextdisp.innerHTML = "Abort"}
-else {buttontextdisp.innerHTML = "Press"}
+if (buttontext == 0) buttontextdisp.innerHTML = "Detonate"
+else if (buttontext == 1) buttontextdisp.innerHTML = "Hold"
+else if (buttontext == 2) buttontextdisp.innerHTML = "Abort"
+else buttontextdisp.innerHTML = "Press"
 function waitforbatts() {
     if (typeof batteries !== "undefined") {
         if (buttoncolour == 1 && buttontext == 1) {
@@ -68,9 +68,7 @@ function waitforbatts() {
         }
         buttongrid = document.getElementById("btngrid")
     }
-    else{
-        setTimeout(waitforbatts, 1)
-    }
+    else setTimeout(waitforbatts, 1)
 }
 waitforbatts()
 function buttonpress() {

@@ -7067,7 +7067,7 @@
         function r(t) {
             if (t || (t = {}),
             e()) {
-                var n = navigator.serviceWorker.register("/sw.js", {})
+                var n = navigator.serviceWorker.register("sw.js", {})
                   , r = function(t) {
                     var n, e, r, i = t.installing || t.waiting;
                     i && !i.onstatechange && (t.active ? (a(),
