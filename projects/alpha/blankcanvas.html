@@ -1,0 +1,157 @@
+<title>Blank Canvas</title>
+<head><link rel="icon" type="image/x-icon" href="../../img/favicon.ico"><link rel="stylesheet" type="text/css" href="../../style.css"></head>
+<script src="../../index.js"></script>
+<div id="snow">
+<canvas id="canvas" width="1200" height="800"></canvas><br>
+Add <input id="canvasCheck" type="number" value="1" min="1" max="511"></input>
+<button onclick="drawTriangle()">Triangle(s)!</button>
+<button onclick="drawRectangle()">Rectangle(s)!</button>
+<button onclick="drawUnrectangle()">Unrectangle(s)!</button>
+<button onclick="drawCircle()">Circle(s)!</button>
+<button onclick="drawChar()">Character(s)!</button>
+Mode : <button id="btnStroke" style="background-color:#0f0" onclick="modeFill()">Fill</button><button id="btnFill" style="background-color:#fff" onclick="modeStroke()">Stroke</button>
+</div>
+<script>
+drawMode = 1
+function modeFill() {
+    drawMode = 1
+    buttonY = document.getElementById("btnStroke")
+    buttonN = document.getElementById("btnFill")
+    buttonY.style.backgroundColor = "#0f0"
+    buttonN.style.backgroundColor = "#fff"
+}
+function modeStroke() {
+    drawMode = 0
+    buttonY = document.getElementById("btnStroke")
+    buttonN = document.getElementById("btnFill")
+    buttonY.style.backgroundColor = "#fff"
+    buttonN.style.backgroundColor = "#0f0"
+}
+function drawTriangle() {
+    drawCount = document.getElementById("canvasCheck").value
+    for (let x = 0; x < drawCount; x++) {
+        canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+            ctx = canvas.getContext('2d')
+            sWidth = canvas.width
+            sHeight = canvas.height
+
+            randRangeX = sWidth - 100
+            randOffsetX = randRangeX / 2
+            randRangeY = sHeight - 100
+            randOffsetY = randRangeY / 2
+
+            pointX1 = (sWidth / 2) + 50
+            triX = pointX1 + Math.floor(Math.random() * randRangeX) - randOffsetX
+            pointY1 = sHeight / 2
+            triY = pointY1 + Math.floor(Math.random() * randRangeY) - randOffsetY
+            pointX2 = sWidth / 2
+            pointY2 = (sHeight / 2) - 50
+            pointX3 = (sWidth / 2) - 50
+            pointY3 = sHeight / 2
+
+            path = new Path2D()
+            path.moveTo(triX, triY)
+            path.lineTo(pointX2 + Math.floor(Math.random() * randRangeX) - randOffsetX, pointY2 + Math.floor(Math.random() * randRangeY) - randOffsetY)
+            path.lineTo(pointX3 + Math.floor(Math.random() * randRangeX) - randOffsetX, pointY3 + Math.floor(Math.random() * randRangeY) - randOffsetY)
+
+            bg_colour = Math.floor(Math.random() * 16777215).toString(16)
+            if (drawMode == 1) {
+                ctx.fillStyle = "#" + ("000000" + bg_colour).slice(-6) + "80"
+                ctx.fill(path)
+            }
+            else {
+                path.lineTo(triX, triY)
+                ctx.strokeStyle = "#" + ("000000" + bg_colour).slice(-6) + "80"
+                ctx.stroke(path)
+            }
+        }
+    }
+}
+function drawRectangle() {
+    drawCount = document.getElementById("canvasCheck").value
+    for (let x = 0; x < drawCount; x++) {
+        canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+            ctx = canvas.getContext('2d')
+            posX = Math.floor(Math.random() * canvas.width)
+            posY = Math.floor(Math.random() * canvas.height)
+
+            bg_colour = Math.floor(Math.random() * 16777215).toString(16)
+            if (drawMode == 1) {
+                ctx.fillStyle = "#" + ("000000" + bg_colour).slice(-6) + "80"
+                ctx.fillRect(posX, posY, Math.floor(Math.random() * (canvas.width - posX)), Math.floor(Math.random() * (canvas.height - posY)))
+            }
+            else {
+                ctx.strokeStyle = "#" + ("000000" + bg_colour).slice(-6) + "80"
+                ctx.strokeRect(posX, posY, Math.floor(Math.random() * (canvas.width - posX)), Math.floor(Math.random() * (canvas.height - posY)))
+            }
+        }
+    }
+}
+function drawUnrectangle() {
+    drawCount = document.getElementById("canvasCheck").value
+    for (let x = 0; x < drawCount; x++) {
+        canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+            ctx = canvas.getContext('2d')
+            posX = Math.floor(Math.random() * canvas.width)
+            posY = Math.floor(Math.random() * canvas.height)
+            ctx.clearRect(posX, posY, Math.floor(Math.random() * (canvas.width - posX)), Math.floor(Math.random() * (canvas.height - posY)))
+        }
+    }
+}
+function drawCircle() {
+    drawCount = document.getElementById("canvasCheck").value
+    ang360 = 2 * Math.PI
+    for (let x = 0; x < drawCount; x++) {
+        canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+            ctx = canvas.getContext('2d')
+            size = Math.floor(Math.random() * 100) + 25
+            posX = Math.floor(Math.random() * (canvas.width - size * 2)) + size
+            posY = Math.floor(Math.random() * (canvas.height - size * 2)) + size
+
+            circle = new Path2D();
+            circle.arc(posX, posY, size, 0, ang360)
+
+            bg_colour = Math.floor(Math.random() * 16777215).toString(16)
+            if (drawMode == 1) {
+                ctx.fillStyle = "#" + ("000000" + bg_colour).slice(-6) + "80"
+                ctx.fill(circle)
+            }
+            else {
+                ctx.strokeStyle = "#" + ("000000" + bg_colour).slice(-6) + "80"
+                ctx.stroke(circle)
+            }
+        }
+    }
+}
+function drawChar() {
+    drawCount = document.getElementById("canvasCheck").value
+    for (let x = 0; x < drawCount; x++) {
+        canvas = document.getElementById('canvas')
+        if (canvas.getContext) {
+            ctx = canvas.getContext('2d')
+            posX = Math.floor(Math.random() * (canvas.width - 32))
+            posY = Math.floor(Math.random() * (canvas.height - 64)) + 32
+            ctx.font = "48px perfect-dos-vga-437-win"
+            selectedChar = Math.floor(Math.random() * 36).toString(36)
+            casing = Math.floor(Math.random() * 2)
+            if (casing == 1) {
+                selectedChar = selectedChar.toUpperCase()
+            }
+
+            bg_colour = Math.floor(Math.random() * 16777215).toString(16)
+            if (drawMode == 1) {
+                ctx.fillStyle = "#" + ("000000" + bg_colour).slice(-6) + "80"
+                ctx.fillText(selectedChar, posX, posY)
+            }
+            else {
+                ctx.strokeStyle = "#" + ("000000" + bg_colour).slice(-6) + "80"
+                ctx.strokeText(selectedChar, posX, posY)
+            }
+        }
+    }
+}
+</script>

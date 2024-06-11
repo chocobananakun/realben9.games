@@ -24,7 +24,7 @@ export default class Hold extends GameModule {
     return (this.pieceName) ? this.pieceName : (this.parent.piece.inAre) ? this.parent.next.queue[1] : this.parent.next.queue[0]
   }
   hold() {
-    if (((this.isLocked && this.parent.type !== 'zen') && !this.useSkip) || this.isDisabled ||
+    if (((this.isLocked && (this.parent.type !== 'zen' || window.cfghold == 'OFF')) && !this.useSkip) || this.isDisabled ||
       (this.holdAmount <= 0 && this.holdAmountLimit > 0)) {
       return
     }
@@ -69,7 +69,7 @@ export default class Hold extends GameModule {
       $('#hold-container').classList.remove('hidden')
     }
     if (this.useSkip) {
-      if (this.parent.type !== 'zen') { $('#skip-amount').textContent = this.holdAmount }
+      if (this.parent.type !== 'zen' || window.cfghold == 'OFF') { $('#skip-amount').textContent = this.holdAmount }
       // else { $('#skip-amount').innerHTML = '∞' }
       else { $('#skip-amount').innerHTML = this.parent.stat.skipCount }
       return
@@ -79,7 +79,7 @@ export default class Hold extends GameModule {
     if (this.pieceName === null) {
       return
     }
-    if (this.parent.type !== 'zen'){
+    if (this.parent.type !== 'zen' || window.cfghold == 'OFF') {
       if (this.isLocked || this.useSkip) {
         $('#hold').classList.add('locked')
       } else {

@@ -141,7 +141,7 @@ Here are the contents of some of the objects ***within*** `game`.
 | `isDirty`|`boolean`| ???
 | `parent`|`object`| ???
 | `particles`|`array`| ???
-### `piece` (82)
+### `piece` (83)
 | Field | Type | Notes |
 | ----- | ---- | ----- |
 | `are`|`number`| ???
@@ -205,6 +205,7 @@ Here are the contents of some of the objects ***within*** `game`.
 | `spinDetectionType`|`string`| ???
 | `startingAre`|`number`| ???
 | `startingAreLimit`|`number`| ???
+| `useRetroColors`|`boolean`| ???
 | `useSpecialI`|`boolean`| ???
 | `x`|`integer`?| ???
 | `xSpawnOffset`|`integer`?| ???

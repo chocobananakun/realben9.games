@@ -18,7 +18,9 @@
       "description": "The default chosen for Tetra Legends Ultimate",
       "fixedText": true,
       "action": "daspreset",
-      "isShort": true
+      "isShort": true,
+      "delay": 150,
+      "rate": 17
     },
     {
       "string": "guidelineLabel",
@@ -54,6 +56,15 @@
       "rate": 31
     },
     {
+      "label": "Spirit Drop [160 DAS | 40 ARR]",
+      "description": "Matches the autoshift settings of Spirit Drop.",
+      "fixedText": true,
+      "action": "daspreset",
+      "isShort": true,
+      "delay": 160,
+      "rate": 40
+    },
+    {
       "string": "quickLabel",
       "stringDesc": "quickDescription",
       "action": "daspreset",
@@ -77,6 +88,33 @@
       "isShort": true,
       "delay": 0,
       "rate": 0
+    },
+    {
+      "label": "GB [383 DAS | 150 ARR]",
+      "description": "Matches the autoshift settings of Handheld. Is quite slow.",
+      "fixedText": true,
+      "action": "daspreset",
+      "isShort": true,
+      "delay": 383,
+      "rate": 150
+    },
+    {
+      "label": "NES [266 DAS | 100 ARR]",
+      "description": "Matches the autoshift settings of Retro. Is quite slow.",
+      "fixedText": true,
+      "action": "daspreset",
+      "isShort": true,
+      "delay": 266,
+      "rate": 100
+    },
+    {
+      "label": "NES+ [150 DAS | 50 ARR]",
+      "description": "A faster variant of the autoshift settings of Retro, intended for use on 1G.",
+      "fixedText": true,
+      "action": "daspreset",
+      "isShort": true,
+      "delay": 150,
+      "rate": 50
     }
   ]
 }

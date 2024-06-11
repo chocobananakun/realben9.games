@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135926838-3"></script>
+  <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135926838-3"></script>-->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() {dataLayer.push(arguments);}
@@ -26,6 +26,8 @@
   <link rel="prerender" as="font" href="fonts/noto-sans-sc-v11-chinese-simplified_latin-900.woff2" type="font/woff2" crossorigin="anonymous">
   <link rel="prerender" as="font" href="fonts/noto-sans-sc-v11-chinese-simplified_latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="zen.css">
+  <link rel="stylesheet" href="sudden.css">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -179,6 +181,70 @@
           </div>
         </div>
       </div>
+      <div id="zen_panel">
+        <div id="zen_panel_content">
+          <h1>MISC</h1><label>INFINITE HOLD</label>
+          <div class="panel_optionset" id="cfghold">
+            <button onclick="btn_toggle('cfghold','ON')" class="panel_option panel_button selected" title="Allow infinite holding.">ON</button><br>
+            <button onclick="btn_toggle('cfghold','OFF')" class="panel_option panel_button" title="Do not allow infinite holding.">OFF</button>
+          </div>
+          <h1>SPINS</h1>
+          <div class="panel_optionset" id="cfgspin">
+            <button onclick="btn_toggle('cfgspin','3CORNER')" class="panel_option panel_button selected" title="Each piece gets 4 points around it. At least 3 must be filled for a spin. 2 specific points must be filled for a full spin; otherwise, the spin is mini, but only if the first 4 rotations in the offset table are used.">3CORNER</button><br>
+            <button onclick="btn_toggle('cfgspin','IMMOBILE')" class="panel_option panel_button" title="If a piece gets rotated into a position where it cannot move up, down, left, or right, then it is a spin. There are no mini spins.">IMMOBILE</button><br>
+            <button onclick="btn_toggle('cfgspin','EZIMMOBILE')" class="panel_option panel_button" title="Same as immobile, but if upon rotating a piece it kicks (rotates, but not on its center-axis) and it does not satisfy the requirements for an immobile spin, then it is a mini spin.">EZIMMOBILE</button><br>
+            <button onclick="btn_toggle('cfgspin','NULL')" class="panel_option panel_button" title="Do not detect spins.">NULL</button>
+          </div>
+          <h1>KICK TABLE</h1>
+          <div class="panel_optionset" id="cfgkick">
+            <button onclick="btn_toggle('cfgkick','TETRAX')" class="panel_option panel_button" title="Novel rotation system by DR OCELOT.">TETRAX</button><br>
+            <button onclick="btn_toggle('cfgkick','SRS')" class="panel_option panel_button selected" title="The standard natural rotation system with more powerful 180 spins.">SRS</button><br>
+            <button onclick="btn_toggle('cfgkick','ASC')" class="panel_option panel_button" title="Permissive rotation system by WINTERNEBS.">ASC</button><br>
+            <button onclick="btn_toggle('cfgkick','ASCX')" class="panel_option panel_button" title="Permissive rotation system by WINTERNEBS with more powerful 180 spins.">ASCX</button><br>
+            <button onclick="btn_toggle('cfgkick','ARS')" class="panel_option panel_button" title="Rotation system used in arcade games.">ARS</button><br>
+            <button onclick="btn_toggle('cfgkick','ARSTI')" class="panel_option panel_button" title="Rotation system used in arcade games.">ARSTI</button><br>
+            <button onclick="btn_toggle('cfgkick','ARSX')" class="panel_option panel_button" title="Rotation system used in arcade games with more powerful 180 spins.">ARSX</button><br>
+            <button onclick="btn_toggle('cfgkick','WORLD')" class="panel_option panel_button" title="The standard natural rotation system adapted for arcade games.">WORLD</button><br>
+            <button onclick="btn_toggle('cfgkick','RETRO')" class="panel_option panel_button" title="The classic rotation system. Also known as NRS & NINTENDO-R.">RETRO</button><br>
+            <button onclick="btn_toggle('cfgkick','HANDHELD')" class="panel_option panel_button" title="The classic rotation system. Also known as GBRS & NINTENDO-L.">HANDHELD</button><br>
+            <button onclick="btn_toggle('cfgkick','DELUXE')" class="panel_option panel_button" title="A prototype of the standard natural rotation system. Used in Tetra DX.">DELUXE</button><br>
+            <button onclick="btn_toggle('cfgkick','OSHISAURE')" class="panel_option panel_button" title="Also known as VRS.">OSHISAURE</button><br>
+            <button onclick="btn_toggle('cfgkick','ORIGINAL')" class="panel_option panel_button" title="No kicks possible.">ORIGINAL</button>
+          </div>
+          <h1>GRAVITY</h1>
+          <div class="panel_optionset" id="cfggravity">
+            <label style="margin-left:1.5em">GRAVITY (G)</label>
+            <input class="panel_input" id="gravitystatic" value="20" type="number" min="0" max="20" step="0.1">
+            <button onclick="btn_submit('gravitystatic')" class="panel_option panel_button">Submit</button><br>
+            <label style="margin-left:1.5em">LOCK DELAY (MS)</label>
+            <input class="panel_input" id="lockdelaystatic" value="500" type="number" min="0" max="1000">
+            <button onclick="btn_submit('lockdelaystatic')" class="panel_option panel_button">Submit</button><br>
+          </div>
+          <!--<h1>GARBAGE</h1>
+          <div class="panel_optionset" id="cfggarbage">
+            <button onclick="btn_toggle('cfggarbage','OFF')" class="panel_option panel_button selected" title="No garbage.">OFF</button><br>
+            <button onclick="btn_toggle('cfggarbage','BACKFIRE 0.5X')" class="panel_option panel_button" title="Half your attack power is sent back to you.">BACKFIRE 0.5X</button><br>
+            <button onclick="btn_toggle('cfggarbage','BACKFIRE 1X')" class="panel_option panel_button" title="All your attack power is sent back to you.">BACKFIRE 1X</button><br>
+            <button onclick="btn_toggle('cfggarbage','BACKFIRE 2X')" class="panel_option panel_button" title="Double your attack power is sent back to you.">BACKFIRE 2X</button><br>
+            <button onclick="btn_toggle('cfggarbage','UNCLEAR 0.5X')" class="panel_option panel_button" title="Half your attack power is immediately pushed onto your board.">UNCLEAR 0.5X</button><br>
+            <button onclick="btn_toggle('cfggarbage','UNCLEAR 1X')" class="panel_option panel_button" title="All your attack power is immediately pushed onto your board.">UNCLEAR 1X</button><br>
+            <button onclick="btn_toggle('cfggarbage','UNCLEAR 2X')" class="panel_option panel_button" title="Double your attack power is immediately pushed onto your board.">UNCLEAR 2X</button><br>
+            <button onclick="btn_toggle('cfggarbage','CHEESE LAYER')" class="panel_option panel_button" title="A static layer of cheese is added onto your board.">CHEESE LAYER</button><br>
+            <label style="margin-left:1.5em">LAYER HEIGHT</label>
+            <input class="panel_input" id="cheeselayer_height" value="6" type="number" min="0" max="20"><br>
+            <button onclick="btn_toggle('cfggarbage','CHEESE TIMER')" class="panel_option panel_button" title="One line of cheese is sent periodically.">CHEESE TIMER</button><br>
+            <label style="margin-left:1.5em">TIMER INTERVAL</label>
+            <input class="panel_input" id="cheesetimer_interval" value="4" type="number" min="0.1" max="60" step="0.1">
+          </div><label>CHEESE MESSINESS %</label><input class="panel_input" id="cheesemessiness" value="100" type="number" min="0" max="100">-->
+          <h1>SCORE TABLE</h1>
+          <div class="panel_optionset" id="cfgscore">
+            <button onclick="btn_toggle('cfgscore','GUIDELINE')" class="panel_option panel_button selected" title="GUIDELINE">GUIDELINE</button><br>
+            <button onclick="btn_toggle('cfgscore','RETRO')" class="panel_option panel_button" title="RETRO">RETRO</button><br>
+            <button onclick="btn_toggle('cfgscore','TETRAX')" class="panel_option panel_button" title="TETRAX">TETRAX</button><br>
+            <button onclick="btn_toggle('cfgscore','BLANK')" class="panel_option panel_button" title="BLANK">BLANK</button>
+          </div>
+        </div>
+      </div>
       <div>
         <div id="sprite" style="display:none"></div>
       </div>
@@ -214,6 +280,7 @@
   <script src="lib/howler.min.js"></script>
   <script src="lib/seedrandom.min.js"></script>
   <script type="module" src="app.js"></script>
+  <script src="zen.js"></script>
   <script>
     // code I found to stop backspace from F***ING everything up
     document.onkeydown = function (event) {
@@ -259,6 +326,16 @@
   enableVideo = () => {};
     }
 
+  </script>
+
+  <script>
+    let date = new Date()
+    let month = date.getUTCMonth()
+    let day = date.getUTCDate()
+    let hh = date.getUTCHours()
+    if ((month == 2 && day == 25 && hh >= 12) || (month == 2 && day > 25) || (month == 3 && day == 1 && hh < 12)) {
+      document.head.innerHTML = document.head.innerHTML + '<style>div.sudden { animation-duration: .5s; animation-name: fire; animation-iteration-count: infinite; animation-direction: alternate; } div.sudden.selected { animation-name: fire-selected !important; animation-iteration-count: infinite !important; animation-direction: alternate !important; color:#fff !important; background-color:#f40 !important; } </style>'
+    }
   </script>
 
 </body>

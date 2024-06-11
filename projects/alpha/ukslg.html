@@ -1,0 +1,68 @@
+<title>U K _ S L G</title>
+<head><link rel="icon" type="image/x-icon" href="../../img/favicon.ico"><link rel="stylesheet" type="text/css" href="../../style.css"></head>
+<script src="../../index.js"></script>
+<div id="snow" class="nofancy">
+<h1>Ultrakill Sandbox Level Generator <i>(for use with... ultrakill?)</i></h1>
+Boxes : <input id="boxCount" value="1" type="number" min="1" style="width:164px"></input><br>
+Kinematic? <button id="btnkineYes" style="background-color:#0f0" onclick="kineYes()">Yes</button><button id="btnkineNo" style="background-color:#fff" onclick="kineNo()">No</button><button id="btnkineRand" style="background-color:#fff" onclick="kineRand()">Random</button><br>
+<button onclick="generateData()">Generate!</button>
+<h2>Save this as a PITR file :</h2>
+<p id="genData" style="font-size:6px"></p>
+</div>
+<script>
+kineGen = 1
+function kineYes() {
+    kineGen = 1
+    buttonY = document.getElementById("btnkineYes")
+    buttonN = document.getElementById("btnkineNo")
+    buttonR = document.getElementById("btnkineRand")
+    buttonY.style.backgroundColor = "#0f0"
+    buttonN.style.backgroundColor = "#fff"
+    buttonR.style.backgroundColor = "#fff"
+}
+function kineNo() {
+    kineGen = 0
+    buttonY = document.getElementById("btnkineYes")
+    buttonN = document.getElementById("btnkineNo")
+    buttonR = document.getElementById("btnkineRand")
+    buttonY.style.backgroundColor = "#fff"
+    buttonN.style.backgroundColor = "#0f0"
+    buttonR.style.backgroundColor = "#fff"
+}
+function kineRand() {
+    kineGen = 2
+    buttonY = document.getElementById("btnkineYes")
+    buttonN = document.getElementById("btnkineNo")
+    buttonR = document.getElementById("btnkineRand")
+    buttonY.style.backgroundColor = "#fff"
+    buttonN.style.backgroundColor = "#fff"
+    buttonR.style.backgroundColor = "#0f0"
+}
+function generateData() {
+    boxCountVar = document.getElementById("boxCount").value
+    dataOutput = document.getElementById("genData")
+    if (kineGen == 1) {
+        temp0 = '{"BlockSize":{"x":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"y":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"z":' + ((Math.floor(Math.random() * 90) + 1) / 10) + '},"BlockType":2,"Kinematic":true,"ObjectIdentifier":"ultrakill.brush-armor","Position":{"x":' + (Math.floor(Math.random() * 601) - 300) + ',"y":' + (Math.floor(Math.random() * 601) - 300) + ',"z":' + (Math.floor(Math.random() * 601) - 300) + '},"Rotation":{"x":0,"y":0,"z":0,"w":1},"Scale":{"x":' + (Math.floor(Math.random() * 3) + 1) + ',"y":' + (Math.floor(Math.random() * 3) + 1) + ',"z":' + (Math.floor(Math.random() * 3) + 1) + '}}'
+        for (let i = 1; i < boxCountVar; i++) {
+            temp1 = ',{"BlockSize":{"x":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"y":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"z":' + ((Math.floor(Math.random() * 90) + 1) / 10) + '},"BlockType":2,"Kinematic":true,"ObjectIdentifier":"ultrakill.brush-armor","Position":{"x":' + (Math.floor(Math.random() * 601) - 300) + ',"y":' + (Math.floor(Math.random() * 601) - 300) + ',"z":' + (Math.floor(Math.random() * 601) - 300) + '},"Rotation":{"x":0,"y":0,"z":0,"w":1},"Scale":{"x":' + (Math.floor(Math.random() * 3) + 1) + ',"y":' + (Math.floor(Math.random() * 3) + 1) + ',"z":' + (Math.floor(Math.random() * 3) + 1) + '}}'
+            temp0 = temp0 + temp1
+        }
+    }
+    else if (kineGen == 0) {
+        temp0 = '{"BlockSize":{"x":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"y":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"z":' + ((Math.floor(Math.random() * 90) + 1) / 10) + '},"BlockType":2,"Kinematic":false,"ObjectIdentifier":"ultrakill.brush-armor","Position":{"x":' + (Math.floor(Math.random() * 601) - 300) + ',"y":' + (Math.floor(Math.random() * 601) - 300) + ',"z":' + (Math.floor(Math.random() * 601) - 300) + '},"Rotation":{"x":0,"y":0,"z":0,"w":1},"Scale":{"x":' + (Math.floor(Math.random() * 3) + 1) + ',"y":' + (Math.floor(Math.random() * 3) + 1) + ',"z":' + (Math.floor(Math.random() * 3) + 1) + '}}'
+        for (let i = 1; i < boxCountVar; i++) {
+            temp1 = ',{"BlockSize":{"x":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"y":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"z":' + ((Math.floor(Math.random() * 90) + 1) / 10) + '},"BlockType":2,"Kinematic":false,"ObjectIdentifier":"ultrakill.brush-armor","Position":{"x":' + (Math.floor(Math.random() * 601) - 300) + ',"y":' + (Math.floor(Math.random() * 601) - 300) + ',"z":' + (Math.floor(Math.random() * 601) - 300) + '},"Rotation":{"x":0,"y":0,"z":0,"w":1},"Scale":{"x":' + (Math.floor(Math.random() * 3) + 1) + ',"y":' + (Math.floor(Math.random() * 3) + 1) + ',"z":' + (Math.floor(Math.random() * 3) + 1) + '}}'
+            temp0 = temp0 + temp1
+        }
+    }
+    else {
+        temp0 = '{"BlockSize":{"x":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"y":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"z":' + ((Math.floor(Math.random() * 90) + 1) / 10) + '},"BlockType":2,"Kinematic":' + (Math.floor(Math.random() * 2) == 0 ? 'false' : 'true') + ',"ObjectIdentifier":"ultrakill.brush-armor","Position":{"x":' + (Math.floor(Math.random() * 601) - 300) + ',"y":' + (Math.floor(Math.random() * 601) - 300) + ',"z":' + (Math.floor(Math.random() * 601) - 300) + '},"Rotation":{"x":0,"y":0,"z":0,"w":1},"Scale":{"x":' + (Math.floor(Math.random() * 3) + 1) + ',"y":' + (Math.floor(Math.random() * 3) + 1) + ',"z":' + (Math.floor(Math.random() * 3) + 1) + '}}'
+        for (let i = 1; i < boxCountVar; i++) {
+            temp1 = ',{"BlockSize":{"x":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"y":' + ((Math.floor(Math.random() * 90) + 1) / 10) + ',"z":' + ((Math.floor(Math.random() * 90) + 1) / 10) + '},"BlockType":2,"Kinematic":' + (Math.floor(Math.random() * 2) == 0 ? 'false' : 'true') + ',"ObjectIdentifier":"ultrakill.brush-armor","Position":{"x":' + (Math.floor(Math.random() * 601) - 300) + ',"y":' + (Math.floor(Math.random() * 601) - 300) + ',"z":' + (Math.floor(Math.random() * 601) - 300) + '},"Rotation":{"x":0,"y":0,"z":0,"w":1},"Scale":{"x":' + (Math.floor(Math.random() * 3) + 1) + ',"y":' + (Math.floor(Math.random() * 3) + 1) + ',"z":' + (Math.floor(Math.random() * 3) + 1) + '}}'
+            temp0 = temp0 + temp1
+        }
+    }
+    generatedData = temp0
+    dataOutput.innerHTML = '{"MapName":"7b3cb6a0a342eb54dafe5552d4820eeb","MapIdentifier":null,"SaveVersion":2,"GameVersion":"3.3","Blocks":[' + generatedData + '],"Props":[],"Enemies":[]}'
+}
+</script>

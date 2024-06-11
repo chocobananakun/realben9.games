@@ -137,20 +137,6 @@
   "compModeDescription": {
     "message": "If enabled, the gravity doubles at level 39. If disabled, remains at 1G past level 29."
   },
-  "gravityLabel": {
-    "message": "Gravity",
-    "description": "This option allows the user to set the gravity"
-  },
-  "gravityDescription": {
-    "message": "Sets the gravity"
-  },
-  "lockDelayLabel": {
-    "message": "Lock Delay",
-    "description": "This option allows the user to set the delay before the piece locks after touching the floor"
-  },
-  "lockDelayDescription": {
-    "message": "Sets the delay before the piece locks after touching the floor"
-  },
   "infinityLdOption": {
     "message": "Forgiving",
     "description": "Name for the 'infinity' lockdown type; any move/shift or rotation will reset the timer for an unlimited number of times"

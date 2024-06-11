@@ -107,6 +107,7 @@ export const loops = {
       updateLasts(arg)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.sudden.big == false) {
         game.settings.width = 10
         game.settings.height = 20
@@ -749,6 +750,7 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.novice.big == false) {
         game.settings.width = 10
         game.settings.height = 20
@@ -827,6 +829,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.marathon.lineGoal >= 0) {
         game.lineGoal = settings.game.marathon.lineGoal
         $('#levelType').innerHTML = "Big (" + settings.game.marathon.lineGoal + "L, " + settings.game.marathon.startingLevel + "S)"
@@ -885,6 +888,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       $('#levelType').innerHTML = "IC4W"
       if (settings.game.marathon.lineGoal >= 0) {
         game.lineGoal = settings.game.marathon.lineGoal
@@ -942,6 +946,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       $('#levelType').innerHTML = "Big"
       if (settings.game.marathon.lineGoal >= 0) {
         game.lineGoal = settings.game.marathon.lineGoal
@@ -995,10 +1000,13 @@ export const loops = {
       updateLasts(arg)
     },
     onPieceSpawn: (game) => {
+      //game.piece.startingAreLimit = 1000
+      //game.piece.startingAre = 0
       game.stat.b2b = game.b2b - 1 < 0 ? 0 : game.b2b - 1
       game.updateStats()
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       $('#levelType').innerHTML = "Zen"
       game.settings.width = settings.game.zen.matrixWidth
       game.stack.width = settings.game.zen.matrixWidth
@@ -1055,22 +1063,22 @@ export const loops = {
           game.piece.gravity = 1000
           break
         case '0.05G':
-          game.piece.gravity = framesToMs(1 / 0.05)
+          game.piece.gravity = framesToMs(20)
           break
         case '0.1G':
-          game.piece.gravity = framesToMs(1 / 0.1)
+          game.piece.gravity = framesToMs(10)
           break
         case '0.2G':
-          game.piece.gravity = framesToMs(1 / 0.2)
+          game.piece.gravity = framesToMs(5)
           break
         case '0.3G':
           game.piece.gravity = framesToMs(1 / 0.3)
           break
         case '0.4G':
-          game.piece.gravity = framesToMs(1 / 0.4)
+          game.piece.gravity = framesToMs(2.5)
           break
         case '0.5G':
-          game.piece.gravity = framesToMs(1 / 0.5)
+          game.piece.gravity = framesToMs(2)
           break
         case '0.6G':
           game.piece.gravity = framesToMs(1 / 0.6)
@@ -1085,25 +1093,25 @@ export const loops = {
           game.piece.gravity = framesToMs(1 / 0.9)
           break
         case '1G':
-          game.piece.gravity = framesToMs(1 / 1)
+          game.piece.gravity = framesToMs(1)
           break
         case '2G':
-          game.piece.gravity = framesToMs(1 / 2)
+          game.piece.gravity = framesToMs(0.5)
           break
         case '3G':
           game.piece.gravity = framesToMs(1 / 3)
           break
         case '4G':
-          game.piece.gravity = framesToMs(1 / 4)
+          game.piece.gravity = framesToMs(0.25)
           break
         case '5G':
-          game.piece.gravity = framesToMs(1 / 5)
+          game.piece.gravity = framesToMs(0.2)
           break
         case '10G':
-          game.piece.gravity = framesToMs(1 / 10)
+          game.piece.gravity = framesToMs(0.1)
           break
         case '20G':
-          game.piece.gravity = framesToMs(1 / 20)
+          game.piece.gravity = framesToMs(0.05)
           break
       }
       game.piece.lockDelayLimit = settings.game.zen.lockDelay
@@ -1226,6 +1234,7 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.beat.lockdownMode == 'infinity') $('#levelType').innerHTML = "Pull (Forgiving, " + settings.game.beat.startingLevel + "S)"
       else if (settings.game.beat.lockdownMode == 'extended') $('#levelType').innerHTML = "Pull (Limited, " + settings.game.beat.startingLevel + "S)"
       else $('#levelType').innerHTML = "Pull (Strict, " + settings.game.beat.startingLevel + "S)"
@@ -1362,6 +1371,7 @@ export const loops = {
 
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       $('#levelType').innerHTML = "Night of Nights X"
       game.timeGoal = 140000
       game.rtaLimit = true
@@ -2780,6 +2790,7 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.sprint.big == false) {
         game.settings.width = 10
         game.settings.height = 20
@@ -2908,6 +2919,7 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       $('#levelType').innerHTML = "Dynamic (" + settings.game.ultra.startingLevel + "S)"
       game.stat.level = settings.game.ultra.startingLevel
       game.stat.grade = settings.game.ultra.startingLevel
@@ -2948,6 +2960,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.combo.hold) $('#levelType').innerHTML = "Strategy (" + settings.game.combo.startingLevel + "S)"
       else $('#levelType').innerHTML = "Strategy (Holdless, " + settings.game.combo.startingLevel + "S)"
       game.lineGoal = 150
@@ -2998,6 +3011,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       $('#levelType').innerHTML = "Standard (1S)"
       game.stat.level = 1
       lastLevel = 1
@@ -3008,7 +3022,6 @@ export const loops = {
   },
   survival: {
     update: (arg) => {
-      const game = gameHandler.game
       collapse(arg)
       if (arg.piece.inAre) {
         initialDas(arg)
@@ -3021,21 +3034,8 @@ export const loops = {
         rotate180(arg)
         shifting(arg)
       }
-      if (
-        arg.piece.startingAre >= arg.piece.startingAreLimit &&
-        game.marginTime >= game.marginTimeLimit
-      ) {
-        garbageTimer += arg.ms
-        if (garbageTimer > 16.667) {
-          garbageTimer -= 16.667
-          const randomCheck = Math.floor(Math.random() * 100000) / 100
-          if (randomCheck < game.garbageRate) {
-            arg.stack.addGarbageToCounter(1)
-          }
-        }
-      }
       gravity(arg)
-      softDrop(arg, 70)
+      softDrop(arg)
       hardDrop(arg)
       extendedLockdown(arg)
       if (!arg.piece.inAre) {
@@ -3043,58 +3043,89 @@ export const loops = {
       }
       lockFlash(arg)
       updateLasts(arg)
-      game.stat.level = Math.max(
-        settings.game.survival.startingLevel,
-        Math.floor(game.timePassed / 10000 + 1)
-      )
-      const x = game.stat.level
-      const gravityEquation = (0.99 - (x - 1) * 0.007) ** (x - 1)
-      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
-      game.garbageRate =
-        x ** game.garbageRateExponent * game.garbageRateMultiplier +
-        game.garbageRateAdditive
-      if (levelUpdate(game)) {
-        game.updateStats()
+      /* Might use this code later
+      $('#das').max = arg.piece.dasLimit
+      $('#das').value = arg.piece.das
+      $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0)
+      */
+      window.riseTime = arg.piece.parent.timePassed - window.riseTimeOffset
+      if (window.riseTime >= window.riseTimeMax) {
+        window.riseTimeOffset += window.riseTimeMax
+        window.gridtemp = Math.floor(Math.random() * 10)
+        for (let x = 0; x < 10; x++) {
+          for (let y = 21; y > 0; y = y - 1) {
+            arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - y] = arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - (y - 1)]
+          }
+          if (x != window.gridtemp) {
+            arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - 1] = 'white'
+          }
+        }
+        arg.stack.makeAllDirty()
+        window.riseTimeMax = arg.piece.parent.riseTable[arg.piece.parent.stat.level - 1]
+        $('#rise').max = window.riseTimeMax
       }
-      if (
-        arg.piece.startingAre >= arg.piece.startingAreLimit &&
-        game.marginTime < game.marginTimeLimit
-      ) {
-        game.marginTime += arg.ms
-      }
+      $('#rise').value = window.riseTime
     },
     onPieceSpawn: (game) => {
-      window.gridtemp = Math.floor(Math.random() * 10)
-      for (let x = 0; x < 10; x++) {
-        for (let y = 21; y > 0; y = y - 1) {
-          game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - y] = game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - (y - 1)]
-        }
-        if (x != window.gridtemp) {
-          game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1] = 'white'
-        }
-      }
-      game.stack.makeAllDirty()
+      game.stat.level = Math.max(settings.game.survival.startingLevel, Math.floor(game.stat.line / 10 + 1))
+      levelUpdate(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = ""
       if (settings.game.survival.riseSpeed == 0) {
         $('#levelType').innerHTML = "Rise (Classic, " + settings.game.survival.startingLevel + "S)"
+        game.riseTable = [
+          5000, 4900, 4816, 4727, 4639,
+          4147, 4070, 4000, 3921, 3848,
+          3440, 3375, 3313, 3250, 3191,
+          2853, 2800, 2748, 2697, 2647,
+          2366, 2323, 2280, 2237, 2196,
+          2155, 2115, 2076, 2038, 2000,
+          1788, 1755, 1722, 1690, 1659,
+          1628, 1598, 1568, 1337, 917,
+          904, 892, 879, 867, 855,
+          843, 831, 819, 808, 796,
+          785, 774, 763, 753, 742,
+          732, 722, 711, 702, 692,
+          682, 672, 663, 654, 645,
+          636, 627, 618, 609, 601,
+          592, 584, 576, 568, 560,
+          552, 544, 537, 529, 522,
+          514, 507, 500, 493, 486,
+          479, 473, 466, 460, 453,
+          447, 441, 434, 428, 422,
+          416, 411, 405, 399, 394
+        ]
       }
-      else $('#levelType').innerHTML = "Rise (Normal, " + settings.game.survival.startingLevel + "S)"
-      const difficulty = settings.game.survival.difficulty
-      game.garbageRateExponent = [1.91, 1.95, 1.97, 2, 2.03, 2.07, 2.1][difficulty]
-      game.garbageRateMultiplier = [0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.1][difficulty]
-      game.garbageRateAdditive = [1, 1.5, 2, 2.5, 9, 18, 35][difficulty]
-      game.stack.garbageSwitchRate = [1, 1, 8, 4, 2, 1, 1][difficulty]
-      game.stack.antiGarbageBuffer = [-20, -10, -8, -6, -4, -2, 0][difficulty]
-      if (difficulty <= 1) game.stack.copyBottomForGarbage = true
-      game.garbageRate = 0
-      game.marginTime = 0
-      game.marginTimeLimit = 5000
-      garbageTimer = 0
+      else {
+        $('#levelType').innerHTML = "Rise (Normal, " + settings.game.survival.startingLevel + "S)"
+        game.riseTable = [
+          5000, 4900, 4816, 4727, 4639,
+          4147, 4070, 4000, 3921, 3848,
+          3440, 3375, 3313, 3250, 3191,
+          2853, 2800, 2748, 2697, 2647,
+          2366, 2323, 2280, 2237, 2196,
+          2155, 2115, 2076, 2038, 2000,
+          1788, 1755, 1722, 1690, 1659,
+          1628, 1598, 1568, 1337, 917,
+          888, 859, 832, 805, 779,
+          754, 730, 707, 684, 662,
+          641, 621, 601, 582, 563,
+          545, 528, 511, 494, 478,
+          463, 448, 434, 420, 407,
+          394, 381, 369, 357, 346,
+          335, 324, 314, 303, 294,
+          284, 275, 266
+        ]
+      }
       game.stat.level = settings.game.survival.startingLevel
-      game.stat.grade = "???"
       lastLevel = parseInt(settings.game.survival.startingLevel)
+      window.riseTimeMax = game.riseTable[game.stat.level - 1]
+      $('#rise').max = window.riseTimeMax
+      window.riseTime = 0
+      window.riseTimeOffset = 0
       game.piece.gravity = 1000
+      game.piece.lockDelayLimit = 500
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -3181,6 +3212,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.master.lineGoal >= 0) {
         game.lineGoal = settings.game.master.lineGoal
         $('#levelType').innerHTML = "Mystery (" + settings.game.master.lineGoal + "L, " + settings.game.master.startingLevel + "S)"
@@ -3240,6 +3272,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       $('#levelType').innerHTML = "Death (" + settings.game.prox.startingLevel + "S)"
       sound.playMenuSe('hardstart3')
       shown20GMessage = (settings.game.prox.startingLevel > 19) ? true : false
@@ -3358,6 +3391,7 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.deluxe.startingLevel == 0) $('#levelType').innerHTML = "Pandaemonium (0S)"
       else $('#levelType').innerHTML = "Pandaemonium (" + settings.game.deluxe.startingLevel + "0S)"
       game.stat.level = settings.game.deluxe.startingLevel
@@ -3517,6 +3551,7 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.handheld.big == false) {
         game.settings.width = 10
         game.settings.height = 20
@@ -3622,6 +3657,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
+      $('#rise').style.display = "none"
       if (settings.game.retro.mechanics === 'accurate') {
         game.hideGrid = true
         game.stack.updateGrid()
@@ -3631,32 +3667,7 @@ export const loops = {
       lastSeenI = 0
       game.piece.holdingTimeLimit = 1600
       game.stat.level = settings.game.retro.startingLevel
-      game.redrawOnLevelUp = true
       lastLevel = parseInt(settings.game.retro.startingLevel)
-      if (settings.settings.skin !== 'auto') {
-        game.makeSprite()
-      } else {
-        game.makeSprite(
-            [
-              'x-0', 'l-0', 'r-0',
-              'x-1', 'l-1', 'r-1',
-              'x-2', 'l-2', 'r-2',
-              'x-3', 'l-3', 'r-3',
-              'x-4', 'l-4', 'r-4',
-              'x-5', 'l-5', 'r-5',
-              'x-6', 'l-6', 'r-6',
-              'x-7', 'l-7', 'r-7',
-              'x-8', 'l-8', 'r-8',
-              'x-9', 'l-9', 'r-9',
-            ],
-            ['mino'],
-            'retro-special',
-        )
-        game.piece.useRetroColors = true
-        game.colors = PIECE_COLORS.retroSpecial
-      }
-      game.stack.levelUpAnimation = 1000
-      game.stack.levelUpAnimationLimit = 450
       game.updateStats()
       game.piece.lockDownType = null
       game.drawLockdown()

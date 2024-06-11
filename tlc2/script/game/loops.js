@@ -1100,22 +1100,22 @@ export const loops = {
           game.piece.gravity = 1000
           break
         case '0.05G':
-          game.piece.gravity = framesToMs(1 / 0.05)
+          game.piece.gravity = framesToMs(20)
           break
         case '0.1G':
-          game.piece.gravity = framesToMs(1 / 0.1)
+          game.piece.gravity = framesToMs(10)
           break
         case '0.2G':
-          game.piece.gravity = framesToMs(1 / 0.2)
+          game.piece.gravity = framesToMs(5)
           break
         case '0.3G':
           game.piece.gravity = framesToMs(1 / 0.3)
           break
         case '0.4G':
-          game.piece.gravity = framesToMs(1 / 0.4)
+          game.piece.gravity = framesToMs(2.5)
           break
         case '0.5G':
-          game.piece.gravity = framesToMs(1 / 0.5)
+          game.piece.gravity = framesToMs(2)
           break
         case '0.6G':
           game.piece.gravity = framesToMs(1 / 0.6)
@@ -1130,25 +1130,25 @@ export const loops = {
           game.piece.gravity = framesToMs(1 / 0.9)
           break
         case '1G':
-          game.piece.gravity = framesToMs(1 / 1)
+          game.piece.gravity = framesToMs(1)
           break
         case '2G':
-          game.piece.gravity = framesToMs(1 / 2)
+          game.piece.gravity = framesToMs(0.5)
           break
         case '3G':
           game.piece.gravity = framesToMs(1 / 3)
           break
         case '4G':
-          game.piece.gravity = framesToMs(1 / 4)
+          game.piece.gravity = framesToMs(0.25)
           break
         case '5G':
-          game.piece.gravity = framesToMs(1 / 5)
+          game.piece.gravity = framesToMs(0.2)
           break
         case '10G':
-          game.piece.gravity = framesToMs(1 / 10)
+          game.piece.gravity = framesToMs(0.1)
           break
         case '20G':
-          game.piece.gravity = framesToMs(1 / 20)
+          game.piece.gravity = framesToMs(0.05)
           break
       }
       game.piece.lockDelayLimit = settings.game.zen.lockDelay

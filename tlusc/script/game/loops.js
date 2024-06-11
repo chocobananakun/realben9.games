@@ -129,6 +129,7 @@ export const loops = {
         if (settings.game.sudden.startingLevel == 0) $('#levelType').innerHTML = '<font color="#66f">Sudden (Classic, 0S)</font>'
         else $('#levelType').innerHTML = '<font color="#66f">Sudden (Classic, ' + settings.game.sudden.startingLevel + '0S)</font>'
       }
+      $('#zen_panel').style.display = "none"
       game.updateStats()
     },
     onPieceSpawn: (game) => {
@@ -310,6 +311,7 @@ export const loops = {
         if (settings.game.novice.startingLevel == 0) $('#levelType').innerHTML = '<font color="#66f">Novice (Classic, 0S)</font>'
         else $('#levelType').innerHTML = '<font color="#66f">Novice (Classic, ' + settings.game.novice.startingLevel + '0S)</font>'
       }
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -368,6 +370,7 @@ export const loops = {
       game.stat.level = settings.game.marathon.startingLevel
       lastLevel = parseInt(settings.game.marathon.startingLevel)
       game.piece.gravity = 1000
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -425,6 +428,7 @@ export const loops = {
       game.stat.level = settings.game.marathon.startingLevel
       lastLevel = parseInt(settings.game.marathon.startingLevel)
       game.piece.gravity = 1000
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -482,6 +486,7 @@ export const loops = {
       game.stat.level = settings.game.marathon.startingLevel
       lastLevel = parseInt(settings.game.marathon.startingLevel)
       game.piece.gravity = 1000
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -501,11 +506,7 @@ export const loops = {
         shifting(arg)
       }
       gravity(arg)
-      if (settings.game.zen.gravity == "0G") {
-        softDrop(arg, 2e7, true)
-      } else {
-        softDrop(arg, 20, true)
-      }
+      softDrop(arg, window.sdf, true)
       hardDrop(arg)
       switch (settings.game.zen.lockdownMode) {
         case "zen":
@@ -530,35 +531,25 @@ export const loops = {
     onPieceSpawn: (game) => {
       game.stat.b2b = game.b2b - 1 < 0 ? 0 : game.b2b - 1
       game.updateStats()
+      game.piece.spinDetectionType = window.cfgspin.toLowerCase()
+      game.settings.rotationSystem = window.cfgkick.toLowerCase()
+      game.rotationSystem = window.cfgkick.toLowerCase()
+      if (window.gravitystatic == 0) {
+        game.piece.gravity = 1e9
+      }
+      else {
+        game.piece.gravity = framesToMs(1 / window.gravitystatic)
+      }
+      game.piece.lockDelayLimit = window.lockdelaystatic
+      game.settings.scoreTable = window.cfgscore.toLowerCase()
     },
     onInit: (game) => {
+      $('#zen_panel').style.display = ""
       $('#levelType').innerHTML = "Zen"
       game.settings.width = settings.game.zen.matrixWidth
       game.stack.width = settings.game.zen.matrixWidth
       game.stack.new()
-      switch (settings.game.zen.matrixWidth) {
-        case "4":
-          game.piece.xSpawnOffset = -3
-          break
-        case "5":
-          game.piece.xSpawnOffset = -3
-          break
-        case "6":
-          game.piece.xSpawnOffset = -2
-          break
-        case "7":
-          game.piece.xSpawnOffset = -2
-          break
-        case "8":
-          game.piece.xSpawnOffset = -1
-          break
-        case "9":
-          game.piece.xSpawnOffset = -1
-          break
-        case "10":
-          game.piece.xSpawnOffset = 0
-          break
-      }
+      game.piece.xSpawnOffset = Math.floor((settings.game.zen.matrixWidth - 10) / 2)
       game.resize()
       if (settings.game.zen.holdType === "skip") {
         game.hold.useSkip = true
@@ -577,69 +568,13 @@ export const loops = {
       // updateFallSpeed(game)
       // game.stat.b2b = 0
       // game.updateStats()
-      switch(settings.game.zen.gravity){
-        case '0G':
-          game.piece.gravity = 1e9
-          break
-        case '1/120G':
-          game.piece.gravity = 2000
-          break
-        case '1/60G':
-          game.piece.gravity = 1000
-          break
-        case '0.05G':
-          game.piece.gravity = framesToMs(1 / 0.05)
-          break
-        case '0.1G':
-          game.piece.gravity = framesToMs(1 / 0.1)
-          break
-        case '0.2G':
-          game.piece.gravity = framesToMs(1 / 0.2)
-          break
-        case '0.3G':
-          game.piece.gravity = framesToMs(1 / 0.3)
-          break
-        case '0.4G':
-          game.piece.gravity = framesToMs(1 / 0.4)
-          break
-        case '0.5G':
-          game.piece.gravity = framesToMs(1 / 0.5)
-          break
-        case '0.6G':
-          game.piece.gravity = framesToMs(1 / 0.6)
-          break
-        case '0.7G':
-          game.piece.gravity = framesToMs(1 / 0.7)
-          break
-        case '0.8G':
-          game.piece.gravity = framesToMs(1 / 0.8)
-          break
-        case '0.9G':
-          game.piece.gravity = framesToMs(1 / 0.9)
-          break
-        case '1G':
-          game.piece.gravity = framesToMs(1 / 1)
-          break
-        case '2G':
-          game.piece.gravity = framesToMs(1 / 2)
-          break
-        case '3G':
-          game.piece.gravity = framesToMs(1 / 3)
-          break
-        case '4G':
-          game.piece.gravity = framesToMs(1 / 4)
-          break
-        case '5G':
-          game.piece.gravity = framesToMs(1 / 5)
-          break
-        case '10G':
-          game.piece.gravity = framesToMs(1 / 10)
-          break
-        case '20G':
-          game.piece.gravity = framesToMs(1 / 20)
-          break
+      if (window.gravitystatic == 0) {
+        game.piece.gravity = 1e9
       }
-      game.piece.lockDelayLimit = settings.game.zen.lockDelay
+      else {
+        game.piece.gravity = framesToMs(1 / window.gravitystatic)
+      }
+      game.piece.lockDelayLimit = window.lockdelaystatic
       game.lives = settings.game.zen.lifeCount
       game.stack.isInvisible = settings.game.zen.invisible
       if (settings.game.zen.customBoard == true) {
@@ -648,9 +583,9 @@ export const loops = {
         window.cookieData = window.cookieMatch ? window.cookieMatch[1] : "";
         window.boardString = prompt("Enter your custom board string (may connect to tlbe via cookies) :", window.cookieData)
         if (window.boardString != null) {
-          for (let x = 0; x < 10; x++) {
+          for (let x = 0; x < settings.game.zen.matrixWidth; x++) {
             for (let y = 0; y < 20; y++) {
-              window.gridtemp = window.boardString[x + (y * 10)]
+              window.gridtemp = window.boardString[x + (y * settings.game.zen.matrixWidth)]
               if (window.gridtemp == 1) window.gridtemp = 'red'
               else if (window.gridtemp == 2) window.gridtemp = 'orange'
               else if (window.gridtemp == 3) window.gridtemp = 'yellow'
@@ -742,6 +677,7 @@ export const loops = {
           break
       }
       /* game.isRaceMode = true */
+      $('#zen_panel').style.display = "none"
       game.beatTime = bpmToMs(bpm)
       game.updateStats()
     },
@@ -1534,6 +1470,7 @@ export const loops = {
         [97, 1, 'transform', [PERS, 0, 0, -150, 0, 0, 0]],
         [Number.MAX_SAFE_INTEGER, 'none']
       ]
+      $('#zen_panel').style.display = "none"
       game.updateStats()
     },
   },
@@ -1597,6 +1534,7 @@ export const loops = {
         $('#levelType').innerHTML = "Sprint (" + settings.game.sprint.lineGoal + "L, REG)"
       }
       else $('#levelType').innerHTML = "Sprint (" + settings.game.sprint.lineGoal + "L)"
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -1651,6 +1589,7 @@ export const loops = {
       }
       game.isRaceMode = true
       game.piece.gravity = 1000
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.stat.level = 1
       game.updateStats()
@@ -1714,6 +1653,7 @@ export const loops = {
       }
       game.isRaceMode = true
       game.piece.gravity = 1000
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.stat.level = 1
       game.updateStats()
@@ -1798,6 +1738,7 @@ export const loops = {
       game.stat.level = 1
       lastLevel = 1
       game.piece.gravity = 1000
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -1850,6 +1791,7 @@ export const loops = {
       game.garbageRate =
         x ** game.garbageRateExponent * game.garbageRateMultiplier +
         game.garbageRateAdditive
+      $('#zen_panel').style.display = "none"
       if (levelUpdate(game)) {
         game.updateStats()
       }
@@ -1899,6 +1841,7 @@ export const loops = {
       game.stat.level = settings.game.survival.startingLevel
       lastLevel = parseInt(settings.game.survival.startingLevel)
       game.piece.gravity = 1000
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -1989,6 +1932,7 @@ export const loops = {
       game.prefixes.level = 'M'
       game.stat.entrydelay = '400ms'
       game.piece.gravity = framesToMs(1 / 20)
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -2062,6 +2006,7 @@ export const loops = {
       game.prefixes.level = 'MACH '
       game.smallStats.level = true
       game.resize()
+      $('#zen_panel').style.display = "none"
       updateFallSpeed(game)
       game.updateStats()
     },
@@ -2171,6 +2116,7 @@ export const loops = {
         game.colors = PIECE_COLORS.handheldSpecial
         game.updateStats()
       }
+      $('#zen_panel').style.display = "none"
     },
   },
   retro: {
@@ -2283,6 +2229,7 @@ export const loops = {
       }
       game.stack.levelUpAnimation = 1000
       game.stack.levelUpAnimationLimit = 450
+      $('#zen_panel').style.display = "none"
       game.updateStats()
       game.piece.lockDownType = null
       game.drawLockdown()

@@ -1,7 +1,12 @@
 window.addEventListener('load', function () {
 	snow = document.getElementById("snow")
 	if (snow) {
-		snow.innerHTML = '<p id="clock" onload="currentTime()">??:??:??.??? | Toggle<button onmousedown="togcorndogs()" tabindex="-1">Corndogs</button><button onmousedown="tograinbow()" tabindex="-1">Rainbow</button><button onmousedown="togfont()" tabindex="-1">Font</button></p>' + snow.innerHTML
+		if (window.location.href.slice(-9) != "v125.html") {
+			snow.innerHTML = '<p id="clock" onload="currentTime()">??:??:??.??? | Toggle<button onmousedown="togcorndogs()" tabindex="-1">Corndogs</button><button onmousedown="tograinbow()" tabindex="-1">Rainbow</button><button onmousedown="togfont()" tabindex="-1">Font</button><button onmousedown="togfancy()" tabindex="-1">Fancy</button></p>' + snow.innerHTML
+		}
+		else {
+			snow.innerHTML = '<p id="clock" onload="currentTime()">??:??:??.??? | Toggle<button onmousedown="togcorndogs()" tabindex="-1">Corndogs</button><button onmousedown="tograinbow()" tabindex="-1">Rainbow</button><button onmousedown="togfont()" tabindex="-1">Font</button></p>' + snow.innerHTML
+		}
 		currentTime()
 	}
 	splash = document.getElementById("splash")
@@ -76,6 +81,22 @@ function togfont() {
 			snow.classList.add("font")
 			if (splash) {
 				splash.classList.add("font")
+			}
+			break
+	}
+}
+function togfancy() {
+	switch (snow.classList.contains("nofancy")) {
+		case true:
+			snow.classList.remove("nofancy")
+			if (splash) {
+				splash.classList.remove("nofancy")
+			}
+			break
+		case false:
+			snow.classList.add("nofancy")
+			if (splash) {
+				splash.classList.add("nofancy")
 			}
 			break
 	}

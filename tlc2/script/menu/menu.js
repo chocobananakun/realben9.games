@@ -848,14 +848,8 @@ class Menu {
       case 'daspreset':
         $(`#option-${this.selected}`).classList.add('chosen')
         sound.playMenuSe('optionselect')
-        if (this.selectedData.label === 'Default 2'){
-          settings.changeSetting('DAS', 150)
-        settings.changeSetting('ARR', 17)
-        }
-        else{
-          settings.changeSetting('DAS', this.selectedData.delay)
-          settings.changeSetting('ARR', this.selectedData.rate)
-        }
+        settings.changeSetting('DAS', this.selectedData.delay)
+        settings.changeSetting('ARR', this.selectedData.rate)
         this.back(false)
         break
       case 'spinpreset':
@@ -895,88 +889,24 @@ class Menu {
       case 'colorpreset':
         $(`#option-${this.selected}`).classList.add('chosen')
         sound.playMenuSe('optionselect')
-        switch(this.selectedData.label){
-          case 'Default':
-            settings.changeSetting('colorI', "lightBlue")
-            settings.changeSetting('colorL', "orange")
-            settings.changeSetting('colorO', "yellow")
-            settings.changeSetting('colorZ', "red")
-            settings.changeSetting('colorT', "purple")
-            settings.changeSetting('colorJ', "blue")
-            settings.changeSetting('colorS', "green")
-            break
-          case 'Monochrome':
-            settings.changeSetting('colorI', "black")
-            settings.changeSetting('colorL', "black")
-            settings.changeSetting('colorO', "black")
-            settings.changeSetting('colorZ', "black")
-            settings.changeSetting('colorT', "black")
-            settings.changeSetting('colorJ', "black")
-            settings.changeSetting('colorS', "black")
-            break
-          case 'Arika':
-            settings.changeSetting('colorI', "red")
-            settings.changeSetting('colorL', "orange")
-            settings.changeSetting('colorO', "yellow")
-            settings.changeSetting('colorZ', "green")
-            settings.changeSetting('colorT', "lightBlue")
-            settings.changeSetting('colorJ', "blue")
-            settings.changeSetting('colorS', "purple")
-            break
-          case 'Tetra-X':
-            settings.changeSetting('colorI', "orange")
-            settings.changeSetting('colorL', "yellow")
-            settings.changeSetting('colorO', "green")
-            settings.changeSetting('colorZ', "red")
-            settings.changeSetting('colorT', "purple")
-            settings.changeSetting('colorJ', "blue")
-            settings.changeSetting('colorS', "lightBlue")
-            break
-          case 'KRS+':
-            settings.changeSetting('colorI', "purple")
-            settings.changeSetting('colorL', "red")
-            settings.changeSetting('colorO', "yellow")
-            settings.changeSetting('colorZ', "blue")
-            settings.changeSetting('colorT', "green")
-            settings.changeSetting('colorJ', "lightBlue")
-            settings.changeSetting('colorS', "orange")
-            break
-          case 'VRS':
-            settings.changeSetting('colorI', "purple")
-            settings.changeSetting('colorL', "red")
-            settings.changeSetting('colorO', "orange")
-            settings.changeSetting('colorZ', "blue")
-            settings.changeSetting('colorT', "green")
-            settings.changeSetting('colorJ', "lightBlue")
-            settings.changeSetting('colorS', "yellow")
-            break
-          case 'N-Blox':
-            settings.changeSetting('colorI', "orange")
-            settings.changeSetting('colorL', "blue")
-            settings.changeSetting('colorO', "red")
-            settings.changeSetting('colorZ', "green")
-            settings.changeSetting('colorT', "yellow")
-            settings.changeSetting('colorJ', "purple")
-            settings.changeSetting('colorS', "lightBlue")
-            break
-          case 'Cultris II':
-            settings.changeSetting('colorI', "green")
-            settings.changeSetting('colorL', "purple")
-            settings.changeSetting('colorO', "yellow")
-            settings.changeSetting('colorZ', "white")
-            settings.changeSetting('colorT', "red")
-            settings.changeSetting('colorJ', "blue")
-            settings.changeSetting('colorS', "lightBlue")
-            break
-          case 'Spirit Drop':
-            settings.changeSetting('colorI', "white")
-            settings.changeSetting('colorL', "purple")
-            settings.changeSetting('colorO', "lightBlue")
-            settings.changeSetting('colorZ', "red")
-            settings.changeSetting('colorT', "green")
-            settings.changeSetting('colorJ', "blue")
-            settings.changeSetting('colorS', "yellow")
-            break
+        if (this.selectedData.label == "Random") {
+          var randColors = ["red","orange","yellow","green","lightBlue","blue","purple","white","black"]
+          settings.changeSetting('colorI', randColors[Math.floor(Math.random() * 9)])
+          settings.changeSetting('colorL', randColors[Math.floor(Math.random() * 9)])
+          settings.changeSetting('colorO', randColors[Math.floor(Math.random() * 9)])
+          settings.changeSetting('colorZ', randColors[Math.floor(Math.random() * 9)])
+          settings.changeSetting('colorT', randColors[Math.floor(Math.random() * 9)])
+          settings.changeSetting('colorJ', randColors[Math.floor(Math.random() * 9)])
+          settings.changeSetting('colorS', randColors[Math.floor(Math.random() * 9)])
+        }
+        else {
+          settings.changeSetting('colorI', this.selectedData.clrI)
+          settings.changeSetting('colorL', this.selectedData.clrL)
+          settings.changeSetting('colorO', this.selectedData.clrO)
+          settings.changeSetting('colorZ', this.selectedData.clrZ)
+          settings.changeSetting('colorT', this.selectedData.clrT)
+          settings.changeSetting('colorJ', this.selectedData.clrJ)
+          settings.changeSetting('colorS', this.selectedData.clrS)
         }
         this.back(false)
         break

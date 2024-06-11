@@ -1,0 +1,120 @@
+<title>Combat Sandbox</title>
+<head><link rel="icon" type="image/x-icon" href="../../../img/favicon.ico"><link rel="stylesheet" type="text/css" href="../../../style.css"><style>td { width:16px;height:16px;text-align:center; } img { position:absolute;background-position:center;background-image:var(--I); }</style></head>
+<script src="../../../index.js"></script>
+<div id="snow">
+<h1>Combat Sandbox</h1>
+<h2>Input Display</h2>
+<p id="inputs">[]</p>
+<h2>Debug (plr1)</h2>
+<p id="debug1"></p>
+<img id="plr1" src="img/plr1.png">
+<!--<img id="plr2" src="img/plr2.png">-->
+<img class="col floor" style="left:0px;bottom:-16px;width:1224px;height:36px;--I:url(img/floor.png)">
+<img class="col wall" style="left:0px;bottom:20px;width:36px;height:512px;--I:url(img/wall.png)">
+<img class="col wall" style="left:1188px;bottom:20px;width:36px;height:512px;--I:url(img/wall.png)">
+<img class="col floor" style="left:164px;bottom:148px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:420px;bottom:148px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:676px;bottom:148px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:932px;bottom:148px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:36px;bottom:296px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:292px;bottom:296px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:548px;bottom:296px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:804px;bottom:296px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:1060px;bottom:296px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:164px;bottom:444px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:420px;bottom:444px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:676px;bottom:444px;width:128px;height:36px;--I:url(img/floor.png)">
+<img class="col floor" style="left:932px;bottom:444px;width:128px;height:36px;--I:url(img/floor.png)">
+</div>
+<script>
+    currentInputs = []
+    plr1 = {}
+    plr1.hp = 100
+    plr1.speed = 5
+    plr1.jumps = 0
+    plr1.pos = {}
+    plr1.pos.x = 596
+    plr1.pos.y = 332
+    plr1.vel = {}
+    plr1.vel.x = 0
+    plr1.vel.y = 0
+    plr1.colIDs = []
+    plr1.colTags = []
+    plr1.colStates = []
+    function collision(plr) {
+        plr.colIDs = []
+        plr.colTags = []
+        plr.colStates = []
+        for (let i = 0; i < objects.length; i++) {
+            objX = objects[i].style.left.slice(0,-2)-0
+            objY = objects[i].style.bottom.slice(0,-2)-0
+            objW = objects[i].style.width.slice(0,-2)-0
+            objH = objects[i].style.height.slice(0,-2)-0
+            if (plr.pos.x + 32 >= objX && plr.pos.x <= objX + objW && plr.pos.y + 32 >= objY && plr.pos.y <= objY + objH) {
+                plr.colIDs.push(i)
+                plr.colTags.push(objects[i].classList[1])
+                colState = 0
+                if (plr.pos.x <= objX + objW && plr.pos.x >= objX) {
+                    colState += 2
+                }
+                if (plr.pos.x + 32 >= objX && plr.pos.x + 32 <= objX + objW) {
+                    colState++
+                }
+                if (plr.pos.y <= objY + objH && plr.pos.y >= objY) {
+                    colState += 4
+                }
+                if (plr.pos.y + 32 >= objY && plr.pos.y + 32 <= objY + objH) {
+                    colState += 8
+                }
+                plr.colStates.push(colState)
+            }
+        }
+    }
+    function mainLoop() {
+        objects = document.getElementsByClassName("col")
+        collision(plr1)
+        for (let i = 0; i < plr1.colIDs.length; i++) {
+            if (plr1.colTags[i] == "floor") { //depending on the object, I might want an "upwarp" to occur.
+                objX = objects[plr1.colIDs[i]].style.left.slice(0,-2)-0
+                objY = objects[plr1.colIDs[i]].style.bottom.slice(0,-2)-0
+                objW = objects[plr1.colIDs[i]].style.width.slice(0,-2)-0
+                objH = objects[plr1.colIDs[i]].style.height.slice(0,-2)-0
+                if (plr1.colStates[i] == 7 || plr1.colStates[i] == 6 || plr1.colStates[i] == 5) {plr1.pos.y = objY + objH;plr1.vel.y = 0;plr1.jumps = 2}
+                else if (plr1.colStates[i] == 11) {plr1.pos.y = objY - 32;plr1.vel.y = 0}
+                else if (plr1.colStates[i] == 13 || plr1.colStates[i] == 9) {plr1.pos.x = objX - 32}
+                else if (plr1.colStates[i] == 14 || plr1.colStates[i] == 10) {plr1.pos.x = objX + objW}
+            }
+            else if (plr1.colTags[i] == "wall") { //I need to ensure that the player isn't colliding into a floor & a wall in a way that could push them out
+                objX = objects[plr1.colIDs[i]].style.left.slice(0,-2)-0
+                objY = objects[plr1.colIDs[i]].style.bottom.slice(0,-2)-0
+                objW = objects[plr1.colIDs[i]].style.width.slice(0,-2)-0
+                objH = objects[plr1.colIDs[i]].style.height.slice(0,-2)-0
+                if (plr1.colStates[i] == 7 || plr1.colStates[i] == 6 || plr1.colStates[i] == 5) {plr1.pos.y = objY + objH;plr1.vel.y = 0;plr1.jumps = 2}
+                else if (plr1.colStates[i] == 11) {plr1.pos.y = objY - 32;plr1.vel.y = 0}
+                else if (plr1.colStates[i] == 13 || plr1.colStates[i] == 9) {plr1.pos.x = objX - 32}
+                else if (plr1.colStates[i] == 14 || plr1.colStates[i] == 10) {plr1.pos.x = objX + objW}
+            }
+        }
+        if (plr1.vel.y > -20) {plr1.vel.y--}
+        document.getElementById("debug1").innerHTML = "speed : " + plr1.speed + "<br>jumps : " + plr1.jumps + "<br>pos : " + plr1.pos.x + "," + plr1.pos.y + "<br>vel : " + plr1.vel.x + "," + plr1.vel.y + "<br>colIDs : [" + plr1.colIDs.toString() + "]<br>colTags : [" + plr1.colTags.toString() + "]<br>colStates : [" + plr1.colStates.toString() + "]"
+        plr1.vel.x = 0
+        if (currentInputs.includes("ArrowUp") && plr1.jumps > 0 && plr1.vel.y <= 12) {plr1.vel.y = 20;plr1.jumps--}
+        if (currentInputs.includes("ArrowLeft")) {plr1.vel.x = plr1.vel.x - plr1.speed}
+        if (currentInputs.includes("ArrowDown") && plr1.vel.y > -40) {plr1.vel.y--}
+        if (currentInputs.includes("ArrowRight")) {plr1.vel.x = plr1.vel.x + plr1.speed}
+        plr1.pos.x = plr1.pos.x + plr1.vel.x
+        plr1.pos.y = plr1.pos.y + plr1.vel.y
+        document.getElementById("plr1").style.left = plr1.pos.x + "px"
+        document.getElementById("plr1").style.bottom = plr1.pos.y + "px"
+        var t = setTimeout(function(){mainLoop()},17)
+    }
+    document.addEventListener('keydown', (event) => {
+        if (!currentInputs.includes(event.code)) {currentInputs.push(event.code)}
+        document.getElementById("inputs").innerHTML = "[" + currentInputs.toString() + "]"
+    })
+    document.addEventListener('keyup', (event) => {
+        if (currentInputs.includes(event.code)) {currentInputs.splice(currentInputs.indexOf(event.code),1)}
+        document.getElementById("inputs").innerHTML = "[" + currentInputs.toString() + "]"
+    })
+    mainLoop()
+</script>

@@ -7,11 +7,10 @@
     "unfavored": null,
     "randomizer": "bag",
     "rotationSystem": "srs",
-    "skin": "retro",
+    "skin": "srsx",
     "soundbank": "nes",
     "music": "retro",
     "scoreTable": "retro",
-    "disableDefaultSkinLoad": true,
     "background": "handheld.png"
   },
   "piece": {
