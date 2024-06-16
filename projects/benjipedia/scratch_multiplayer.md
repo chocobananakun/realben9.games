@@ -1,6 +1,8 @@
 # scratch_multiplayer
 **Utilising cloud variables whilst working around their limitations.**
 
+**This entry is incomplete.**
+
 Scratch's cloud variables are quite functionally limited. Compared to normal variables, they :
 * Can only be present 10 times at once per project
 * Can only be updated once every 0.1 seconds (Across the project; var1 affects var2's ability to update)
