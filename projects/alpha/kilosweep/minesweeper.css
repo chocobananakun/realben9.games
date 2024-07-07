@@ -76,7 +76,7 @@ body {
   border: 1px inset;
 }
 
-.number {
+.number, .number2 {
   display: block;
   float: left;
 }
