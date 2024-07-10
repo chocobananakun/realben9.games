@@ -30,7 +30,7 @@ function modeToggle(type) {
       unaryMode = !unaryMode
       button.style.backgroundColor = unaryMode == true ? "#0f0" : "#f00"
       break
-    case 'Cp':
+    case 'Xp':
       minicrossMode = !minicrossMode
       button.style.backgroundColor = minicrossMode == true ? "#0f0" : "#f00"
       break
@@ -126,7 +126,7 @@ function createGame() {
   if (negationMode == true) {modified=true;titleInfo.push("[N]");descriptionInfo.push("[N] Negation : Numbers show the difference between adjacent light mines & adjacent dark mines")}
   if (moduloMode == true) {modified=true;titleInfo.push("[2M]");descriptionInfo.push("[2M] Modulo : Each number (except for the mine count) is the remainder of adjacent mines divided by 3")}
   if (unaryMode == true) {modified=true;titleInfo.push("[U]");descriptionInfo.push("[U] Unary : Mines are never orthogonally adjacent")}
-  if (minicrossMode == true) {modified=true;titleInfo.push("[C']");descriptionInfo.push("[C'] Mini Cross : Numbers show the amount of mines in a cross region within distance 1")}
+  if (minicrossMode == true) {modified=true;titleInfo.push("[X']");descriptionInfo.push("[X'] Mini Cross : Numbers show the amount of mines in a cross region within distance 1")}
   if (useCheckerboard == true) {titleInfo.push("[@c]");descriptionInfo.push("[@c] Checkerboard colouring : This board is checkerboard coloured")}
   if (modified == false) {titleInfo.push("[V]");descriptionInfo.push("[V] Vanilla : Nothing special here (besides the double & triple mines)")}
   document.getElementById("title").innerHTML = titleInfo.join("") + " KiloSweep"
@@ -202,10 +202,10 @@ function createGame() {
     mines[i].setAttribute("data-clicked", "false")
     mines[i].setAttribute("data-flagtype", "0")
     mines[i].addEventListener('click', function(){
-      if (alive == true) {clickMine(parseInt(this.id))}
+      if (alive == true) {clickMine(parseInt(this.id));hideChord(parseInt(this.id));showChord(parseInt(this.id))}
     })
     mines[i].addEventListener('auxclick', function(e){
-      if (e.button == 1 && alive == true) {clickMine(parseInt(this.id))}
+      if (e.button == 1 && alive == true) {clickMine(parseInt(this.id));hideChord(parseInt(this.id));showChord(parseInt(this.id))}
     })
     mines[i].addEventListener('contextmenu', function(){
       if (alive == true) {flagMine(parseInt(this.id))}
@@ -254,62 +254,67 @@ function clickMine(x, testable=true) {
 
       //Tallies up the total number of mines in the surrounding 8 squares
       minesNearby = 0
-      if (multipleMode == false && negationMode == false && minicrossMode == false) {
-        if (gridNums[x - minesWidth - 1] && x % minesWidth != 0) minesNearby += gridNums[x - minesWidth - 1]
-        if (gridNums[x - minesWidth]) minesNearby += gridNums[x - minesWidth]
-        if (gridNums[x - minesWidth + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x - minesWidth + 1]
-        if (gridNums[x - 1] && x % minesWidth != 0) minesNearby += gridNums[x - 1]
-        if (gridNums[x + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x + 1]
-        if (gridNums[x + minesWidth - 1] && x % minesWidth != 0) minesNearby += gridNums[x + minesWidth - 1]
-        if (gridNums[x + minesWidth]) minesNearby += gridNums[x + minesWidth]
-        if (gridNums[x + minesWidth + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x + minesWidth + 1]
-      }
-      else if (multipleMode == true) {
-        if (gridNums[x - minesWidth - 1] && x % minesWidth != 0) minesNearby += gridNums[x - minesWidth - 1] * ((x - minesWidth - 1) % 2 == 0 ^ Math.floor((x - minesWidth - 1)/minesWidth) % 2 == 1 ? 1 : 2)
-        if (gridNums[x - minesWidth]) minesNearby += gridNums[x - minesWidth] * ((x - minesWidth) % 2 == 0 ^ Math.floor((x - minesWidth)/minesWidth) % 2 == 1 ? 1 : 2)
-        if (gridNums[x - minesWidth + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x - minesWidth + 1] * ((x - minesWidth + 1) % 2 == 0 ^ Math.floor((x - minesWidth + 1)/minesWidth) % 2 == 1 ? 1 : 2)
-        if (gridNums[x - 1] && x % minesWidth != 0) minesNearby += gridNums[x - 1] * ((x - 1) % 2 == 0 ^ Math.floor((x - 1)/minesWidth) % 2 == 1 ? 1 : 2)
-        if (gridNums[x + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x + 1] * ((x + 1) % 2 == 0 ^ Math.floor((x + 1)/minesWidth) % 2 == 1 ? 1 : 2)
-        if (gridNums[x + minesWidth - 1] && x % minesWidth != 0) minesNearby += gridNums[x + minesWidth - 1] * ((x + minesWidth - 1) % 2 == 0 ^ Math.floor((x + minesWidth - 1)/minesWidth) % 2 == 1 ? 1 : 2)
-        if (gridNums[x + minesWidth]) minesNearby += gridNums[x + minesWidth] * ((x + minesWidth) % 2 == 0 ^ Math.floor((x + minesWidth)/minesWidth) % 2 == 1 ? 1 : 2)
-        if (gridNums[x + minesWidth + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x + minesWidth + 1] * ((x + minesWidth + 1) % 2 == 0 ^ Math.floor((x + minesWidth + 1)/minesWidth) % 2 == 1 ? 1 : 2)
-      }
-      else if (negationMode == true) {
-        minesDiff = 0
-        if (gridNums[x - minesWidth - 1] && x % minesWidth != 0) minesNearby += gridNums[x - minesWidth - 1]
-        if (gridNums[x - minesWidth]) minesNearby += gridNums[x - minesWidth]
-        if (gridNums[x - minesWidth + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x - minesWidth + 1]
-        if (gridNums[x - 1] && x % minesWidth != 0) minesNearby += gridNums[x - 1]
-        if (gridNums[x + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x + 1]
-        if (gridNums[x + minesWidth - 1] && x % minesWidth != 0) minesNearby += gridNums[x + minesWidth - 1]
-        if (gridNums[x + minesWidth]) minesNearby += gridNums[x + minesWidth]
-        if (gridNums[x + minesWidth + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x + minesWidth + 1]
-        if (gridNums[x - minesWidth - 1] && x % minesWidth != 0) minesDiff += gridNums[x - minesWidth - 1] * ((x - minesWidth - 1) % 2 == 0 ^ Math.floor((x - minesWidth - 1)/minesWidth) % 2 == 1 ? 1 : -1)
-        if (gridNums[x - minesWidth]) minesDiff += gridNums[x - minesWidth] * ((x - minesWidth) % 2 == 0 ^ Math.floor((x - minesWidth)/minesWidth) % 2 == 1 ? 1 : -1)
-        if (gridNums[x - minesWidth + 1] && x % minesWidth != minesWidth - 1) minesDiff += gridNums[x - minesWidth + 1] * ((x - minesWidth + 1) % 2 == 0 ^ Math.floor((x - minesWidth + 1)/minesWidth) % 2 == 1 ? 1 : -1)
-        if (gridNums[x - 1] && x % minesWidth != 0) minesDiff += gridNums[x - 1] * ((x - 1) % 2 == 0 ^ Math.floor((x - 1)/minesWidth) % 2 == 1 ? 1 : -1)
-        if (gridNums[x + 1] && x % minesWidth != minesWidth - 1) minesDiff += gridNums[x + 1] * ((x + 1) % 2 == 0 ^ Math.floor((x + 1)/minesWidth) % 2 == 1 ? 1 : -1)
-        if (gridNums[x + minesWidth - 1] && x % minesWidth != 0) minesDiff += gridNums[x + minesWidth - 1] * ((x + minesWidth - 1) % 2 == 0 ^ Math.floor((x + minesWidth - 1)/minesWidth) % 2 == 1 ? 1 : -1)
-        if (gridNums[x + minesWidth]) minesDiff += gridNums[x + minesWidth] * ((x + minesWidth) % 2 == 0 ^ Math.floor((x + minesWidth)/minesWidth) % 2 == 1 ? 1 : -1)
-        if (gridNums[x + minesWidth + 1] && x % minesWidth != minesWidth - 1) minesDiff += gridNums[x + minesWidth + 1] * ((x + minesWidth + 1) % 2 == 0 ^ Math.floor((x + minesWidth + 1)/minesWidth) % 2 == 1 ? 1 : -1)
-        if (minesDiff < 0) {minesDiff *= -1}
-      }
-      else if (minicrossMode == true) {
-        if (gridNums[x - minesWidth]) minesNearby += gridNums[x - minesWidth]
-        if (gridNums[x - 1] && x % minesWidth != 0) minesNearby += gridNums[x - 1]
-        if (gridNums[x + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x + 1]
-        if (gridNums[x + minesWidth]) minesNearby += gridNums[x + minesWidth]
+      darkMines = 0
+      lightMines = 0
+      if (minicrossMode == false && gridNums[x - minesWidth - 1] && x % minesWidth != 0) minesNearby += gridNums[x - minesWidth - 1]
+      if (gridNums[x - minesWidth]) minesNearby += gridNums[x - minesWidth]
+      if (minicrossMode == false && gridNums[x - minesWidth + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x - minesWidth + 1]
+      if (gridNums[x - 1] && x % minesWidth != 0) minesNearby += gridNums[x - 1]
+      if (gridNums[x + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x + 1]
+      if (minicrossMode == false && gridNums[x + minesWidth - 1] && x % minesWidth != 0) minesNearby += gridNums[x + minesWidth - 1]
+      if (gridNums[x + minesWidth]) minesNearby += gridNums[x + minesWidth]
+      if (minicrossMode == false && gridNums[x + minesWidth + 1] && x % minesWidth != minesWidth - 1) minesNearby += gridNums[x + minesWidth + 1]
+      
+      if (useCheckerboard == true || useCheckerboard == false) {
+        if (minicrossMode == false && gridNums[x - minesWidth - 1] && x % minesWidth != 0) {
+          if ((x - minesWidth - 1) % 2 == 0 ^ Math.floor((x - minesWidth - 1)/minesWidth) % 2 == 1) {darkMines += gridNums[x - minesWidth - 1]}
+          else {lightMines += gridNums[x - minesWidth - 1]}
+        }
+        if (gridNums[x - minesWidth]) {
+          if ((x - minesWidth) % 2 == 0 ^ Math.floor((x - minesWidth)/minesWidth) % 2 == 1) {darkMines += gridNums[x - minesWidth]}
+          else {lightMines += gridNums[x - minesWidth]}
+        }
+        if (minicrossMode == false && gridNums[x - minesWidth + 1] && x % minesWidth != minesWidth - 1) {
+          if ((x - minesWidth + 1) % 2 == 0 ^ Math.floor((x - minesWidth + 1)/minesWidth) % 2 == 1) {darkMines += gridNums[x - minesWidth + 1]}
+          else {lightMines += gridNums[x - minesWidth + 1]}
+        }
+        if (gridNums[x - 1] && x % minesWidth != 0) {
+          if ((x - 1) % 2 == 0 ^ Math.floor((x - 1)/minesWidth) % 2 == 1) {darkMines += gridNums[x - 1]}
+          else {lightMines += gridNums[x - 1]}
+        }
+        if (gridNums[x + 1] && x % minesWidth != minesWidth - 1) {
+          if ((x + 1) % 2 == 0 ^ Math.floor((x + 1)/minesWidth) % 2 == 1) {darkMines += gridNums[x + 1]}
+          else {lightMines += gridNums[x + 1]}
+        }
+        if (minicrossMode == false && gridNums[x + minesWidth - 1] && x % minesWidth != 0) {
+          if ((x + minesWidth - 1) % 2 == 0 ^ Math.floor((x + minesWidth - 1)/minesWidth) % 2 == 1) {darkMines += gridNums[x + minesWidth - 1]}
+          else {lightMines += gridNums[x + minesWidth - 1]}
+        }
+        if (gridNums[x + minesWidth]) {
+          if ((x + minesWidth) % 2 == 0 ^ Math.floor((x + minesWidth)/minesWidth) % 2 == 1) {darkMines += gridNums[x + minesWidth]}
+          else {lightMines += gridNums[x + minesWidth]}
+        }
+        if (minicrossMode == false && gridNums[x + minesWidth + 1] && x % minesWidth != minesWidth - 1) {
+          if ((x + minesWidth + 1) % 2 == 0 ^ Math.floor((x + minesWidth + 1)/minesWidth) % 2 == 1) {darkMines += gridNums[x + minesWidth + 1]}
+          else {lightMines += gridNums[x + minesWidth + 1]}
+        }
       }
       
       if (minesNearby > 0) {
-        if (liarMode == false && negationMode == false && moduloMode == false) {mines[x].src = "img/Tile" + minesNearby + ".png"}
-        else if (liarMode == true) {
-          randLie = Math.floor(Math.random() * 2)
-          if (randLie == 0 || minesNearby == 0) {mines[x].src = "img/Tile" + (minesNearby+1) + ".png"}
-          else {mines[x].src = "img/Tile" + (minesNearby-1) + ".png"}
+        if (multipleMode == true) {lightMines *= 2}
+        if (negationMode == true) {
+          minesDisp = darkMines-lightMines
+          if (minesDisp < 0) {minesDisp *= -1}
         }
-        else if (negationMode == true) {mines[x].src = "img/Tile" + minesDiff + ".png"}
-        else if (moduloMode == true) {mines[x].src = "img/Tile" + (minesNearby%3) + ".png"}
+        else {minesDisp = darkMines+lightMines}
+
+        if (liarMode == true) {
+          randLie = Math.floor(Math.random() * 2)
+          if (randLie == 0 || minesDisp == 0) {minesDisp++}
+          else {minesDisp--}
+        }
+        if (moduloMode == true) {minesDisp %= 3}
+        mines[x].src = "img/Tile" + minesDisp + ".png"
       }
       else {
         //Automatically clicks nearby squares if the tile clicked is empty
