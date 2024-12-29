@@ -302,17 +302,24 @@ function clickMine(x, testable=true) {
       
       if (minesNearby > 0) {
         if (multipleMode == true) {lightMines *= 2}
+        if (liarMode == true) {
+          randSel = Math.floor(Math.random() * 2)
+          if (randSel == 0) {
+            randLie = Math.floor(Math.random() * 2)
+            if (randLie == 0 || lightMines == 0) {lightMines++}
+            else {lightMines--}
+          }
+          else {
+            randLie = Math.floor(Math.random() * 2)
+            if (randLie == 0 || darkMines == 0) {darkMines++}
+            else {darkMines--}
+          }
+        }
         if (negationMode == true) {
           minesDisp = darkMines-lightMines
           if (minesDisp < 0) {minesDisp *= -1}
         }
         else {minesDisp = darkMines+lightMines}
-
-        if (liarMode == true) {
-          randLie = Math.floor(Math.random() * 2)
-          if (randLie == 0 || minesDisp == 0) {minesDisp++}
-          else {minesDisp--}
-        }
         if (moduloMode == true) {minesDisp %= 3}
         mines[x].src = "img/Tile" + minesDisp + ".png"
       }

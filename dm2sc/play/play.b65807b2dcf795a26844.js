@@ -13953,7 +13953,7 @@
             w.anchor.x = .5,
             w.setTransform(6, -20, .3, .3, Math.PI / 180 * 18, 0, 0, 0, 0),
             w.alpha = 1;
-            var T = new s.a("<shadow>PICKAXES</shadow>",{
+            var T = new s.a("<shadow>PICKAXES</shadow>",{ //Pickaxes button
                 fontSize: "13px",
                 fill: "#ffffff",
                 stroke: "#ca9329",
@@ -19020,8 +19020,8 @@
         _(),
         9 === t ? 2 !== f.level && E("shine") : E("normal"),
         s = g.getRockTint(e),
-        log("Rockdamage: currentRockValue set to " + l),
-        log("Rockdamage: value remaining: " + u)
+        log("Rockdamage: currentRockValue set to " + l), //Rock max health
+        log("Rockdamage: value remaining: " + u) //Rock current health
     }
     function _() {
         var e = f.level
@@ -20597,7 +20597,7 @@
             }
             )),
             h.addChildAt(s, 0);
-            var O = new x.a("PICKAXES",{
+            var O = new x.a("PICKAXES",{ //Pickaxes menu
                 fontSize: "phone" === u ? "40px" : "60px",
                 fill: "#FFFFFF",
                 stroke: "#c58736",
@@ -21592,7 +21592,7 @@
             }
             )),
             h.addChildAt(s, 0);
-            var F = new y.a("FORTUNES",{
+            var F = new y.a("FORTUNES",{ //Fortunes menu
                 fontSize: "phone" === l ? "35px" : "50px",
                 fill: "#FFFFFF",
                 stroke: "#c58736",
@@ -23412,7 +23412,7 @@
         }
         if (n > 16 && (n = Math.floor((n + .15 * n) * r)),
         1 === t)
-            return Math.ceil(i.cost * Math.pow(1.15, n) * o * r);
+            return Math.ceil(i.cost * Math.pow(1.15, n) * o * r); //A helper's price increases by 15% each time they are purchased.
         for (var h = 0, p = n, f = i.cost, m = 1; m <= t; m++)
             h += f * Math.pow(1.15, p) * o,
             p++;
@@ -23761,7 +23761,7 @@
                 return !0;
         return !1
     }
-    function Ke() {
+    function Ke() { //Display phrase
         var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "doge"
           , t = dogeminer.player.pickaxes[dogeminer.player.equipped.pick][0];
         if ("carbine" === t || "shotgun" === t)
