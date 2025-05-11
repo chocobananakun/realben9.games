@@ -15,18 +15,18 @@
 </div>
 <script>
     //seed = 1
-    currentInputs = []
-    grasslands = ["grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","tallgrass","water","deepwater","stone","trap"]
-    solid = ["tallgrass","deepwater","stone","trap"]
-    interactable = ["grass"]
-    world = []
+    const currentInputs = []
+    const grasslands = ["grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","tallgrass","water","deepwater","stone","trap"]
+    const solid = ["tallgrass","deepwater","stone","trap"]
+    const interactable = ["grass"]
+    const world = []
     world[0] = []
     tilegen = grasslands.length-1
     while (solid.includes(grasslands[tilegen])) {
         tilegen = Math.floor(Math.random() * grasslands.length)
     }
     world[0][0] = grasslands[tilegen]
-    plr1 = {}
+    const plr1 = {}
     plr1.inventory = []
     plr1.hp = 100
     plr1.vision = 7
@@ -35,8 +35,8 @@
     plr1.pos.y = 0
     plr1.biome = "grasslands"
     function movement(plr,dir) {
-        feed1 = document.getElementById("feed1")
-        feed1.innerHTML = "-"
+        const feed1 = document.getElementById("feed1")
+        feed1.innerText = "-"
         mx = 0
         my = 0
         if (dir == "U") {my++}
@@ -49,21 +49,21 @@
             plr.pos.y += my
             //console.log(plr.pos.x + 1/plr.pos.y) fails if y = 1,0,-1
         }
-        else {feed1.innerHTML = "You can't move there!"}
+        else {feed1.innerText = "You can't move there!"}
     }
     function interact(plr,dir) {
-        feed1 = document.getElementById("feed1")
-        feed1.innerHTML = "-"
+        const feed1 = document.getElementById("feed1")
+        feed1.innerText = "-"
         inttile = world[plr.pos.x][plr.pos.y]
         valid = interactable.includes(inttile)
         if (inttile == "grass") {
-            feed1.innerHTML = "You cut some grass. It regrows instantly."
+            feed1.innerText = "You cut some grass. It regrows instantly."
             plr.inventory.push(inttile)
         }
         else if (valid == true) {
-            feed1.innerHTML = "You interact with the " + inttile + "!"
+            feed1.innerText = "You interact with the " + inttile + "!"
         }
-        else {feed1.innerHTML = "You can't interact with the " + inttile + "!"}
+        else {feed1.innerText = "You can't interact with the " + inttile + "!"}
     }
     function render(plr) {
         for (ix=plr.pos.x-plr.vision; ix<plr.pos.x+plr.vision+1; ix++) {
@@ -75,8 +75,8 @@
                 }
             }
         }
-        disp = document.getElementById("world")
-        disp.innerHTML = ""
+        const disp = document.getElementById("world")
+        disp.innerText = ""
         for (ix=-plr.vision; ix<plr.vision+1; ix++) {
             for (iy=-plr.vision; iy<plr.vision+1; iy++) {
                 elem = document.createElement("img")
@@ -93,7 +93,7 @@
         }
         plr.tile = world[plr.pos.x][plr.pos.y]
         document.getElementById("0,0").src = "img/plr1.png"
-        document.getElementById("inv1").innerHTML = "[" + plr.inventory + "]"
+        document.getElementById("inv1").innerText = "[" + plr.inventory + "]"
     }
     function mainLoop() {
         objects = document.getElementsByClassName("col")
@@ -127,11 +127,11 @@
     }
     document.addEventListener('keydown', (event) => {
         if (!currentInputs.includes(event.code)) {currentInputs.push(event.code)}
-        document.getElementById("inputs").innerHTML = "[" + currentInputs.toString() + "]"
+        document.getElementById("inputs").innerText = "[" + currentInputs.toString() + "]"
     })
     document.addEventListener('keyup', (event) => {
         if (currentInputs.includes(event.code)) {currentInputs.splice(currentInputs.indexOf(event.code),1)}
-        document.getElementById("inputs").innerHTML = "[" + currentInputs.toString() + "]"
+        document.getElementById("inputs").innerText = "[" + currentInputs.toString() + "]"
     })
     render(plr1)
     mainLoop()

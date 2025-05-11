@@ -23,17 +23,14 @@ anime({
     [prop]: `${pixels}px`,
     easing: "easeOutCirc" 
 })
-button.addEventListener("mouseover", function (event) { 
-    const top = getRandomNumber(window.innerHeight - this.offsetHeight)
-    const left = getRandomNumber(window.innerWidth - this.offsetWidth)
-    animateMove(this,"left",left).play()
-    animateMove(this,"top",top).play()
+button.addEventListener("mouseover", function (event) {
     moves++
     if (moves == 20) button.innerHTML = "Who said you had to <i style='font-size:100%'>click</i> me?"
+    const top = Math.floor(Math.random() * (window.innerHeight - this.offsetHeight + 1))
+    const left = Math.floor(Math.random() * (window.innerWidth - this.offsetWidth + 1))
+    animateMove(this,"left",left).play()
+    animateMove(this,"top",top).play()
 })
-const getRandomNumber = num => {
-    return Math.floor(Math.random() * (num + 1))
-}
 function nextlevel() {
     window.location.replace('nice_push.html')
 }

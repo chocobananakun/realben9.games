@@ -4,19 +4,10 @@
 <hr></hr>
 <p id="type" style="text-align:center">nginx</p>
 <script>
-	var element
-	element = document.getElementById("type")
+	const element = document.getElementById("type")
 	if (element) {
-		var type = Math.floor(Math.random() * 10)
-		if (type == 0) {element.innerHTML = 'nginx'}
-		else if (type == 1) {element.innerHTML = 'cloudflare'}
-		else if (type == 2) {element.innerHTML = 'cloudflare-nginx'}
-		else if (type == 3) {element.innerHTML = 'nginx/0.7.67'}
-		else if (type == 4) {element.innerHTML = 'nginx/1.2.6'}
-		else if (type == 5) {element.innerHTML = 'nginx/1.7.10'}
-		else if (type == 6) {element.innerHTML = 'nginx/1.10.3 (Ubuntu)'}
-		else if (type == 7) {element.innerHTML = 'nginx/1.13.3'}
-		else if (type == 8) {element.innerHTML = 'Microsoft-Azure-Application-Gateway/v2'}
-		else if (type == 9) {element.innerHTML = 'Apple'}
+		const type = Math.floor(Math.random() * 10)
+		const error = ['nginx','cloudflare','cloudflare-nginx','nginx/0.7.67','nginx/1.2.6','nginx/1.7.10','nginx/1.10.3 (Ubuntu)','nginx/1.13.3','Microsoft-Azure-Application-Gateway/v2','Apple'][type]
+		element.innerText = error
 	}
 </script>

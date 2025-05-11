@@ -130,25 +130,25 @@ function mainLoop() {
     objects = document.getElementsByClassName("col")
     collision(plr1)
     if (plr1.vel.y > -15) {plr1.vel.y--}
-    whiteDisp = document.getElementById("whiteKeys")
-    orangeDisp = document.getElementById("orangeKeys")
-    purpleDisp = document.getElementById("purpleKeys")
-    pinkDisp = document.getElementById("pinkKeys")
-    cyanDisp = document.getElementById("cyanKeys")
-    greenDisp = document.getElementById("greenKeys")
-    blueDisp = document.getElementById("blueKeys")
-    redDisp = document.getElementById("redKeys")
-    masterDisp = document.getElementById("masterKeys")
-	if (whiteDisp) {whiteDisp.innerHTML = "x " + plr1.whiteKeys}
-	if (orangeDisp) {orangeDisp.innerHTML = "x " + plr1.orangeKeys}
-	if (purpleDisp) {purpleDisp.innerHTML = "x " + plr1.purpleKeys}
-	if (pinkDisp) {pinkDisp.innerHTML = "x " + plr1.pinkKeys}
-	if (cyanDisp) {cyanDisp.innerHTML = "x " + plr1.cyanKeys}
-	if (greenDisp) {greenDisp.innerHTML = "x " + plr1.greenKeys}
-	if (blueDisp) {blueDisp.innerHTML = "x " + plr1.blueKeys}
-	if (redDisp) {redDisp.innerHTML = "x " + plr1.redKeys}
+    const whiteDisp = document.getElementById("whiteKeys")
+    const orangeDisp = document.getElementById("orangeKeys")
+    const purpleDisp = document.getElementById("purpleKeys")
+    const pinkDisp = document.getElementById("pinkKeys")
+    const cyanDisp = document.getElementById("cyanKeys")
+    const greenDisp = document.getElementById("greenKeys")
+    const blueDisp = document.getElementById("blueKeys")
+    const redDisp = document.getElementById("redKeys")
+    const masterDisp = document.getElementById("masterKeys")
+	if (whiteDisp) {whiteDisp.innerText = "x " + plr1.whiteKeys}
+	if (orangeDisp) {orangeDisp.innerText = "x " + plr1.orangeKeys}
+	if (purpleDisp) {purpleDisp.innerText = "x " + plr1.purpleKeys}
+	if (pinkDisp) {pinkDisp.innerText = "x " + plr1.pinkKeys}
+	if (cyanDisp) {cyanDisp.innerText = "x " + plr1.cyanKeys}
+	if (greenDisp) {greenDisp.innerText = "x " + plr1.greenKeys}
+	if (blueDisp) {blueDisp.innerText = "x " + plr1.blueKeys}
+	if (redDisp) {redDisp.innerText = "x " + plr1.redKeys}
 	if (masterDisp) {
-        masterDisp.innerHTML = "x " + plr1.masterKeys
+        masterDisp.innerText = "x " + plr1.masterKeys
         if (plr1.masterMode == true) {masterDisp.classList.add("masterMode")}
         else {masterDisp.classList.remove("masterMode")}
     }
@@ -167,10 +167,10 @@ document.addEventListener('keydown', (event) => {
     if (!currentInputs.includes(event.code)) {currentInputs.push(event.code)}
     if (event.code == "KeyZ") {undo(plr1)}
     else if (event.code == "KeyX") {if (plr1.masterKeys != 0) {plr1.masterMode = !plr1.masterMode}}
-    document.getElementById("inputs").innerHTML = "[" + currentInputs.toString() + "]"
+    document.getElementById("inputs").innerText = "[" + currentInputs.toString() + "]"
 })
 document.addEventListener('keyup', (event) => {
     if (currentInputs.includes(event.code)) {currentInputs.splice(currentInputs.indexOf(event.code),1)}
-    document.getElementById("inputs").innerHTML = "[" + currentInputs.toString() + "]"
+    document.getElementById("inputs").innerText = "[" + currentInputs.toString() + "]"
 })
 mainLoop()

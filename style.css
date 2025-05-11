@@ -32,8 +32,8 @@ p#inv {font-size:0}
   left: 0;
   position: absolute;
   top: 0;
-  min-height: 100%;
-  min-width: 100%;
+  min-height: 20%;
+  min-width: 20%;
 }
 #splash p {
   color: #ff0;

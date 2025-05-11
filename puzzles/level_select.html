@@ -16,8 +16,8 @@
 </div>
 <script>
 function nextlevel() {
-    levelFeedbacker = document.getElementById("levelFeedback")
-    levelTest = document.getElementById("levelCheck").value
+    const levelFeedbacker = document.getElementById("levelFeedback")
+    let levelTest = document.getElementById("levelCheck").value
     if (levelTest == "69" || levelTest == "420") {
         levelFeedbacker.outerHTML = '<p id="levelFeedback" style="color:#070">Correct!</p>'
         window.location.replace('numerics.html')

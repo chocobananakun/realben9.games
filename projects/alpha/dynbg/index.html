@@ -9,10 +9,10 @@ Circles : <input id="canvasCheck" type="number" value="1" min="1" max="511"></in
 </div>
 <script>
 circles = {}
-const ang360 = 2 * Math.PI
+const ang360 = Math.PI * 2
 function addCircles() {
     circles = {}
-    drawCount = document.getElementById("canvasCheck").value
+    let drawCount = document.getElementById("canvasCheck").value
     for (let x = 0; x < drawCount; x++) {
         circles[x] = []
         size = 25 //Math.floor(Math.random() * 100) + 25
@@ -23,10 +23,10 @@ function addCircles() {
     }
 }
 function draw() {
-    drawCount = Object.keys(circles).length
-    canvas = document.getElementById('canvas')
+    let drawCount = Object.keys(circles).length
+    const canvas = document.getElementById('canvas')
     canvas.width+=0
-    ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d')
     for (let x = 0; x < drawCount; x++) {
         if (Math.random() >= 0.97) {
             if (Math.random() >= 0.5 || circles[x][0] <= 1) {circles[x][0]++}
@@ -40,7 +40,7 @@ function draw() {
             if (Math.random() >= 0.5 || circles[x][2] <= 1) {circles[x][2]++}
             else {circles[x][2]--}
         }
-        circle = new Path2D()
+        let circle = new Path2D()
         circle.arc(circles[x][1], circles[x][2], circles[x][0], 0, ang360)
         ctx.fillStyle = circles[x][3]
         ctx.fill(circle)

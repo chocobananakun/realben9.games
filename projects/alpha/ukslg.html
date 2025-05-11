@@ -32,9 +32,9 @@ glassWeakGen = 0
 glassUnbreakableGen = 0
 function setKineGen(mode) {
     kineGen = mode
-    buttonY = document.getElementById("btnKineYes")
-    buttonN = document.getElementById("btnKineNo")
-    buttonR = document.getElementById("btnKineRand")
+    const buttonY = document.getElementById("btnKineYes")
+    const buttonN = document.getElementById("btnKineNo")
+    const buttonR = document.getElementById("btnKineRand")
     switch (mode) {
         case 0:
             buttonY.style.backgroundColor = "#fff"
@@ -109,9 +109,9 @@ function boxToggle(type) {
 }
 function setwoodWeakGen(mode) {
     woodWeakGen = mode
-    buttonY = document.getElementById("btnwoodWeakGenYes")
-    buttonN = document.getElementById("btnwoodWeakGenNo")
-    buttonR = document.getElementById("btnwoodWeakGenRand")
+    const buttonY = document.getElementById("btnwoodWeakGenYes")
+    const buttonN = document.getElementById("btnwoodWeakGenNo")
+    const buttonR = document.getElementById("btnwoodWeakGenRand")
     switch (mode) {
         case 0:
             buttonY.style.backgroundColor = "#fff"
@@ -132,9 +132,9 @@ function setwoodWeakGen(mode) {
 }
 function setwoodUnbreakableGen(mode) {
     woodUnbreakableGen = mode
-    buttonY = document.getElementById("btnwoodUnbreakableGenYes")
-    buttonN = document.getElementById("btnwoodUnbreakableGenNo")
-    buttonR = document.getElementById("btnwoodUnbreakableGenRand")
+    const buttonY = document.getElementById("btnwoodUnbreakableGenYes")
+    const buttonN = document.getElementById("btnwoodUnbreakableGenNo")
+    const buttonR = document.getElementById("btnwoodUnbreakableGenRand")
     switch (mode) {
         case 0:
             buttonY.style.backgroundColor = "#fff"
@@ -155,9 +155,9 @@ function setwoodUnbreakableGen(mode) {
 }
 function setglassWeakGen(mode) {
     glassWeakGen = mode
-    buttonY = document.getElementById("btnglassWeakGenYes")
-    buttonN = document.getElementById("btnglassWeakGenNo")
-    buttonR = document.getElementById("btnglassWeakGenRand")
+    const buttonY = document.getElementById("btnglassWeakGenYes")
+    const buttonN = document.getElementById("btnglassWeakGenNo")
+    const buttonR = document.getElementById("btnglassWeakGenRand")
     switch (mode) {
         case 0:
             buttonY.style.backgroundColor = "#fff"
@@ -178,9 +178,9 @@ function setglassWeakGen(mode) {
 }
 function setglassUnbreakableGen(mode) {
     glassUnbreakableGen = mode
-    buttonY = document.getElementById("btnglassUnbreakableGenYes")
-    buttonN = document.getElementById("btnglassUnbreakableGenNo")
-    buttonR = document.getElementById("btnglassUnbreakableGenRand")
+    const buttonY = document.getElementById("btnglassUnbreakableGenYes")
+    const buttonN = document.getElementById("btnglassUnbreakableGenNo")
+    const buttonR = document.getElementById("btnglassUnbreakableGenRand")
     switch (mode) {
         case 0:
             buttonY.style.backgroundColor = "#fff"
@@ -200,7 +200,7 @@ function setglassUnbreakableGen(mode) {
     }
 }
 function boxGen(linear = false) {
-    boxCountVar = document.getElementById("boxCount").value
+    let boxCountVar = document.getElementById("boxCount").value
     boxTypes = []
     if (genPlastic == true) {boxTypes.push("plastic")}
     if (genMetal == true) {boxTypes.push("metal")}
@@ -212,7 +212,7 @@ function boxGen(linear = false) {
     if (genLava == true) {boxTypes.push("lava")}
     if (genAcid == true) {boxTypes.push("acid")}
     if (genArmor == true) {boxTypes.push("armor")}
-    dataOutput = document.getElementById("genData")
+    const dataOutput = document.getElementById("genData")
     generatedData = ''
     lastX = [0,0,0,0,0]
     lastY = [100,100,100,100,100]

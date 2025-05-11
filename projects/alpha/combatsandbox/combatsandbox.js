@@ -14,19 +14,19 @@ function collision(plr) {
     plr.colIDs = []
     plr.colTags = []
     for (let j = 0; j < objects.length; j++) {
-        objX = objects[j].style.left.slice(0,-2)-0
-        objY = objects[j].style.bottom.slice(0,-2)-0
-        objW = objects[j].style.width.slice(0,-2)-0
-        objH = objects[j].style.height.slice(0,-2)-0
-        objTag = objects[j].classList[1]
+        let objX = objects[j].style.left.slice(0,-2)-0
+        let objY = objects[j].style.bottom.slice(0,-2)-0
+        let objW = objects[j].style.width.slice(0,-2)-0
+        let objH = objects[j].style.height.slice(0,-2)-0
+        let objTag = objects[j].classList[1]
         if (plr.pos.x + plrW >= objX && plr.pos.x <= objX + objW && plr.pos.y + plrH >= objY && plr.pos.y <= objY + objH) {
             plr.colIDs.push(j)
             plr.colTags.push(objTag)
-            vecX = plr.pos.x + (plrW / 2) - objX - objW / 2
-            vecY = plr.pos.y + (plrH / 2) - objY - objH / 2
-            hWidths = (plrW / 2) + objW / 2
-            hHeights = (plrH / 2) + objH / 2
-            colDir = null
+            let vecX = plr.pos.x + (plrW / 2) - objX - objW / 2
+            let vecY = plr.pos.y + (plrH / 2) - objY - objH / 2
+            let hWidths = (plrW / 2) + objW / 2
+            let hHeights = (plrH / 2) + objH / 2
+            let colDir = null
             // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
             if (Math.abs(vecX) < hWidths && Math.abs(vecY) < hHeights) {
                 // figures out on which side we are colliding (top, bottom, left, or right)
@@ -73,10 +73,10 @@ function mainLoop() {
 }
 document.addEventListener('keydown', (event) => {
     if (!currentInputs.includes(event.code)) {currentInputs.push(event.code)}
-    document.getElementById("inputs").innerHTML = "[" + currentInputs.toString() + "]"
+    document.getElementById("inputs").innerText = "[" + currentInputs.toString() + "]"
 })
 document.addEventListener('keyup', (event) => {
     if (currentInputs.includes(event.code)) {currentInputs.splice(currentInputs.indexOf(event.code),1)}
-    document.getElementById("inputs").innerHTML = "[" + currentInputs.toString() + "]"
+    document.getElementById("inputs").innerText = "[" + currentInputs.toString() + "]"
 })
 mainLoop()

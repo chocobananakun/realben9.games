@@ -13,9 +13,9 @@
 var slot1 = Math.floor(Math.random() * 10)
 var slot2 = Math.floor(Math.random() * 10)
 var slot3 = Math.floor(Math.random() * 10)
-while (slot1 == 7) slot1 = Math.floor(Math.random() * 10)
-while (slot2 == 7) slot2 = Math.floor(Math.random() * 10)
-while (slot3 == 7) slot3 = Math.floor(Math.random() * 10)
+while (slot1 == 7) {slot1 = Math.floor(Math.random() * 10)}
+while (slot2 == 7) {slot2 = Math.floor(Math.random() * 10)}
+while (slot3 == 7) {slot3 = Math.floor(Math.random() * 10)}
 function updateDisp() {
     levelDisp = document.getElementById("slots")
     levelDisp.innerHTML = slot1
@@ -92,9 +92,7 @@ function roll3() {
     },500)
 }
 function nextlevel() {
-    if (slot1 == 7 && slot2 == 7 && slot3 == 7) {
-        window.location.replace('slots.html')
-    }
+    if (slot1 == 7 && slot2 == 7 && slot3 == 7) {window.location.replace('slots.html')}
 }
 updateDisp()
 </script>

@@ -6,24 +6,15 @@
 <p>Perhaps it's time to get rid of inputs.</p>
 <p>WAIT, not yet! I have 1 more puzzle for you!</p>
 Which button is the submit button? : <input id="levelCheck" maxlength=1></input>
-<button onclick="nextlevelA()">A</button><button onclick="nextlevelB()">B</button>
+<button onclick="nextlevel('a')">A</button><button onclick="nextlevel('b')">B</button>
 <p id="levelFeedback"></p>
 <h1 id="puzzle">5</h1>
 </div>
 <script>
-function nextlevelA() {
-    levelFeedbacker = document.getElementById("levelFeedback")
-    levelTest = document.getElementById("levelCheck").value
-    if (levelTest == "A" || levelTest == "a") {
-        levelFeedbacker.outerHTML = '<p id="levelFeedback" style="color:#070">Correct!</p>'
-        window.location.replace('that_one.html')
-    }
-    else levelFeedbacker.outerHTML = '<p id="levelFeedback" style="color:#700">Incorrect!</p>'
-}
-function nextlevelB() {
-    levelFeedbacker = document.getElementById("levelFeedback")
-    levelTest = document.getElementById("levelCheck").value
-    if (levelTest == "B" || levelTest == "b") {
+function nextlevel(btn) {
+    const levelFeedbacker = document.getElementById("levelFeedback")
+    let levelTest = document.getElementById("levelCheck").value.toLowerCase()
+    if (levelTest == btn) {
         levelFeedbacker.outerHTML = '<p id="levelFeedback" style="color:#070">Correct!</p>'
         window.location.replace('that_one.html')
     }

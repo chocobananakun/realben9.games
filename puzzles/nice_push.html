@@ -11,8 +11,8 @@ To prove that, what level are you on? : <input id="levelCheck"></input>
 </div>
 <script>
 function nextlevel() {
-    levelFeedbacker = document.getElementById("levelFeedback")
-    levelTest = document.getElementById("levelCheck").value
+    const levelFeedbacker = document.getElementById("levelFeedback")
+    let levelTest = document.getElementById("levelCheck").value
     if (levelTest == "2") {
         levelFeedbacker.outerHTML = '<p id="levelFeedback" style="color:#070">Correct!</p>'
         window.location.replace('good_read.html')
