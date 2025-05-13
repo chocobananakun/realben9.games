@@ -1,7 +1,7 @@
 import $, {bpmToMs, framesToMs, resetAnimation, roundBpmToMs, roundMsToFrames} from '../shortcuts.js'
 import {gravity, classicGravity, deluxeGravity} from './loop-modules/gravity.js'
 import {PIECE_COLORS, SOUND_SETS} from '../consts.js'
-import addStaticScore from './loop-modules/add-static-score.js'
+//import addStaticScore from './loop-modules/add-static-score.js'
 import arcadeScore from './loop-modules/arcade-score.js'
 import collapse from './loop-modules/collapse.js'
 import firmDrop from './loop-modules/firm-drop.js'
@@ -37,7 +37,7 @@ import rotateReverse from './loop-modules/rotate-reverse.js'
 let lastLevel = 0
 let garbageTimer = 0
 let shown20GMessage = false
-let shownHoldWarning = false
+//let shownHoldWarning = false
 let lastSeenI = 0
 let nonEvents = []
 let bpm
@@ -3667,15 +3667,10 @@ export const loops = {
       game.stat.level--
       if (game.stat.level < 0) {game.stat.level = 0}
       game.lineClear = 0
-      if (game.stat.level < 4000) {game.piece.lockDelayLimit = 500}
-      else {game.piece.lockDelayLimit = Math.ceil((Math.sqrt(15 * (game.stat.level - 4000))) * -1) + 500}
+      if (game.stat.level < 4060) {game.piece.lockDelayLimit = 500}
+      else {game.piece.lockDelayLimit = Math.ceil(133.33 + 9000 / (game.stat.level - 3423.5) ** 0.4832 - game.stat.level / 127.5)} //Math.ceil((Math.sqrt(15 * (game.stat.level - 4000))) * -1) + 500}
       levelUpdate(game)
-      const GRAVITY_TABLE = [
-        1000, 800, 621, 467, 341,
-        240, 164, 108, 69.1, 42.5,
-        25.2, 14.4, 7.9, 4.2, 2.1,
-        1]
-      if (game.stat.level < 17) {game.piece.gravity = GRAVITY_TABLE[Math.min(16, game.stat.level)]}
+      if (game.stat.level < 8800) {game.piece.gravity = 1000 / (1 + (game.stat.level / 690) ** 3 / 1.73)}
       else {game.piece.gravity = framesToMs(0.05)}
       updateFallSpeed(game)
     },
