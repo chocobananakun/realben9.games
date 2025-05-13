@@ -1736,7 +1736,7 @@ export const loops = {
       if (game.stat.level + (game.cools * 100) < 900) {game.piece.lockDelayLimit = 500}
       else if (game.stat.level + (game.cools * 100) < 1100) {game.piece.lockDelayLimit = 283}
       else {game.piece.lockDelayLimit = 250}
-      if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++}
+      if (!window.hasHeld && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++}
       //else {sound.add('bell')}
       if (game.stat.initPieces > 0) {game.stat.initPieces--}
       window.hasHeld = false
@@ -1875,6 +1875,7 @@ export const loops = {
       game.musicProgression = 0
       game.drop = 0
       game.lineClear = 0
+      game.garbageCounter = 0
       if (settings.game.suddenti.ruleOption == false) {
         game.settings.rotationSystem = "world"
         game.rotationSystem = "world"
@@ -1915,6 +1916,23 @@ export const loops = {
             S: 'white',
           }
         }
+      } else if (game.stat.level >= 900) {game.garbageQuota = 8}
+      else if (game.stat.level >= 800) {game.garbageQuota = 9}
+      else if (game.stat.level >= 700) {game.garbageQuota = 10}
+      else if (game.stat.level >= 600) {game.garbageQuota = 18}
+      else if (game.stat.level >= 500) {game.garbageQuota = 20}
+      if (!window.hasHeld && game.stat.level >= 500 && game.stat.level < 1000) {
+        game.garbageCounter = game.garbageCounter + 1 - game.lineClear
+        if (game.garbageCounter >= game.garbageQuota) {
+          sound.add('topoutwarning')
+          for (let x = 0; x < game.stack.width; x++) {
+            for (let y = game.stack.height+1; y > 0; y--) {game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - y] = game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - (y - 1)]}
+            if (game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 2] != undefined) {game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1] = 'white'}
+          }
+          game.stack.makeAllDirty()
+          game.stack.draw()
+          game.garbageCounter = 0
+        } else if (game.garbageCounter < 0) {game.garbageCounter = 0}
       }
       if (game.lineClear == 3) {game.stat.level++}
       else if (game.lineClear > 3) {game.stat.level += 2}
@@ -1989,7 +2007,7 @@ export const loops = {
         sound.add('voxexcellent')
         game.end(true)
       }
-      if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level < 1300)) {game.stat.level++}
+      if (!window.hasHeld && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level < 1300)) {game.stat.level++}
       //else {sound.add('bell')}
       if (game.stat.initPieces > 0) {game.stat.initPieces--}
       window.hasHeld = false
@@ -2155,7 +2173,7 @@ export const loops = {
           game.musicProgression = pair[1]
         }
       }
-      if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level < 500)) {
+      if (!window.hasHeld && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level < 500)) {
         game.stat.level++
         game.piece.lockDelayLimit = 500 - game.stat.level
       }
@@ -2201,7 +2219,7 @@ export const loops = {
       */
     },
     onPieceSpawn: (game) => {
-      if (window.hasHeld == false) {
+      if (!window.hasHeld) {
         for (let x = 0; x < 10; x++) {
           for (let y = 0; y < 20; y++) {
             game.boardBanks[game.boardBank] = game.boardBanks[game.boardBank].split('')
@@ -2344,7 +2362,7 @@ export const loops = {
       */
     },
     onPieceSpawn: (game) => {
-      if (window.hasHeld == false) {
+      if (!window.hasHeld) {
         game.pieceCounter++
         if (game.pieceCounter >= 14) {
           game.noHold = false
@@ -2353,23 +2371,26 @@ export const loops = {
           window.noNext = false
           //game.next.nextLimit = 4
           $('#game-container').style.transform = ""
-          game.pieceEffect = Math.floor(Math.random() * 5)
+          game.pieceEffect = Math.floor(Math.random() * 7)
           if (game.pieceEffect == 0) {
             game.noHold = true
             game.hold.draw()
           }
-          else if (game.pieceEffect == 1) {
-            game.piece.ghostIsVisible = false
+          else if (game.pieceEffect == 1) {game.piece.ghostIsVisible = false}
+          else if (game.pieceEffect == 2) {window.noNext = true} //game.next.nextLimit = 0
+          else if (game.pieceEffect == 3) {$('#game-container').style.transform = "rotateZ(180deg)"}
+          else if (game.pieceEffect == 4) {$('#game-container').style.transform = "perspective(0em) translateY(-10em) rotateX(0.1deg)"}
+          else if (game.pieceEffect == 5) {
+            window.gridtemp = Math.floor(Math.random() * 10)
+            for (let x = 0; x < 10; x++) {
+              for (let y = 21; y > 0; y--) {game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - y] = game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - (y - 1)]}
+              if (x != window.gridtemp) {game.stack.grid[x][game.stack.height + game.stack.hiddenHeight - 1] = 'white'}
+            }
+            game.stack.makeAllDirty()
+            game.stack.draw()
           }
-          else if (game.pieceEffect == 2) {
-            window.noNext = true
-            //game.next.nextLimit = 0
-          }
-          else if (game.pieceEffect == 3) {
-            $('#game-container').style.transform = "rotateZ(180deg)"
-          }
-          else if (game.pieceEffect == 4) {
-            $('#game-container').style.transform = "perspective(0em) translateY(-10em) rotateX(0.1deg)"
+          else if (game.pieceEffect == 6) {
+            for (let i = 0; i < 7; i++) {game.next.queue[i] = game.next.queue[0]}
           }
           $('#message').innerHTML = game.effects[game.pieceEffect]
           resetAnimation('#message', 'dissolve')
@@ -2390,7 +2411,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
-      game.effects = ["No Hold", "No Ghost", "No Next", "Vertical Flip", "Up Close"]
+      game.effects = ["No Hold", "No Ghost", "No Next", "Vertical Flip", "Up Close", "Bump Up", "7 In a Row"]
       if (settings.game.master.lineGoal >= 0) {
         game.lineGoal = settings.game.master.lineGoal
         $('#levelType').innerHTML = "Mystery (" + settings.game.master.lineGoal + "L, " + settings.game.master.startingLevel + "S)"
@@ -3966,7 +3987,7 @@ export const loops = {
         window.riseTimeOffset += window.riseTimeMax
         window.gridtemp = Math.floor(Math.random() * 10)
         for (let x = 0; x < 10; x++) {
-          for (let y = 21; y > 0; y = y - 1) {arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - y] = arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - (y - 1)]}
+          for (let y = 21; y > 0; y--) {arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - y] = arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - (y - 1)]}
           if (x != window.gridtemp) {arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - 1] = 'white'}
         }
         arg.stack.makeAllDirty()
@@ -4381,7 +4402,7 @@ export const loops = {
         sound.add('voxexcellent')
         game.end(true)
       }
-      if (window.hasHeld == false && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++}
+      if (!window.hasHeld && game.stat.initPieces === 0 && (game.stat.level % 100 !== 99 && game.stat.level !== 998)) {game.stat.level++}
       //else {sound.add('bell')}
       if (game.stat.initPieces > 0) {game.stat.initPieces--}
       window.hasHeld = false
