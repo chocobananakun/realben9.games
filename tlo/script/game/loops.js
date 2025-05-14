@@ -182,14 +182,14 @@ export const loops = {
           break
         }
       }
-      if (settings.game.normal.infG == false) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
+      if (!settings.game.normal.infG) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
       else {game.piece.gravity = framesToMs(1 / 20)}
-      if (settings.game.normal.tls == false) {game.piece.ghostIsVisible = game.stat.level < 100}
+      if (!settings.game.normal.tls) {game.piece.ghostIsVisible = game.stat.level < 100}
       else {game.piece.ghostIsVisible = true}
       updateFallSpeed(game)
     },
     onInit: (game) => {
-      if (settings.game.normal.big == false) {
+      if (!settings.game.normal.big) {
         game.settings.width = 10
         game.settings.height = 20
         game.stack.width = 10
@@ -199,7 +199,7 @@ export const loops = {
         game.resize()
       }
       game.stat.level = settings.game.normal.startingLevel
-      if (game.stat.level != 0 || settings.game.normal.infG == true || settings.game.normal.big == true || settings.game.normal.tls == true) {
+      if (game.stat.level != 0 || settings.game.normal.infG || settings.game.normal.big || settings.game.normal.tls) {
         $('#next-label').style.animationName = "hurry-up-timer"
         $('#next-label').style.animationDuration = "0.4s"
         $('#next-label').style.animationIterationCount = "infinite"
@@ -215,7 +215,7 @@ export const loops = {
       game.drop = 0
       game.stat.initPieces = 2
       game.endingStats.grade = true
-      if (settings.game.normal.ruleOption == false) {
+      if (!settings.game.normal.ruleOption) {
         game.settings.rotationSystem = "srs"
         game.rotationSystem = "srs"
         if (settings.game.normal.startingLevel == 0) $('#levelType').innerHTML = '<font color="#f66">Normal (0S)</font>'
@@ -286,14 +286,14 @@ export const loops = {
           break
         }
       }
-      if (settings.game.novice.infG == false) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
+      if (!settings.game.novice.infG) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
       else {game.piece.gravity = framesToMs(1 / 20)}
-      if (settings.game.novice.tls == false) {game.piece.ghostIsVisible = game.stat.level < 100}
+      if (!settings.game.novice.tls) {game.piece.ghostIsVisible = game.stat.level < 100}
       else {game.piece.ghostIsVisible = true}
       updateFallSpeed(game)
     },
     onInit: (game) => {
-      if (settings.game.novice.big == false) {
+      if (!settings.game.novice.big) {
         game.settings.width = 10
         game.settings.height = 20
         game.stack.width = 10
@@ -303,7 +303,7 @@ export const loops = {
         game.resize()
       }
       game.stat.level = settings.game.novice.startingLevel
-      if (game.stat.level != 0 || settings.game.novice.infG == true || settings.game.novice.big == true || settings.game.novice.tls == true) {
+      if (game.stat.level != 0 || settings.game.novice.infG || settings.game.novice.big || settings.game.novice.tls) {
         $('#next-label').style.animationName = "hurry-up-timer"
         $('#next-label').style.animationDuration = "0.4s"
         $('#next-label').style.animationIterationCount = "infinite"
@@ -317,7 +317,7 @@ export const loops = {
       game.drop = 0
       game.stat.initPieces = 2
       game.appends.level = `<span class="small">/300</span>`
-      if (settings.game.novice.ruleOption == false) {
+      if (!settings.game.novice.ruleOption) {
         game.settings.rotationSystem = "srs"
         game.rotationSystem = "srs"
         if (settings.game.novice.startingLevel == 0) $('#levelType').innerHTML = '<font color="#f66">Novice (0S)</font>'
@@ -778,9 +778,9 @@ export const loops = {
           break
         }
       }
-      if (settings.game.special.infG == false) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
+      if (!settings.game.special.infG) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
       else {game.piece.gravity = framesToMs(1 / 20)}
-      if (settings.game.special.tls == false) {game.piece.ghostIsVisible = game.stat.level < 100}
+      if (!settings.game.special.tls) {game.piece.ghostIsVisible = game.stat.level < 100}
       else {game.piece.ghostIsVisible = true}
       if (game.stat.level >= 800) {
         game.piece.areLimit = 200
@@ -799,7 +799,7 @@ export const loops = {
         game.piece.areLineLimit = framesToMs(40)}
       if (game.stat.level < 900) {game.piece.lockDelayLimit = 500}
       else {game.piece.lockDelayLimit = 283}
-      if (settings.game.special.ruleOption == false) {
+      if (!settings.game.special.ruleOption) {
         game.settings.rotationSystem = "srs"
         game.rotationSystem = "srs"
         if (settings.game.special.startingLevel == 0) $('#levelType').innerHTML = '<font color="#f66">Special (0S)</font>'
@@ -813,7 +813,7 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
-      if (settings.game.special.big == false) {
+      if (!settings.game.special.big) {
         game.settings.width = 10
         game.settings.height = 20
         game.stack.width = 10
@@ -823,7 +823,7 @@ export const loops = {
         game.resize()
       }
       game.stat.level = settings.game.special.startingLevel
-      if (game.stat.level != 0 || settings.game.special.infG == true || settings.game.special.big == true || settings.game.special.tls == true) {
+      if (game.stat.level != 0 || settings.game.special.infG || settings.game.special.big || settings.game.special.tls) {
         $('#next-label').style.animationName = "hurry-up-timer"
         $('#next-label').style.animationDuration = "0.4s"
         $('#next-label').style.animationIterationCount = "infinite"
@@ -882,7 +882,7 @@ export const loops = {
       updateLasts(arg)
     },
     onInit: (game) => {
-      if (settings.game.sudden.big == false) {
+      if (!settings.game.sudden.big) {
         game.settings.width = 10
         game.settings.height = 20
         game.stack.width = 10
@@ -892,7 +892,7 @@ export const loops = {
         game.resize()
       }
       game.stat.level = settings.game.sudden.startingLevel
-      if (game.stat.level != 0 || settings.game.sudden.big == true) {
+      if (game.stat.level != 0 || settings.game.sudden.big) {
         $('#next-label').style.animationName = "hurry-up-timer"
         $('#next-label').style.animationDuration = "0.4s"
         $('#next-label').style.animationIterationCount = "infinite"
@@ -909,7 +909,7 @@ export const loops = {
       game.endingStats.grade = true
       game.musicProgression = 0
       game.drop = 0
-      if (settings.game.sudden.ruleOption == false) {
+      if (!settings.game.sudden.ruleOption) {
         game.settings.rotationSystem = "srs"
         game.rotationSystem = "srs"
         if (settings.game.sudden.startingLevel == 0) $('#levelType').innerHTML = '<font color="#f66">Sudden (0S)</font>'
@@ -1222,7 +1222,7 @@ export const loops = {
         shifting(arg)
       }
       gravity(arg)
-      if (settings.game.sprint.ruleOption == false) {
+      if (!settings.game.specialti.ruleOption) {
         hardDrop(arg, true)
         softDrop(arg)
       } else {
@@ -1238,7 +1238,7 @@ export const loops = {
     },
     onPieceSpawn: (game) => {
       if (((game.stat.level - (game.stat.level % 100)) / 100) > game.tiseg) {
-        if (game.ticool == true) {game.cools++}
+        if (game.ticool) {game.cools++}
         else {
           if (game.tiseg == 0) {
             if (game.coolrta > 90000) {
@@ -1316,7 +1316,7 @@ export const loops = {
         game.tireg = false
       }
       game.tiseg = ((game.stat.level - (game.stat.level % 100)) / 100)
-      if (game.stat.level % 100 > 70 && game.ticool == false) {
+      if (game.stat.level % 100 > 70 && !game.ticool) {
         if (game.tiseg == 0) {
           if (game.coolrta < 52000) {
             $('#message').innerHTML = "COOL!!"
@@ -1705,9 +1705,9 @@ export const loops = {
           break
         }
       }
-      if (settings.game.specialti.infG == false) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
+      if (!settings.game.specialti.infG) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
       else {game.piece.gravity = framesToMs(1 / 20)}
-      if (settings.game.specialti.tls == false) {game.piece.ghostIsVisible = game.stat.level < 100}
+      if (!settings.game.specialti.tls) {game.piece.ghostIsVisible = game.stat.level < 100}
       else {game.piece.ghostIsVisible = true}
       if (game.stat.level + (game.cools * 100) >= 1200) {
         game.piece.areLimit = framesToMs(4)
@@ -1743,7 +1743,7 @@ export const loops = {
       updateFallSpeed(game)
     },
     onInit: (game) => {
-      if (settings.game.specialti.big == false) {
+      if (!settings.game.specialti.big) {
         game.settings.width = 10
         game.settings.height = 20
         game.stack.width = 10
@@ -1753,7 +1753,7 @@ export const loops = {
         game.resize()
       }
       game.stat.level = settings.game.specialti.startingLevel
-      if (game.stat.level != 0 || settings.game.specialti.infG == true || settings.game.specialti.big == true || settings.game.specialti.tls == true) {
+      if (game.stat.level != 0 || settings.game.specialti.infG || settings.game.specialti.big || settings.game.specialti.tls) {
         $('#next-label').style.animationName = "hurry-up-timer"
         $('#next-label').style.animationDuration = "0.4s"
         $('#next-label').style.animationIterationCount = "infinite"
@@ -1780,7 +1780,7 @@ export const loops = {
       game.drop = 0
       game.stat.initPieces = 2
       game.endingStats.grade = true
-      if (settings.game.specialti.ruleOption == false) {
+      if (!settings.game.specialti.ruleOption) {
         game.settings.rotationSystem = "world"
         game.rotationSystem = "world"
         if (settings.game.specialti.startingLevel == 0) $('#levelType').innerHTML = '<font color="#f66">Special Ti (0S)</font>'
@@ -1832,7 +1832,7 @@ export const loops = {
         shifting(arg)
       }
       gravity(arg)
-      if (settings.game.suddenti.ruleOption == false) {
+      if (!settings.game.suddenti.ruleOption) {
         hardDrop(arg, true)
         softDrop(arg)
       } else {
@@ -1847,7 +1847,7 @@ export const loops = {
       updateLasts(arg)
     },
     onInit: (game) => {
-      if (settings.game.suddenti.big == false) {
+      if (!settings.game.suddenti.big) {
         game.settings.width = 10
         game.settings.height = 20
         game.stack.width = 10
@@ -1857,7 +1857,7 @@ export const loops = {
         game.resize()
       }
       game.stat.level = settings.game.suddenti.startingLevel
-      if (game.stat.level != 0 || settings.game.suddenti.big == true) {
+      if (game.stat.level != 0 || settings.game.suddenti.big) {
         $('#next-label').style.animationName = "hurry-up-timer"
         $('#next-label').style.animationDuration = "0.4s"
         $('#next-label').style.animationIterationCount = "infinite"
@@ -1876,7 +1876,7 @@ export const loops = {
       game.drop = 0
       game.lineClear = 0
       game.garbageCounter = 0
-      if (settings.game.suddenti.ruleOption == false) {
+      if (!settings.game.suddenti.ruleOption) {
         game.settings.rotationSystem = "world"
         game.rotationSystem = "world"
         if (settings.game.suddenti.startingLevel == 0) $('#levelType').innerHTML = '<font color="#f66">Sudden Ti (0S)</font>'
@@ -1895,7 +1895,7 @@ export const loops = {
     onPieceSpawn: (game) => {
       if (game.stat.level >= 1000) {
         game.makeSprite() //check game.js:800
-        if (settings.game.suddenti.ruleOption == false) {
+        if (!settings.game.suddenti.ruleOption) {
           game.colors = {
             I: 'green',
             L: 'green',
@@ -1993,7 +1993,7 @@ export const loops = {
           game.musicProgression = pair[1]
         }
       }
-      if (game.stat.level >= 500 && ((settings.game.suddenti.ruleOption == true && game.rta <= 148000) || (settings.game.suddenti.ruleOption == false && game.rta <= 183000))) game.torikanPassed = true
+      if (game.stat.level >= 500 && ((settings.game.suddenti.ruleOption && game.rta <= 148000) || (!settings.game.suddenti.ruleOption && game.rta <= 183000))) game.torikanPassed = true
       else if ((game.stat.level >= 500 && !game.torikanPassed) || game.stat.level >= 1300) {
         if (game.stat.level < 1300) {
           game.stat.level = 500
@@ -2053,7 +2053,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
-      if (settings.game.marathon.big == false) {
+      if (!settings.game.marathon.big) {
         game.settings.width = 10
         game.settings.height = 20
         game.stack.width = 10
@@ -2509,7 +2509,7 @@ export const loops = {
       game.piece.lockDelayLimit = window.lockdelaystatic
       game.lives = settings.game.zen.lifeCount
       game.stack.isInvisible = settings.game.zen.invisible
-      if (settings.game.zen.customBoard == true) {
+      if (settings.game.zen.customBoard) {
         function escape(s) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
         window.cookieMatch = document.cookie.match(RegExp('(?:^|;\\s*)' + escape("TlBeSaVe") + '=([^;]*)'));
         window.cookieData = window.cookieMatch ? window.cookieMatch[1] : "";
@@ -4578,7 +4578,7 @@ export const loops = {
         framesToMs(1), framesToMs(1), framesToMs(1), framesToMs(1), framesToMs(1),
         framesToMs(1), framesToMs(1), framesToMs(1), framesToMs(1), framesToMs(0.5),
       ]
-      if (settings.game.retro.compMode == false) {game.piece.gravity = SPEED_TABLE[Math.min(29, game.stat.level)]}
+      if (!settings.game.retro.compMode) {game.piece.gravity = SPEED_TABLE[Math.min(29, game.stat.level)]}
       else {game.piece.gravity = SPEED_TABLE[Math.min(39, game.stat.level)]}
       if (game.next.queue[0] === 'I') {lastSeenI = 0}
       else {lastSeenI++}
@@ -4588,11 +4588,11 @@ export const loops = {
       if (settings.game.retro.mechanics === 'accurate') {
         game.hideGrid = true
         game.stack.updateGrid()
-        if (settings.game.retro.compMode == false) $('#levelType').innerHTML = "Console (Accurate, " + settings.game.retro.startingLevel + "S)"
+        if (!settings.game.retro.compMode) $('#levelType').innerHTML = "Console (Accurate, " + settings.game.retro.startingLevel + "S)"
         else $('#levelType').innerHTML = "Console (Accurate, " + settings.game.retro.startingLevel + "S)*"
       }
       else {
-        if (settings.game.retro.compMode == false) $('#levelType').innerHTML = "Console (Modern, " + settings.game.retro.startingLevel + "S)"
+        if (!settings.game.retro.compMode) $('#levelType').innerHTML = "Console (Modern, " + settings.game.retro.startingLevel + "S)"
         else $('#levelType').innerHTML = "Console (Modern, " + settings.game.retro.startingLevel + "S)*"
       }
       lastSeenI = 0
@@ -4699,7 +4699,7 @@ export const loops = {
       if (settings.game.fall.mechanics === 'accurate') {
         game.hideGrid = true
         game.stack.updateGrid()
-        if (settings.game.retro.compMode == false) $('#levelType').innerHTML = "Fall (Accurate, " + settings.game.fall.startingLevel + "S)"
+        if (!settings.game.retro.compMode) $('#levelType').innerHTML = "Fall (Accurate, " + settings.game.fall.startingLevel + "S)"
       }
       else $('#levelType').innerHTML = "Fall (Modern, " + settings.game.fall.startingLevel + "S)"
       lastSeenI = 0
