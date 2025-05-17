@@ -1937,39 +1937,39 @@ export const loops = {
       if (game.lineClear == 3) {game.stat.level++}
       else if (game.lineClear > 3) {game.stat.level += 2}
       game.lineClear = 0
-      const areTable = [[300,10],[1300,4]]
-      const areLineModifierTable = [[101,-4],[301,-6],[1000,0]]
-      const areLineTable = [[100,6],[200,5],[500,4],[1300,3]]
-      const dasTable = [[100,8],[500,6],[1300,4]]
-      const lockDelayTable = [[200,18],[300,17],[500,15],[600,13],[600,13],[1100,12],[1200,10],[1300,8]]
+      const areTable = [[300,framesToMs(10)],[1300,framesToMs(4)]]
+      const areLineModifierTable = [[101,framesToMs(-4)],[301,framesToMs(-6)],[1000,0]]
+      const areLineTable = [[100,framesToMs(6)],[200,framesToMs(5)],[500,framesToMs(4)],[1300,framesToMs(3)]]
+      const dasTable = [[100,framesToMs(8)],[500,framesToMs(6)],[1300,framesToMs(4)]]
+      const lockDelayTable = [[200,300],[300,284],[500,250],[600,217],[1100,200],[1200,167],[1300,134]]
       const musicProgressionTable = [[279,1],[300,2],[479,3],[500,4]]
       for (const pair of areTable) {
         if (game.stat.level < pair[0]) {
-          game.piece.areLimit = framesToMs(pair[1])
+          game.piece.areLimit = pair[1]
           break
         }
       }
       for (const pair of areLineModifierTable) {
         if (game.stat.level < pair[0]) {
-          game.piece.areLimitLineModifier = framesToMs(pair[1])
+          game.piece.areLimitLineModifier = pair[1]
           break
         }
       }
       for (const pair of areLineTable) {
         if (game.stat.level < pair[0]) {
-          game.piece.areLineLimit = framesToMs(pair[1])
+          game.piece.areLineLimit = pair[1]
           break
         }
       }
       for (const pair of dasTable) {
         if (game.stat.level < pair[0]) {
-          game.piece.dasLimit = framesToMs(pair[1])
+          game.piece.dasLimit = pair[1]
           break
         }
       }
       for (const pair of lockDelayTable) {
         if (game.stat.level < pair[0]) {
-          game.piece.lockDelayLimit = Math.ceil(framesToMs(pair[1]))
+          game.piece.lockDelayLimit = pair[1]
           break
         }
       }
@@ -1993,16 +1993,17 @@ export const loops = {
           game.musicProgression = pair[1]
         }
       }
-      if (game.stat.level >= 500 && ((settings.game.suddenti.ruleOption && game.rta <= 148000) || (!settings.game.suddenti.ruleOption && game.rta <= 183000))) game.torikanPassed = true
-      else if ((game.stat.level >= 500 && !game.torikanPassed) || game.stat.level >= 1300) {
-        if (game.stat.level < 1300) {
-          game.stat.level = 500
-          $('#kill-message').textContent = locale.getString('ui', 'torikan')
-        }
-        else {
-          game.stat.level = 1300
-          $('#kill-message').textContent = locale.getString('ui', 'excellent')
-        }
+      if (game.stat.level >= 500 && ((settings.game.suddenti.ruleOption && game.rta <= 148000) || (!settings.game.suddenti.ruleOption && game.rta <= 183000))) {game.torikanPassed = true}
+      else if ((game.stat.level >= 500 && !game.torikanPassed)) {
+        game.stat.level = 500
+        $('#kill-message').textContent = locale.getString('ui', 'regretPace')
+        sound.killVox()
+        sound.add('voxexcellent')
+        game.end(true)
+      }
+      if (game.stat.level >= 1300) {
+        game.stat.level = 1300
+        $('#kill-message').textContent = locale.getString('ui', 'excellent')
         sound.killVox()
         sound.add('voxexcellent')
         game.end(true)

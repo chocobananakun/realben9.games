@@ -22,5 +22,5 @@
   "next": {
     "nextLimit": 3
   },
-  "stats": ["grade", "score", "level", "line", "piece", "b2b"]
+  "stats": ["grade", "score", "level", "line", "piece"]
 }
