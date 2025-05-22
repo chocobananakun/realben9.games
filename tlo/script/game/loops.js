@@ -183,7 +183,7 @@ export const loops = {
         }
       }
       if (!settings.game.normal.infG) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
-      else {game.piece.gravity = framesToMs(1 / 20)}
+      else {game.piece.gravity = framesToMs(0.05)}
       if (!settings.game.normal.tls) {game.piece.ghostIsVisible = game.stat.level < 100}
       else {game.piece.ghostIsVisible = true}
       updateFallSpeed(game)
@@ -287,7 +287,7 @@ export const loops = {
         }
       }
       if (!settings.game.novice.infG) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
-      else {game.piece.gravity = framesToMs(1 / 20)}
+      else {game.piece.gravity = framesToMs(0.05)}
       if (!settings.game.novice.tls) {game.piece.ghostIsVisible = game.stat.level < 100}
       else {game.piece.ghostIsVisible = true}
       updateFallSpeed(game)
@@ -779,7 +779,7 @@ export const loops = {
         }
       }
       if (!settings.game.special.infG) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
-      else {game.piece.gravity = framesToMs(1 / 20)}
+      else {game.piece.gravity = framesToMs(0.05)}
       if (!settings.game.special.tls) {game.piece.ghostIsVisible = game.stat.level < 100}
       else {game.piece.ghostIsVisible = true}
       if (game.stat.level >= 800) {
@@ -903,7 +903,7 @@ export const loops = {
       game.isRaceMode = true
       game.stat.grade = ""
       game.rta = 0
-      game.piece.gravity = framesToMs(1 / 20)
+      game.piece.gravity = framesToMs(0.05)
       game.torikanPassed = false
       game.stat.initPieces = 2
       game.endingStats.grade = true
@@ -1706,7 +1706,7 @@ export const loops = {
         }
       }
       if (!settings.game.specialti.infG) {game.piece.gravity = framesToMs(256 / gravityDenominator)}
-      else {game.piece.gravity = framesToMs(1 / 20)}
+      else {game.piece.gravity = framesToMs(0.05)}
       if (!settings.game.specialti.tls) {game.piece.ghostIsVisible = game.stat.level < 100}
       else {game.piece.ghostIsVisible = true}
       if (game.stat.level + (game.cools * 100) >= 1200) {
@@ -2140,7 +2140,7 @@ export const loops = {
       game.isRaceMode = true
       game.stat.grade = ""
       game.rta = 0
-      game.piece.gravity = framesToMs(1 / 20)
+      game.piece.gravity = framesToMs(0.05)
       game.piece.areLineLimit = 1
       game.stat.initPieces = 2
       game.musicProgression = 0
@@ -2580,7 +2580,7 @@ export const loops = {
       updateLasts(arg)
     },
     onPieceSpawn: (game) => {
-      game.piece.gravity = framesToMs(1 / 20)
+      game.piece.gravity = framesToMs(0.05)
       game.piece.lockDelayLimit = roundBpmToMs(bpm)
     },
     onInit: (game) => {
@@ -2642,7 +2642,7 @@ export const loops = {
     },
     onPieceSpawn: (game) => {
       game.stat.level = Math.max(Math.floor(game.stat.line / 10 + 1), settings.game.pull.startingLevel)
-      const calcLevel = Math.min(31, game.stat.level - 1)
+      //const calcLevel = Math.min(31, game.stat.level - 1)
       const DELAY_TABLE = [
         429, 375, 333, 300, 273,
         250, 231, 214, 200, 188,
@@ -2651,11 +2651,8 @@ export const loops = {
         111, 107, 103, 100, 96.8,
         93.8, 90.9, 88.2, 85.7, 83.3,
         81.1, 78.9, 76.9]
-      if (game.stat.level < 21) {
-        game.piece.lockDelayLimit = 500
-      } else {
-        game.piece.lockDelayLimit = DELAY_TABLE[Math.min(32, game.stat.level - 21)]
-      }
+      if (game.stat.level < 21) {game.piece.lockDelayLimit = 500}
+      else {game.piece.lockDelayLimit = DELAY_TABLE[Math.min(32, game.stat.level - 21)]}
       const SPN_TABLE = [
         0, 0, 0, 0, 0,
         80, 80, 80, 80, 80,
@@ -2689,11 +2686,8 @@ export const loops = {
         240, 164, 108, 69.1, 42.5,
         25.2, 14.4, 7.9, 4.2, 2.1,
         1]
-      if (game.stat.level < 17) {
-        game.piece.gravity = GRAVITY_TABLE[Math.min(16, game.stat.level - 1)]
-      } else {
-        game.piece.gravity = framesToMs(1 / 20)
-      }
+      if (game.stat.level < 17) {game.piece.gravity = GRAVITY_TABLE[Math.min(16, game.stat.level - 1)]}
+      else {game.piece.gravity = framesToMs(0.05)}
       updateFallSpeed(game)
     },
     onInit: (game) => {
@@ -3815,7 +3809,7 @@ export const loops = {
       game.lineGoal = 150
       game.stat.level = settings.game.strategy.startingLevel
       lastLevel = parseInt(settings.game.strategy.startingLevel)
-      game.piece.gravity = framesToMs(1 / 20)
+      game.piece.gravity = framesToMs(0.05)
       updateFallSpeed(game)
       game.hold.isDisabled = !settings.game.strategy.hold
       document.documentElement.style.setProperty("--tetrion-color", "#fff")
@@ -3983,23 +3977,36 @@ export const loops = {
       $('#das').value = arg.piece.das
       $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0)
       */
-      window.riseTime = arg.piece.parent.timePassed - window.riseTimeOffset
-      if (window.riseTime >= window.riseTimeMax) {
+      window.riseTime = gameHandler.game.timePassed/* + gameHandler.game.timePassedAre*/ - window.riseTimeOffset //should be RTA-timed, but leaving it IGT-timed due to line ARE
+      if (window.riseTime >= window.riseTimeMax && gameHandler.game.stack.lineClear == 0) {
         window.riseTimeOffset += window.riseTimeMax
         window.gridtemp = Math.floor(Math.random() * 10)
         for (let x = 0; x < 10; x++) {
           for (let y = 21; y > 0; y--) {arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - y] = arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - (y - 1)]}
           if (x != window.gridtemp) {arg.stack.grid[x][arg.stack.height + arg.stack.hiddenHeight - 1] = 'white'}
         }
+        if (!arg.piece.canShiftDown) {arg.piece.y--}
         arg.stack.makeAllDirty()
         arg.stack.draw()
-        window.riseTimeMax = arg.piece.parent.riseTable[arg.piece.parent.stat.level - 1]
+        window.riseTimeMax = gameHandler.game.riseTable[gameHandler.game.stat.level - 1]
         $('#rise').max = window.riseTimeMax
       }
       $('#rise').value = window.riseTime
     },
     onPieceSpawn: (game) => {
       game.stat.level = Math.max(settings.game.rise.startingLevel, Math.floor(game.stat.line / 10 + 1))
+      const CLR_TABLE = [
+        200, 196, 193, 189, 186,
+        166, 163, 160, 157, 154,
+        138, 135, 133, 130, 128,
+        114, 112, 110, 108, 106]
+      if (game.stat.level < 21) {
+        game.piece.areLineLimit = CLR_TABLE[game.stat.level - 1]
+        game.stat.entrydelay = `100ms, ${game.piece.areLineLimit} Line`
+      } else {
+        game.piece.areLineLimit = 100
+        game.stat.entrydelay = `100ms, 100 Line`
+      }
       levelUpdate(game)
     },
     onInit: (game) => {
@@ -4055,6 +4062,7 @@ export const loops = {
       $('#rise').max = window.riseTimeMax
       window.riseTime = 0
       window.riseTimeOffset = 0
+      game.piece.areLimit = 100
       game.piece.gravity = 1000
       game.piece.lockDelayLimit = 500
       document.documentElement.style.setProperty("--tetrion-color", "#777")
@@ -4166,7 +4174,7 @@ export const loops = {
       game.stat.level = settings.game.master.startingLevel
       lastLevel = parseInt(settings.game.master.startingLevel)
       game.prefixes.level = 'M'
-      game.piece.gravity = framesToMs(1 / 20)
+      game.piece.gravity = framesToMs(0.05)
       document.documentElement.style.setProperty("--tetrion-color", "#fcc")
       $('#rise').style.display = "none"
       $('#zen_panel').style.display = "none"
